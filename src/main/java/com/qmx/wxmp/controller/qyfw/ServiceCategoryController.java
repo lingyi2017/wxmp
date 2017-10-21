@@ -1,6 +1,7 @@
 package com.qmx.wxmp.controller.qyfw;
 
-import com.google.common.collect.Lists;
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.common.collect.Lists;
 import com.qmx.wxmp.controller.BaseController;
 import com.qmx.wxmp.entity.qyfw.ServiceCategory;
 import com.qmx.wxmp.service.qyfw.ServiceCategoryService;
-
-import java.util.List;
 
 /**
  * 服务分类 Controller
@@ -46,6 +46,7 @@ public class ServiceCategoryController extends BaseController {
 	@RequiresPermissions("qyfw:serviceCategory:view")
 	@RequestMapping(value = { "list", "" })
 	public String list(ServiceCategory serviceCategory, Model model) {
+
 		try {
 			serviceCategory.setId("1");
 			model.addAttribute("serviceCategory", serviceCategory);
@@ -53,10 +54,12 @@ public class ServiceCategoryController extends BaseController {
 			List<ServiceCategory> sourcelist = thisService.findAll();
 			ServiceCategory.sortList(list, sourcelist, serviceCategory.getId());
 			model.addAttribute("list", list);
-		}catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
+			logger.error("服务分类列表查询异常", e);
 		}
 		return "/qyfw/serviceCategoryList";
+
 	}
 
 
@@ -65,7 +68,7 @@ public class ServiceCategoryController extends BaseController {
 	@RequestMapping(value = "form")
 	public String form(ServiceCategory serviceCategory, Model model) {
 
-		return "/sys/areaForm";
+		return "/qyfw/serviceCategoryForm";
 	}
 
 
@@ -74,7 +77,7 @@ public class ServiceCategoryController extends BaseController {
 	@RequestMapping(value = "save")
 	public String save(ServiceCategory serviceCategory, Model model, RedirectAttributes redirectAttributes) {
 
-		return "redirect:/sys/area/";
+		return "redirect:/qyfw/serviceCategory/";
 	}
 
 
@@ -83,7 +86,7 @@ public class ServiceCategoryController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(String id, RedirectAttributes redirectAttributes) {
 
-		return "redirect:/sys/area/";
+		return "redirect:/qyfw/serviceCategory/";
 	}
 
 }

@@ -9,6 +9,7 @@ CREATE TABLE qyfw_service_category
   is_important bit(1) DEFAULT 0 COMMENT '是否重点显示（0：否；1：是）',
   sort int(11) DEFAULT 1 COMMENT '排序号',
   wx_menu_id varchar(255) COMMENT '微信菜单ID',
+  del_flag char(1) DEFAULT '0' NOT NULL COMMENT '删除标记（0：正常；1：删除）',
   PRIMARY KEY (id)
 ) COMMENT = '服务分类';
 
@@ -16,4 +17,4 @@ CREATE TABLE qyfw_service_category
 -- Records of qyfw_service_category
 -- --------------------------------
 -- 服务分类顶级目录初始化
-INSERT INTO `qyfw_service_category` VALUES ('1', '0', '0', '顶级分类', 1, 0, 1, null);
+INSERT INTO `qyfw_service_category` VALUES ('1', '0', '0', '顶级分类', 1, 0, 1, null, 0);

@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title><spring:message code='area.manage' /></title>
+	<title>分类管理</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -27,10 +27,10 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/sys/area/"><spring:message code='area.list' /></a></li>
-		<li class="active"><a href="form?id=${area.id}&parent.id=${area.parent.id}"><spring:message code='area' /><shiro:hasPermission name="sys:area:edit">${not empty area.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="sys:area:edit"><spring:message code='check' /></shiro:lacksPermission></a></li>
+		<li><a href="${ctx}/qyfw/serviceCategory/">分类列表</a></li>
+		<li class="active"><a href="form?id=${serviceCategory.id}&parent.id=${serviceCategory.parent.id}">分类<shiro:hasPermission name="qyfw:serviceCategory:edit">${not empty serviceCategory.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="qyfw:serviceCategory:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
-	<form:form id="inputForm" modelAttribute="area" action="${ctx}/sys/area/save" method="post" class="form-horizontal">
+	<form:form id="inputForm" modelAttribute="serviceCategory" action="${ctx}/qyfw/serviceCategory/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<tags:message content="${message}"/>
 		<div class="control-group">

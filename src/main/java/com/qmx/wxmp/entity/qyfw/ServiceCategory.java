@@ -52,6 +52,9 @@ public class ServiceCategory implements Serializable {
 	/** 微信菜单ID */
 	private String				wxMenuId;
 
+	/** 删除标记（0：正常；1：删除） */
+	protected String			delFlag;
+
 
 
 	public String getId() {
@@ -146,6 +149,18 @@ public class ServiceCategory implements Serializable {
 
 	public void setWxMenuId(String wxMenuId) {
 		this.wxMenuId = wxMenuId;
+	}
+
+
+
+	public String getDelFlag() {
+		return delFlag;
+	}
+
+
+
+	public void setDelFlag(String delFlag) {
+		this.delFlag = delFlag;
 	}
 
 

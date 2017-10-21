@@ -24,14 +24,14 @@ public class ServiceCategoryDao extends BaseDao<ServiceCategory> {
 
 
 	public List<ServiceCategory> findAllList() {
-		return find("from ServiceCategory where isEnable=:p1 order by sort asc", new Parameter(true));
+		return find("from ServiceCategory where delFlag=:p1 order by sort asc", new Parameter("0"));
 	}
 
 
 
 	public List<ServiceCategory> findAllChild(String parentId, String likeParentIds) {
 		return find(
-				"from ServiceCategory where isEnable=:p1 and (id=:p2 or parent.id=:p2 or parentIds like :p3) order by sort asc",
-				new Parameter(true, parentId, likeParentIds));
+				"from ServiceCategory where delFlag=:p1 and (id=:p2 or parent.id=:p2 or parentIds like :p3) order by sort asc",
+				new Parameter("0", parentId, likeParentIds));
 	}
 }
