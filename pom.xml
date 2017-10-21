@@ -57,7 +57,6 @@
  
 	<!-- 设定依赖仓库,按设定顺序进行查找.-start -->
 	<repositories>
-
 		<repository>
 			<id>nexus-aliyun</id>
 			<name>Nexus aliyun</name>
