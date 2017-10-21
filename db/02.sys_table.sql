@@ -284,9 +284,9 @@ INSERT INTO `sys_menu` VALUES ('32', '31', '0,1,2,31,', '日志查询', '/sys/lo
 INSERT INTO `sys_menu` VALUES ('100', '1', '0,1,', '企业服务', null, null, null, '300', '1', '0', null, null, null, null, null, null, '0');
 
 INSERT INTO `sys_menu` VALUES ('101', '100', '0,1,100,', '服务管理', null, null, null, '100', '1', '0', null, null, null, null, null, null, '0');
-INSERT INTO `sys_menu` VALUES ('102', '101', '0,1,100,101,', '服务分类', '/qyfw/serviceClass/', null, 'list-alt', '10', '1', '0', null, '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('103', '102', '0,1,100,101,102,', '查看', null, null, null, '10', '0', '0', 'qyfw:serviceClass:view', '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('104', '102', '0,1,100,101,102,', '修改', null, null, null, '20', '0', '0', 'qyfw:serviceClass:edit', '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('102', '101', '0,1,100,101,', '服务分类', '/qyfw/serviceCategory/', null, 'list-alt', '10', '1', '0', null, '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('103', '102', '0,1,100,101,102,', '查看', null, null, null, '10', '0', '0', 'qyfw:serviceCategory:view', '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('104', '102', '0,1,100,101,102,', '修改', null, null, null, '20', '0', '0', 'qyfw:serviceCategory:edit', '1', now(), '1', now(), null, '0');
 
 INSERT INTO `sys_menu` VALUES ('105', '101', '0,1,100,101,', '服务材料', '/qyfw/basicServiceMaterial/', null, 'list-alt', '20', '1', '0', null, '1', now(), '1', now(), null, '0');
 INSERT INTO `sys_menu` VALUES ('106', '105', '0,1,100,101,105,', '查看', null, null, null, '10', '0', '0', 'qyfw:basicServiceMaterial:view', '1', now(), '1', now(), null, '0');

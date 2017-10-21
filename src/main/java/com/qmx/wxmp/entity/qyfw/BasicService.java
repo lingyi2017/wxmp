@@ -57,7 +57,7 @@ public class BasicService {
 	/** 上级服务分类*/
 	@ManyToOne
 	@JoinColumn(name="ww_id")
-	private ServiceClass serviceClass;
+	private ServiceCategory serviceCategory;
 	
 	@OneToMany(mappedBy="basicService")
 	private Set<BasicServiceMaterial> basicServiceMaterials;
@@ -144,12 +144,12 @@ public class BasicService {
 		this.client = client;
 	}
 
-	public ServiceClass getServiceClass() {
-		return serviceClass;
+	public ServiceCategory getServiceCategory() {
+		return serviceCategory;
 	}
 
-	public void setServiceClass(ServiceClass serviceClass) {
-		this.serviceClass = serviceClass;
+	public void setServiceCategory(ServiceCategory serviceCategory) {
+		this.serviceCategory = serviceCategory;
 	}
 
 	public Set<BasicServiceMaterial> getBasicServiceMaterials() {
