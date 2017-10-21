@@ -1,17 +1,11 @@
 package com.qmx.wxmp.entity.qyfw;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * 基础服务信息
+ * 基础服务信息材料
  * @author zsmin
  *
  */
