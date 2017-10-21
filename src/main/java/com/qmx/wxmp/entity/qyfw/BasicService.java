@@ -53,7 +53,6 @@ public class BasicService {
 	/** 点击量*/
 	private Integer client;
 	
-	private String wxId;
 	
 	/** 上级服务分类*/
 	@ManyToOne
@@ -162,12 +161,4 @@ public class BasicService {
 		this.basicServiceMaterials = basicServiceMaterials;
 	}
 
-	public String getWxId() {
-		return wxId;
-	}
-
-	public void setWxId(String wxId) {
-		this.wxId = wxId;
-	}
-	
 }

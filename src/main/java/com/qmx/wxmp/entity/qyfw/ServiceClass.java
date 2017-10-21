@@ -37,6 +37,8 @@ public class ServiceClass {
 	private ServiceClass serviceClass;
 	
 	private String parentIds;
+	
+	private String wxMeauId;
 
 	public String getId() {
 		return id;
@@ -84,6 +86,14 @@ public class ServiceClass {
 
 	public void setParentIds(String parentIds) {
 		this.parentIds = parentIds;
+	}
+
+	public String getWxMeauId() {
+		return wxMeauId;
+	}
+
+	public void setWxMeauId(String wxMeauId) {
+		this.wxMeauId = wxMeauId;
 	}
 	
 	
