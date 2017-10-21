@@ -6,9 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -21,13 +20,6 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "qyfw_basic_service")
 public class BasicService {
-
-	/** 服务支持类型：个人*/
-	public static final String SUPPORT_TYPE_PERSON = "1";
-	/** 服务支持类型：企业*/
-	public static final String SUPPORT_TYPE_BUSSINESS = "2";
-	/** 服务支持类型：都支持*/
-	public static final String SUPPORT_TYPE_BOTH = "3";
 	
 	@Id
 	@GeneratedValue(generator = "system-uuid")
@@ -48,12 +40,12 @@ public class BasicService {
 	
 	/** 支持性质*/
 	private String suportType;
-	
+
 	/** 服务价格*/
 	private Float price;
 	
 	/** 服务介绍*/
-	private String desc;
+	private String desciption;
 	
 	/** 排序号*/
 	private Integer sort;
@@ -61,17 +53,18 @@ public class BasicService {
 	/** 点击量*/
 	private Integer client;
 	
+	private String wxId;
+	
 	/** 上级服务分类*/
-	@ManyToOne()
-	@JoinColumn(name="class_id")
+	@ManyToOne
+	@JoinColumn(name="ww_id")
 	private ServiceClass serviceClass;
 	
-	@ManyToMany
-	@JoinTable(name="qyfw_basicservice_material",
-	joinColumns = { @JoinColumn(name = "basic_service_id") }, 
-	inverseJoinColumns = { @JoinColumn(name = "material_id") })
-	private Set<Material> materials;
-
+	@OneToMany(mappedBy="basicService")
+	private Set<BasicServiceMaterial> basicServiceMaterials;
+	
+	
+	
 	public String getId() {
 		return id;
 	}
@@ -128,12 +121,12 @@ public class BasicService {
 		this.price = price;
 	}
 
-	public String getDesc() {
-		return desc;
+	public String getDesciption() {
+		return desciption;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDesciption(String desciption) {
+		this.desciption = desciption;
 	}
 
 	public Integer getSort() {
@@ -160,12 +153,21 @@ public class BasicService {
 		this.serviceClass = serviceClass;
 	}
 
-	public Set<Material> getMaterials() {
-		return materials;
+	public Set<BasicServiceMaterial> getBasicServiceMaterials() {
+		return basicServiceMaterials;
 	}
 
-	public void setMaterials(Set<Material> materials) {
-		this.materials = materials;
+	public void setBasicServiceMaterials(
+			Set<BasicServiceMaterial> basicServiceMaterials) {
+		this.basicServiceMaterials = basicServiceMaterials;
+	}
+
+	public String getWxId() {
+		return wxId;
+	}
+
+	public void setWxId(String wxId) {
+		this.wxId = wxId;
 	}
 	
 }

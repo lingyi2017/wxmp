@@ -5,7 +5,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -39,8 +39,8 @@ public class Material {
 	/** 排序号*/
 	private Integer sort;
 	
-	@ManyToMany(mappedBy="materials")
-	private Set<BasicService> basicservices;
+	@OneToMany(mappedBy="material")
+	private Set<BasicServiceMaterial> basicServiceMaterials;
 
 	public String getId() {
 		return id;
@@ -90,12 +90,14 @@ public class Material {
 		this.sort = sort;
 	}
 
-	public Set<BasicService> getBasicservices() {
-		return basicservices;
+	public Set<BasicServiceMaterial> getBasicServiceMaterials() {
+		return basicServiceMaterials;
 	}
 
-	public void setBasicservices(Set<BasicService> basicservices) {
-		this.basicservices = basicservices;
+	public void setBasicServiceMaterials(
+			Set<BasicServiceMaterial> basicServiceMaterials) {
+		this.basicServiceMaterials = basicServiceMaterials;
 	}
+
 	
 }

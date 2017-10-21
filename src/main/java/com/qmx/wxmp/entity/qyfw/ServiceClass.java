@@ -15,7 +15,7 @@ import org.hibernate.annotations.GenericGenerator;
  *
  */
 @Entity
-@Table(name = "qyfw_server_class")
+@Table(name = "qyfw_service_class")
 public class ServiceClass {
 
 	@Id
@@ -32,9 +32,11 @@ public class ServiceClass {
 	/** 排序号*/
 	private Integer sort;
 	
-	@ManyToOne()
+	@ManyToOne
 	@JoinColumn(name="parent_id")
 	private ServiceClass serviceClass;
+	
+	private String parentIds;
 
 	public String getId() {
 		return id;
@@ -74,6 +76,14 @@ public class ServiceClass {
 
 	public void setServiceClass(ServiceClass serviceClass) {
 		this.serviceClass = serviceClass;
+	}
+
+	public String getParentIds() {
+		return parentIds;
+	}
+
+	public void setParentIds(String parentIds) {
+		this.parentIds = parentIds;
 	}
 	
 	
