@@ -247,6 +247,12 @@ INSERT INTO `sys_dict` VALUES ('63', '异常日志', '2', 'sys_log_type', '日�
 -- ----------------------------
 INSERT INTO `sys_menu` VALUES ('1', '0', '0,', '顶级菜单', null, null, null, '0', '1', '0', null, null, null, null, now(), null, '0');
 
+-- 我的面板
+INSERT INTO `sys_menu` VALUES ('27', '1', '0,1,', '我的面板', null, null, 'user', '100', '1', '0', '', null, now(), 'admin', null, null, '0');
+INSERT INTO `sys_menu` VALUES ('28', '27', '0,1,27,', '个人信息', null, null, null, '990', '1', '0', null, '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('29', '28', '0,1,27,28,', '个人信息', '/sys/user/info', null, 'user', '30', '1', '0', null, '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('30', '28', '0,1,27,28,', '修改密码', '/sys/user/modifyPwd', null, 'lock', '40', '1', '0',  null, '1', now(), '1', now(), null, '0');
+
 -- 系统管理
 INSERT INTO `sys_menu` VALUES ('2', '1', '0,1,', '系统管理', null, null, null, '200', '1', '0', null, null, null, null, null, null, '0');
 INSERT INTO `sys_menu` VALUES ('3', '2', '0,1,2,', '系统设置', null, null, null, '980', '1', '0', null, null, null, null, null, null, '0');
@@ -274,12 +280,39 @@ INSERT INTO `sys_menu` VALUES ('22', '20', '0,1,2,13,20,', '修改', null, null,
 INSERT INTO `sys_menu` VALUES ('31', '2', '0,1,2,', '日志查询', null, null, null, '985', '1', '0', null, '1', now(), '1', now(), null, '0');
 INSERT INTO `sys_menu` VALUES ('32', '31', '0,1,2,31,', '日志查询', '/sys/log', null, 'pencil', '30', '1', '0', 'sys:log:view', '1', now(), '1', now(), null, '0');
 
--- 我的面板
-INSERT INTO `sys_menu` VALUES ('27', '1', '0,1,', '我的面板', null, null, 'user', '100', '1', '0', '', null, now(), 'admin', null, null, '0');
-INSERT INTO `sys_menu` VALUES ('28', '27', '0,1,27,', '个人信息', null, null, null, '990', '1', '0', null, '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('29', '28', '0,1,27,28,', '个人信息', '/sys/user/info', null, 'user', '30', '1', '0', null, '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('30', '28', '0,1,27,28,', '修改密码', '/sys/user/modifyPwd', null, 'lock', '40', '1', '0',  null, '1', now(), '1', now(), null, '0');
+-- 企业服务[100, )
+INSERT INTO `sys_menu` VALUES ('100', '1', '0,1,', '企业服务', null, null, null, '300', '1', '0', null, null, null, null, null, null, '0');
 
+INSERT INTO `sys_menu` VALUES ('101', '100', '0,1,100,', '服务管理', null, null, null, '100', '1', '0', null, null, null, null, null, null, '0');
+INSERT INTO `sys_menu` VALUES ('102', '101', '0,1,100,101,', '服务分类', '/qyfw/serviceClass/', null, 'list-alt', '10', '1', '0', null, '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('103', '102', '0,1,100,101,102,', '查看', null, null, null, '10', '0', '0', 'qyfw:serviceClass:view', '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('104', '102', '0,1,100,101,102,', '修改', null, null, null, '20', '0', '0', 'qyfw:serviceClass:edit', '1', now(), '1', now(), null, '0');
+
+INSERT INTO `sys_menu` VALUES ('105', '101', '0,1,100,101,', '服务材料', '/qyfw/basicService/', null, 'list-alt', '20', '1', '0', null, '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('106', '105', '0,1,100,101,105,', '查看', null, null, null, '10', '0', '0', 'qyfw:basicService:view', '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('107', '105', '0,1,100,101,105,', '修改', null, null, null, '20', '0', '0', 'qyfw:basicService:edit', '1', now(), '1', now(), null, '0');
+
+INSERT INTO `sys_menu` VALUES ('108', '100', '0,1,100,', '订单管理', null, null, null, '200', '1', '0', null, null, null, null, null, null, '0');
+INSERT INTO `sys_menu` VALUES ('109', '108', '0,1,100,108,', '订单管理', '/qyfw/order/', null, 'list-alt', '10', '1', '0', null, '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('110', '109', '0,1,100,108,109,', '查看', null, null, null, '10', '0', '0', 'qyfw:order:view', '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('111', '109', '0,1,100,108,109,', '修改', null, null, null, '20', '0', '0', 'qyfw:order:edit', '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('112', '108', '0,1,100,108,', '订单材料', '/qyfw/orderMaterial/', null, 'list-alt', '20', '1', '0', null, '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('113', '109', '0,1,100,108,112,', '查看', null, null, null, '10', '0', '0', 'qyfw:orderMaterial:view', '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('114', '109', '0,1,100,108,112,', '修改', null, null, null, '20', '0', '0', 'qyfw:orderMaterial:edit', '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('115', '108', '0,1,100,108,', '待办订单', '/qyfw/waitOrder/', null, 'list-alt', '30', '1', '0', null, '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('116', '108', '0,1,100,108,', '订单查询', '/qyfw/queryOrder/', null, 'list-alt', '40', '1', '0', null, '1', now(), '1', now(), null, '0');
+
+INSERT INTO `sys_menu` VALUES ('117', '100', '0,1,100,', '咨询管理', null, null, null, '300', '1', '0', null, null, null, null, null, null, '0');
+INSERT INTO `sys_menu` VALUES ('118', '117', '0,1,100,117,', '咨询管理', '/qyfw/consulting/', null, 'list-alt', '10', '1', '0', null, '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('119', '118', '0,1,100,117,118,', '查看', null, null, null, '10', '0', '0', 'qyfw:consulting:view', '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('120', '118', '0,1,100,117,118,', '修改', null, null, null, '20', '0', '0', 'qyfw:consulting:edit', '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('121', '117', '0,1,100,117,', '待办咨询', '/qyfw/waitConsulting/', null, 'list-alt', '20', '1', '0', null, '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('122', '117', '0,1,100,117,', '咨询查询', '/qyfw/queryConsulting/', null, 'list-alt', '30', '1', '0', null, '1', now(), '1', now(), null, '0');
+
+INSERT INTO `sys_menu` VALUES ('123', '100', '0,1,100,', '客户管理', null, null, null, '400', '1', '0', null, null, null, null, null, null, '0');
+INSERT INTO `sys_menu` VALUES ('124', '123', '0,1,100,123,', '客户管理', '/qyfw/customer/', null, 'list-alt', '10', '1', '0', null, '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('125', '124', '0,1,100,123,124,', '查看', null, null, null, '10', '0', '0', 'qyfw:customer:view', '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('126', '124', '0,1,100,123,124,', '修改', null, null, null, '20', '0', '0', 'qyfw:customer:edit', '1', now(), '1', now(), null, '0');
 
 -- ----------------------------
 -- Records of sys_area
