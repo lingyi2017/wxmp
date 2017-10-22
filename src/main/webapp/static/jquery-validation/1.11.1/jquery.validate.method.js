@@ -180,7 +180,7 @@ function checkNick(nick){
 	$.ajax({  
         type : "POST",  
         async: false,
-        url : "/tcsw/jzgs/member/checkNick",  
+        url : "/wxmp/jzgs/member/checkNick",
         data : param,  
         dataType: "JSON",  
         success : function(msg) { 
@@ -208,7 +208,7 @@ function checkPhone(phone){
 	$.ajax({  
         type : "GET",  
         async: false,
-        url : "/tcsw/jzgs/member/checkPhone",  
+        url : "/wxmp/jzgs/member/checkPhone",
         data : "phone=" + phone + "&id=" + id,  
         dataType: "json",  
         success : function(msg) { 
@@ -236,7 +236,7 @@ function checkLink(id){
 	$.ajax({  
         type : "GET",  
         async: false,
-        url : "/tcsw/jzgs/act/checkLink",  
+        url : "/wxmp/jzgs/act/checkLink",
         data : "type=" + type + "&id=" + id,  
         dataType: "json",  
         success : function(msg) { 
@@ -265,7 +265,7 @@ function checkItem(name){
 	$.ajax({  
         type : "POST",  
         async: false,
-        url : "/tcsw/jzgs/item/checkItem",  
+        url : "/wxmp/jzgs/item/checkItem",
         data : param,  
         dataType: "JSON",  
         success : function(msg) { 

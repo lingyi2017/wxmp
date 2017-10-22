@@ -17,11 +17,11 @@ CREATE TABLE qyfw_service_category
 -- Records of qyfw_service_category
 -- --------------------------------
 -- 服务分类顶级目录初始化
-INSERT INTO `qyfw_service_category` VALUES ('1', '0', '0', '顶级分类', 1, 0, 1, null, 0);
+INSERT INTO `qyfw_service_category` VALUES ('1', '0', '0,', '顶级分类', 1, 0, 1, null, 0);
 
 -- 字典数据初始化[100, )
-INSERT INTO `sys_dict` VALUES ('100', '隐藏', '0', 'service_category_is_enable', '是否显示', '20', 'admin', now(), 'admin', now(), null, '0');
-INSERT INTO `sys_dict` VALUES ('101', '显示', '1', 'service_category_is_enable', '是否显示', '10', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('100', '隐藏', 'false', 'service_category_is_enable', '是否显示', '20', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('101', '显示', 'true', 'service_category_is_enable', '是否显示', '10', 'admin', now(), 'admin', now(), null, '0');
 
-INSERT INTO `sys_dict` VALUES ('102', '一般显示', '0', 'service_category_is_important', '是否重点显示', '10', 'admin', now(), 'admin', now(), null, '0');
-INSERT INTO `sys_dict` VALUES ('103', '重点显示', '1', 'service_category_is_important', '是否重点显示', '20', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('102', '一般显示', 'false', 'service_category_is_important', '是否重点显示', '10', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('103', '重点显示', 'true', 'service_category_is_important', '是否重点显示', '20', 'admin', now(), 'admin', now(), null, '0');

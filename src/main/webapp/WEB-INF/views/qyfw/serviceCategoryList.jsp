@@ -38,9 +38,18 @@
     <c:forEach items="${list}" var="serviceCategory">
         <tr id="${serviceCategory.id}"
             pId="${serviceCategory.parent.id ne requestScope.serviceCategory.id?serviceCategory.parent.id:'0'}">
-            <td><a href="${ctx}/qyfw/serviceCategory/form?id=${serviceCategory.id}">${serviceCategory.name}</a></td>
-            <td>2</td>
-            <td>1</td>
+            <td>
+                <a href="${ctx}/qyfw/serviceCategory/form?id=${serviceCategory.id}">
+                    <c:if test="${serviceCategory.isImportant == true}">
+                        <span style="color: red;">${serviceCategory.name}</span>
+                    </c:if>
+                    <c:if test="${serviceCategory.isImportant == false}">
+                        <span>${serviceCategory.name}</span>
+                    </c:if>
+                </a>
+            </td>
+            <td>${fns:getDictLabel(serviceCategory.isEnable, 'service_category_is_enable', '无')}</td>
+            <td>${fns:getDictLabel(serviceCategory.isImportant, 'service_category_is_important', '无')}</td>
             <td>${serviceCategory.sort}</td>
             <td>${serviceCategory.wxMenuId}</td>
             <shiro:hasPermission name="qyfw:serviceCategory:edit">

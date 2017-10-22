@@ -4,11 +4,14 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cache;
+
+import com.qmx.wxmp.common.utils.IdGen;
 
 /**
  * 服务分类信息
@@ -18,13 +21,14 @@ import org.hibernate.annotations.NotFoundAction;
  */
 @Entity
 @Table(name = "qyfw_service_category")
+@DynamicInsert
+@DynamicUpdate
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class ServiceCategory implements Serializable {
 
 	private static final long	serialVersionUID	= 2993220797738015911L;
 
 	@Id
-	@GeneratedValue(generator = "system-uuid")
-	@GenericGenerator(name = "system-uuid", strategy = "uuid")
 	private String				id;
 
 	/** 父级编号 */
@@ -54,6 +58,12 @@ public class ServiceCategory implements Serializable {
 
 	/** 删除标记（0：正常；1：删除） */
 	protected String			delFlag;
+
+
+
+	public ServiceCategory() {
+		this.delFlag = "0";
+	}
 
 
 
@@ -184,13 +194,17 @@ public class ServiceCategory implements Serializable {
 		}
 	}
 
+
+
 	@Transient
-	public boolean isAdmin(){
+	public boolean isAdmin() {
 		return isAdmin(this.id);
 	}
 
+
+
 	@Transient
-	public static boolean isAdmin(String id){
+	public static boolean isAdmin(String id) {
 		return id != null && id.equals("1");
 	}
 }

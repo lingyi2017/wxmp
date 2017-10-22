@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 	
-	<display-name>TCSW-Server</display-name>
+	<display-name>Wxmp-Server</display-name>
 	
 	<!-- 表示Tomcat要为此web应用复制 Session -->
 	<distributable/>

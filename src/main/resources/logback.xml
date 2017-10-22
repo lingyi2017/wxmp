@@ -11,7 +11,7 @@
 
 	<!-- 输出ERROR级别的日志到文件(同样采用文件大小策略进行文件输出，超过指定大小对文件压缩(.zip)备份) -->
 	<appender name="all_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<File>/var/log/tcsw/all_error.log</File>
+		<File>/var/log/wxmp/all_error.log</File>
 		<append>false</append>
 		<Encoding>UTF-8</Encoding>
 		<filter class="ch.qos.logback.classic.filter.LevelFilter">
@@ -20,7 +20,7 @@
 			<onMismatch>DENY</onMismatch>
 		</filter>
 		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-			<FileNamePattern>/var/log/tcsw/all_error.%i.log</FileNamePattern>
+			<FileNamePattern>/var/log/wxmp/all_error.%i.log</FileNamePattern>
 			<MinIndex>1</MinIndex>
 			<MaxIndex>5</MaxIndex>
 		</rollingPolicy>
@@ -33,13 +33,13 @@
 	</appender>
 
 	<appender name="all_info" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<File>/var/log/tcsw/all_info.log</File>
+		<File>/var/log/wxmp/all_info.log</File>
 		<append>false</append>
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
 			<level>INFO</level>
 		</filter>
 		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-			<FileNamePattern>/var/log/tcsw/all_info.%i.log</FileNamePattern>
+			<FileNamePattern>/var/log/wxmp/all_info.%i.log</FileNamePattern>
 			<MinIndex>1</MinIndex>
 			<MaxIndex>5</MaxIndex>
 		</rollingPolicy>
@@ -52,10 +52,10 @@
 	</appender>
 
 	<appender name="controller" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<File>/var/log/tcsw/controller.log</File>
+		<File>/var/log/wxmp/controller.log</File>
 		<append>false</append>
 		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-			<FileNamePattern>/var/log/tcsw/controller.%i.log</FileNamePattern>
+			<FileNamePattern>/var/log/wxmp/controller.%i.log</FileNamePattern>
 			<MinIndex>1</MinIndex>
 			<MaxIndex>5</MaxIndex>
 		</rollingPolicy>
@@ -68,10 +68,10 @@
 	</appender>
 
 	<appender name="repository" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<File>/var/log/tcsw/repository.log</File>
+		<File>/var/log/wxmp/repository.log</File>
 		<append>false</append>
 		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-			<FileNamePattern>/var/log/tcsw/repository.%i.log</FileNamePattern>
+			<FileNamePattern>/var/log/wxmp/repository.%i.log</FileNamePattern>
 			<MinIndex>1</MinIndex>
 			<MaxIndex>5</MaxIndex>
 		</rollingPolicy>
@@ -84,10 +84,10 @@
 	</appender>
 
 	<appender name="service" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<File>/var/log/tcsw/service.log</File>
+		<File>/var/log/wxmp/service.log</File>
 		<append>false</append>
 		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-			<FileNamePattern>/var/log/tcsw/service.%i.log</FileNamePattern>
+			<FileNamePattern>/var/log/wxmp/service.%i.log</FileNamePattern>
 			<MinIndex>1</MinIndex>
 			<MaxIndex>5</MaxIndex>
 		</rollingPolicy>
@@ -100,10 +100,10 @@
 	</appender>
 
 	<appender name="webservice" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<File>/var/log/tcsw/webservice.log</File>
+		<File>/var/log/wxmp/webservice.log</File>
 		<append>false</append>
 		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-			<FileNamePattern>/var/log/tcsw/webservice.%i.log</FileNamePattern>
+			<FileNamePattern>/var/log/wxmp/webservice.%i.log</FileNamePattern>
 			<MinIndex>1</MinIndex>
 			<MaxIndex>5</MaxIndex>
 		</rollingPolicy>

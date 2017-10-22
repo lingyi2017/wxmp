@@ -2,6 +2,8 @@ package com.qmx.wxmp.service.qyfw;
 
 import java.util.List;
 
+import com.qmx.wxmp.common.utils.IdGen;
+import com.qmx.wxmp.common.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,12 +43,13 @@ public class ServiceCategoryService extends BaseService {
 	@Transactional(readOnly = false)
 	public void save(ServiceCategory serviceCategory) {
 
-		ServiceCategory sc = this.get("1");
+		if (StringUtils.isEmpty(serviceCategory.getId())) {
+			serviceCategory.setId(IdGen.uuid());
+		}
 
-		serviceCategory.setParent(this.get(serviceCategory.getParent().getId()));
+		serviceCategory.setParent(thisDao.get(serviceCategory.getParent().getId()));
 		// 获取修改前的parentIds，用于更新子节点的parentIds
 		String oldParentIds = serviceCategory.getParentIds();
-		ServiceCategory pids = serviceCategory.getParent();
 		serviceCategory
 				.setParentIds(serviceCategory.getParent().getParentIds() + serviceCategory.getParent().getId() + ",");
 		thisDao.clear();
