@@ -105,25 +105,25 @@ public class ServiceCategory implements Serializable {
 
 
 
-	public Boolean getEnable() {
+	public Boolean getIsEnable() {
 		return isEnable;
 	}
 
 
 
-	public void setEnable(Boolean enable) {
+	public void setIsEnable(Boolean enable) {
 		isEnable = enable;
 	}
 
 
 
-	public Boolean getImportant() {
+	public Boolean getIsImportant() {
 		return isImportant;
 	}
 
 
 
-	public void setImportant(Boolean important) {
+	public void setIsImportant(Boolean important) {
 		isImportant = important;
 	}
 
@@ -182,5 +182,15 @@ public class ServiceCategory implements Serializable {
 				}
 			}
 		}
+	}
+
+	@Transient
+	public boolean isAdmin(){
+		return isAdmin(this.id);
+	}
+
+	@Transient
+	public static boolean isAdmin(String id){
+		return id != null && id.equals("1");
 	}
 }

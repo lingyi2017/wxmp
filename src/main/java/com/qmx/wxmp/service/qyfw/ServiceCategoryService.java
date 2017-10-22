@@ -40,8 +40,13 @@ public class ServiceCategoryService extends BaseService {
 
 	@Transactional(readOnly = false)
 	public void save(ServiceCategory serviceCategory) {
+
+		ServiceCategory sc = this.get("1");
+
 		serviceCategory.setParent(this.get(serviceCategory.getParent().getId()));
-		String oldParentIds = serviceCategory.getParentIds(); // 获取修改前的parentIds，用于更新子节点的parentIds
+		// 获取修改前的parentIds，用于更新子节点的parentIds
+		String oldParentIds = serviceCategory.getParentIds();
+		ServiceCategory pids = serviceCategory.getParent();
 		serviceCategory
 				.setParentIds(serviceCategory.getParent().getParentIds() + serviceCategory.getParent().getId() + ",");
 		thisDao.clear();
