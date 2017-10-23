@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.qmx.wxmp</groupId>
-	<artifactId>wxmp</artifactId>
+	<artifactId>qyfw</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>WxmpServer</name>
+	<name>wxmp-server</name>
 	<description>微信后台管理平台</description>
 
 	<!-- 项目属性 -->
