@@ -25,3 +25,7 @@ INSERT INTO `sys_dict` VALUES ('101', '显示', 'true', 'service_category_is_ena
 
 INSERT INTO `sys_dict` VALUES ('102', '一般显示', 'false', 'service_category_is_important', '是否重点显示', '10', 'admin', now(), 'admin', now(), null, '0');
 INSERT INTO `sys_dict` VALUES ('103', '重点显示', 'true', 'service_category_is_important', '是否重点显示', '20', 'admin', now(), 'admin', now(), null, '0');
+
+
+INSERT INTO `sys_dict` VALUES ('104', '企业', '1', 'customer_type', '客户性质', '10', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('105', '个人', '2', 'customer_type', '客户性质', '20', 'admin', now(), 'admin', now(), null, '0');
