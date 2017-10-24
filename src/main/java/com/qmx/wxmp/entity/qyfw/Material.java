@@ -3,12 +3,9 @@ package com.qmx.wxmp.entity.qyfw;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 /**
  * 材料信息
@@ -20,8 +17,6 @@ import org.hibernate.annotations.GenericGenerator;
 public class Material {
 
 	@Id
-	@GeneratedValue(generator = "system-uuid")
-	@GenericGenerator(name = "system-uuid", strategy = "uuid")
 	private String id;
 	
 	/** 材料名称*/
@@ -34,7 +29,7 @@ public class Material {
 	private String path;
 	
 	/** 材料说明*/
-	private String dec;
+	private String descption;
 	
 	/** 排序号*/
 	private Integer sort;
@@ -74,12 +69,12 @@ public class Material {
 		this.path = path;
 	}
 
-	public String getDec() {
-		return dec;
+	public String getDescption() {
+		return descption;
 	}
 
-	public void setDec(String dec) {
-		this.dec = dec;
+	public void setDescption(String descption) {
+		this.descption = descption;
 	}
 
 	public Integer getSort() {
