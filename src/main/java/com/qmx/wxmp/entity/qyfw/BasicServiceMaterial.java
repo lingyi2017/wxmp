@@ -14,8 +14,6 @@ import org.hibernate.annotations.GenericGenerator;
 public class BasicServiceMaterial {
 
 	@Id
-	@GeneratedValue(generator = "system-uuid")
-	@GenericGenerator(name = "system-uuid", strategy = "uuid")
 	private String id;
 	
 	@ManyToOne

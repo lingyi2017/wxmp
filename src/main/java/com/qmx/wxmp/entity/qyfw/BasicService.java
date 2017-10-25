@@ -22,8 +22,6 @@ import org.hibernate.annotations.GenericGenerator;
 public class BasicService {
 	
 	@Id
-	@GeneratedValue(generator = "system-uuid")
-	@GenericGenerator(name = "system-uuid", strategy = "uuid")
 	private String id;
 	
 	/** 服务名称*/
@@ -39,7 +37,7 @@ public class BasicService {
 	private Boolean isBuy;
 	
 	/** 支持性质*/
-	private String suportType;
+	private String customerType;
 
 	/** 服务价格*/
 	private Float price;
@@ -56,7 +54,7 @@ public class BasicService {
 	
 	/** 上级服务分类*/
 	@ManyToOne
-	@JoinColumn(name="ww_id")
+	@JoinColumn(name="service_category_id")
 	private ServiceCategory serviceCategory;
 	
 	@OneToMany(mappedBy="basicService")
@@ -104,12 +102,12 @@ public class BasicService {
 		this.isBuy = isBuy;
 	}
 
-	public String getSuportType() {
-		return suportType;
+	public String getCustomerType() {
+		return customerType;
 	}
 
-	public void setSuportType(String suportType) {
-		this.suportType = suportType;
+	public void setCustomerType(String customerType) {
+		this.customerType = customerType;
 	}
 
 	public Float getPrice() {

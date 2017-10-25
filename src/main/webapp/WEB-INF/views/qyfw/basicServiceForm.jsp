@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>材料管理</title>
+	<title>基础服务管理</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -27,20 +27,20 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/qyfw/material/">材料列表</a></li>
-		<li class="active">添加材料<a href="${ctx}/qyfw/material/form"></a></li>
+		<li><a href="${ctx}/qyfw/basicService/">基础服务列表</a></li>
+		<li class="active">添加基础服务<a href="${ctx}/qyfw/basicService/form"></a></li>
 	</ul><br/>
-	<form:form id="inputForm" modelAttribute="material" action="${ctx}/qyfw/material/save" method="post" class="form-horizontal">
+	<form:form id="inputForm" modelAttribute="basicService" action="${ctx}/qyfw/basicService/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<tags:message content="${message}"/>
 		<div class="control-group">
-			<label class="control-label">材料名称:</label>
+			<label class="control-label">基础服务名称:</label>
 			<div class="controls">
 				<form:input path="name" htmlEscape="false" maxlength="50" class="required"/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">客户性质:</label>
+			<label class="control-label">支持客户性质:</label>
 			<div class="controls">
 				<form:select path="customerType">
                 <form:options items="${fns:getDictList('customer_type')}" itemLabel="label"
@@ -49,25 +49,31 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">附件模板上传:</label>
+			<label class="control-label">热点服务:</label>
 			<div class="controls">
-				<form:input path="path" htmlEscape="false" maxlength="255"/>
+				<form:input path="isHot" htmlEscape="false" maxlength="255"/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">序号:</label>
+			<label class="control-label">支持购买:</label>
+			<div class="controls">
+				<form:input path="isBuy" htmlEscape="false" maxlength="50" class="required"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">服务价格:</label>
+			<div class="controls">
+				<form:input path="price" htmlEscape="false" maxlength="50" class="required"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">排序:</label>
 			<div class="controls">
 				<form:input path="sort" htmlEscape="false" maxlength="50" class="required"/>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">材料说明:</label>
-			<div class="controls">
-				<form:textarea path="descption" htmlEscape="false" rows="3" maxlength="200" class="input-xlarge"/>
-			</div>
-		</div>
 		<div class="form-actions">
-			<shiro:hasPermission name="qyfw:material:edit">
+			<shiro:hasPermission name="qyfw:basicService:edit">
 				<input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='save' />"/>&nbsp;
 			</shiro:hasPermission>
 			<input id="btnCancel" class="btn" type="button" value="<spring:message code='return' />" onclick="history.go(-1)"/>

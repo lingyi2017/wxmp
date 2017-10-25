@@ -14,13 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.qmx.wxmp.common.persistence.Page;
 import com.qmx.wxmp.common.utils.IdGen;
 import com.qmx.wxmp.entity.qyfw.Material;
-import com.qmx.wxmp.entity.qyfw.ServiceCategory;
+import com.qmx.wxmp.repository.hibernate.qyfw.BasicServiceMaterialDao;
 import com.qmx.wxmp.repository.hibernate.qyfw.MaterialDao;
 import com.qmx.wxmp.service.BaseService;
 
 /**
  * 材料管理
- * todo：级联删除
  * @author itismin
  *
  */
@@ -30,6 +29,8 @@ public class MaterialService extends BaseService {
 
 	@Resource
 	private MaterialDao materialDao;
+	@Resource
+	private BasicServiceMaterialDao basicServiceMaterialDao;
 	
 	public List<Material> findAllList(){
 		return materialDao.findList();
@@ -47,6 +48,7 @@ public class MaterialService extends BaseService {
 	
 	@Transactional(readOnly = false)
 	public void delete(String id){
+		basicServiceMaterialDao.deleteByMaterial(id);
 		materialDao.delById(id);
 	}
 	
