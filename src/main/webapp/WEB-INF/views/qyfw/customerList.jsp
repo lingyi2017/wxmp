@@ -25,7 +25,14 @@
     <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
     <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 
-    <%--<label>客户性质：</label><label>个人</label>&nbsp;&nbsp;--%>
+    <label>客户性质：</label>
+    <label>
+        <form:select path="customerType" class="input-small">
+            <form:option value="" label=""/>
+            <form:options items="${fns:getDictList('customer_type')}" itemLabel="label" itemValue="value"
+                          htmlEscape="false"/>
+        </form:select>&nbsp;&nbsp;
+    </label>
     <label>客户名称 ：</label><label><form:input path="name" htmlEscape="false" maxlength="50" class="input-small"/></label>&nbsp;
     <input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='query'/>"/>
 </form:form>
@@ -48,8 +55,8 @@
             <td><a href="${ctx}/qyfw/customer/form?id=${customer.id}">${customer.name}</a></td>
             <td>${customer.contact}</td>
             <td>${customer.phone}</td>
-            <td>${customer.customerType}</td>
-            <td>${customer.createDate}</td>
+            <td>${fns:getDictLabel(customer.customerType, 'customer_type', '无')}</td>
+            <td><fmt:formatDate value="${customer.createDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
             <shiro:hasPermission name="qyfw:customer:edit">
                 <td>
                     <a href="${ctx}/qyfw/customer/form?id=${customer.id}"><spring:message code='update'/></a>

@@ -1,11 +1,11 @@
 package com.qmx.wxmp.entity.qyfw;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * 客户信息
@@ -25,7 +25,7 @@ public class Customer implements Serializable {
 	/** 客户名称 */
 	private String				name;
 
-	/** 客户性质 */
+	/** 客户性质（1：企业；2-个人） */
 	private String				customerType;
 
 	/** 联系人 */
@@ -146,11 +146,5 @@ public class Customer implements Serializable {
 	public void setDelFlag(String delFlag) {
 		this.delFlag = delFlag;
 	}
-
-	/** 客户性质：个人 */
-	public static final String	CUSTOMER_TYPE_PERSON	= "1";
-
-	/** 客户性质：企业 */
-	public static final String	CUSTOMER_TYPE_BUSINESS	= "2";
 
 }
