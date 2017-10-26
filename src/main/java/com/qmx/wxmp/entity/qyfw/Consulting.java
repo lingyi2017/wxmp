@@ -1,5 +1,7 @@
 package com.qmx.wxmp.entity.qyfw;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,10 +21,12 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "qyfw_consulting")
 public class Consulting {
 
+	/** 处理状态：未处理*/
+	public static final String DEAL_NO = "1";
+	/** 处理状态：已处理*/
+	public static final String DEAL_YES = "2";
 	
 	@Id
-	@GeneratedValue(generator = "system-uuid")
-	@GenericGenerator(name = "system-uuid", strategy = "uuid")
 	private String id;
 	
 	/** 咨询人*/
@@ -31,14 +35,23 @@ public class Consulting {
 	/** 联系方式*/
 	private String phone;
 	
-	/** 服务性质*/
+	/** 客户性质*/
 	private String customerType;
 	
 	/** 咨询内容*/
 	private String content;
 	
-	/** 咨询状态*/
-	private String status;
+	/** 咨询时间*/
+	private Date time;
+	
+	/** 处理状态*/
+	private String dealStatus;
+	
+	/** 处理反馈*/
+	private String dealBack;
+	
+	/** 处理时间*/
+	private Date dealTime;
 	
 	@ManyToOne
 	@JoinColumn(name="customer_id")
@@ -84,12 +97,36 @@ public class Consulting {
 		this.content = content;
 	}
 
-	public String getStatus() {
-		return status;
+	public Date getTime() {
+		return time;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setTime(Date time) {
+		this.time = time;
+	}
+
+	public String getDealStatus() {
+		return dealStatus;
+	}
+
+	public void setDealStatus(String dealStatus) {
+		this.dealStatus = dealStatus;
+	}
+
+	public String getDealBack() {
+		return dealBack;
+	}
+
+	public void setDealBack(String dealBack) {
+		this.dealBack = dealBack;
+	}
+
+	public Date getDealTime() {
+		return dealTime;
+	}
+
+	public void setDealTime(Date dealTime) {
+		this.dealTime = dealTime;
 	}
 
 	public Customer getCustomer() {

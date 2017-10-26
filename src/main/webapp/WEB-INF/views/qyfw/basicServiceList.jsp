@@ -25,10 +25,10 @@
     <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
     <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 
-<%--     <label>客户性质 ：</label><label><form:select path="customerType">
+    <label>客户性质 ：</label><label><form:select path="customerType">
                 <form:options items="${fns:getDictList('customer_type')}" itemLabel="label"
                               itemValue="value" htmlEscape="false"/>
-            	</form:select></label> --%>
+            	</form:select></label>
     <label>基础服务名称 ：</label><label><form:input path="name" htmlEscape="false" maxlength="50" class="input-small"/></label>&nbsp;
     <input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='query'/>"/>
 </form:form>
@@ -38,11 +38,12 @@
     <tr>
         <th>基础服务名称</th>
         <th>支持性质</th>
+        <th>服务分类</th>
+        <th>是否显示</th>
         <th>热点服务</th>
         <th>支持购买</th>
         <th>服务价格</th>
         <th>排序号</th>
-        <th>是否显示</th>
         <shiro:hasPermission name="qyfw:basicService:edit">
             <th>操作</th>
         </shiro:hasPermission></tr>
@@ -51,19 +52,18 @@
     <c:forEach items="${page.list}" var="basicService">
         <tr>
             <td><a href="${ctx}/qyfw/basicService/form?id=${basicService.id}">${basicService.name}</a></td>
+            <td>${fns:getDictLabel(basicService.customerType, 'customer_type', '无')}</td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>${fns:getDictLabel(basicService.isEnable, 'public_yesorno', '无')}</td>
+            <td>${fns:getDictLabel(basicService.isHot, 'public_yesorno', '无')}</td>
+            <td>${fns:getDictLabel(basicService.isBuy, 'public_yesorno', '无')}</td>
+            <td>${basicService.price }</td>
+            <td>${basicService.sort }</td>
             <shiro:hasPermission name="qyfw:basicService:edit">
                 <td>
-                    <a href="${ctx}/qyfw/basicService/form?id=${material.id}"><spring:message code='update'/></a>
-                    <a href="${ctx}/qyfw/basicService/delete?id=${material.id}"
-                       onclick="return confirmx('确认要删除该客户吗？', this.href)"><spring:message code='delete'/></a>
-                    <a href="#"><spring:message code='download'/></a>
+                    <a href="${ctx}/qyfw/basicService/form?id=${basicService.id}"><spring:message code='update'/></a>
+                    <a href="${ctx}/qyfw/basicService/delete?id=${basicService.id}"
+                       onclick="return confirmx('确认要删除该基础服务吗？', this.href)"><spring:message code='delete'/></a>
                 </td>
             </shiro:hasPermission>
         </tr>

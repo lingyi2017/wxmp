@@ -49,21 +49,45 @@
 			</div>
 		</div>
 		<div class="control-group">
+        <label class="control-label">上级分类:</label>
+	        <div class="controls">
+	            <tags:treeselect id="serviceCategory" name="parent.id" value="${serviceCategory.parent.id}"
+	                             labelName="parent.name" labelValue="${serviceCategory.parent.name}"
+	                             title="服务分类" url="/qyfw/serviceCategory/treeData" extId="${serviceCategory.id}"
+	                             cssClass="required"/>
+	        </div>
+    	</div>
+    	<div class="control-group">
+			<label class="control-label">是否显示:</label>
+			<div class="controls">
+				<form:select path="isEnable">
+				<form:options items="${fns:getDictList('public_yesorno')}" itemLabel="label"
+                              itemValue="value" htmlEscape="false"/>
+            	</form:select>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label">热点服务:</label>
 			<div class="controls">
-				<form:input path="isHot" htmlEscape="false" maxlength="255"/>
+				<form:select path="isHot">
+				<form:options items="${fns:getDictList('public_yesorno')}" itemLabel="label"
+                              itemValue="value" htmlEscape="false"/>
+            	</form:select>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">支持购买:</label>
 			<div class="controls">
-				<form:input path="isBuy" htmlEscape="false" maxlength="50" class="required"/>
+				<form:select path="isBuy">
+				<form:options items="${fns:getDictList('public_yesorno')}" itemLabel="label"
+                              itemValue="value" htmlEscape="false"/>
+            	</form:select>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">服务价格:</label>
 			<div class="controls">
-				<form:input path="price" htmlEscape="false" maxlength="50" class="required"/>
+				<form:input path="price" htmlEscape="false" maxlength="50"/>
 			</div>
 		</div>
 		<div class="control-group">

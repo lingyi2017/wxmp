@@ -32,3 +32,6 @@ INSERT INTO `sys_dict` VALUES ('105', '个人', '2', 'customer_type', '客户性
 
 INSERT INTO `sys_dict` VALUES ('106', '已购买', '1', 'order_status', '订单状态', '10', 'admin', now(), 'admin', now(), null, '0');
 INSERT INTO `sys_dict` VALUES ('107', '结束', '2', 'order_status', '订单状态', '20', 'admin', now(), 'admin', now(), null, '0');
+
+INSERT INTO `sys_dict` VALUES ('108', '是', '1', 'public_yesorno', '是否', '10', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('109', '否', '0', 'public_yesorno', '是否', '20', 'admin', now(), 'admin', now(), null, '0');

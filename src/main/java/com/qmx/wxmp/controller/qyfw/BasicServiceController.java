@@ -48,8 +48,6 @@ public class BasicServiceController extends BaseController {
 
 	}
 
-
-
 	@RequiresPermissions("qyfw:basicService:edit")
 	@RequestMapping(value = "save")
 	public String save(BasicService basicService, Model model, RedirectAttributes redirectAttributes) {
@@ -64,7 +62,7 @@ public class BasicServiceController extends BaseController {
 			e.printStackTrace();
 			logger.error("基础服务保存异常", e);
 		}
-		return "redirect:/qyfw/material/";
+		return "redirect:/qyfw/basicService/";
 
 	}
 

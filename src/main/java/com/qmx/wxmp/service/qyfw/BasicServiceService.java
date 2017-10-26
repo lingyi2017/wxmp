@@ -36,7 +36,8 @@ public class BasicServiceService extends BaseService {
 	
 	@Transactional(readOnly = false)
 	public void save(BasicService basicService){
-		System.out.println("save");
+		basicService.setId(IdGen.uuid());
+		basicServiceDao.save(basicService);
 	}
 	
 	@Transactional(readOnly = false)

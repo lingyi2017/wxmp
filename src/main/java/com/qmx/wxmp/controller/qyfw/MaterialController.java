@@ -74,7 +74,7 @@ public class MaterialController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(String id, RedirectAttributes redirectAttributes) {
 		materialService.delete(id);
-		addMessage(redirectAttributes, "删除服务分类成功");
-		return "redirect:/qyfw/serviceCategory/";
+		addMessage(redirectAttributes, "删除材料成功");
+		return "redirect:/qyfw/material/";
 	}
 }
