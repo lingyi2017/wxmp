@@ -53,6 +53,16 @@ public class OrderController extends BaseController {
 		return "/qyfw/orderList";
 	}
 
+	@RequiresPermissions("qyfw:order:view")
+	@RequestMapping(value = "/wait/list")
+	public String waitlist(QueryOrderDto queryDto, HttpServletRequest request, HttpServletResponse response, Model model) {
+		queryDto.setStatus("1");
+		Page<Order> page = thisService.find(new Page<Order>(request, response), queryDto);
+		model.addAttribute("page", page);
+		model.addAttribute("queryDto", queryDto);
+		return "/qyfw/orderWaitList";
+	}
+
 
 
 	@RequiresPermissions("qyfw:order:view")

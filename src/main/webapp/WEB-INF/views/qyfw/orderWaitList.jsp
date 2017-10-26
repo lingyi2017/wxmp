@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp" %>
 <html>
 <head>
-    <title>订单查询</title>
+    <title>待办订单</title>
     <meta name="decorator" content="default"/>
     <script type="text/javascript">
         function page(n, s) {
@@ -15,9 +15,9 @@
 </head>
 <body>
 <ul class="nav nav-tabs">
-    <li class="active"><a href="${ctx}/qyfw/order/">订单列表</a></li>
+    <li class="active"><a href="${ctx}/qyfw/order/">待办列表</a></li>
 </ul>
-<form:form id="searchForm" modelAttribute="order" action="${ctx}/qyfw/order/" method="post"
+<form:form id="searchForm" modelAttribute="order" action="${ctx}/qyfw/order/wait/list" method="post"
            class="breadcrumb form-search">
     <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
     <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
@@ -46,7 +46,6 @@
         <th>联系方式</th>
         <th>服务名称</th>
         <th>支付金额</th>
-        <th>购买状态</th>
         <th>购买时间</th>
         <shiro:hasPermission name="qyfw:order:edit">
             <th>操作</th>
@@ -61,10 +60,11 @@
             <td>${order.phone}</td>
             <td>${order.basicService.name}</td>
             <td>${order.money}</td>
-            <td>${fns:getDictLabel(order.status, 'order_status', '无')}</td>
             <td><fmt:formatDate value="${order.createDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
             <shiro:hasPermission name="qyfw:order:edit">
                 <td>
+                    <a href="${ctx}/qyfw/order/form?id=${order.id}">反馈</a>
+                    <a href="${ctx}/qyfw/order/form?id=${order.id}" onclick="return confirmx('确定结束该订单吗？', this.href)">结束</a>
                     <a href="${ctx}/qyfw/order/form?id=${order.id}"><spring:message code='order.details'/></a>
                 </td>
             </shiro:hasPermission>
