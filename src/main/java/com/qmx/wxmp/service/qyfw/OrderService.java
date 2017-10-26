@@ -2,6 +2,8 @@ package com.qmx.wxmp.service.qyfw;
 
 import java.util.Date;
 
+import com.qmx.wxmp.common.utils.DateUtils;
+import com.qmx.wxmp.dto.order.QueryOrderDto;
 import com.qmx.wxmp.entity.qyfw.BasicService;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
@@ -50,22 +52,30 @@ public class OrderService extends BaseService {
 
 
 
-	public Page<Order> find(Page<Order> page, Order order) {
+	public Page<Order> find(Page<Order> page, QueryOrderDto queryDto) {
 
 		DetachedCriteria dc = thisDao.createDetachedCriteria();
-		if (null != order.getCreateDate()) {
-			dc.add(Restrictions.eq("createDate", order.getCreateDate()));
-		}
-		if (StringUtils.isNotEmpty(order.getContact())) {
-			dc.add(Restrictions.like("contact", "%" + order.getContact() + "%"));
-		}
-		BasicService basicService = order.getBasicService();
-		dc.createAlias("basicService", "basicService");
-		if (null != basicService && StringUtils.isNotEmpty(basicService.getName())) {
-			dc.add(Restrictions.like("basicService.name", "%" + order.getBasicService().getName() + "%"));
-		}
 
 		dc.addOrder(org.hibernate.criterion.Order.desc("createDate"));
+		if (null == queryDto) {
+			return thisDao.find(page, dc);
+		}
+
+		if (StringUtils.isNotEmpty(queryDto.getBeginDate()) && StringUtils.isNotEmpty(queryDto.getEndDate())) {
+			dc.add(Restrictions.between("createDate", DateUtils.parseDate(queryDto.getBeginDate() + " 00:00:00"),
+					DateUtils.parseDate(queryDto.getEndDate() + " 23:59:59")));
+		}
+		if (StringUtils.isNotEmpty(queryDto.getContact())) {
+			dc.add(Restrictions.like("contact", "%" + queryDto.getContact() + "%"));
+		}
+		dc.createAlias("basicService", "basicService");
+		if (StringUtils.isNotEmpty(queryDto.getServiceName())) {
+			dc.add(Restrictions.like("basicService.name", "%" + queryDto.getServiceName() + "%"));
+		}
+		if (StringUtils.isNotEmpty(queryDto.getStatus())) {
+			dc.add(Restrictions.eq("status", queryDto.getStatus()));
+		}
+
 		return thisDao.find(page, dc);
 
 	}

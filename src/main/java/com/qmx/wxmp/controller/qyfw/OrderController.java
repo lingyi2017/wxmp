@@ -3,6 +3,7 @@ package com.qmx.wxmp.controller.qyfw;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.qmx.wxmp.dto.order.QueryOrderDto;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +46,10 @@ public class OrderController extends BaseController {
 
 	@RequiresPermissions("qyfw:order:view")
 	@RequestMapping(value = { "/list", "" })
-	public String list(Order order, HttpServletRequest request, HttpServletResponse response, Model model) {
-		Page<Order> page = thisService.find(new Page<Order>(request, response), order);
+	public String list(QueryOrderDto queryDto, HttpServletRequest request, HttpServletResponse response, Model model) {
+		Page<Order> page = thisService.find(new Page<Order>(request, response), queryDto);
 		model.addAttribute("page", page);
+		model.addAttribute("queryDto", queryDto);
 		return "/qyfw/orderList";
 	}
 

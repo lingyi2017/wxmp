@@ -25,14 +25,14 @@
     <label>购买时间：</label>
     <label>
         <input id="beginDate" name="beginDate" type="text" readonly="readonly" maxlength="20" class="input-small Wdate"
-               value="${beginDate}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/> ~
+               value="${queryDto.beginDate}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/> ~
         <input id="endDate" name="endDate" type="text" readonly="readonly" maxlength="20" class="input-small Wdate"
-               value="${endDate}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+               value="${queryDto.endDate}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
     </label>
-    <label>联系人 ：</label><label><form:input path="contact" htmlEscape="false" maxlength="50"
-                                           class="input-small"/></label>
-    <label>服务名称 ：</label><label><form:input path="basicService.name" htmlEscape="false" maxlength="50"
-                                            class="input-small"/></label>
+    <label>联系人 ：</label><label><input type="text" id="contact" name="contact" value="${queryDto.contact}"
+                                      maxlength="50" class="input-small"/></label>
+    <label>服务名称 ：</label><label><input type="text" id="serviceName" name="serviceName" value="${queryDto.serviceName}"
+                                       maxlength="50" class="input-small"/></label>
 
     <label><input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='query'/>"/></label>
 </form:form>
