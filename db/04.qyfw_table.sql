@@ -29,3 +29,6 @@ INSERT INTO `sys_dict` VALUES ('103', '重点显示', 'true', 'service_category_
 
 INSERT INTO `sys_dict` VALUES ('104', '企业', '1', 'customer_type', '客户性质', '10', 'admin', now(), 'admin', now(), null, '0');
 INSERT INTO `sys_dict` VALUES ('105', '个人', '2', 'customer_type', '客户性质', '20', 'admin', now(), 'admin', now(), null, '0');
+
+INSERT INTO `sys_dict` VALUES ('106', '已购买', '1', 'order_status', '订单状态', '10', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('107', '结束', '2', 'order_status', '订单状态', '20', 'admin', now(), 'admin', now(), null, '0');

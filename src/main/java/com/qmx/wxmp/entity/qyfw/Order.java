@@ -1,14 +1,17 @@
 package com.qmx.wxmp.entity.qyfw;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * 订单信息
@@ -23,26 +26,18 @@ public class Order implements Serializable {
 	private static final long	serialVersionUID	= 2361924873525292159L;
 
 	@Id
-	@GeneratedValue(generator = "system-uuid")
-	@GenericGenerator(name = "system-uuid", strategy = "uuid")
 	private String				id;
 
-	/** 客户名称 */
-	private String				customerName;
-
-	/** 客户性质 */
-	private String				customerType;
-
-	/** 购买人 */
+	/** 联系人 */
 	private String				contact;
 
 	/** 联系方式 */
 	private String				phone;
 
-	/** 支出金额 */
-	private Float				money;
+	/** 支付金额 */
+	private BigDecimal			money;
 
-	/** 处理状态 */
+	/** 订单状态（1-已购买；2-结束） */
 	private String				status;
 
 	/** 处理反馈 */
@@ -63,6 +58,11 @@ public class Order implements Serializable {
 	@OneToMany(mappedBy = "order")
 	private Set<OrderMaterial>	orderMaterials;
 
+	/** 创建日期 */
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	protected Date				createDate;
+
 
 
 	public String getId() {
@@ -73,30 +73,6 @@ public class Order implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-
-
-	public String getCustomerName() {
-		return customerName;
-	}
-
-
-
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
-	}
-
-
-
-	public String getCustomerType() {
-		return customerType;
-	}
-
-
-
-	public void setCustomerType(String customerType) {
-		this.customerType = customerType;
 	}
 
 
@@ -125,13 +101,13 @@ public class Order implements Serializable {
 
 
 
-	public Float getMoney() {
+	public BigDecimal getMoney() {
 		return money;
 	}
 
 
 
-	public void setMoney(Float money) {
+	public void setMoney(BigDecimal money) {
 		this.money = money;
 	}
 
@@ -195,4 +171,15 @@ public class Order implements Serializable {
 		this.orderMaterials = orderMaterials;
 	}
 
+
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
 }
