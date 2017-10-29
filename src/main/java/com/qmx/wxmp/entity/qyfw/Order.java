@@ -45,7 +45,6 @@ public class Order implements Serializable {
 
 	@ManyToOne
 	@NotFound(action = NotFoundAction.IGNORE)
-	@NotNull
 	@JoinColumn(name = "customer_id")
 	private Customer			customer;
 

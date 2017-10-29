@@ -37,6 +37,9 @@ public class Customer implements Serializable {
 	/** 备注 */
 	private String				mark;
 
+	/** 联系地址 */
+	private String				address;
+
 	/** 创建日期 */
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
@@ -121,6 +124,18 @@ public class Customer implements Serializable {
 
 	public void setMark(String mark) {
 		this.mark = mark;
+	}
+
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 

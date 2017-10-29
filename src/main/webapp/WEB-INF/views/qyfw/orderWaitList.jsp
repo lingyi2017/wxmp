@@ -63,8 +63,7 @@
             <td><fmt:formatDate value="${order.createDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
             <shiro:hasPermission name="qyfw:order:edit">
                 <td>
-                    <a href="${ctx}/qyfw/order/form?id=${order.id}">反馈</a>
-                    <a href="${ctx}/qyfw/order/form?id=${order.id}" onclick="return confirmx('确定结束该订单吗？', this.href)">结束</a>
+                    <a href="${ctx}/qyfw/order/form?id=${order.id}">处理</a>
                     <a href="${ctx}/qyfw/order/form?id=${order.id}"><spring:message code='order.details'/></a>
                 </td>
             </shiro:hasPermission>

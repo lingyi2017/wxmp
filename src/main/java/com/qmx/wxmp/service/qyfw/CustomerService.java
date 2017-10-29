@@ -1,5 +1,8 @@
 package com.qmx.wxmp.service.qyfw;
 
+import java.util.Date;
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
@@ -13,8 +16,7 @@ import com.qmx.wxmp.common.utils.IdGen;
 import com.qmx.wxmp.entity.qyfw.Customer;
 import com.qmx.wxmp.repository.hibernate.qyfw.CustomerDao;
 import com.qmx.wxmp.service.BaseService;
-
-import java.util.Date;
+import org.springframework.util.CollectionUtils;
 
 /**
  * 客户 Service
@@ -68,6 +70,16 @@ public class CustomerService extends BaseService {
 		dc.add(Restrictions.eq("delFlag", "0"));
 		dc.addOrder(Order.desc("createDate"));
 		return thisDao.find(page, dc);
+	}
+
+
+
+	public Customer findByPhoneAndCustomerType(String phone, String customerType) {
+		List<Customer> customers = thisDao.findByPhoneAndCustomerType(phone, customerType);
+		if (CollectionUtils.isEmpty(customers)) {
+			return null;
+		}
+		return customers.get(0);
 	}
 
 }

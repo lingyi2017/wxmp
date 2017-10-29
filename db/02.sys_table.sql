@@ -300,7 +300,7 @@ INSERT INTO `sys_menu` VALUES ('108', '100', '0,1,100,', '订单管理', null, n
 INSERT INTO `sys_menu` VALUES ('109', '108', '0,1,100,108,', '订单管理', '/qyfw/order/', null, 'list-alt', '10', '1', '0', null, '1', now(), '1', now(), null, '0');
 INSERT INTO `sys_menu` VALUES ('110', '109', '0,1,100,108,109,', '查看', null, null, null, '10', '0', '0', 'qyfw:order:view', '1', now(), '1', now(), null, '0');
 INSERT INTO `sys_menu` VALUES ('111', '109', '0,1,100,108,109,', '修改', null, null, null, '20', '0', '0', 'qyfw:order:edit', '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('115', '108', '0,1,100,108,', '待办订单', '/qyfw/order/wait', null, 'list-alt', '30', '1', '0', null, '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('115', '108', '0,1,100,108,', '待办订单', '/qyfw/order/wait/list', null, 'list-alt', '30', '1', '0', null, '1', now(), '1', now(), null, '0');
 
 INSERT INTO `sys_menu` VALUES ('117', '100', '0,1,100,', '咨询管理', null, null, null, '300', '1', '0', null, null, null, null, null, null, '0');
 INSERT INTO `sys_menu` VALUES ('118', '117', '0,1,100,117,', '咨询管理', '/qyfw/consulting/', null, 'list-alt', '10', '1', '0', null, '1', now(), '1', now(), null, '0');

@@ -8,9 +8,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.qmx.wxmp.common.persistence.Page;
@@ -82,6 +80,48 @@ public class CustomerController extends BaseController {
 		thisService.delete(id);
 		addMessage(redirectAttributes, "删除客户成功");
 		return "redirect:/qyfw/customer/?repage";
+	}
+
+
+
+	/**
+	 * 客户电话号码唯一性校验(未删除客户)
+	 * 
+	 * @param id
+	 *            客户ID
+	 * @param customerType
+	 *            客户性质
+	 * @param phone
+	 *            电话号码
+	 */
+	@ResponseBody
+	@RequestMapping(value = "checkCustomerPhone", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public String checkCustomerPhone(String id, String customerType, String phone) {
+
+		Customer entity = null;
+		if (StringUtils.isNotBlank(id)) {
+			entity = thisService.get(id);
+		}
+
+		Customer customer = thisService.findByPhoneAndCustomerType(phone, customerType);
+		if (entity == null) { // 新增
+			if (customer == null) {
+				return "true"; // 校验通过
+			} else {
+				return "false"; // 校验失败
+			}
+		} else { // 修改
+			if (!phone.equals(entity.getPhone())) { // 客户电话号码被修改了
+				if (customer == null) {
+					return "true";
+				} else {
+					return "false";
+				}
+			} else {
+				return "true";
+			}
+		}
+
 	}
 
 }

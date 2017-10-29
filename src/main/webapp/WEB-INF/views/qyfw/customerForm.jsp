@@ -60,7 +60,13 @@
     <div class="control-group">
         <label class="control-label">联系电话:</label>
         <div class="controls">
-            <form:input path="phone" htmlEscape="false" maxlength="50"/>
+            <form:input path="phone" htmlEscape="false" maxlength="50" cssClass="required mobile checkCustomerPhone"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">联系地址:</label>
+        <div class="controls">
+            <form:input path="address" htmlEscape="false" maxlength="100"/>
         </div>
     </div>
     <div class="control-group">
