@@ -64,7 +64,7 @@
             <shiro:hasPermission name="qyfw:order:edit">
                 <td>
                     <a href="${ctx}/qyfw/order/form?id=${order.id}">处理</a>
-                    <a href="${ctx}/qyfw/order/form?id=${order.id}"><spring:message code='order.details'/></a>
+                    <a href="${ctx}/qyfw/order/detail?id=${order.id}"><spring:message code='order.details'/></a>
                 </td>
             </shiro:hasPermission>
         </tr>

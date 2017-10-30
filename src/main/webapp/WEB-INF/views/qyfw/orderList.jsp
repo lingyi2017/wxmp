@@ -55,7 +55,7 @@
     <tbody>
     <c:forEach items="${page.list}" var="order">
         <tr>
-            <td><a href="${ctx}/qyfw/order/form?id=${order.id}">${order.customer.name}</a></td>
+            <td><a href="${ctx}/qyfw/order/detail?id=${order.id}">${order.customer.name}</a></td>
             <td>${fns:getDictLabel(order.customer.customerType, 'customer_type', '无')}</td>
             <td>${order.contact}</td>
             <td>${order.phone}</td>
@@ -65,7 +65,7 @@
             <td><fmt:formatDate value="${order.createDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
             <shiro:hasPermission name="qyfw:order:edit">
                 <td>
-                    <a href="${ctx}/qyfw/order/form?id=${order.id}"><spring:message code='order.details'/></a>
+                    <a href="${ctx}/qyfw/order/detail?id=${order.id}"><spring:message code='order.details'/></a>
                 </td>
             </shiro:hasPermission>
         </tr>

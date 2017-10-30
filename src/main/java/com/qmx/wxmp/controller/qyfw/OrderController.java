@@ -66,10 +66,10 @@ public class OrderController extends BaseController {
 
 
 	@RequiresPermissions("qyfw:order:view")
-	@RequestMapping(value = "/form")
-	public String form(Order order, Model model) {
+	@RequestMapping(value = "/detail")
+	public String detail(Order order, Model model) {
 		model.addAttribute("order", order);
-		return "/qyfw/orderForm";
+		return "/qyfw/orderDetail";
 	}
 
 }
