@@ -2,8 +2,10 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp" %>
 <html>
 <head>
-    <title>订单详情</title>
+    <title>订单处理</title>
     <meta name="decorator" content="default"/>
+    <script src="${ctxStatic}/artDialog/artDialog.js?skin=blue"></script>
+    <script src="${ctxStatic}/artDialog/plugins/iframeTools.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("#value").focus();
@@ -23,12 +25,17 @@
                 }
             });
         });
+
+        function queryCustomer() {
+            var url = "${ctx}/qyfw/customer/dialogList";
+            art.dialog.open(url, {width: 800, height: 410, title: '选择客户', id: 'id'});
+        }
     </script>
 </head>
 <body>
 <ul class="nav nav-tabs">
     <li><a href="${ctx}/qyfw/order/">订单列表</a></li>
-    <li class="active"><a href="${ctx}/qyfw/order/detail?id=${order.id}">订单详情</a></li>
+    <li class="active"><a href="${ctx}/qyfw/order/detail?id=${order.id}">订单处理</a></li>
 </ul>
 <br/>
 <form:form id="inputForm" modelAttribute="order" action="${ctx}/qyfw/order/save" method="post"
@@ -68,13 +75,16 @@
     <div class="control-group">
         <label class="control-label">订单状态:</label>
         <div class="controls">
-            <label class="lbl">${fns:getDictLabel(order.status, 'order_status', '无')}</label>
+            <form:select path="status">
+                <form:options items="${fns:getDictList('order_status')}" itemLabel="label"
+                              itemValue="value" htmlEscape="false"/>
+            </form:select>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">处理反馈:</label>
         <div class="controls">
-            <label class="lbl">${order.resp}</label>
+            <form:textarea path="resp" htmlEscape="false" rows="3" maxlength="200" class="input-xlarge"/>
         </div>
     </div>
     <div class="control-group">
@@ -92,37 +102,65 @@
     <div class="control-group">
         <label class="control-label">客户名称:</label>
         <div class="controls">
-            <label class="lbl">${order.customer.name}</label>
+            <form:hidden path="customer.id"/>
+            <c:if test="${customer == null}">
+                <form:input path="customer.name" htmlEscape="false" maxlength="100" cssClass="required"
+                            value="${order.contact}"/>
+            </c:if>
+            <c:if test="${customer != null}">
+                <form:input path="customer.name" htmlEscape="false" maxlength="100" cssClass="required"/>
+            </c:if>
+            <label><input type="button" class="btn" value="<spring:message code='query'/>"
+                          onclick="queryCustomer()"/></label>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">客户性质:</label>
         <div class="controls">
-            <label class="lbl">${fns:getDictLabel(order.customer.customerType, 'customer_type', '无')}</label>
+            <form:select path="customer.customerType">
+                <form:options items="${fns:getDictList('customer_type')}" itemLabel="label"
+                              itemValue="value" htmlEscape="false"/>
+            </form:select>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">联系人:</label>
         <div class="controls">
-            <label class="lbl">${order.customer.contact}</label>
+            <c:choose>
+                <c:when test="${customer == null}">
+                    <form:input path="customer.contact" htmlEscape="false" maxlength="100" cssClass="required"
+                                value="${order.contact}"/>
+                </c:when>
+                <c:otherwise>
+                    <form:input path="customer.contact" htmlEscape="false" maxlength="100" cssClass="required"/>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">联系电话:</label>
         <div class="controls">
-            <label class="lbl">${order.customer.phone}</label>
+            <c:choose>
+                <c:when test="${customer == null}">
+                    <form:input path="customer.phone" htmlEscape="false" maxlength="100" cssClass="required"
+                                value="${order.phone}"/>
+                </c:when>
+                <c:otherwise>
+                    <form:input path="customer.phone" htmlEscape="false" maxlength="100" cssClass="required"/>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">联系地址:</label>
         <div class="controls">
-            <label class="lbl">${order.customer.address}</label>
+            <form:input path="customer.address"/>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">备注:</label>
         <div class="controls">
-            <label class="lbl">${order.customer.mark}</label>
+            <form:textarea path="customer.mark" htmlEscape="false" rows="3" maxlength="200" class="input-xlarge"/>
         </div>
     </div>
 
@@ -158,6 +196,9 @@
     </table>
 
     <div class="form-actions">
+        <shiro:hasPermission name="qyfw:order:edit">
+            <input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='save' />"/>&nbsp;
+        </shiro:hasPermission>
         <input id="btnCancel" class="btn" type="button" value="<spring:message code='return' />"
                onclick="history.go(-1)"/>
     </div>

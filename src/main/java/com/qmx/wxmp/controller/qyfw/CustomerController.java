@@ -53,6 +53,18 @@ public class CustomerController extends BaseController {
 
 
 	@RequiresPermissions("qyfw:customer:view")
+	@RequestMapping(value = "dialogList")
+	public String dialogList(Customer customer, HttpServletRequest request, HttpServletResponse response, Model model) {
+		Page<Customer> queryPage = new Page<>(request, response);
+		queryPage.setPageSize(10);
+		Page<Customer> page = thisService.find(queryPage, customer);
+		model.addAttribute("page", page);
+		return "/qyfw/customerDialogList";
+	}
+
+
+
+	@RequiresPermissions("qyfw:customer:view")
 	@RequestMapping(value = "/form")
 	public String form(Customer customer, Model model) {
 		model.addAttribute("customer", customer);
@@ -62,7 +74,7 @@ public class CustomerController extends BaseController {
 
 
 	@RequiresPermissions("qyfw:customer:edit")
-	@RequestMapping(value = "/save") // @Valid
+	@RequestMapping(value = "/save")
 	public String save(Customer customer, Model model, RedirectAttributes redirectAttributes) {
 		if (!beanValidator(model, customer)) {
 			return form(customer, model);

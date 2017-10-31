@@ -63,7 +63,7 @@
             <td><fmt:formatDate value="${order.createDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
             <shiro:hasPermission name="qyfw:order:edit">
                 <td>
-                    <a href="${ctx}/qyfw/order/form?id=${order.id}">处理</a>
+                    <a href="${ctx}/qyfw/order/deal?id=${order.id}">处理</a>
                     <a href="${ctx}/qyfw/order/detail?id=${order.id}"><spring:message code='order.details'/></a>
                 </td>
             </shiro:hasPermission>

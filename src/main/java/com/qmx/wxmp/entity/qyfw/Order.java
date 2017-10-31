@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
@@ -21,6 +23,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  */
 @Entity
 @Table(name = "qyfw_order")
+@DynamicInsert
+@DynamicUpdate
 public class Order implements Serializable {
 
 	private static final long	serialVersionUID	= 2361924873525292159L;
