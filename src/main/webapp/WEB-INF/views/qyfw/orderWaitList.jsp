@@ -54,7 +54,7 @@
     <tbody>
     <c:forEach items="${page.list}" var="order">
         <tr>
-            <td><a href="${ctx}/qyfw/order/form?id=${order.id}">${order.customer.name}</a></td>
+            <td>${order.customer.name}</td>
             <td>${fns:getDictLabel(order.customer.customerType, 'customer_type', '无')}</td>
             <td>${order.contact}</td>
             <td>${order.phone}</td>

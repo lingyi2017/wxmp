@@ -38,7 +38,7 @@
     <li class="active"><a href="${ctx}/qyfw/order/detail?id=${order.id}">订单处理</a></li>
 </ul>
 <br/>
-<form:form id="inputForm" modelAttribute="order" action="${ctx}/qyfw/order/save" method="post"
+<form:form id="inputForm" modelAttribute="order" action="${ctx}/qyfw/order/deal/save" method="post"
            class="form-horizontal">
     <form:hidden path="id"/>
     <tags:message content="${message}"/>
@@ -103,11 +103,11 @@
         <label class="control-label">客户名称:</label>
         <div class="controls">
             <form:hidden path="customer.id"/>
-            <c:if test="${customer == null}">
+            <c:if test="${order.customer.id == null}">
                 <form:input path="customer.name" htmlEscape="false" maxlength="100" cssClass="required"
                             value="${order.contact}"/>
             </c:if>
-            <c:if test="${customer != null}">
+            <c:if test="${order.customer.id != null}">
                 <form:input path="customer.name" htmlEscape="false" maxlength="100" cssClass="required"/>
             </c:if>
             <label><input type="button" class="btn" value="<spring:message code='query'/>"
@@ -126,29 +126,25 @@
     <div class="control-group">
         <label class="control-label">联系人:</label>
         <div class="controls">
-            <c:choose>
-                <c:when test="${customer == null}">
-                    <form:input path="customer.contact" htmlEscape="false" maxlength="100" cssClass="required"
-                                value="${order.contact}"/>
-                </c:when>
-                <c:otherwise>
-                    <form:input path="customer.contact" htmlEscape="false" maxlength="100" cssClass="required"/>
-                </c:otherwise>
-            </c:choose>
+            <c:if test="${order.customer.id == null}">
+                <form:input path="customer.contact" htmlEscape="false" maxlength="100" cssClass="required"
+                            value="${order.contact}"/>
+            </c:if>
+            <c:if test="${order.customer.id != null}">
+                <form:input path="customer.contact" htmlEscape="false" maxlength="100" cssClass="required"/>
+            </c:if>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">联系电话:</label>
         <div class="controls">
-            <c:choose>
-                <c:when test="${customer == null}">
-                    <form:input path="customer.phone" htmlEscape="false" maxlength="100" cssClass="required"
-                                value="${order.phone}"/>
-                </c:when>
-                <c:otherwise>
-                    <form:input path="customer.phone" htmlEscape="false" maxlength="100" cssClass="required"/>
-                </c:otherwise>
-            </c:choose>
+            <c:if test="${order.customer.id == null}">
+                <form:input path="customer.phone" htmlEscape="false" maxlength="100" cssClass="required"
+                            value="${order.phone}"/>
+            </c:if>
+            <c:if test="${order.customer.id != null}">
+                <form:input path="customer.phone" htmlEscape="false" maxlength="100" cssClass="required"/>
+            </c:if>
         </div>
     </div>
     <div class="control-group">

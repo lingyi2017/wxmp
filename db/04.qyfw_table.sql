@@ -13,9 +13,20 @@ CREATE TABLE qyfw_service_category
   PRIMARY KEY (id)
 ) COMMENT = '服务分类';
 
--- --------------------------------
--- Records of qyfw_service_category
--- --------------------------------
+/*DROP TABLE IF EXISTS qyfw_order;
+CREATE TABLE `qyfw_order` (
+  `id` varchar(64) NOT NULL COMMENT '编号',
+  `contact` varchar(64) DEFAULT NULL COMMENT '联系人',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
+  `money` decimal(19,2) DEFAULT NULL COMMENT '支付金额',
+  `phone` varchar(255) DEFAULT NULL COMMENT '联系方式',
+  `resp` varchar(255) DEFAULT NULL COMMENT '处理反馈',
+  `status` varchar(1) DEFAULT '1' COMMENT '订单状态',
+  `basic_service_id` varchar(64) NOT NULL COMMENT '所属服务',
+  `customer_id` varchar(64) DEFAULT NULL COMMENT '所属客户',
+  PRIMARY KEY (`id`)
+) COMMENT = '订单表';*/
+
 -- 服务分类顶级目录初始化
 INSERT INTO `qyfw_service_category` VALUES ('1', '0', '0,', '顶级分类', 1, 0, 1, null, 0);
 

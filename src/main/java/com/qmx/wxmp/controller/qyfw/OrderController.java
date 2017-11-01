@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.qmx.wxmp.common.utils.IdGen;
 import com.qmx.wxmp.entity.qyfw.Customer;
+import com.qmx.wxmp.service.qyfw.CustomerService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ import com.qmx.wxmp.entity.qyfw.Order;
 import com.qmx.wxmp.service.qyfw.OrderService;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Date;
+
 /**
  * 订单 Controller
  *
@@ -32,7 +35,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class OrderController extends BaseController {
 
 	@Autowired
-	private OrderService thisService;
+	private OrderService	thisService;
+
+	@Autowired
+	private CustomerService	customerService;
 
 
 
@@ -90,8 +96,8 @@ public class OrderController extends BaseController {
 
 
 	@RequiresPermissions("qyfw:order:edit")
-	@RequestMapping(value = "/save")
-	public String save(Order order, Model model, RedirectAttributes redirectAttributes) {
+	@RequestMapping(value = "/deal/save")
+	public String dealSave(Order order, Model model, RedirectAttributes redirectAttributes) {
 
 		if (null == order) {
 			addMessage(redirectAttributes, "订单不能为空");
@@ -99,14 +105,20 @@ public class OrderController extends BaseController {
 		}
 
 		try {
+
 			if (!beanValidator(model, order)) {
 				return deal(order, model);
 			}
-			if (null != order.getCustomer() && StringUtils.isEmpty(order.getCustomer().getId())) {
-				Customer customer = order.getCustomer();
+
+			// 保存客户信息
+			Customer customer = order.getCustomer();
+			if (null != customer && StringUtils.isEmpty(customer.getId())) {
 				customer.setId(IdGen.uuid());
+				customer.setCreateDate(new Date());
+				customerService.save(customer);
 				order.setCustomer(customer);
 			}
+
 			thisService.save(order);
 			addMessage(redirectAttributes, "处理订单成功");
 		} catch (Exception e) {

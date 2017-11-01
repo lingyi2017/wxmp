@@ -2,9 +2,6 @@ package com.qmx.wxmp.service.qyfw;
 
 import java.util.Date;
 
-import com.qmx.wxmp.common.utils.DateUtils;
-import com.qmx.wxmp.dto.order.QueryOrderDto;
-import com.qmx.wxmp.entity.qyfw.BasicService;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
@@ -13,8 +10,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.qmx.wxmp.common.persistence.Page;
+import com.qmx.wxmp.common.utils.DateUtils;
 import com.qmx.wxmp.common.utils.IdGen;
+import com.qmx.wxmp.dto.order.QueryOrderDto;
+import com.qmx.wxmp.entity.qyfw.Customer;
 import com.qmx.wxmp.entity.qyfw.Order;
+import com.qmx.wxmp.repository.hibernate.qyfw.CustomerDao;
 import com.qmx.wxmp.repository.hibernate.qyfw.OrderDao;
 import com.qmx.wxmp.service.BaseService;
 
@@ -28,7 +29,10 @@ import com.qmx.wxmp.service.BaseService;
 public class OrderService extends BaseService {
 
 	@Autowired
-	private OrderDao thisDao;
+	private OrderDao	thisDao;
+
+	@Autowired
+	private CustomerDao	customerDao;
 
 
 
