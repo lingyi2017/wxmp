@@ -96,6 +96,15 @@ public class CustomerController extends BaseController {
 
 
 
+	@RequiresPermissions("qyfw:customer:view")
+	@RequestMapping(value = "/detail")
+	public String detail(Customer customer, Model model) {
+		model.addAttribute("customer", customer);
+		return "/qyfw/customerDetail";
+	}
+
+
+
 	/**
 	 * 客户电话号码唯一性校验(未删除客户)
 	 * 

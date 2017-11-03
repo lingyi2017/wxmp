@@ -57,13 +57,14 @@
             <td>${customer.phone}</td>
             <td>${fns:getDictLabel(customer.customerType, 'customer_type', '无')}</td>
             <td><fmt:formatDate value="${customer.createDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
-            <shiro:hasPermission name="qyfw:customer:edit">
-                <td>
+            <td>
+                <shiro:hasPermission name="qyfw:customer:edit">
                     <a href="${ctx}/qyfw/customer/form?id=${customer.id}"><spring:message code='update'/></a>
                     <a href="${ctx}/qyfw/customer/delete?id=${customer.id}"
                        onclick="return confirmx('确认要删除该客户吗？', this.href)"><spring:message code='delete'/></a>
-                </td>
-            </shiro:hasPermission>
+                </shiro:hasPermission>
+                <a href="${ctx}/qyfw/customer/detail?id=${customer.id}"><spring:message code='order.details'/></a>
+            </td>
         </tr>
     </c:forEach>
     </tbody>

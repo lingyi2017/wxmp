@@ -2,6 +2,7 @@ package com.qmx.wxmp.entity.qyfw;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -47,6 +48,12 @@ public class Customer implements Serializable {
 
 	/** 删除标记（0：正常；1：删除） */
 	protected String			delFlag;
+
+	@OneToMany(mappedBy = "customer")
+	private Set<Order>			orders;
+
+	@OneToMany(mappedBy = "customer")
+	private Set<Consulting>		consultings;
 
 
 
@@ -162,4 +169,27 @@ public class Customer implements Serializable {
 		this.delFlag = delFlag;
 	}
 
+
+
+	public Set<Order> getOrders() {
+		return orders;
+	}
+
+
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
+
+
+
+	public Set<Consulting> getConsultings() {
+		return consultings;
+	}
+
+
+
+	public void setConsultings(Set<Consulting> consultings) {
+		this.consultings = consultings;
+	}
 }
