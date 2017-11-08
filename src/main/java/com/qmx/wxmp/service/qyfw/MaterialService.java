@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.lang3.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -13,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.qmx.wxmp.common.persistence.Page;
 import com.qmx.wxmp.common.utils.IdGen;
+import com.qmx.wxmp.common.utils.StringUtils;
 import com.qmx.wxmp.entity.qyfw.Material;
 import com.qmx.wxmp.repository.hibernate.qyfw.BasicServiceMaterialDao;
 import com.qmx.wxmp.repository.hibernate.qyfw.MaterialDao;
@@ -32,17 +32,15 @@ public class MaterialService extends BaseService {
 	@Resource
 	private BasicServiceMaterialDao basicServiceMaterialDao;
 	
-	public List<Material> findAllList(){
-		return materialDao.findList();
-	}
-	
 	public Material get(String id) {
 		return materialDao.get(id);
 	}
 	
 	@Transactional(readOnly = false)
 	public void save(Material material){
-		material.setId(IdGen.uuid());
+		if(StringUtils.isEmpty(material.getId())){
+			material.setId(IdGen.uuid());
+		}
 		materialDao.save(material);
 	}
 	
@@ -63,4 +61,16 @@ public class MaterialService extends BaseService {
 		dc.addOrder(Order.asc("sort"));
 		return materialDao.find(page, dc);
 	}
+	
+	/**
+	 * 查询对应名称的材料
+	 * @param name
+	 * @param customerType
+	 * @return
+	 */
+	public List<Material> findByMaterialName(String name){
+		return materialDao.findByMaterialName(name);
+	}
+	
+	
 }

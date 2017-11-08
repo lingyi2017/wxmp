@@ -1,5 +1,7 @@
 package com.qmx.wxmp.controller.qyfw;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.qmx.wxmp.common.persistence.Page;
+import com.qmx.wxmp.common.utils.StringUtils;
 import com.qmx.wxmp.controller.BaseController;
 import com.qmx.wxmp.entity.qyfw.Material;
 import com.qmx.wxmp.service.qyfw.MaterialService;
@@ -76,5 +79,36 @@ public class MaterialController extends BaseController {
 		materialService.delete(id);
 		addMessage(redirectAttributes, "删除材料成功");
 		return "redirect:/qyfw/material/";
+	}
+	
+	/**
+	 * 检查材料名称和支持性质是否冲突
+	 * @param id
+	 * @param name
+	 * @param customerType
+	 * @return
+	 */
+	@RequestMapping(value = "checkMaterialName")
+	public String checkMaterialName(String id, String name, String customerType){
+		String check = "true";
+		List<Material> results = materialService.findByMaterialName(name);
+		if(StringUtils.isEmpty(id)){//新增
+			if(results.size() != 0){
+				for(Material material : results){
+					if(material.getCustomerType().contains(customerType) || customerType.contains(material.getCustomerType())){
+						check = "false";
+					}
+				}
+			}
+		}else{//修改
+			if(results.size() > 1){
+				for(Material material : results){
+					if(!id.equals(material.getId()) && (material.getCustomerType().contains(customerType) || customerType.contains(material.getCustomerType()))){
+						check = "false";
+					}
+				}
+			}
+		}
+		return check;
 	}
 }

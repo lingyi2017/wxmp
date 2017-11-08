@@ -1,10 +1,7 @@
 package com.qmx.wxmp.service.qyfw;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
-import org.apache.commons.lang3.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -13,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.qmx.wxmp.common.persistence.Page;
 import com.qmx.wxmp.common.utils.IdGen;
+import com.qmx.wxmp.common.utils.StringUtils;
 import com.qmx.wxmp.entity.qyfw.BasicService;
-import com.qmx.wxmp.entity.qyfw.Material;
 import com.qmx.wxmp.repository.hibernate.qyfw.BasicServiceDao;
 import com.qmx.wxmp.service.BaseService;
 
@@ -36,7 +33,9 @@ public class BasicServiceService extends BaseService {
 	
 	@Transactional(readOnly = false)
 	public void save(BasicService basicService){
-		basicService.setId(IdGen.uuid());
+		if(StringUtils.isEmpty(basicService.getId())){
+			basicService.setId(IdGen.uuid());
+		}
 		basicServiceDao.save(basicService);
 	}
 	
@@ -56,4 +55,6 @@ public class BasicServiceService extends BaseService {
 		dc.addOrder(Order.asc("sort"));
 		return basicServiceDao.find(page, dc);
 	}
+	
+	
 }

@@ -36,16 +36,13 @@
 		<div class="control-group">
 			<label class="control-label">材料名称:</label>
 			<div class="controls">
-				<form:input path="name" htmlEscape="false" maxlength="50" class="required"/>
+				<form:input path="name" htmlEscape="false" maxlength="50" cssClass="required name checkMaterialName"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">客户性质:</label>
 			<div class="controls">
-				<form:select path="customerType">
-                <form:options items="${fns:getDictList('customer_type')}" itemLabel="label"
-                              itemValue="value" htmlEscape="false"/>
-            	</form:select>
+				<form:checkboxes path="customerType" items="${fns:getDictList('customer_type')}" itemLabel="label" itemValue="value" htmlEscape="false" class="required"/>
 			</div>
 		</div>
 		<div class="control-group">

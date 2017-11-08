@@ -23,6 +23,7 @@
 				}
 			});
 		});
+		
 	</script>
 </head>
 <body>
@@ -51,7 +52,7 @@
 		<div class="control-group">
         <label class="control-label">上级分类:</label>
 	        <div class="controls">
-	            <tags:treeselect id="serviceCategory" name="parent.id" value="${serviceCategory.parent.id}"
+	            <tags:treeselect id="serviceCategory" name="serviceCategory.id" value="${serviceCategory.parent.id}"
 	                             labelName="parent.name" labelValue="${serviceCategory.parent.name}"
 	                             title="服务分类" url="/qyfw/serviceCategory/treeData" extId="${serviceCategory.id}"
 	                             cssClass="required"/>
@@ -61,8 +62,8 @@
 			<label class="control-label">是否显示:</label>
 			<div class="controls">
 				<form:select path="isEnable">
-				<form:options items="${fns:getDictList('public_yesorno')}" itemLabel="label"
-                              itemValue="value" htmlEscape="false"/>
+				<form:option value="1">是</form:option>
+				<form:option value="0">否</form:option>
             	</form:select>
 			</div>
 		</div>
@@ -70,8 +71,8 @@
 			<label class="control-label">热点服务:</label>
 			<div class="controls">
 				<form:select path="isHot">
-				<form:options items="${fns:getDictList('public_yesorno')}" itemLabel="label"
-                              itemValue="value" htmlEscape="false"/>
+				<form:option value="0">否</form:option>
+				<form:option value="1">是</form:option>
             	</form:select>
 			</div>
 		</div>
@@ -79,8 +80,8 @@
 			<label class="control-label">支持购买:</label>
 			<div class="controls">
 				<form:select path="isBuy">
-				<form:options items="${fns:getDictList('public_yesorno')}" itemLabel="label"
-                              itemValue="value" htmlEscape="false"/>
+				<form:option value="0">否</form:option>
+				<form:option value="1">是</form:option>
             	</form:select>
 			</div>
 		</div>
@@ -90,6 +91,19 @@
 				<form:input path="price" htmlEscape="false" maxlength="50"/>
 			</div>
 		</div>
+		<%-- <div class="control-group">
+			<label class="control-label">所需个人材料:</label>
+			<div class="controls">
+				<form:checkboxes path="basicServiceMaterials" items="${peopleMaterialList}" itemLabel="name" itemValue="id" htmlEscape="false" class="required"/>
+			</div>
+		</div> --%>
+		<%-- <div class="control-group">
+			<label class="control-label">所需公司材料:</label>
+			<div class="controls">
+				<form:checkboxes path="basicServiceMaterials" items="${companyMaterialList}" itemLabel="name" itemValue="id" htmlEscape="false" class="required"/>
+			</div>
+		</div> --%>
+		
 		<div class="control-group">
 			<label class="control-label">排序:</label>
 			<div class="controls">

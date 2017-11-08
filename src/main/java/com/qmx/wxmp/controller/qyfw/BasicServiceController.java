@@ -1,5 +1,7 @@
 package com.qmx.wxmp.controller.qyfw;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.qmx.wxmp.common.persistence.Page;
 import com.qmx.wxmp.controller.BaseController;
 import com.qmx.wxmp.entity.qyfw.BasicService;
+import com.qmx.wxmp.entity.qyfw.Material;
+import com.qmx.wxmp.repository.hibernate.qyfw.MaterialDao;
 import com.qmx.wxmp.service.qyfw.BasicServiceService;
 
 /**
@@ -28,6 +32,8 @@ public class BasicServiceController extends BaseController {
 	
 	@Resource
 	private BasicServiceService basicServiceService;
+	@Resource
+	private MaterialDao materialDao;
 	
 	@RequiresPermissions("qyfw:basicService:view")
 	@RequestMapping(value = { "list", "" })
@@ -43,6 +49,10 @@ public class BasicServiceController extends BaseController {
 		if(basicService.getId() != null){
 			basicService = basicServiceService.get(basicService.getId());
 		}
+		List<Material> list1 = materialDao.getPeopleMaterialList();
+		List<Material> list2 = materialDao.getCompanyMaterialList();
+		model.addAttribute("peopleMaterialList", list1);
+		model.addAttribute("companyMaterialList", list2);
 		model.addAttribute("basicService", basicService);
 		return "/qyfw/basicServiceForm";
 
@@ -72,7 +82,7 @@ public class BasicServiceController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(String id, RedirectAttributes redirectAttributes) {
 		basicServiceService.delete(id);
-		addMessage(redirectAttributes, "删除服务分类成功");
-		return "redirect:/qyfw/serviceCategory/";
+		addMessage(redirectAttributes, "删除基础服务成功");
+		return "redirect:/qyfw/basicService/";
 	}
 }

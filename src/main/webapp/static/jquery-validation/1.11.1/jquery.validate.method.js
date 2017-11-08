@@ -99,6 +99,12 @@ jQuery.validator.addMethod("checkCustomerPhone", function (value, element) {
     return this.optional(element) || checkCustomerPhone(value);
 }, "该电话号码已注册！");
 
+//校验材料名称和支持性质
+jQuery.validator.addMethod("checkMaterialName", function (value, element) {
+    return this.optional(element) || checkMaterialName(value);
+}, "已存在支持该客户性质的材料！");
+
+
 //验证身份证函数
 function checkIdcard(idcard) {
     idcard = idcard.toString();
@@ -205,6 +211,25 @@ function checkCustomerPhone(phone) {
         type: "POST",
         async: false,
         url: "/wxmp/qyfw/customer/checkCustomerPhone",
+        data: param,
+        dataType: "JSON",
+        success: function (res) {
+            result = res;
+        }
+    });
+    return result;
+}
+
+//校验材料名称
+function checkMaterialName(name) {
+	var id = $("#id").val();
+    var customerType = $("#customerType").val();
+    var param = {"id": id, "name": name, "customerType": customerType};
+    var result = false;
+    $.ajax({
+        type: "POST",
+        async: false,
+        url: "/wxmp/qyfw/material/checkMaterialName",
         data: param,
         dataType: "JSON",
         success: function (res) {

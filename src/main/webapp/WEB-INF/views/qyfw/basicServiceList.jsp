@@ -53,7 +53,7 @@
         <tr>
             <td><a href="${ctx}/qyfw/basicService/form?id=${basicService.id}">${basicService.name}</a></td>
             <td>${fns:getDictLabel(basicService.customerType, 'customer_type', '无')}</td>
-            <td></td>
+            <td>${basicService.serviceCategory.name}</td>
             <td>${fns:getDictLabel(basicService.isEnable, 'public_yesorno', '无')}</td>
             <td>${fns:getDictLabel(basicService.isHot, 'public_yesorno', '无')}</td>
             <td>${fns:getDictLabel(basicService.isBuy, 'public_yesorno', '无')}</td>

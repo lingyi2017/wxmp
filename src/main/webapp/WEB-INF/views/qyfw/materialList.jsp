@@ -39,8 +39,8 @@
         <th>材料名称</th>
         <th>客户性质</th>
         <th>附件模板路径</th>
-        <th>排序号</th>
         <th>材料说明</th>
+        <th>排序号</th>
         <shiro:hasPermission name="qyfw:material:edit">
             <th>操作</th>
         </shiro:hasPermission></tr>
@@ -51,8 +51,8 @@
             <td><a href="${ctx}/qyfw/material/form?id=${material.id}">${material.name}</a></td>
             <td>${fns:getDictLabel(material.customerType, 'customer_type', '无')}</td>
             <td>${material.path}</td>
+            <td>${material.descption}</td>
             <td>${material.sort}</td>
-            <td>${customer.sort}</td>
             <shiro:hasPermission name="qyfw:material:edit">
                 <td>
                     <a href="${ctx}/qyfw/material/form?id=${material.id}"><spring:message code='update'/></a>

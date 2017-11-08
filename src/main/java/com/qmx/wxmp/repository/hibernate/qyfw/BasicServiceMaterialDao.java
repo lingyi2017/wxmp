@@ -19,7 +19,7 @@ public class BasicServiceMaterialDao extends BaseDao<BasicServiceMaterial> {
 	 * @param materialId
 	 */
 	public void deleteByMaterial(String materialId){
-		update("delete from BasicServiceMaterial where materialId :p1", new Parameter(materialId));
+		update("delete from BasicServiceMaterial where material.id = :p1", new Parameter(materialId));
 	}
 	
 	/**
