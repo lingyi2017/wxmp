@@ -10,6 +10,11 @@
 			$("#inputForm").validate({
 				submitHandler: function(form){
 					loading('正在提交，请稍等...');
+					var chk_value =[]; 
+					$('input[name="customerTypeBox"]:checked').each(function(){ 
+						chk_value.push($(this).val()); 
+					});
+					$("#customerType").val(chk_value);
 					form.submit();
 				},
 				errorContainer: "#messageBox",
@@ -22,8 +27,44 @@
 					}
 				}
 			});
+			//初始化服务价格状态
+			changeBuy();
+			//初始化材料状态
+			$("#peopleMaterialIds").css("display", "none");
+			$("#companyMaterialIds").css("display", "none");
+			var customerType = $("#customerType").val();
+			if(customerType !==null && customerType !== undefined && customerType != ""){
+				var value = customerType.split(",");
+				for(var i=0;i<value.length;i++){  
+			        $(":checkbox[value='"+value[i]+"']").prop("checked",true);
+			        if(value[i] == '1'){
+						$("#peopleMaterialIds").css("display", "");
+					}
+					if(value[i] == '2'){
+						$("#companyMaterialIds").css("display", "");
+					}
+			    }
+			}
 		});
-		
+		function changeCustomerType(){
+			$("#peopleMaterialIds").css("display", "none");
+			$("#companyMaterialIds").css("display", "none");
+			$('input[name="customerTypeBox"]:checked').each(function(){
+				if($(this).val() == '1'){
+					$("#peopleMaterialIds").css("display", "");
+				}
+				if($(this).val() == '2'){
+					$("#companyMaterialIds").css("display", "");
+				}  
+			});
+		}
+		function changeBuy(){
+			if($("#isBuy").val() == "1"){
+				$("#price").css("display", "");
+			}else{
+				$("#price").css("display", "none");
+			}
+		}
 	</script>
 </head>
 <body>
@@ -43,20 +84,19 @@
 		<div class="control-group">
 			<label class="control-label">支持客户性质:</label>
 			<div class="controls">
-				<form:select path="customerType">
-                <form:options items="${fns:getDictList('customer_type')}" itemLabel="label"
-                              itemValue="value" htmlEscape="false"/>
-            	</form:select>
+				<form:hidden path="customerType"/>
+				<input type="checkbox" name="customerTypeBox" value="1" onchange="changeCustomerType()">个人
+				<input type="checkbox" name="customerTypeBox" value="2" onchange="changeCustomerType()">企业
 			</div>
 		</div>
 		<div class="control-group">
-        <label class="control-label">上级分类:</label>
+        	<label class="control-label">上级分类:</label>
 	        <div class="controls">
-	            <tags:treeselect id="serviceCategory" name="serviceCategory.id" value="${serviceCategory.parent.id}"
-	                             labelName="parent.name" labelValue="${serviceCategory.parent.name}"
-	                             title="服务分类" url="/qyfw/serviceCategory/treeData" extId="${serviceCategory.id}"
-	                             cssClass="required"/>
-	        </div>
+            <tags:treeselect id="serviceCategory" name="serviceCategory.id" value="${basicService.serviceCategory.id}"
+                             labelName="serviceCategory.name" labelValue="${basicService.serviceCategory.name}"
+                             title="服务分类" url="/qyfw/serviceCategory/treeData" 
+                             cssClass="required"/>
+        	</div>
     	</div>
     	<div class="control-group">
 			<label class="control-label">是否显示:</label>
@@ -79,30 +119,30 @@
 		<div class="control-group">
 			<label class="control-label">支持购买:</label>
 			<div class="controls">
-				<form:select path="isBuy">
+				<form:select path="isBuy" onchange="changeBuy()">
 				<form:option value="0">否</form:option>
 				<form:option value="1">是</form:option>
             	</form:select>
 			</div>
 		</div>
-		<div class="control-group">
+		<div class="control-group" id="price">
 			<label class="control-label">服务价格:</label>
 			<div class="controls">
 				<form:input path="price" htmlEscape="false" maxlength="50"/>
 			</div>
 		</div>
-		<%-- <div class="control-group">
+		<div class="control-group" id="peopleMaterialIds">
 			<label class="control-label">所需个人材料:</label>
 			<div class="controls">
-				<form:checkboxes path="basicServiceMaterials" items="${peopleMaterialList}" itemLabel="name" itemValue="id" htmlEscape="false" class="required"/>
+				<form:checkboxes path="peopleMaterialList" items="${peopleMaterialList}" itemLabel="name" itemValue="id" htmlEscape="false"/>
 			</div>
-		</div> --%>
-		<%-- <div class="control-group">
+		</div>
+		<div class="control-group" id="companyMaterialIds">
 			<label class="control-label">所需公司材料:</label>
 			<div class="controls">
-				<form:checkboxes path="basicServiceMaterials" items="${companyMaterialList}" itemLabel="name" itemValue="id" htmlEscape="false" class="required"/>
+				<form:checkboxes path="companyMaterialIds" items="${companyMaterialList}" itemLabel="name" itemValue="id" htmlEscape="false"/>
 			</div>
-		</div> --%>
+		</div>
 		
 		<div class="control-group">
 			<label class="control-label">排序:</label>

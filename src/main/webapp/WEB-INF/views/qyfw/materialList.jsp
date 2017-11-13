@@ -25,10 +25,10 @@
     <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
     <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 
-    <label>客户性质 ：</label><label><form:select path="customerType">
+    <%-- <label>客户性质 ：</label><label><form:select path="customerType">
                 <form:options items="${fns:getDictList('customer_type')}" itemLabel="label"
                               itemValue="value" htmlEscape="false"/>
-            	</form:select></label>
+            	</form:select></label> --%>
     <label>材料名称 ：</label><label><form:input path="name" htmlEscape="false" maxlength="50" class="input-small"/></label>&nbsp;
     <input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='query'/>"/>
 </form:form>
@@ -49,7 +49,7 @@
     <c:forEach items="${page.list}" var="material">
         <tr>
             <td><a href="${ctx}/qyfw/material/form?id=${material.id}">${material.name}</a></td>
-            <td>${fns:getDictLabel(material.customerType, 'customer_type', '无')}</td>
+            <td>${fns:getDictLabel(material.customerType, 'customer_type', '个人、企业')}</td>
             <td>${material.path}</td>
             <td>${material.descption}</td>
             <td>${material.sort}</td>

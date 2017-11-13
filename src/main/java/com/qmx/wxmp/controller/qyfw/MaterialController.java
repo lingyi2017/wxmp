@@ -90,6 +90,7 @@ public class MaterialController extends BaseController {
 	 */
 	@RequestMapping(value = "checkMaterialName")
 	public String checkMaterialName(String id, String name, String customerType){
+		System.out.println("vali");
 		String check = "true";
 		List<Material> results = materialService.findByMaterialName(name);
 		if(StringUtils.isEmpty(id)){//新增

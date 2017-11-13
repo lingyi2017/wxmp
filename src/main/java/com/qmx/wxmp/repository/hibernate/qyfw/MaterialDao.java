@@ -17,10 +17,10 @@ public class MaterialDao extends BaseDao<Material> {
 	}
 	
 	public List<Material> getPeopleMaterialList(){
-		return find("from Material where customerType like :p1", new Parameter("%"+BasicService.CUSTOMER_TYPE_PEOPLE+"%"));
+		return find("from Material where customerType like :p1 order by sort", new Parameter("%"+BasicService.CUSTOMER_TYPE_PEOPLE+"%"));
 	}
 	
 	public List<Material> getCompanyMaterialList(){
-		return find("from Material where customerType like :p1", new Parameter("%"+BasicService.CUSTOMER_TYPE_COMPANY+"%"));
+		return find("from Material where customerType like :p1 order by sort", new Parameter("%"+BasicService.CUSTOMER_TYPE_COMPANY+"%"));
 	}
 }

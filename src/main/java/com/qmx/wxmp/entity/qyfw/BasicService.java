@@ -1,13 +1,16 @@
 package com.qmx.wxmp.entity.qyfw;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.qmx.wxmp.common.utils.StringUtils;
 
 /**
  * 基础服务信息
@@ -59,10 +62,17 @@ public class BasicService {
 	@JoinColumn(name="service_category_id")
 	private ServiceCategory serviceCategory;
 	
-	@OneToMany(mappedBy="basicService")
-	private Set<BasicServiceMaterial> basicServiceMaterials;
+	/** 个人材料ids*/
+	private String peopleMaterialIds;
 	
+	/** 企业材料ids*/
+	private String companyMaterialIds;
 	
+	@Transient
+	public List<String> peopleMaterialList;
+	
+	@Transient
+	public List<String> companyMaterialList;
 	
 	public String getId() {
 		return id;
@@ -152,13 +162,52 @@ public class BasicService {
 		this.serviceCategory = serviceCategory;
 	}
 
-	public Set<BasicServiceMaterial> getBasicServiceMaterials() {
-		return basicServiceMaterials;
+	public String getPeopleMaterialIds() {
+		return peopleMaterialIds;
 	}
 
-	public void setBasicServiceMaterials(
-			Set<BasicServiceMaterial> basicServiceMaterials) {
-		this.basicServiceMaterials = basicServiceMaterials;
+	public void setPeopleMaterialIds(String peopleMaterialIds) {
+		this.peopleMaterialIds = peopleMaterialIds;
+	}
+
+	public String getCompanyMaterialIds() {
+		return companyMaterialIds;
+	}
+
+	public void setCompanyMaterialIds(String companyMaterialIds) {
+		this.companyMaterialIds = companyMaterialIds;
+	}
+
+	public List<String> getPeopleMaterialList() {  
+	    if (StringUtils.isNotBlank(getPeopleMaterialIds())){  
+			List<String> list = new ArrayList<String>();
+	        for (String s : StringUtils.split(getPeopleMaterialIds(), ",")) {  
+	            list.add(s);  
+	        }  
+		    return list; 
+	    } else{
+	    	return peopleMaterialList;
+	    }
+	}
+
+	public void setPeopleMaterialList(List<String> peopleMaterialList) {
+		this.peopleMaterialList = peopleMaterialList;
+	}
+
+	public List<String> getCompanyMaterialList() {
+	    if (StringUtils.isNotBlank(getCompanyMaterialIds())){  
+			List<String> list = new ArrayList<String>();  
+	        for (String s : StringUtils.split(getCompanyMaterialIds(), ",")) {  
+	            list.add(s);  
+	        }  
+	        return list;
+	    } else{
+	    	return companyMaterialList;
+	    }
+	}
+
+	public void setCompanyMaterialList(List<String> companyMaterialList) {
+		this.companyMaterialList = companyMaterialList;
 	}
 
 }

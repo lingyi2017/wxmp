@@ -1,10 +1,7 @@
 package com.qmx.wxmp.entity.qyfw;
 
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -33,9 +30,6 @@ public class Material {
 	
 	/** 排序号*/
 	private Integer sort;
-	
-	@OneToMany(mappedBy="material")
-	private Set<BasicServiceMaterial> basicServiceMaterials;
 
 	public String getId() {
 		return id;
@@ -83,15 +77,6 @@ public class Material {
 
 	public void setSort(Integer sort) {
 		this.sort = sort;
-	}
-
-	public Set<BasicServiceMaterial> getBasicServiceMaterials() {
-		return basicServiceMaterials;
-	}
-
-	public void setBasicServiceMaterials(
-			Set<BasicServiceMaterial> basicServiceMaterials) {
-		this.basicServiceMaterials = basicServiceMaterials;
 	}
 
 	

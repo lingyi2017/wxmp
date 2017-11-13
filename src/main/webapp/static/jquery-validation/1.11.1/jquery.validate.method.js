@@ -222,19 +222,23 @@ function checkCustomerPhone(phone) {
 
 //校验材料名称
 function checkMaterialName(name) {
-	var id = $("#id").val();
     var customerType = $("#customerType").val();
-    var param = {"id": id, "name": name, "customerType": customerType};
-    var result = false;
-    $.ajax({
-        type: "POST",
-        async: false,
-        url: "/wxmp/qyfw/material/checkMaterialName",
-        data: param,
-        dataType: "JSON",
-        success: function (res) {
-            result = res;
-        }
-    });
-    return result;
+    if(customerType !==null && customerType !== undefined && customerType != ""){
+    	var id = $("#id").val();
+        var param = {"id": id, "name": name, "customerType": customerType};
+        var result = false;
+        $.ajax({
+            type: "POST",
+            async: false,
+            url: "/wxmp/qyfw/material/checkMaterialName",
+            data: param,
+            dataType: "JSON",
+            success: function (res) {
+                result = res;
+            }
+        });
+        return result;
+    }else{
+    	return true;
+    }
 }

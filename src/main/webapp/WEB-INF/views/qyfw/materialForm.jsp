@@ -10,6 +10,11 @@
 			$("#inputForm").validate({
 				submitHandler: function(form){
 					loading('正在提交，请稍等...');
+					var chk_value =[]; 
+					$('input[name="customerTypeBox"]:checked').each(function(){ 
+						chk_value.push($(this).val()); 
+					});
+					$("#customerType").val(chk_value);
 					form.submit();
 				},
 				errorContainer: "#messageBox",
@@ -22,6 +27,14 @@
 					}
 				}
 			});
+			//如果为修改，多选框赋值
+			var customerType = $("#customerType").val();
+			if(customerType !==null && customerType !== undefined && customerType != ""){
+				var value = customerType.split(",");
+				for(var i=0;i<value.length;i++){  
+			        $(":checkbox[value='"+value[i]+"']").prop("checked",true);   
+			    }
+			}
 		});
 	</script>
 </head>
@@ -36,13 +49,15 @@
 		<div class="control-group">
 			<label class="control-label">材料名称:</label>
 			<div class="controls">
-				<form:input path="name" htmlEscape="false" maxlength="50" cssClass="required name checkMaterialName"/>
+				<form:input path="name" htmlEscape="false" maxlength="50" cssClass="required checkMaterialName"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">客户性质:</label>
 			<div class="controls">
-				<form:checkboxes path="customerType" items="${fns:getDictList('customer_type')}" itemLabel="label" itemValue="value" htmlEscape="false" class="required"/>
+				<form:hidden path="customerType"/>
+				<input type="checkbox" name="customerTypeBox" value="1">个人
+				<input type="checkbox" name="customerTypeBox" value="2">企业
 			</div>
 		</div>
 		<div class="control-group">

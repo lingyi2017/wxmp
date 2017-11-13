@@ -16,7 +16,7 @@ import com.qmx.wxmp.repository.hibernate.qyfw.BasicServiceDao;
 import com.qmx.wxmp.service.BaseService;
 
 /**
- * 材料管理
+ * 基础服务管理
  * @author itismin
  *
  */
@@ -35,6 +35,28 @@ public class BasicServiceService extends BaseService {
 	public void save(BasicService basicService){
 		if(StringUtils.isEmpty(basicService.getId())){
 			basicService.setId(IdGen.uuid());
+		}
+		if(basicService.getPeopleMaterialList() != null){
+			String peopleMaterialIds = "";
+			for(int i = 0; i < basicService.getPeopleMaterialList().size(); i++){
+				if(i == basicService.getPeopleMaterialList().size() - 1){
+					peopleMaterialIds += basicService.getPeopleMaterialList().get(i);
+				}else{
+					peopleMaterialIds += basicService.getPeopleMaterialList().get(i) + ",";
+				}
+			}
+			basicService.setPeopleMaterialIds(peopleMaterialIds);
+		}
+		if(basicService.getCompanyMaterialList() != null){
+			String companyMaterialIds = "";
+			for(int i = 0; i < basicService.getCompanyMaterialList().size(); i++){
+				if(i == basicService.getCompanyMaterialList().size() - 1){
+					companyMaterialIds += basicService.getCompanyMaterialList().get(i);
+				}else{
+					companyMaterialIds += basicService.getCompanyMaterialList().get(i) + ",";
+				}
+			}
+			basicService.setCompanyMaterialIds(companyMaterialIds);
 		}
 		basicServiceDao.save(basicService);
 	}
