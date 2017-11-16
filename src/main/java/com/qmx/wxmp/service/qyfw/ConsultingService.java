@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.qmx.wxmp.common.persistence.Page;
+import com.qmx.wxmp.common.utils.DateUtils;
 import com.qmx.wxmp.common.utils.IdGen;
+import com.qmx.wxmp.dto.order.QueryOrderDto;
 import com.qmx.wxmp.entity.qyfw.Consulting;
 import com.qmx.wxmp.entity.qyfw.Material;
 import com.qmx.wxmp.repository.hibernate.qyfw.ConsultingDao;
@@ -43,18 +45,26 @@ public class ConsultingService extends BaseService {
 		consultingDao.delById(id);
 	}
 	
-	public Page<Consulting> findByPage(Page<Consulting> page, Consulting consulting) {
+	public Page<Consulting> findByPage(Page<Consulting> page, QueryOrderDto queryDto) {
 		DetachedCriteria dc = consultingDao.createDetachedCriteria();
-		if (StringUtils.isNotEmpty(consulting.getCustomerType())) {
-			dc.add(Restrictions.eq("customerType", consulting.getCustomerType()));
+		dc.addOrder(org.hibernate.criterion.Order.desc("time"));
+		if (null == queryDto) {
+			return consultingDao.find(page, dc);
 		}
-		if (StringUtils.isNotEmpty(consulting.getPerson())) {
-			dc.add(Restrictions.like("person", "%" + consulting.getPerson() + "%"));
+		if (StringUtils.isNotEmpty(queryDto.getBeginDate()) && StringUtils.isNotEmpty(queryDto.getEndDate())) {
+			dc.add(Restrictions.between("time", DateUtils.parseDate(queryDto.getBeginDate() + " 00:00:00"),
+					DateUtils.parseDate(queryDto.getEndDate() + " 23:59:59")));
 		}
-		if (StringUtils.isNotEmpty(consulting.getPhone())) {
-			dc.add(Restrictions.like("phone", "%" + consulting.getPhone() + "%"));
+		if (StringUtils.isNotEmpty(queryDto.getContact())) {
+			dc.add(Restrictions.like("phone", "%" + queryDto.getContact() + "%"));
 		}
-		dc.addOrder(Order.desc("time"));
+		dc.createAlias("basicService", "basicService");
+		if (StringUtils.isNotEmpty(queryDto.getServiceName())) {
+			dc.add(Restrictions.like("basicService.name", "%" + queryDto.getServiceName() + "%"));
+		}
+		if (StringUtils.isNotEmpty(queryDto.getStatus())) {
+			dc.add(Restrictions.eq("dealStatus", queryDto.getStatus()));
+		}
 		return consultingDao.find(page, dc);
 	}
 }

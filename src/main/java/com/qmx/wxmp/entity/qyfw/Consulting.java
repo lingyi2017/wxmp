@@ -3,13 +3,13 @@ package com.qmx.wxmp.entity.qyfw;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 
 /**
@@ -54,8 +54,14 @@ public class Consulting {
 	private Date dealTime;
 	
 	@ManyToOne
+	@NotFound(action = NotFoundAction.IGNORE)
 	@JoinColumn(name="customer_id")
 	private Customer customer;
+	
+	@ManyToOne
+	@NotFound(action = NotFoundAction.IGNORE)
+	@JoinColumn(name = "basic_service_id")
+	private BasicService basicService;
 
 	public String getId() {
 		return id;

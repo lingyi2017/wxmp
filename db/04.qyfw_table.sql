@@ -38,11 +38,14 @@ INSERT INTO `sys_dict` VALUES ('102', '一般显示', 'false', 'service_category
 INSERT INTO `sys_dict` VALUES ('103', '重点显示', 'true', 'service_category_is_important', '是否重点显示', '20', 'admin', now(), 'admin', now(), null, '0');
 
 
-INSERT INTO `sys_dict` VALUES ('104', '企业', '1', 'customer_type', '客户性质', '10', 'admin', now(), 'admin', now(), null, '0');
-INSERT INTO `sys_dict` VALUES ('105', '个人', '2', 'customer_type', '客户性质', '20', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('104', '企业', '2', 'customer_type', '客户性质', '10', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('105', '个人', '1', 'customer_type', '客户性质', '20', 'admin', now(), 'admin', now(), null, '0');
 
 INSERT INTO `sys_dict` VALUES ('106', '已购买', '1', 'order_status', '订单状态', '10', 'admin', now(), 'admin', now(), null, '0');
 INSERT INTO `sys_dict` VALUES ('107', '结束', '2', 'order_status', '订单状态', '20', 'admin', now(), 'admin', now(), null, '0');
 
 INSERT INTO `sys_dict` VALUES ('108', '是', '1', 'public_yesorno', '是否', '10', 'admin', now(), 'admin', now(), null, '0');
 INSERT INTO `sys_dict` VALUES ('109', '否', '0', 'public_yesorno', '是否', '20', 'admin', now(), 'admin', now(), null, '0');
+
+INSERT INTO `sys_dict` VALUES ('110', '未处理', '1', 'consulting_status', '咨询状态', '10', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('111', '已反馈', '2', 'consulting_status', '咨询状态', '20', 'admin', now(), 'admin', now(), null, '0');
