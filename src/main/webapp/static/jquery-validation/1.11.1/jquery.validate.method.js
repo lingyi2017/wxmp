@@ -222,8 +222,9 @@ function checkCustomerPhone(phone) {
 
 //校验材料名称
 function checkMaterialName(name) {
-    var customerType = $("#customerType").val();
-    if(customerType !==null && customerType !== undefined && customerType != ""){
+    /*var customerType = $("#customerType").val();
+    if(customerType !==null && customerType !== undefined && customerType != ""){*/
+		console.info("---");
     	var id = $("#id").val();
         var param = {"id": id, "name": name, "customerType": customerType};
         var result = false;
@@ -238,7 +239,7 @@ function checkMaterialName(name) {
             }
         });
         return result;
-    }else{
+    /*}else{
     	return true;
-    }
+    }*/
 }

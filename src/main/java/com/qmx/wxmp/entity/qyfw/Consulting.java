@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
@@ -60,6 +61,7 @@ public class Consulting {
 	
 	@ManyToOne
 	@NotFound(action = NotFoundAction.IGNORE)
+	@NotNull
 	@JoinColumn(name = "basic_service_id")
 	private BasicService basicService;
 
@@ -142,6 +144,13 @@ public class Consulting {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	
+
+	public BasicService getBasicService() {
+		return basicService;
+	}
+
+	public void setBasicService(BasicService basicService) {
+		this.basicService = basicService;
+	}
 	
 }
