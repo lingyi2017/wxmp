@@ -225,6 +225,7 @@ function checkMaterialName(name) {
     /*var customerType = $("#customerType").val();
     if(customerType !==null && customerType !== undefined && customerType != ""){*/
 		console.info("---");
+		var customerType = $("#customerType").val();
     	var id = $("#id").val();
         var param = {"id": id, "name": name, "customerType": customerType};
         var result = false;
