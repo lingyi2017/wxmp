@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.qmx.wxmp</groupId>
-	<artifactId>qyfw</artifactId>
+	<artifactId>wxmp</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>wxmp-server</name>
