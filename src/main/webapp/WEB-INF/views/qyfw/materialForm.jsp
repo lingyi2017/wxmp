@@ -56,7 +56,7 @@
 			<label class="control-label">客户性质:</label>
 			<div class="controls">
 				<form:hidden path="customerType"/>
-				<input type="checkbox" name="customerTypeBox" value="1">个人
+				<input type="checkbox" name="customerTypeBox" value="1" class="required checkMaterialName">个人
 				<input type="checkbox" name="customerTypeBox" value="2">企业
 			</div>
 		</div>

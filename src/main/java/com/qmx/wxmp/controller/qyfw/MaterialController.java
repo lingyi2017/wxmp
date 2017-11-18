@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.qmx.wxmp.common.persistence.Page;
@@ -89,6 +90,7 @@ public class MaterialController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "checkMaterialName")
+	@ResponseBody
 	public String checkMaterialName(String id, String name, String customerType){
 		System.out.println("vali");
 		String check = "true";

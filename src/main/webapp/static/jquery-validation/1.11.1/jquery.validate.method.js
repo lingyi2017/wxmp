@@ -222,10 +222,13 @@ function checkCustomerPhone(phone) {
 
 //校验材料名称
 function checkMaterialName(name) {
-    /*var customerType = $("#customerType").val();
-    if(customerType !==null && customerType !== undefined && customerType != ""){*/
-		console.info("---");
-		var customerType = $("#customerType").val();
+	var customerType =""; 
+	$('input[name="customerTypeBox"]:checked').each(function(){ 
+		customerType += $(this).val() + ",";
+	});
+    if(customerType !==null && customerType !== undefined && customerType != ""){
+		console.info(customerType);
+		var customerType = customerType.substring(0,customerType.length-1);
     	var id = $("#id").val();
         var param = {"id": id, "name": name, "customerType": customerType};
         var result = false;
@@ -240,7 +243,7 @@ function checkMaterialName(name) {
             }
         });
         return result;
-    /*}else{
+    }else{
     	return true;
-    }*/
+    }
 }
