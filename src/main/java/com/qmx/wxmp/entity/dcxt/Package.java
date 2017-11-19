@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.qmx.wxmp.common.persistence.BaseSimpleEntity;
 
 /**
- * 分量（套餐）
+ * 份量（套餐）
  *
  * @author longxy
  * @date 2017-11-19 15:58
