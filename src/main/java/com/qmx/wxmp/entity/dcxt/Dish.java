@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * 菜品
+ * 餐品（菜品）
  *
  * @author longxy
  * @date 2017-11-17 23:41
@@ -29,7 +29,7 @@ public class Dish extends BaseSimpleEntity {
 	// 类型（1-菜品；2-主食；3-加餐）
 	private String	type;
 
-	// 图片（多个图片以 & 分隔）
+	// 图片（多个图片以 ; 分隔）
 	private String	image;
 
 	// 介绍
