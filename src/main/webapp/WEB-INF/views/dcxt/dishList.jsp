@@ -82,7 +82,11 @@
     <c:forEach items="${page.list}" var="entity">
         <tr>
             <td>${entity.name}</td>
-            <td><img src="${ctx}${fns:getUrl(entity.image)}" style="width: 80px;height: 80px;"></td>
+            <td>
+                <c:if test="${entity.image != '' && entity.image != null}">
+                    <img src="${ctx}${fns:getUrl(entity.image)}" style="width: 80px;height: 80px;">
+                </c:if>
+            </td>
             <td>${fns:getDictLabel(entity.type, 'dcxt_dish_type', '无')}</td>
             <td>${fns:getDictLabel(entity.state, 'dcxt_state', '无')}</td>
             <td><fmt:formatDate value='${entity.createDate}' type="both"/></td>
