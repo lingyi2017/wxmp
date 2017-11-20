@@ -82,9 +82,9 @@
     <c:forEach items="${page.list}" var="entity">
         <tr>
             <td>${entity.name}</td>
-            <td>${entity.image}</td>
-            <td>${entity.type}</td>
-            <td>${entity.state}</td>
+            <td><img src="${ctx}${fns:getUrl(entity.image)}" style="width: 80px;height: 80px;"></td>
+            <td>${fns:getDictLabel(entity.type, 'dcxt_dish_type', '无')}</td>
+            <td>${fns:getDictLabel(entity.state, 'dcxt_state', '无')}</td>
             <td><fmt:formatDate value='${entity.createDate}' type="both"/></td>
             <shiro:hasPermission name="dcxt:dish:edit">
                 <td>
