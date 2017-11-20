@@ -1,5 +1,7 @@
 package com.qmx.wxmp.service.qyfw;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
@@ -36,7 +38,9 @@ public class ConsultingService extends BaseService {
 	
 	@Transactional(readOnly = false)
 	public void save(Consulting consulting){
-		consulting.setId(IdGen.uuid());
+		if (StringUtils.isEmpty(consulting.getId())) {
+			consulting.setId(IdGen.uuid());
+		}
 		consultingDao.save(consulting);
 	}
 	

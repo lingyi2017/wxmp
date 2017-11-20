@@ -92,37 +92,37 @@
     <div class="control-group">
         <label class="control-label">客户名称:</label>
         <div class="controls">
-            <label class="lbl">${order.customer.name}</label>
+            <label class="lbl">${consulting.customer.name}</label>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">客户性质:</label>
         <div class="controls">
-            <label class="lbl">${fns:getDictLabel(order.customer.customerType, 'customer_type', '无')}</label>
+            <label class="lbl">${fns:getDictLabel(consulting.customer.customerType, 'customer_type', '无')}</label>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">联系人:</label>
         <div class="controls">
-            <label class="lbl">${order.customer.contact}</label>
+            <label class="lbl">${consulting.customer.contact}</label>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">联系电话:</label>
         <div class="controls">
-            <label class="lbl">${order.customer.phone}</label>
+            <label class="lbl">${consulting.customer.phone}</label>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">联系地址:</label>
         <div class="controls">
-            <label class="lbl">${order.customer.address}</label>
+            <label class="lbl">${consulting.customer.address}</label>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">备注:</label>
         <div class="controls">
-            <label class="lbl">${order.customer.mark}</label>
+            <label class="lbl">${consulting.customer.mark}</label>
         </div>
     </div>
 

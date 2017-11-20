@@ -11,7 +11,9 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.qmx.wxmp.common.persistence.Page;
@@ -20,11 +22,8 @@ import com.qmx.wxmp.controller.BaseController;
 import com.qmx.wxmp.dto.order.QueryOrderDto;
 import com.qmx.wxmp.entity.qyfw.Consulting;
 import com.qmx.wxmp.entity.qyfw.Customer;
-import com.qmx.wxmp.entity.qyfw.Material;
-import com.qmx.wxmp.entity.qyfw.Order;
 import com.qmx.wxmp.service.qyfw.ConsultingService;
 import com.qmx.wxmp.service.qyfw.CustomerService;
-import com.qmx.wxmp.service.qyfw.MaterialService;
 
 /**
  * 咨询管理controller
@@ -40,6 +39,15 @@ public class ConsultingController extends BaseController {
 	private ConsultingService consultingService;
 	@Resource
 	private CustomerService customerService;
+	
+	@ModelAttribute
+	public Consulting get(@RequestParam(required = false) String id) {
+		if (StringUtils.isNotBlank(id)) {
+			return consultingService.get(id);
+		} else {
+			return new Consulting();
+		}
+	}
 	
 	@RequiresPermissions("qyfw:consulting:view")
 	@RequestMapping(value = { "/list", "" })
@@ -72,7 +80,7 @@ public class ConsultingController extends BaseController {
 	@RequestMapping(value = "/deal")
 	public String deal(Consulting consulting, Model model) {
 		model.addAttribute("consulting", consulting);
-		return "/qyfw/orderDeal";
+		return "/qyfw/consultingDeal";
 	}
 
 	@RequiresPermissions("qyfw:consulting:edit")

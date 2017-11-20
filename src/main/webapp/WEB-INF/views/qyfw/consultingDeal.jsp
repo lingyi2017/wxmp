@@ -75,7 +75,7 @@
     <div class="control-group">
         <label class="control-label">咨询状态:</label>
         <div class="controls">
-            <form:select path="status">
+            <form:select path="dealStatus">
                 <form:options items="${fns:getDictList('consulting_status')}" itemLabel="label"
                               itemValue="value" htmlEscape="false"/>
             </form:select>
@@ -126,11 +126,11 @@
     <div class="control-group">
         <label class="control-label">联系人:</label>
         <div class="controls">
-            <c:if test="${order.customer.id == null}">
+            <c:if test="${consulting.customer.id == null}">
                 <form:input path="customer.contact" htmlEscape="false" maxlength="100" cssClass="required"
-                            value="${order.person}"/>
+                            value="${consulting.person}"/>
             </c:if>
-            <c:if test="${order.customer.id != null}">
+            <c:if test="${consulting.customer.id != null}">
                 <form:input path="customer.contact" htmlEscape="false" maxlength="100" cssClass="required"/>
             </c:if>
         </div>
@@ -138,11 +138,11 @@
     <div class="control-group">
         <label class="control-label">联系电话:</label>
         <div class="controls">
-            <c:if test="${order.customer.id == null}">
+            <c:if test="${consulting.customer.id == null}">
                 <form:input path="customer.phone" htmlEscape="false" maxlength="100" cssClass="required"
                             value="${consulting.phone}"/>
             </c:if>
-            <c:if test="${order.customer.id != null}">
+            <c:if test="${consulting.customer.id != null}">
                 <form:input path="customer.phone" htmlEscape="false" maxlength="100" cssClass="required"/>
             </c:if>
         </div>
@@ -161,7 +161,7 @@
     </div>
 
     <div class="form-actions">
-        <shiro:hasPermission name="qyfw:order:edit">
+        <shiro:hasPermission name="qyfw:consulting:edit">
             <input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='save' />"/>&nbsp;
         </shiro:hasPermission>
         <input id="btnCancel" class="btn" type="button" value="<spring:message code='return' />"
