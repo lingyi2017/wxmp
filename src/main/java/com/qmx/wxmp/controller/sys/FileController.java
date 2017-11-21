@@ -78,8 +78,10 @@ public class FileController extends BaseController {
 		String realPath = request.getSession().getServletContext().getRealPath("/upload");
 		response.setContentType("text/plain; charset=UTF-8");
 		String originalFilename = file.getOriginalFilename();
-		String suffix = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
-		String newFilename = getUploadCurrentTime() + "." + suffix;
+		// String suffix = originalFilename.substring(originalFilename.lastIndexOf(".")
+		// + 1);
+		// String newFilename = getUploadCurrentTime() + "." + suffix;
+		String newFilename = getUploadCurrentTime() + originalFilename;
 		try {
 			FileUtils.copyInputStreamToFile(file.getInputStream(), new File(realPath, newFilename));
 		} catch (IOException e) {
