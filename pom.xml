@@ -57,93 +57,17 @@
 
 	<!-- 设定依赖仓库,按设定顺序进行查找.-start -->
 	<repositories>
-
 		<repository>
-			<id>oschina-repo</id>
-			<name>Oschina repository</name>
-			<url>http://maven.oschina.net/content/groups/public/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
+			<id>nexus-aliyun</id>
+			<name>Nexus aliyun</name>
+			<layout>default</layout>
+			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
-		</repository>
-		<repository>
-			<id>osc_thirdparty</id>
-			<url>http://maven.oschina.net/content/repositories/thirdparty/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-
-		<repository>
-			<id>java-repos</id>
-			<name>Java Repository</name>
-			<url>http://download.java.net/maven/2/</url>
-		</repository>
-
-		<repository>
-			<id>springsource-repos</id>
-			<name>SpringSource Repository</name>
-			<url>http://repo.spring.io/release/</url>
-		</repository>
-
-		<repository>
-			<id>central-Maven</id>
-			<name>The Central Repository Browser</name>
-			<url>http://search.maven.org/#browse</url>
-		</repository>
-
-		<repository>
-			<id>activiti-repos</id>
-			<name>Activiti Repository</name>
-			<url>https://maven.alfresco.com/nexus/content/groups/public</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-
-		<repository>
-			<id>activiti-repos2</id>
-			<name>Activiti Repository 2</name>
-			<url>https://app.camunda.com/nexus/content/groups/public</url>
-		</repository>
-
-		<repository>
-			<id>repository.jboss.org-public</id>
-			<name>JBoss repository</name>
-			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
-		</repository>
-
-		<repository>
-			<id>codehaus_repo</id>
-			<name>Codehaus repository</name>
-			<url>http://repository.codehaus.org/</url>
-		</repository>
-
-		<repository>
-			<id>oss-sonatype-snapshots</id>
-			<name>OSS Sonatype Snapshots Repository</name>
-			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-
-		<repository>
-			<id>oosnmp-repos</id>
-			<name>oosnmp  repository</name>
-			<url>https://oosnmp.net/dist/release</url>
 		</repository>
 
 	</repositories>
@@ -152,15 +76,16 @@
 	<pluginRepositories>
 
 		<pluginRepository>
-			<id>oschina-repo</id>
-			<name>Oschina repository</name>
-			<url>http://maven.oschina.net/content/groups/public/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
+			<id>nexus-aliyun</id>
+			<name>Nexus aliyun</name>
+			<layout>default</layout>
+			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
 		</pluginRepository>
 
 	</pluginRepositories>
