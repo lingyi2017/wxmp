@@ -32,7 +32,50 @@ public class OrderByDay extends BaseSimpleEntity {
 	public Date deliveryDate;
 	/** 配送状态*/
 	public String status;
+	/** 收货人*/
+	public String person;
+	/** 收货电话*/
+	public String phone;
+	/** 收货地址*/
+	public String address;
 	/** 更新时间*/
 	public Date updateTime;
+
+	public Date getDeliveryDate() {
+		return deliveryDate;
+	}
+	public void setDeliveryDate(Date deliveryDate) {
+		this.deliveryDate = deliveryDate;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+	public String getPerson() {
+		return person;
+	}
+	public void setPerson(String person) {
+		this.person = person;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	
 }

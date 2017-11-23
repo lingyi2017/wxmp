@@ -15,29 +15,37 @@ import com.qmx.wxmp.common.persistence.BaseSimpleEntity;
 public class Account extends BaseSimpleEntity {
 
 	private static final long serialVersionUID = 1L;
+	/** 用户状态:正常*/
+	public static final String ACCOUNT_STATUS_NORMAL = "1";
+	/** 用户状态:冻结*/
+	public static final String ACCOUNT_STATUS_FREEZE = "0";
 	
 	public Account() {
 		super();
 	}
 	
 	/** 微信标识id*/
-	public String openid;
+	private String openid;
 	/** 姓名*/
-	public String name;
+	private String name;
 	/** 性别*/
-	public String sex;
+	private String sex;
 	/** 年龄*/
-	public String age;
+	private String age;
 	/** 电话*/
-	public String phone;
+	private String phone;
 	/** 身高*/
-	public String height;
+	private String height;
 	/** 体重*/
-	public String weight;
+	private String weight;
 	/** 意向需求*/
-	public String intention;
+	private String intention;
+	/** 积分*/
+	private Integer score;
 	/** 用户状态*/
-	public String status;
+	private String status;
+	/** 备注*/
+	private String mark;
 	
 	public String getOpenid() {
 		return openid;
@@ -92,6 +100,18 @@ public class Account extends BaseSimpleEntity {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getMark() {
+		return mark;
+	}
+	public void setMark(String mark) {
+		this.mark = mark;
+	}
+	public Integer getScore() {
+		return score;
+	}
+	public void setScore(Integer score) {
+		this.score = score;
 	}
 	
 	

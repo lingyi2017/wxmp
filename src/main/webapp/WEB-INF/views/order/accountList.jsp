@@ -78,7 +78,9 @@
         <th>身高(CM)</th>
         <th>体重(KG)</th>
         <th>意向需求</th>
+        <th>积分</th>
         <th>用户状态</th>
+        <th>备注</th>
         <th>操作</th>
     </tr>
     </thead>
@@ -92,7 +94,9 @@
             <td>${entity.height}</td>
             <td>${entity.weight}</td>
             <td>${entity.intention}</td>
+            <td>${entity.score}</td>
             <td>${fns:getDictLabel(entity.status, 'dcxt_account_status', '无')}</td>
+            <td>${entity.mark}</td>
             <shiro:hasPermission name="dcxt:account:edit">
                 <td>
                     <a href="${ctx}/dcxt/account/form?id=${entity.id}">修改</a>

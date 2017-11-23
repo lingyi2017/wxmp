@@ -1,12 +1,8 @@
 package com.qmx.wxmp.entity.order;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,11 +17,11 @@ import com.qmx.wxmp.common.persistence.BaseSimpleEntity;
  */
 @Entity
 @Table(name="dcxt_order")
-public class Order extends BaseSimpleEntity {
+public class OrderMain extends BaseSimpleEntity {
 
 	private static final long serialVersionUID = 1L;
 	
-	public Order() {
+	public OrderMain() {
 		super();
 	}
 	

@@ -84,12 +84,24 @@
         </div>
     </div>
     <div class="control-group">
+        <label class="control-label">积分:</label>
+        <div class="controls">
+            <form:input path="score" htmlEscape="false" maxlength="50"/>
+        </div>
+    </div>
+    <div class="control-group">
         <label class="control-label">用户状态:</label>
         <div class="controls">
             <form:select path="status">
                 <form:options items="${fns:getDictList('dcxt_account_status')}" itemLabel="label" itemValue="value"
                               htmlEscape="false"/>
             </form:select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">备注:</label>
+        <div class="controls">
+            <form:input path="mark" htmlEscape="false" maxlength="50"/>
         </div>
     </div>
     <div class="form-actions">

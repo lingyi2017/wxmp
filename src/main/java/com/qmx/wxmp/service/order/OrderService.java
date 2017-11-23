@@ -10,61 +10,61 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.qmx.wxmp.common.persistence.Page;
 import com.qmx.wxmp.entity.dcxt.Dish;
-import com.qmx.wxmp.entity.order.Account;
-import com.qmx.wxmp.repository.hibernate.order.AccountDao;
+import com.qmx.wxmp.entity.order.OrderMain;
+import com.qmx.wxmp.repository.hibernate.order.OrderDao;
 import com.qmx.wxmp.service.BaseService;
 
 /**
- * 用户service
+ * 订单service
  * @author itismin
  *
  */
 @Service
 @Transactional(readOnly = true)
-public class AccountService extends BaseService {
+public class OrderService extends BaseService {
 
 	@Autowired
-	private AccountDao accountDao;
+	private OrderDao orderDao;
 
 
 
-	public Account get(String id) {
-		return accountDao.get(id);
+	public OrderMain get(String id) {
+		return orderDao.get(id);
 	}
 
 
 
 	@Transactional(readOnly = false)
-	public void save(Account entity) {
-		accountDao.clear();
-		accountDao.save(entity);
+	public void save(OrderMain entity) {
+		orderDao.clear();
+		orderDao.save(entity);
 	}
 
 
 
 	@Transactional(readOnly = false)
 	public void delete(String id) {
-		accountDao.deleteById(id);
+		orderDao.deleteById(id);
 	}
 
 
 
-	public Page<Account> findList(Page<Account> page, Account entity) {
+	public Page<OrderMain> findList(Page<OrderMain> page, OrderMain entity) {
 
-		DetachedCriteria dc = accountDao.createDetachedCriteria();
+		DetachedCriteria dc = orderDao.createDetachedCriteria();
 
-		if (StringUtils.isNotBlank(entity.getName())) {
-			dc.add(Restrictions.like("name", "%" + entity.getName() + "%"));
+		if (StringUtils.isNotBlank(entity.getAccount().getName())) {
+			dc.add(Restrictions.like("account.name", "%" + entity.getAccount().getName() + "%"));
 		}
-		if (StringUtils.isNotBlank(entity.getPhone())) {
-			dc.add(Restrictions.like("phone", "%" + entity.getPhone() + "%"));
+		if (StringUtils.isNotBlank(entity.getAccount().getPhone())) {
+			dc.add(Restrictions.like("account.name", "%" + entity.getAccount().getName() + "%"));
 		}
-
+		
 		dc.add(Restrictions.eq("delFlag", Dish.DEL_FLAG_NORMAL));
 		if (StringUtils.isBlank(page.getOrderBy())) {
 			dc.addOrder(Order.desc("createDate"));
 		}
-		return accountDao.find(page, dc);
+		return orderDao.find(page, dc);
 
 	}
 }

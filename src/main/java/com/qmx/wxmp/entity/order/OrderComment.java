@@ -47,7 +47,7 @@ public class OrderComment extends BaseSimpleEntity {
 	
 	@ManyToOne
 	@JoinColumn(name="order_id")
-	private Order order;
+	private OrderMain order;
 
 	public String getComment() {
 		return comment;
@@ -105,11 +105,11 @@ public class OrderComment extends BaseSimpleEntity {
 		this.commentReplyTime = commentReplyTime;
 	}
 
-	public Order getOrder() {
+	public OrderMain getOrder() {
 		return order;
 	}
 
-	public void setOrder(Order order) {
+	public void setOrder(OrderMain order) {
 		this.order = order;
 	}
 	
