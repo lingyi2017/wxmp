@@ -14,9 +14,9 @@ INSERT INTO `sys_menu` VALUES ('108', '101', '0,1,100,101,', '产品管理', '/d
 INSERT INTO `sys_menu` VALUES ('109', '108', '0,1,100,101,108,', '查看', null, null, 'lock', '10', '1', '0',  'dcxt:product:view', 'admin', now(), '1', now(), null, '0');
 INSERT INTO `sys_menu` VALUES ('110', '108', '0,1,100,101,108,', '修改', null, null, 'lock', '10', '1', '0',  'dcxt:product:edit', 'admin', now(), '1', now(), null, '0');
 
-INSERT INTO `sys_menu` VALUES ('111', '101', '0,1,100,101,', '份量管理', '/dcxt/package/', null, 'th', '40', '1', '0', null, 'admin', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('112', '111', '0,1,100,101,111,', '查看', null, null, 'lock', '10', '1', '0',  'dcxt:package:view', 'admin', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('113', '111', '0,1,100,101,111,', '修改', null, null, 'lock', '10', '1', '0',  'dcxt:package:edit', 'admin', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('111', '101', '0,1,100,101,', '份量管理', '/dcxt/combo/', null, 'th', '40', '1', '0', null, 'admin', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('112', '111', '0,1,100,101,111,', '查看', null, null, 'lock', '10', '1', '0',  'dcxt:combo:view', 'admin', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('113', '111', '0,1,100,101,111,', '修改', null, null, 'lock', '10', '1', '0',  'dcxt:combo:edit', 'admin', now(), '1', now(), null, '0');
 
 INSERT INTO `sys_menu` VALUES ('114', '101', '0,1,100,101,', '菜单管理', '/dcxt/menu/', null, 'th', '50', '1', '0', null, 'admin', now(), '1', now(), null, '0');
 INSERT INTO `sys_menu` VALUES ('115', '114', '0,1,100,101,114,', '查看', null, null, 'lock', '10', '1', '0',  'dcxt:menu:view', 'admin', now(), '1', now(), null, '0');

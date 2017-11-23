@@ -9,35 +9,33 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.qmx.wxmp.common.persistence.Page;
-import com.qmx.wxmp.entity.dcxt.Product;
-import com.qmx.wxmp.repository.hibernate.dcxt.ProductDao;
+import com.qmx.wxmp.entity.dcxt.Combo;
+import com.qmx.wxmp.repository.hibernate.dcxt.ComboDao;
 import com.qmx.wxmp.service.BaseService;
 
-import java.util.List;
-
 /**
- * 产品 Service
+ * 份量Service
  *
  * @author longxy
- * @date 2017-11-23 21:34
+ * @date 2017-11-23 22:05
  */
 @Service
 @Transactional(readOnly = true)
-public class ProductService extends BaseService {
+public class ComboService extends BaseService {
 
 	@Autowired
-	private ProductDao thisDao;
+	private ComboDao thisDao;
 
 
 
-	public Product get(String id) {
+	public Combo get(String id) {
 		return thisDao.get(id);
 	}
 
 
 
 	@Transactional(readOnly = false)
-	public void save(Product entity) {
+	public void save(Combo entity) {
 		thisDao.clear();
 		thisDao.save(entity);
 	}
@@ -51,7 +49,7 @@ public class ProductService extends BaseService {
 
 
 
-	public Page<Product> findList(Page<Product> page, Product entity) {
+	public Page<Combo> findList(Page<Combo> page, Combo entity) {
 
 		DetachedCriteria dc = thisDao.createDetachedCriteria();
 
@@ -59,22 +57,11 @@ public class ProductService extends BaseService {
 			dc.add(Restrictions.like("name", "%" + entity.getName() + "%"));
 		}
 
-		dc.add(Restrictions.eq("delFlag", Product.DEL_FLAG_NORMAL));
+		dc.add(Restrictions.eq("delFlag", Combo.DEL_FLAG_NORMAL));
 		if (StringUtils.isBlank(page.getOrderBy())) {
 			dc.addOrder(Order.desc("createDate"));
 		}
 		return thisDao.find(page, dc);
-
-	}
-
-
-
-	public List<Product> findAll() {
-
-		DetachedCriteria dc = thisDao.createDetachedCriteria();
-		dc.add(Restrictions.eq("delFlag", Product.DEL_FLAG_NORMAL));
-		dc.addOrder(Order.desc("createDate"));
-		return thisDao.find(dc);
 
 	}
 }

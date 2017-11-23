@@ -21,14 +21,14 @@ import com.qmx.wxmp.common.persistence.BaseSimpleEntity;
  * @date 2017-11-19 15:58
  */
 @Entity
-@Table(name = "dcxt_package")
-public class Package extends BaseSimpleEntity {
+@Table(name = "dcxt_combo")
+public class Combo extends BaseSimpleEntity {
 
 	private static final long serialVersionUID = -2082879255124312916L;
 
 
 
-	public Package() {
+	public Combo() {
 		super();
 	}
 
@@ -38,7 +38,7 @@ public class Package extends BaseSimpleEntity {
 	// 价格
 	private BigDecimal	price;
 
-	// 购买获取的积分
+	// 购买获得积分
 	private Integer		gainIntegral;
 
 	// 兑换需要积分
