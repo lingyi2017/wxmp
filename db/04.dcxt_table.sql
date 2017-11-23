@@ -39,3 +39,9 @@ INSERT INTO `sys_dict` VALUES ('104', '加餐', '3', 'dcxt_dish_type', '菜品�
 INSERT INTO `sys_dict` VALUES ('105', '早餐', '1', 'dcxt_meal_type', '餐标类型', '10', 'admin', now(), 'admin', now(), null, '0');
 INSERT INTO `sys_dict` VALUES ('106', '午餐', '2', 'dcxt_meal_type', '餐标类型', '20', 'admin', now(), 'admin', now(), null, '0');
 INSERT INTO `sys_dict` VALUES ('107', '晚餐', '3', 'dcxt_meal_type', '餐标类型', '30', 'admin', now(), 'admin', now(), null, '0');
+
+INSERT INTO `sys_dict` VALUES ('108', '男', '1', 'dcxt_account_sex', '性别', '20', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('109', '女', '2', 'dcxt_account_sex', '性别', '30', 'admin', now(), 'admin', now(), null, '0');
+
+INSERT INTO `sys_dict` VALUES ('110', '正常', '1', 'dcxt_account_status', '用户状态', '20', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('111', '冻结', '0', 'dcxt_account_status', '用户状态', '30', 'admin', now(), 'admin', now(), null, '0');

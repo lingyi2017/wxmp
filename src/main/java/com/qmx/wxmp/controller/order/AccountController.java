@@ -44,7 +44,7 @@ public class AccountController extends BaseController {
 	public String list(Account entity, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<Account> page = accountService.findList(new Page<Account>(request, response), entity);
 		model.addAttribute("page", page);
-		return "/dcxt/order/accountList";
+		return "/order/accountList";
 	}
 
 	@RequiresPermissions("dcxt:account:view")
@@ -52,7 +52,7 @@ public class AccountController extends BaseController {
 	public String form(Account entity, Model model) {
 
 		model.addAttribute("account", entity);
-		return "/dcxt/accountForm";
+		return "/order/accountForm";
 	}
 
 	@RequiresPermissions("dcxt:account:edit")
@@ -75,19 +75,4 @@ public class AccountController extends BaseController {
 
 	}
 
-
-
-	@RequiresPermissions("dcxt:dish:edit")
-	@RequestMapping("/delete")
-	public String delete(String id, RedirectAttributes redirectAttributes) {
-
-		try {
-			accountService.delete(id);
-			addMessage(redirectAttributes, "删除菜品成功");
-		} catch (Exception e) {
-			addMessage(redirectAttributes, "删除菜品失败");
-			e.printStackTrace();
-		}
-		return "redirect:/dcxt/dish/?repage";
-	}
 }

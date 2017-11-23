@@ -50,11 +50,11 @@
 
 <ul class="nav nav-tabs">
     <li class="active"><a>用户列表</a></li>
-    <shiro:hasPermission name="dcxt:account:edit">
+    <%-- <shiro:hasPermission name="dcxt:account:edit">
         <li><a href="${ctx}/dcxt/account/form">用户修改</a></li>
-    </shiro:hasPermission>
+    </shiro:hasPermission> --%>
 </ul>
-<form:form id="searchForm" modelAttribute="dish" action="${ctx}/dcxt/dish/" method="post"
+<form:form id="searchForm" modelAttribute="account" action="${ctx}/dcxt/account/" method="post"
            class="breadcrumb form-search">
     <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
     <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
@@ -62,7 +62,7 @@
 
     <div style="margin-top:8px;">
         <label>姓名：</label><form:input path="name" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
-        <label>电话：</label><form:input path="name" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
+        <label>电话：</label><form:input path="phone" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
         <input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='query' />"
                onclick="return page();"/>
     </div>
@@ -75,6 +75,10 @@
         <th>电话</th>
         <th>性别</th>
         <th>年龄</th>
+        <th>身高(CM)</th>
+        <th>体重(KG)</th>
+        <th>意向需求</th>
+        <th>用户状态</th>
         <th>操作</th>
     </tr>
     </thead>
@@ -83,8 +87,12 @@
         <tr>
             <td>${entity.name}</td>
             <td>${entity.phone}</td>
-            <td>${entity.sex}</td>
+            <td>${fns:getDictLabel(entity.sex, 'dcxt_account_sex', '无')}</td>
             <td>${entity.age}</td>
+            <td>${entity.height}</td>
+            <td>${entity.weight}</td>
+            <td>${entity.intention}</td>
+            <td>${fns:getDictLabel(entity.status, 'dcxt_account_status', '无')}</td>
             <shiro:hasPermission name="dcxt:account:edit">
                 <td>
                     <a href="${ctx}/dcxt/account/form?id=${entity.id}">修改</a>

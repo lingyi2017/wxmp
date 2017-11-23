@@ -1,11 +1,6 @@
 package com.qmx.wxmp.entity.order;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.qmx.wxmp.common.persistence.BaseSimpleEntity;
@@ -41,8 +36,8 @@ public class Account extends BaseSimpleEntity {
 	public String weight;
 	/** 意向需求*/
 	public String intention;
-	/** 是否可用*/
-	public String visible;
+	/** 用户状态*/
+	public String status;
 	
 	public String getOpenid() {
 		return openid;
@@ -92,11 +87,12 @@ public class Account extends BaseSimpleEntity {
 	public void setIntention(String intention) {
 		this.intention = intention;
 	}
-	public String getVisible() {
-		return visible;
+	public String getStatus() {
+		return status;
 	}
-	public void setVisible(String visible) {
-		this.visible = visible;
+	public void setStatus(String status) {
+		this.status = status;
 	}
+	
 	
 }
