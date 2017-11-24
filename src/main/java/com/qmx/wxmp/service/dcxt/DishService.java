@@ -5,6 +5,7 @@ import com.qmx.wxmp.entity.dcxt.Dish;
 import com.qmx.wxmp.repository.hibernate.dcxt.DishDao;
 import com.qmx.wxmp.service.BaseService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.xmlbeans.impl.xb.xsdschema.RestrictionDocument;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -54,6 +55,9 @@ public class DishService extends BaseService {
 
 		if (StringUtils.isNotBlank(entity.getName())) {
 			dc.add(Restrictions.like("name", "%" + entity.getName() + "%"));
+		}
+		if (StringUtils.isNotEmpty(entity.getState())) {
+			dc.add(Restrictions.eq("state", entity.getState()));
 		}
 
 		dc.add(Restrictions.eq("delFlag", Dish.DEL_FLAG_NORMAL));

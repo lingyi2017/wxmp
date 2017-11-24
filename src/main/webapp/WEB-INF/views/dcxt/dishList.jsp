@@ -62,6 +62,12 @@
 
     <div style="margin-top:8px;">
         <label>名称：</label><form:input path="name" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
+        <label>状态：</label>
+        <form:select path="state" cssClass="input-small">
+            <form:option value="" label=""/>
+            <form:options items="${fns:getDictList('dcxt_state')}" itemLabel="label" itemValue="value"
+                          htmlEscape="false"/>
+        </form:select>&nbsp;&nbsp;
         <input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='query' />"
                onclick="return page();"/>
     </div>

@@ -58,6 +58,9 @@ public class ProductService extends BaseService {
 		if (StringUtils.isNotBlank(entity.getName())) {
 			dc.add(Restrictions.like("name", "%" + entity.getName() + "%"));
 		}
+		if(StringUtils.isNotEmpty(entity.getState())){
+			dc.add(Restrictions.eq("state", entity.getState()));
+		}
 
 		dc.add(Restrictions.eq("delFlag", Product.DEL_FLAG_NORMAL));
 		if (StringUtils.isBlank(page.getOrderBy())) {

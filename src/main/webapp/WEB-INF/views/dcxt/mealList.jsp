@@ -67,6 +67,12 @@
             <form:options items="${fns:getDictList('dcxt_meal_type')}" itemLabel="label" itemValue="value"
                           htmlEscape="false"/>
         </form:select>&nbsp;
+        <label>状态：</label>
+        <form:select path="state" cssClass="input-small">
+            <form:option value="" label=""/>
+            <form:options items="${fns:getDictList('dcxt_state')}" itemLabel="label" itemValue="value"
+                          htmlEscape="false"/>
+        </form:select>&nbsp;&nbsp;
         <input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='query' />"
                onclick="return page();"/>
     </div>

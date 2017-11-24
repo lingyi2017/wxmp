@@ -56,6 +56,9 @@ public class MealService extends BaseService {
 		if (StringUtils.isNotBlank(entity.getType())) {
 			dc.add(Restrictions.eq("type", entity.getType()));
 		}
+		if (StringUtils.isNotEmpty(entity.getState())) {
+			dc.add(Restrictions.eq("state", entity.getState()));
+		}
 
 		dc.add(Restrictions.eq("delFlag", Meal.DEL_FLAG_NORMAL));
 		if (StringUtils.isBlank(page.getOrderBy())) {
