@@ -35,7 +35,7 @@ public class Dish extends BaseSimpleEntity {
 	// 介绍
 	private String	introduce;
 
-	// 状态（1-下架；2-上架）
+	// 状态（1-新增；2-上架；3-下架）
 	private String	state;
 
 

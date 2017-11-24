@@ -1,6 +1,7 @@
 package com.qmx.wxmp.repository.hibernate.dcxt;
 
 import com.qmx.wxmp.common.persistence.BaseDao;
+import com.qmx.wxmp.common.persistence.Parameter;
 import com.qmx.wxmp.entity.dcxt.Dish;
 import org.springframework.stereotype.Repository;
 
@@ -13,4 +14,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class DishDao extends BaseDao<Dish> {
 
+	public int updateState(String id, String state) {
+		return update("update Dish set state=:p1 where id = :p2", new Parameter(state, id));
+	}
 }

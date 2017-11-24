@@ -29,9 +29,9 @@ INSERT INTO `sys_menu` VALUES ('202', '201', '0,1,100,200,201,', '查看', null,
 INSERT INTO `sys_menu` VALUES ('203', '201', '0,1,100,200,201,', '修改', null, null, 'lock', '10', '1', '0',  'dcxt:order:edit', 'admin', now(), '1', now(), null, '0');
 
 -- 字典数据初始化
-INSERT INTO `sys_dict` VALUES ('112', '新增', '0', 'dcxt_state', '状态', '0', 'admin', now(), 'admin', now(), null, '0');
-INSERT INTO `sys_dict` VALUES ('100', '下架', '1', 'dcxt_state', '状态', '10', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('112', '新增', '1', 'dcxt_state', '状态', '10', 'admin', now(), 'admin', now(), null, '0');
 INSERT INTO `sys_dict` VALUES ('101', '上架', '2', 'dcxt_state', '状态', '20', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('100', '下架', '3', 'dcxt_state', '状态', '30', 'admin', now(), 'admin', now(), null, '0');
 
 INSERT INTO `sys_dict` VALUES ('102', '菜品', '1', 'dcxt_dish_type', '菜品类型', '10', 'admin', now(), 'admin', now(), null, '0');
 INSERT INTO `sys_dict` VALUES ('103', '主食', '2', 'dcxt_dish_type', '菜品类型', '20', 'admin', now(), 'admin', now(), null, '0');

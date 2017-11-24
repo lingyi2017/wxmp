@@ -49,6 +49,13 @@ public class DishService extends BaseService {
 
 
 
+	@Transactional(readOnly = false)
+	public void updateState(String id, String state) {
+		thisDao.updateState(id, state);
+	}
+
+
+
 	public Page<Dish> findList(Page<Dish> page, Dish entity) {
 
 		DetachedCriteria dc = thisDao.createDetachedCriteria();

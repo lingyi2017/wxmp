@@ -101,4 +101,20 @@ public class DishController extends BaseController {
 		}
 		return "redirect:/dcxt/dish/?repage";
 	}
+
+
+
+	@RequiresPermissions("dcxt:dish:edit")
+	@RequestMapping("/updateState")
+	public String updateState(String id, String state, RedirectAttributes redirectAttributes) {
+
+		try {
+			thisService.updateState(id, state);
+			addMessage(redirectAttributes, "上架菜品成功");
+		} catch (Exception e) {
+			addMessage(redirectAttributes, "上架菜品失败");
+			e.printStackTrace();
+		}
+		return "redirect:/dcxt/dish/?repage";
+	}
 }
