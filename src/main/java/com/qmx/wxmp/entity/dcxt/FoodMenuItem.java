@@ -20,19 +20,19 @@ import com.qmx.wxmp.common.persistence.BaseSimpleEntity;
  * @date 2017-11-19 17:09
  */
 @Entity
-@Table(name = "dcxt_menu_item")
-public class MenuItem extends BaseSimpleEntity {
+@Table(name = "dcxt_food_menu_item")
+public class FoodMenuItem extends BaseSimpleEntity {
 
 	private static final long serialVersionUID = 8498091460492191982L;
 
 
 
-	public MenuItem() {
+	public FoodMenuItem() {
 		super();
 	}
 
 	// 菜单
-	private Menu		menu;
+	private FoodMenu	foodMenu;
 
 	// 产品
 	private Product		product;
@@ -46,18 +46,18 @@ public class MenuItem extends BaseSimpleEntity {
 
 
 	@ManyToOne
-	@JoinColumn(name = "menu_id")
+	@JoinColumn(name = "food_menu_id")
 	@NotFound(action = NotFoundAction.IGNORE)
 	@JsonIgnore
 	@NotNull(message = "菜单不能为空")
-	public Menu getMenu() {
-		return menu;
+	public FoodMenu getFoodMenu() {
+		return foodMenu;
 	}
 
 
 
-	public void setMenu(Menu menu) {
-		this.menu = menu;
+	public void setFoodMenu(FoodMenu foodMenu) {
+		this.foodMenu = foodMenu;
 	}
 
 
@@ -97,8 +97,8 @@ public class MenuItem extends BaseSimpleEntity {
 
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "dcxt_menu_item_dish", joinColumns = {
-			@JoinColumn(name = "menu_item_id") }, inverseJoinColumns = { @JoinColumn(name = "dish_id") })
+	@JoinTable(name = "dcxt_food_menu_item_dish", joinColumns = {
+			@JoinColumn(name = "food_menu_item_id") }, inverseJoinColumns = { @JoinColumn(name = "dish_id") })
 	@OrderBy("id")
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)

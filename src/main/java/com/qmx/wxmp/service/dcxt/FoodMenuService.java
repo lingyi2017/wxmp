@@ -1,8 +1,73 @@
+package com.qmx.wxmp.service.dcxt;
+
+import org.apache.commons.lang3.StringUtils;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.qmx.wxmp.common.persistence.Page;
+import com.qmx.wxmp.entity.dcxt.FoodMenu;
+import com.qmx.wxmp.repository.hibernate.dcxt.FoodMenuDao;
+import com.qmx.wxmp.service.BaseService;
+
 /**
  * 菜单 Service
  *
  * @author longxy
  * @date 2017-11-25 16:30
  */
-public class FoodMenuService {
+@Service
+public class FoodMenuService extends BaseService {
+
+	@Autowired
+	private FoodMenuDao thisDao;
+
+
+
+	public FoodMenu get(String id) {
+		return thisDao.get(id);
+	}
+
+
+
+	@Transactional(readOnly = false)
+	public void save(FoodMenu entity) {
+		thisDao.clear();
+		thisDao.save(entity);
+	}
+
+
+
+	@Transactional(readOnly = false)
+	public void delete(String id) {
+		thisDao.deleteById(id);
+	}
+
+
+
+	@Transactional(readOnly = false)
+	public void updateState(String id, String state) {
+		thisDao.updateState(id, state);
+	}
+
+
+
+	public Page<FoodMenu> findList(Page<FoodMenu> page, FoodMenu entity) {
+
+		DetachedCriteria dc = thisDao.createDetachedCriteria();
+
+		if (StringUtils.isNotEmpty(entity.getState())) {
+			dc.add(Restrictions.eq("state", entity.getState()));
+		}
+
+		dc.add(Restrictions.eq("delFlag", FoodMenu.DEL_FLAG_NORMAL));
+		if (StringUtils.isBlank(page.getOrderBy())) {
+			dc.addOrder(Order.desc("createDate"));
+		}
+		return thisDao.find(page, dc);
+
+	}
 }

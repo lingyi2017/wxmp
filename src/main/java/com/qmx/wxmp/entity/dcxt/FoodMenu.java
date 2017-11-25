@@ -20,37 +20,37 @@ import com.qmx.wxmp.common.persistence.BaseSimpleEntity;
  * @author longxy
  * @date 2017-11-19 16:22
  */
-@Entity(name = "menuDaily")
-@Table(name = "dcxt_menu")
-public class Menu extends BaseSimpleEntity {
+@Entity
+@Table(name = "dcxt_food_menu")
+public class FoodMenu extends BaseSimpleEntity {
 
 	private static final long serialVersionUID = 3246716469646057898L;
 
 
 
-	public Menu() {
+	public FoodMenu() {
 		super();
 	}
 
 	// 菜单明细
-	private List<MenuItem>	menuItems;
+	private List<FoodMenuItem>	foodMenuItems;
 
 	// 状态（1-新增；2-上架；3-下架）
-	private String			state;
+	private String				state;
 
 
 
-	@OneToMany(mappedBy = "menu", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "foodMenu", fetch = FetchType.LAZY)
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	public List<MenuItem> getMenuItems() {
-		return menuItems;
+	public List<FoodMenuItem> getFoodMenuItems() {
+		return foodMenuItems;
 	}
 
 
 
-	public void setMenuItems(List<MenuItem> menuItems) {
-		this.menuItems = menuItems;
+	public void setFoodMenuItems(List<FoodMenuItem> foodMenuItems) {
+		this.foodMenuItems = foodMenuItems;
 	}
 
 

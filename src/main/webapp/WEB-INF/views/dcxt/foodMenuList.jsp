@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp" %>
 <html>
 <head>
-    <title>菜品管理</title>
+    <title>菜单管理</title>
     <meta name="decorator" content="default"/>
     <%@include file="/WEB-INF/views/include/dialog.jsp" %>
     <style type="text/css">.sort {
@@ -40,7 +40,7 @@
         function page(n, s) {
             $("#pageNo").val(n);
             $("#pageSize").val(s);
-            $("#searchForm").attr("action", "${ctx}/dcxt/dish/");
+            $("#searchForm").attr("action", "${ctx}/dcxt/foodMenu/");
             $("#searchForm").submit();
             return false;
         }
@@ -49,19 +49,18 @@
 <body>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a>菜品列表</a></li>
-    <shiro:hasPermission name="dcxt:dish:edit">
-        <li><a href="${ctx}/dcxt/dish/form">菜品添加</a></li>
+    <li class="active"><a>菜单列表</a></li>
+    <shiro:hasPermission name="dcxt:foodMenu:edit">
+        <li><a href="${ctx}/dcxt/foodMenu/form">菜单添加</a></li>
     </shiro:hasPermission>
 </ul>
-<form:form id="searchForm" modelAttribute="dish" action="${ctx}/dcxt/dish/" method="post"
+<form:form id="searchForm" modelAttribute="foodMenu" action="${ctx}/dcxt/foodMenu/" method="post"
            class="breadcrumb form-search">
     <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
     <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
     <input id="orderBy" name="orderBy" type="hidden" value="${page.orderBy}"/>
 
     <div style="margin-top:8px;">
-        <label>名称：</label><form:input path="name" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
         <label>状态：</label>
         <form:select path="state" cssClass="input-small">
             <form:option value="" label=""/>
@@ -76,39 +75,31 @@
 <table id="contentTable" class="table table-striped table-bordered table-condensed">
     <thead>
     <tr>
-        <th>名称</th>
-        <th>图片</th>
-        <th>类型</th>
-        <th>状态</th>
         <th class="sort createDate">添加时间</th>
+        <th>备注</th>
+        <th>状态</th>
         <th>操作</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach items="${page.list}" var="entity">
         <tr>
-            <td>${entity.name}</td>
-            <td>
-                <c:if test="${entity.image != '' && entity.image != null}">
-                    <img src="${ctx}${fns:getUrl(entity.image)}" style="width: 80px;height: 80px;">
-                </c:if>
-            </td>
-            <td>${fns:getDictLabel(entity.type, 'dcxt_dish_type', '无')}</td>
-            <td>${fns:getDictLabel(entity.state, 'dcxt_state', '无')}</td>
             <td><fmt:formatDate value='${entity.createDate}' type="both"/></td>
-            <shiro:hasPermission name="dcxt:dish:edit">
+            <td>${entity.remarks}</td>
+            <td>${fns:getDictLabel(entity.state, 'dcxt_state', '无')}</td>
+            <shiro:hasPermission name="dcxt:foodMenu:edit">
                 <td>
                     <c:if test="${entity.state == 1}">
-                        <a href="${ctx}/dcxt/dish/updateState?id=${entity.id}&state=2"
-                           onclick="return confirmx('确认要上架该菜品吗？', this.href)">上架</a>
-                        <a href="${ctx}/dcxt/dish/form?id=${entity.id}"><spring:message code='update'/></a>
+                        <a href="${ctx}/dcxt/foodMenu/updateState?id=${entity.id}&state=2"
+                           onclick="return confirmx('确认要上架该菜单吗？', this.href)">上架</a>
+                        <a href="${ctx}/dcxt/foodMenu/form?id=${entity.id}"><spring:message code='update'/></a>
                     </c:if>
                     <c:if test="${entity.state == 2}">
-                        <a href="${ctx}/dcxt/dish/updateState?id=${entity.id}&state=3"
-                           onclick="return confirmx('确认要下架该菜品吗？', this.href)">下架</a>
+                        <a href="${ctx}/dcxt/foodMenu/updateState?id=${entity.id}&state=3"
+                           onclick="return confirmx('确认要下架该菜单吗？', this.href)">下架</a>
                     </c:if>
-                    <a href="${ctx}/dcxt/dish/delete?id=${entity.id}"
-                       onclick="return confirmx('确认要删除该菜品吗？', this.href)"><spring:message code='delete'/></a>
+                    <a href="${ctx}/dcxt/foodMenu/delete?id=${entity.id}"
+                       onclick="return confirmx('确认要删除该菜单吗？', this.href)"><spring:message code='delete'/></a>
                 </td>
             </shiro:hasPermission>
         </tr>
