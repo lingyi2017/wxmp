@@ -18,9 +18,9 @@ INSERT INTO `sys_menu` VALUES ('111', '101', '0,1,100,101,', '份量管理', '/d
 INSERT INTO `sys_menu` VALUES ('112', '111', '0,1,100,101,111,', '查看', null, null, 'lock', '10', '1', '0',  'dcxt:combo:view', 'admin', now(), '1', now(), null, '0');
 INSERT INTO `sys_menu` VALUES ('113', '111', '0,1,100,101,111,', '修改', null, null, 'lock', '10', '1', '0',  'dcxt:combo:edit', 'admin', now(), '1', now(), null, '0');
 
-INSERT INTO `sys_menu` VALUES ('114', '101', '0,1,100,101,', '菜单管理', '/dcxt/menu/', null, 'th', '50', '1', '0', null, 'admin', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('115', '114', '0,1,100,101,114,', '查看', null, null, 'lock', '10', '1', '0',  'dcxt:menu:view', 'admin', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('116', '114', '0,1,100,101,114,', '修改', null, null, 'lock', '10', '1', '0',  'dcxt:menu:edit', 'admin', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('114', '101', '0,1,100,101,', '菜单管理', '/dcxt/foodMenu/', null, 'th', '50', '1', '0', null, 'admin', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('115', '114', '0,1,100,101,114,', '查看', null, null, 'lock', '10', '1', '0',  'dcxt:foodMenu:view', 'admin', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('116', '114', '0,1,100,101,114,', '修改', null, null, 'lock', '10', '1', '0',  'dcxt:foodMenu:edit', 'admin', now(), '1', now(), null, '0');
 
 -- 订单模块[200, )
 INSERT INTO `sys_menu` VALUES ('200', '100', '0,1,100,', '订单管理', null, null, null, '200', '1', '0', null, '1', now(), 'admin', now(), null, '0');
