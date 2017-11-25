@@ -31,8 +31,6 @@ public class AccountScoreHistory extends BaseSimpleEntity {
 	
 	private Integer score;
 	
-	@ManyToOne
-	@JoinColumn(name="account_id")
 	private Account account;
 
 	public Integer getScore() {
@@ -43,6 +41,8 @@ public class AccountScoreHistory extends BaseSimpleEntity {
 		this.score = score;
 	}
 
+	@ManyToOne
+	@JoinColumn(name="account_id")
 	public Account getAccount() {
 		return account;
 	}

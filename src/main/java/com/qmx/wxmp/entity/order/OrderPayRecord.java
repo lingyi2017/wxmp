@@ -40,9 +40,9 @@ public class OrderPayRecord extends BaseSimpleEntity {
 	public String payTime;
 	/** 支付相关信息*/
 	
-	@ManyToOne
-	@JoinColumn(name="account_id")
+	/** 用户*/
 	private Account account;
+	
 	public Float getPayMoney() {
 		return payMoney;
 	}
@@ -55,6 +55,8 @@ public class OrderPayRecord extends BaseSimpleEntity {
 	public void setPayTime(String payTime) {
 		this.payTime = payTime;
 	}
+	@ManyToOne
+	@JoinColumn(name="account_id")
 	public Account getAccount() {
 		return account;
 	}

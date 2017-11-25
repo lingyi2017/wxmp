@@ -13,7 +13,7 @@ import com.qmx.wxmp.common.persistence.BaseSimpleEntity;
  *
  */
 @Entity
-@Table(name="dcxt_order_address")
+@Table(name="dcxt_account_address")
 public class AccountAddress extends BaseSimpleEntity {
 
 	private static final long serialVersionUID = 1L;
@@ -30,9 +30,7 @@ public class AccountAddress extends BaseSimpleEntity {
 	private String address;
 	/** 是否默认*/
 	private String isDefault;
-	
-	@ManyToOne
-	@JoinColumn(name="account_id")
+	/** 用户*/
 	private Account account;
 
 	public String getPerson() {
@@ -67,6 +65,8 @@ public class AccountAddress extends BaseSimpleEntity {
 		this.isDefault = isDefault;
 	}
 
+	@ManyToOne
+	@JoinColumn(name="account_id")
 	public Account getAccount() {
 		return account;
 	}

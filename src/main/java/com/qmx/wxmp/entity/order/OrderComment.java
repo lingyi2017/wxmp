@@ -44,9 +44,7 @@ public class OrderComment extends BaseSimpleEntity {
 	private Date commentAddMarkTime;
 	/** 评价回复时间*/
 	private Date commentReplyTime;
-	
-	@ManyToOne
-	@JoinColumn(name="order_id")
+	/** 主订单*/
 	private OrderMain order;
 
 	public String getComment() {
@@ -105,6 +103,8 @@ public class OrderComment extends BaseSimpleEntity {
 		this.commentReplyTime = commentReplyTime;
 	}
 
+	@ManyToOne
+	@JoinColumn(name="order_id")
 	public OrderMain getOrder() {
 		return order;
 	}

@@ -3,6 +3,8 @@ package com.qmx.wxmp.entity.order;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.qmx.wxmp.common.persistence.BaseSimpleEntity;
@@ -29,17 +31,19 @@ public class OrderByDay extends BaseSimpleEntity {
 	public static final String ORDER_STATUS_END = "3";
 	
 	/** 配送日期*/
-	public Date deliveryDate;
+	private Date deliveryDate;
 	/** 配送状态*/
-	public String status;
+	private String status;
 	/** 收货人*/
-	public String person;
+	private String person;
 	/** 收货电话*/
-	public String phone;
+	private String phone;
 	/** 收货地址*/
-	public String address;
+	private String address;
 	/** 更新时间*/
-	public Date updateTime;
+	private Date updateTime;
+	/** 主订单*/
+	private OrderMain order;
 
 	public Date getDeliveryDate() {
 		return deliveryDate;
@@ -76,6 +80,15 @@ public class OrderByDay extends BaseSimpleEntity {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	
+	@ManyToOne
+	@JoinColumn(name="order_id")
+	public OrderMain getOrder() {
+		return order;
+	}
+	public void setOrder(OrderMain order) {
+		this.order = order;
 	}
 	
 }

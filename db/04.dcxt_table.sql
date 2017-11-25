@@ -46,3 +46,16 @@ INSERT INTO `sys_dict` VALUES ('109', '女', '2', 'dcxt_account_sex', '性别', 
 
 INSERT INTO `sys_dict` VALUES ('110', '正常', '1', 'dcxt_account_status', '用户状态', '20', 'admin', now(), 'admin', now(), null, '0');
 INSERT INTO `sys_dict` VALUES ('111', '冻结', '0', 'dcxt_account_status', '用户状态', '30', 'admin', now(), 'admin', now(), null, '0');
+
+INSERT INTO `sys_dict` VALUES ('112', '全部', '0', 'order_status', '订单状态', '10', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('113', '进行中', '1', 'order_status', '订单状态', '20', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('114', '暂停', '2', 'order_status', '订单状态', '30', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('115', '完成', '3', 'order_status', '订单状态', '40', 'admin', now(), 'admin', now(), null, '0');
+
+INSERT INTO `sys_dict` VALUES ('116', '全部', '0', 'order_refund_status', '订单退款状态', '10', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('117', '处理中', '1', 'order_refund_status', '订单退款状态', '20', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('118', '完成', '2', 'order_refund_status', '订单退款状态', '30', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('119', '拒绝', '3', 'order_refund_status', '订单退款状态', '40', 'admin', now(), 'admin', now(), null, '0');
+
+INSERT INTO `sys_dict` VALUES ('120', '微信', '0', 'pay_way', '支付方式', '10', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('121', '积分', '1', 'pay_way', '支付方式', '20', 'admin', now(), 'admin', now(), null, '0');

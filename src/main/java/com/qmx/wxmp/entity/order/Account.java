@@ -1,5 +1,6 @@
 package com.qmx.wxmp.entity.order;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -46,7 +47,8 @@ public class Account extends BaseSimpleEntity {
 	private String status;
 	/** 备注*/
 	private String mark;
-	
+
+	@Column(name="DAW")
 	public String getOpenid() {
 		return openid;
 	}

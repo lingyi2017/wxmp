@@ -15,9 +15,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.qmx.wxmp.common.persistence.Page;
 import com.qmx.wxmp.controller.BaseController;
-import com.qmx.wxmp.entity.order.Account;
+import com.qmx.wxmp.dto.order.QueryDTO;
 import com.qmx.wxmp.entity.order.OrderMain;
-import com.qmx.wxmp.service.order.AccountService;
 import com.qmx.wxmp.service.order.OrderService;
 
 /**
@@ -43,7 +42,7 @@ public class OrderController extends BaseController {
 
 	@RequiresPermissions("dcxt:order:view")
 	@RequestMapping({ "list", "" })
-	public String list(OrderMain entity, HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String list(QueryDTO entity, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<OrderMain> page = orderService.findList(new Page<OrderMain>(request, response), entity);
 		model.addAttribute("page", page);
 		return "/order/orderList";
