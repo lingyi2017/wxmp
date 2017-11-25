@@ -35,7 +35,7 @@ public class Menu extends BaseSimpleEntity {
 	// 菜单明细
 	private List<MenuItem>	menuItems;
 
-	// 状态（1-上架；2-下架）
+	// 状态（1-新增；2-上架；3-下架）
 	private String			state;
 
 
