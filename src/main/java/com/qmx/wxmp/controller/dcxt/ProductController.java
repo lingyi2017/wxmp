@@ -116,7 +116,7 @@ public class ProductController extends BaseController {
 	@ResponseBody
 	@RequestMapping("treeData")
 	public List<Map<String, Object>> treeData(HttpServletResponse response) {
-		
+
 		response.setContentType("application/json; charset=UTF-8");
 		List<Map<String, Object>> mapList = Lists.newArrayList();
 		List<Product> list = thisService.findAll();
@@ -127,6 +127,22 @@ public class ProductController extends BaseController {
 			mapList.add(map);
 		}
 		return mapList;
-		
+
+	}
+
+
+
+	@RequiresPermissions("dcxt:product:edit")
+	@RequestMapping("/updateState")
+	public String updateState(String id, String state, RedirectAttributes redirectAttributes) {
+
+		try {
+			thisService.updateState(id, state);
+			addMessage(redirectAttributes, "操作成功");
+		} catch (Exception e) {
+			addMessage(redirectAttributes, "操作失败");
+			e.printStackTrace();
+		}
+		return "redirect:/dcxt/product/?repage";
 	}
 }

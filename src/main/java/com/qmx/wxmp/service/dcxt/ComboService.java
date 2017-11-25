@@ -49,6 +49,13 @@ public class ComboService extends BaseService {
 
 
 
+	@Transactional(readOnly = false)
+	public void updateState(String id, String state) {
+		thisDao.updateState(id, state);
+	}
+
+
+
 	public Page<Combo> findList(Page<Combo> page, Combo entity) {
 
 		DetachedCriteria dc = thisDao.createDetachedCriteria();

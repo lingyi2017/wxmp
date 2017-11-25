@@ -98,7 +98,15 @@
             <td><fmt:formatDate value='${entity.createDate}' type="both"/></td>
             <shiro:hasPermission name="dcxt:combo:edit">
                 <td>
-                    <a href="${ctx}/dcxt/combo/form?id=${entity.id}"><spring:message code='update'/></a>
+                    <c:if test="${entity.state == 1}">
+                        <a href="${ctx}/dcxt/combo/updateState?id=${entity.id}&state=2"
+                           onclick="return confirmx('确认要上架该份量吗？', this.href)">上架</a>
+                        <a href="${ctx}/dcxt/combo/form?id=${entity.id}"><spring:message code='update'/></a>
+                    </c:if>
+                    <c:if test="${entity.state == 2}">
+                        <a href="${ctx}/dcxt/combo/updateState?id=${entity.id}&state=3"
+                           onclick="return confirmx('确认要下架该份量吗？', this.href)">下架</a>
+                    </c:if>
                     <a href="${ctx}/dcxt/combo/delete?id=${entity.id}"
                        onclick="return confirmx('确认要删除该份量吗？', this.href)"><spring:message code='delete'/></a>
                 </td>

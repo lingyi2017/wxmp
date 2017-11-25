@@ -101,7 +101,7 @@
                     <c:if test="${entity.state == 1}">
                         <a href="${ctx}/dcxt/dish/updateState?id=${entity.id}&state=2"
                            onclick="return confirmx('确认要上架该菜品吗？', this.href)">上架</a>
-                        <a href="${ctx}/dcxt/dish/updateState?id=${entity.id}"><spring:message code='update'/></a>
+                        <a href="${ctx}/dcxt/dish/form?id=${entity.id}"><spring:message code='update'/></a>
                     </c:if>
                     <c:if test="${entity.state == 2}">
                         <a href="${ctx}/dcxt/dish/updateState?id=${entity.id}&state=3"

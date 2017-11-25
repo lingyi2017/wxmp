@@ -51,6 +51,13 @@ public class ProductService extends BaseService {
 
 
 
+	@Transactional(readOnly = false)
+	public void updateState(String id, String state) {
+		thisDao.updateState(id, state);
+	}
+
+
+
 	public Page<Product> findList(Page<Product> page, Product entity) {
 
 		DetachedCriteria dc = thisDao.createDetachedCriteria();
@@ -58,7 +65,7 @@ public class ProductService extends BaseService {
 		if (StringUtils.isNotBlank(entity.getName())) {
 			dc.add(Restrictions.like("name", "%" + entity.getName() + "%"));
 		}
-		if(StringUtils.isNotEmpty(entity.getState())){
+		if (StringUtils.isNotEmpty(entity.getState())) {
 			dc.add(Restrictions.eq("state", entity.getState()));
 		}
 

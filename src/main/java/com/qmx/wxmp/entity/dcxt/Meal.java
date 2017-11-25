@@ -23,7 +23,7 @@ public class Meal extends BaseSimpleEntity {
 	// 描述
 	private String				description;
 
-	// 状态（1-下架；2-上架）
+	// 状态（1-新增；2-上架；3-下架）
 	private String				state;
 
 

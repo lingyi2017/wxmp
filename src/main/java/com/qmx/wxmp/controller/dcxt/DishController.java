@@ -110,9 +110,9 @@ public class DishController extends BaseController {
 
 		try {
 			thisService.updateState(id, state);
-			addMessage(redirectAttributes, "上架菜品成功");
+			addMessage(redirectAttributes, "操作成功");
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "上架菜品失败");
+			addMessage(redirectAttributes, "操作失败");
 			e.printStackTrace();
 		}
 		return "redirect:/dcxt/dish/?repage";

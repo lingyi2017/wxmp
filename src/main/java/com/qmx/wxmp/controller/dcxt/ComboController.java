@@ -101,4 +101,18 @@ public class ComboController extends BaseController {
 		}
 		return "redirect:/dcxt/combo/?repage";
 	}
+
+	@RequiresPermissions("dcxt:combo:edit")
+	@RequestMapping("/updateState")
+	public String updateState(String id, String state, RedirectAttributes redirectAttributes) {
+
+		try {
+			thisService.updateState(id, state);
+			addMessage(redirectAttributes, "操作成功");
+		} catch (Exception e) {
+			addMessage(redirectAttributes, "操作失败");
+			e.printStackTrace();
+		}
+		return "redirect:/dcxt/combo/?repage";
+	}
 }
