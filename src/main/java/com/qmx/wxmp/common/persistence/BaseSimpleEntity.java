@@ -130,4 +130,13 @@ public abstract class BaseSimpleEntity implements Serializable {
 
 	// 删除
 	public static final String	DEL_FLAG_DELETE	= "1";
+
+	// 新增
+	public static final String	STATE_NEW		= "1";
+
+	// 上架
+	public static final String	STATE_ACTIVE	= "2";
+
+	// 下架
+	public static final String	STATE_LAPSE		= "3";
 }

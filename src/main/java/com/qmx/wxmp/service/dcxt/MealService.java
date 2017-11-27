@@ -13,6 +13,8 @@ import com.qmx.wxmp.entity.dcxt.Meal;
 import com.qmx.wxmp.repository.hibernate.dcxt.MealDao;
 import com.qmx.wxmp.service.BaseService;
 
+import java.util.List;
+
 /**
  * 餐标 Service
  *
@@ -72,6 +74,18 @@ public class MealService extends BaseService {
 			dc.addOrder(Order.desc("createDate"));
 		}
 		return thisDao.find(page, dc);
+
+	}
+
+
+
+	public List<Meal> findAll() {
+
+		DetachedCriteria dc = thisDao.createDetachedCriteria();
+		dc.add(Restrictions.eq("delFlag", Meal.DEL_FLAG_NORMAL));
+		dc.add(Restrictions.eq("state", Meal.STATE_ACTIVE));
+		dc.addOrder(Order.asc("type"));
+		return thisDao.find(dc);
 
 	}
 }

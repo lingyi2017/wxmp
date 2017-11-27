@@ -1,7 +1,13 @@
 package com.qmx.wxmp.entity.dcxt;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import java.util.List;
+
+import javax.persistence.*;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import com.qmx.wxmp.common.persistence.BaseSimpleEntity;
 
@@ -28,6 +34,9 @@ public class Product extends BaseSimpleEntity {
 
 	// 状态（1-下架；2-上架）
 	private String				state;
+
+	// 份量列表
+	private List<Combo>			combos;
 
 
 
@@ -81,5 +90,21 @@ public class Product extends BaseSimpleEntity {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+
+
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+	@OrderBy("price desc")
+	@Fetch(FetchMode.SUBSELECT)
+	@NotFound(action = NotFoundAction.IGNORE)
+	public List<Combo> getCombos() {
+		return combos;
+	}
+
+
+
+	public void setCombos(List<Combo> combos) {
+		this.combos = combos;
 	}
 }

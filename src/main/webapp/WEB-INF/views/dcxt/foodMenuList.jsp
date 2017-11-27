@@ -51,7 +51,7 @@
 <ul class="nav nav-tabs">
     <li class="active"><a>菜单列表</a></li>
     <shiro:hasPermission name="dcxt:foodMenu:edit">
-        <li><a href="${ctx}/dcxt/foodMenu/form">菜单添加</a></li>
+        <li><a href="${ctx}/dcxt/foodMenu/addForm">菜单添加</a></li>
     </shiro:hasPermission>
 </ul>
 <form:form id="searchForm" modelAttribute="foodMenu" action="${ctx}/dcxt/foodMenu/" method="post"

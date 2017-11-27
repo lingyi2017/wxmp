@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * 订餐 Service
  *
@@ -72,6 +74,18 @@ public class DishService extends BaseService {
 			dc.addOrder(Order.desc("createDate"));
 		}
 		return thisDao.find(page, dc);
+
+	}
+
+
+
+	public List<Dish> findAll() {
+
+		DetachedCriteria dc = thisDao.createDetachedCriteria();
+		dc.add(Restrictions.eq("delFlag", Dish.DEL_FLAG_NORMAL));
+		dc.add(Restrictions.eq("state", Dish.STATE_ACTIVE));
+		dc.addOrder(Order.asc("type"));
+		return thisDao.find(dc);
 
 	}
 }

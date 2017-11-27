@@ -3,20 +3,25 @@ package com.qmx.wxmp.controller.dcxt;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
+import com.qmx.wxmp.entity.dcxt.Dish;
+import com.qmx.wxmp.entity.dcxt.Meal;
+import com.qmx.wxmp.entity.dcxt.Product;
+import com.qmx.wxmp.service.dcxt.DishService;
+import com.qmx.wxmp.service.dcxt.MealService;
+import com.qmx.wxmp.service.dcxt.ProductService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.qmx.wxmp.common.persistence.Page;
 import com.qmx.wxmp.controller.BaseController;
 import com.qmx.wxmp.entity.dcxt.FoodMenu;
 import com.qmx.wxmp.service.dcxt.FoodMenuService;
+
+import java.util.List;
 
 /**
  * 菜单Controller
@@ -29,18 +34,16 @@ import com.qmx.wxmp.service.dcxt.FoodMenuService;
 public class FoodMenuController extends BaseController {
 
 	@Autowired
-	private FoodMenuService thisService;
+	private FoodMenuService	thisService;
 
+	@Autowired
+	private ProductService	productService;
 
+	@Autowired
+	private MealService		mealService;
 
-	@ModelAttribute
-	public FoodMenu get(@RequestParam(required = false) String id) {
-		if (StringUtils.isNotBlank(id)) {
-			return thisService.get(id);
-		} else {
-			return new FoodMenu();
-		}
-	}
+	@Autowired
+	private DishService		dishService;
 
 
 
@@ -56,11 +59,17 @@ public class FoodMenuController extends BaseController {
 
 
 	@RequiresPermissions("dcxt:foodMenu:view")
-	@RequestMapping("/form")
-	public String form(FoodMenu entity, Model model) {
+	@RequestMapping("/addForm")
+	public String addForm(FoodMenu entity, Model model) {
 
-		model.addAttribute("foodMenu", entity);
-		return "/dcxt/foodMenuForm";
+		List<Product> products = productService.findAll();
+		List<Meal> meals = mealService.findAll();
+		List<Dish> dishes = dishService.findAll();
+		model.addAttribute("products", products);
+		model.addAttribute("meals", meals);
+		model.addAttribute("dishes", dishes);
+		return "/dcxt/addFoodMenuForm";
+
 	}
 
 
@@ -70,9 +79,9 @@ public class FoodMenuController extends BaseController {
 	public String save(FoodMenu entity, HttpServletRequest request, Model model,
 			RedirectAttributes redirectAttributes) {
 
-		if (!beanValidator(model, entity)) {
-			return form(entity, model);
-		}
+		/*
+		 * if (!beanValidator(model, entity)) { return form(entity, model); }
+		 */
 
 		try {
 			thisService.save(entity);
