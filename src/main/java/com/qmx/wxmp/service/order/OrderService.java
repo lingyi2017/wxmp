@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.qmx.wxmp.common.persistence.Page;
-import com.qmx.wxmp.dto.order.QueryDTO;
+import com.qmx.wxmp.dto.order.OrderQueryDTO;
 import com.qmx.wxmp.entity.dcxt.Dish;
 import com.qmx.wxmp.entity.order.OrderMain;
 import com.qmx.wxmp.repository.hibernate.order.OrderDao;
@@ -27,21 +27,15 @@ public class OrderService extends BaseService {
 	@Autowired
 	private OrderDao orderDao;
 
-
-
 	public OrderMain get(String id) {
 		return orderDao.get(id);
 	}
-
-
 
 	@Transactional(readOnly = false)
 	public void save(OrderMain entity) {
 		orderDao.clear();
 		orderDao.save(entity);
 	}
-
-
 
 	@Transactional(readOnly = false)
 	public void delete(String id) {
@@ -52,26 +46,26 @@ public class OrderService extends BaseService {
 		
 	}
 
-
 	/**
 	 * 订单列表
 	 * @param page
 	 * @param entity
 	 * @return
 	 */
-	public Page<OrderMain> findList(Page<OrderMain> page, QueryDTO entity) {
+	public Page<OrderMain> findList(Page<OrderMain> page, OrderQueryDTO entity) {
 		DetachedCriteria dc = orderDao.createDetachedCriteria();
+		dc.createAlias("account", "account");
 		if (StringUtils.isNotBlank(entity.getAccountName())) {
 			dc.add(Restrictions.like("account.name", "%" + entity.getAccountName() + "%"));
 		}
 		if (StringUtils.isNotBlank(entity.getAccountPhone())) {
 			dc.add(Restrictions.like("account.name", "%" + entity.getAccountPhone() + "%"));
 		}
-		if(entity.getStartTime() != null){
-			dc.add(Restrictions.ge("orderTime", entity.getStartTime()));
+		if(entity.getBeginDate() != null){
+			dc.add(Restrictions.ge("orderTime", entity.getBeginDate()));
 		}
-		if(entity.getEndTime() != null){
-			dc.add(Restrictions.le("orderTime", entity.getEndTime()));
+		if(entity.getEndDate() != null){
+			dc.add(Restrictions.le("orderTime", entity.getEndDate()));
 		}
 		if (StringUtils.isNotBlank(entity.getOrderStatus())) {
 			dc.add(Restrictions.eq("orderStatus", entity.getOrderStatus()));
@@ -90,19 +84,20 @@ public class OrderService extends BaseService {
 	 * @param entity
 	 * @return
 	 */
-	public Page<OrderMain> findDayOrderList(Page<OrderMain> page, QueryDTO entity) {
+	public Page<OrderMain> findDayOrderList(Page<OrderMain> page, OrderQueryDTO entity) {
 		DetachedCriteria dc = orderDao.createDetachedCriteria();
+		dc.createAlias("account", "account");
 		if (StringUtils.isNotBlank(entity.getAccountName())) {
 			dc.add(Restrictions.like("account.name", "%" + entity.getAccountName() + "%"));
 		}
 		if (StringUtils.isNotBlank(entity.getAccountPhone())) {
 			dc.add(Restrictions.like("account.name", "%" + entity.getAccountPhone() + "%"));
 		}
-		if(entity.getStartTime() != null){
-			dc.add(Restrictions.ge("orderTime", entity.getStartTime()));
+		if(entity.getBeginDate() != null){
+			dc.add(Restrictions.ge("orderTime", entity.getBeginDate()));
 		}
-		if(entity.getEndTime() != null){
-			dc.add(Restrictions.le("orderTime", entity.getEndTime()));
+		if(entity.getEndDate() != null){
+			dc.add(Restrictions.le("orderTime", entity.getEndDate()));
 		}
 		if (StringUtils.isNotBlank(entity.getOrderStatus())) {
 			dc.add(Restrictions.eq("orderStatus", entity.getOrderStatus()));
@@ -121,7 +116,7 @@ public class OrderService extends BaseService {
 	 * @param entity
 	 * @return
 	 */
-	public Page<OrderMain> findRefundOrderList(Page<OrderMain> page, QueryDTO entity) {
+	public Page<OrderMain> findRefundOrderList(Page<OrderMain> page, OrderQueryDTO entity) {
 		DetachedCriteria dc = orderDao.createDetachedCriteria();
 		if (StringUtils.isNotBlank(entity.getAccountName())) {
 			dc.add(Restrictions.like("account.name", "%" + entity.getAccountName() + "%"));
@@ -129,11 +124,11 @@ public class OrderService extends BaseService {
 		if (StringUtils.isNotBlank(entity.getAccountPhone())) {
 			dc.add(Restrictions.like("account.name", "%" + entity.getAccountPhone() + "%"));
 		}
-		if(entity.getStartTime() != null){
-			dc.add(Restrictions.ge("orderTime", entity.getStartTime()));
+		if(entity.getBeginDate() != null){
+			dc.add(Restrictions.ge("orderTime", entity.getBeginDate()));
 		}
-		if(entity.getEndTime() != null){
-			dc.add(Restrictions.le("orderTime", entity.getEndTime()));
+		if(entity.getEndDate() != null){
+			dc.add(Restrictions.le("orderTime", entity.getEndDate()));
 		}
 		if (StringUtils.isNotBlank(entity.getOrderStatus())) {
 			dc.add(Restrictions.eq("orderStatus", entity.getOrderStatus()));

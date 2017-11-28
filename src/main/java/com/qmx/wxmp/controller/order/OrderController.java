@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.qmx.wxmp.common.persistence.Page;
 import com.qmx.wxmp.controller.BaseController;
-import com.qmx.wxmp.dto.order.QueryDTO;
+import com.qmx.wxmp.dto.order.OrderQueryDTO;
 import com.qmx.wxmp.entity.order.OrderMain;
 import com.qmx.wxmp.service.order.OrderService;
 
@@ -40,12 +40,38 @@ public class OrderController extends BaseController {
 		}
 	}
 
+	/**
+	 * 订单列表
+	 * @param entity
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
 	@RequiresPermissions("dcxt:order:view")
 	@RequestMapping({ "list", "" })
-	public String list(QueryDTO entity, HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String list(OrderQueryDTO entity, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<OrderMain> page = orderService.findList(new Page<OrderMain>(request, response), entity);
+		model.addAttribute("orderQueryDTO", entity);
 		model.addAttribute("page", page);
 		return "/order/orderList";
+	}
+	
+	/**
+	 * 订单列表
+	 * @param entity
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@RequiresPermissions("dcxt:order:view")
+	@RequestMapping("/daylist")
+	public String dayList(OrderQueryDTO entity, HttpServletRequest request, HttpServletResponse response, Model model) {
+		Page<OrderMain> page = orderService.findDayOrderList(new Page<OrderMain>(request, response), entity);
+		model.addAttribute("orderQueryDTO", entity);
+		model.addAttribute("page", page);
+		return "/order/orderdayList";
 	}
 
 	@RequiresPermissions("dcxt:order:view")

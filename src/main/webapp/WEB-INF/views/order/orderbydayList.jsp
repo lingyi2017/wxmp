@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp" %>
 <html>
 <head>
-    <title>订单管理</title>
+    <title>配送订单管理</title>
     <meta name="decorator" content="default"/>
     <%@include file="/WEB-INF/views/include/dialog.jsp" %>
     <style type="text/css">.sort {
@@ -49,26 +49,24 @@
 <body>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a>订单列表</a></li>
+    <li class="active"><a>配送订单列表</a></li>
     <%-- <shiro:hasPermission name="dcxt:account:edit">
         <li><a href="${ctx}/dcxt/account/form">用户修改</a></li>
     </shiro:hasPermission> --%>
 </ul>
-<form:form id="searchForm" modelAttribute="orderQueryDTO" action="${ctx}/dcxt/order/" method="post"
+<form:form id="searchForm" modelAttribute="orderByDay" action="${ctx}/dcxt/order/" method="post"
            class="breadcrumb form-search">
     <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
     <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
     <input id="orderBy" name="orderBy" type="hidden" value="${page.orderBy}"/>
 
     <div style="margin-top:8px;">
-        <label>用户姓名：</label><form:input path="accountName" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
-        <label>用户电话：</label><form:input path="accountPhone" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
-        <label>咨询时间：</label>
+        <label>用户姓名：</label><form:input path="person" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
+        <label>用户电话：</label><form:input path="phone" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
+        <label>配送日期：</label>
 	    <label>
-	        <input id="beginDate" name="beginDate" type="text" readonly="readonly" maxlength="20" class="input-small Wdate"
-	               value="${orderQueryDTO.beginDate}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/> ~
-	        <input id="endDate" name="endDate" type="text" readonly="readonly" maxlength="20" class="input-small Wdate"
-	               value="${orderQueryDTO.endDate}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+	        <form:input path="deliveryDate" type="text" readonly="readonly" maxlength="20" class="input-small Wdate"
+	               onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 	    </label>
 	    <input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='query' />"
                onclick="return page();"/>
@@ -79,16 +77,12 @@
     <thead>
     <tr>
         <th>订单号</th>
-        <th>下单时间</th>
-        <th>客户姓名</th>
-        <th>客户电话</th>
-        <th>购买产品</th>
-        <th>支付方式</th>
-        <th>购买天数</th>
-        <th>已完成天数</th>
-        <th>订单总金额</th>
-        <th>订单实付金额</th>
-        <th>订单状态</th>
+        <th>产品</th>
+        <th>收货人</th>
+        <th>收货电话</th>
+        <th>收货地址</th>
+        <th>配送日期</th>
+        <th>配送状态</th>
         <th>操作</th>
     </tr>
     </thead>
@@ -97,23 +91,14 @@
         <tr>
             <td>${entity.orderNumber}</td>
             <td>${entity.orderTime}</td>
-            <td>${entity.account.name}</td>
-            <td>${entity.account.phone}</td>
-            <td></td>
-            <td>${fns:getDictLabel(entity.payWay, 'pay_way', '无')}</td>
-            <td>${entity.days}</td>
-            <td>${entity.finishDays}</td>
-            <td>${entity.orderMoney}</td>
-            <td>${entity.paidMoney}</td>
-            <td>${fns:getDictLabel(entity.orderStatus, 'order_status', '无')}</td>
-            <shiro:hasPermission name="dcxt:order:edit">
-                <td>
-                	<c:if test="${entity.orderStatus == 1 }">
-                    <a href="${ctx}/dcxt/accountaddress/formByOrderId?orderId=${entity.id}">修改收货地址</a>
-                	<a href="${ctx}/dcxt/order/pause?id=${entity.id}">暂停</a>
-                	</c:if>
-                </td>
-            </shiro:hasPermission>
+            <td>${entity.person}</td>
+            <td>${entity.phone}</td>
+            <td>${entity.address}</td>
+            <td>${entity.deliveryDate}</td>
+            <td>${fns:getDictLabel(entity.status, 'order_delivery_status', '无')}</td>
+            <td>
+                <a href="${ctx}/dcxt/accountaddress/formByOrderId?orderId=${entity.id}">查看主订单</a>
+            </td>
         </tr>
     </c:forEach>
     </tbody>

@@ -7,7 +7,7 @@ import java.util.Date;
  * @author itismin
  *
  */
-public class QueryDTO {
+public class OrderQueryDTO {
 
 	private String accountName;
 	
@@ -15,9 +15,11 @@ public class QueryDTO {
 	
 	private String orderStatus;
 	
-	private Date startTime;
+	private Date beginDate;
 	
-	private Date endTime;
+	private Date endDate;
+	
+	private Date deliveryDate;
 
 	public String getAccountName() {
 		return accountName;
@@ -43,22 +45,30 @@ public class QueryDTO {
 		this.orderStatus = orderStatus;
 	}
 
-	public Date getStartTime() {
-		return startTime;
+	public Date getBeginDate() {
+		return beginDate;
 	}
 
-	public void setStartTime(Date startTime) {
-		this.startTime = startTime;
+	public void setBeginDate(Date beginDate) {
+		this.beginDate = beginDate;
 	}
 
-	public Date getEndTime() {
-		return endTime;
+	public Date getEndDate() {
+		return endDate;
 	}
 
-	public void setEndTime(Date endTime) {
-		this.endTime = endTime;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
-	
+
+	public Date getDeliveryDate() {
+		return deliveryDate;
+	}
+
+	public void setDeliveryDate(Date deliveryDate) {
+		this.deliveryDate = deliveryDate;
+	}
+
 	
 	
 }

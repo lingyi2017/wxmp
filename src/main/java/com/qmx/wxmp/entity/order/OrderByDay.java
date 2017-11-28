@@ -30,6 +30,7 @@ public class OrderByDay extends BaseSimpleEntity {
 	/** 订单状态:配送完成*/
 	public static final String ORDER_STATUS_END = "3";
 	
+	private String orderNumber;
 	/** 配送日期*/
 	private Date deliveryDate;
 	/** 配送状态*/
@@ -81,7 +82,12 @@ public class OrderByDay extends BaseSimpleEntity {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
+	public String getOrderNumber() {
+		return orderNumber;
+	}
+	public void setOrderNumber(String orderNumber) {
+		this.orderNumber = orderNumber;
+	}
 	@ManyToOne
 	@JoinColumn(name="order_id")
 	public OrderMain getOrder() {

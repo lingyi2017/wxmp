@@ -59,3 +59,7 @@ INSERT INTO `sys_dict` VALUES ('119', '拒绝', '3', 'order_refund_status', '订
 
 INSERT INTO `sys_dict` VALUES ('120', '微信', '0', 'pay_way', '支付方式', '10', 'admin', now(), 'admin', now(), null, '0');
 INSERT INTO `sys_dict` VALUES ('121', '积分', '1', 'pay_way', '支付方式', '20', 'admin', now(), 'admin', now(), null, '0');
+
+INSERT INTO `sys_dict` VALUES ('122', '未配送', '0', 'order_delivery_status', '订单配送状态', '10', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('123', '配送中', '1', 'order_delivery_status', '订单配送状态', '20', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('124', '配送完成', '2', 'order_delivery_status', '订单配送状态', '30', 'admin', now(), 'admin', now(), null, '0');
