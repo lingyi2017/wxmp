@@ -1,14 +1,11 @@
 package com.qmx.wxmp.controller.dcxt;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.qmx.wxmp.entity.dcxt.Dish;
-import com.qmx.wxmp.entity.dcxt.Meal;
-import com.qmx.wxmp.entity.dcxt.Product;
-import com.qmx.wxmp.service.dcxt.DishService;
-import com.qmx.wxmp.service.dcxt.MealService;
-import com.qmx.wxmp.service.dcxt.ProductService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,12 +13,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.qmx.wxmp.common.persistence.Page;
 import com.qmx.wxmp.controller.BaseController;
+import com.qmx.wxmp.entity.dcxt.Dish;
 import com.qmx.wxmp.entity.dcxt.FoodMenu;
+import com.qmx.wxmp.entity.dcxt.Meal;
+import com.qmx.wxmp.entity.dcxt.Product;
+import com.qmx.wxmp.service.dcxt.DishService;
 import com.qmx.wxmp.service.dcxt.FoodMenuService;
-
-import java.util.List;
+import com.qmx.wxmp.service.dcxt.MealService;
+import com.qmx.wxmp.service.dcxt.ProductService;
+import com.qmx.wxmp.vo.dcxt.DishTypeVo;
 
 /**
  * 菜单Controller
@@ -67,7 +71,8 @@ public class FoodMenuController extends BaseController {
 		List<Dish> dishes = dishService.findAll();
 		model.addAttribute("products", products);
 		model.addAttribute("meals", meals);
-		model.addAttribute("dishes", dishes);
+
+		model.addAttribute("dishTypeVos", buildDishTypeVo(dishes));
 		return "/dcxt/addFoodMenuForm";
 
 	}
@@ -126,6 +131,31 @@ public class FoodMenuController extends BaseController {
 			e.printStackTrace();
 		}
 		return "redirect:/dcxt/foodMenu/?repage";
+	}
+
+
+
+	private List<DishTypeVo> buildDishTypeVo(List<Dish> dishes) {
+		Map<String, List<Dish>> dishMap = Maps.newHashMap();
+		for (Dish dish : dishes) {
+			List<Dish> dishList = Lists.newArrayList();
+			if (dishMap.containsKey(dish.getType())) {
+				dishList = dishMap.get(dish.getType());
+				dishList.add(dish);
+			} else {
+				dishList.add(dish);
+			}
+			dishMap.put(dish.getType(), dishList);
+		}
+
+		List<DishTypeVo> dishTypeVos = Lists.newArrayList();
+		for (Map.Entry<String, List<Dish>> entry : dishMap.entrySet()) {
+			DishTypeVo dishTypeVo = new DishTypeVo();
+			dishTypeVo.setType(entry.getKey());
+			dishTypeVo.setDishes(entry.getValue());
+			dishTypeVos.add(dishTypeVo);
+		}
+		return dishTypeVos;
 	}
 
 }

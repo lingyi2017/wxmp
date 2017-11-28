@@ -4,18 +4,14 @@
 <head>
     <title>菜单信息</title>
     <meta name="decorator" content="default"/>
+    <script type="text/javascript" charset="utf-8" src="${ctx}/static/js/dcxt/addFoodMenu.js"></script>
     <script type="text/javascript">
 
-        $("#type").focus();
         $("#inputForm").validate();
 
         $(function () {
             $("[data-toggle='popover']").popover();
         });
-
-        function showFoodMenu() {
-            $("#menuModal").modal('show');
-        }
 
     </script>
 </head>
@@ -64,16 +60,13 @@
                                                         ${fns:getDictLabel(meal.type, 'dcxt_meal_type', '无')}（${meal.description}）
                                                     <i class="icon-plus-sign"
                                                        style="cursor: pointer;margin-top: 2px;"
-                                                       onclick="showFoodMenu();"></i>
+                                                       onclick="showFoodMenu('${product.id}', '${meal.id}');"></i>
                                                 </td>
                                             </c:forEach>
                                         </tr>
                                         <tr>
                                             <c:forEach items="${meals}" var="meal">
-                                                <td>
-                                                    <span class="label" style="cursor: pointer;">粥</span>
-                                                    <span class="label" style="cursor: pointer;">酱肉包</span>
-                                                    <span class="label" style="cursor: pointer;">咸菜</span>
+                                                <td id="${product.id},${meal.id}">
                                                 </td>
                                             </c:forEach>
                                                 <%--<td>
@@ -122,25 +115,7 @@
     </div>
 </form:form>
 
-<!-- 菜品页面 Start -->
-<div id="menuModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="menuLabel"
-     aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="menuLabel">菜品</h3>
-    </div>
-    <div class="modal-body">
-        <c:forEach items="${dishes}" var="dish">
-            <span class="badge badge-inverse">
-                <input type="checkbox" id="${dish.id}" value="${dish.id}">${dish.name}
-            </span>
-        </c:forEach>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary">保存</button>
-    </div>
-</div>
-<!-- 菜品页面 End -->
-
+<!-- 引入菜品页面 -->
+<jsp:include page="dishModal.jsp" flush="true"/>
 </body>
 </html>
