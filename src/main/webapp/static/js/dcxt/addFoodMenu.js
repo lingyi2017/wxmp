@@ -58,3 +58,17 @@ function addDish() {
 function removeDish(dish) {
     $(dish).parent().remove();
 }
+
+/**
+ * 保存菜单信息
+ *
+ */
+function saveFoodMenu() {
+    $(".dishesTd").each(function () {
+        var dishesTdId = $(this).prop("id");
+
+        $(this).find("span").each(function () {
+            var dishId = $(this).prop("id");
+        })
+    });
+}

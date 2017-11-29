@@ -64,7 +64,7 @@
                                         </tr>
                                         <tr>
                                             <c:forEach items="${meals}" var="meal">
-                                                <td id="${product.id}-${meal.id}">
+                                                <td id="${product.id}-${meal.id}" class="dishesTd">
                                                 </td>
                                             </c:forEach>
                                         </tr>
@@ -101,7 +101,7 @@
 
     <div class="form-actions">
         <shiro:hasPermission name="dcxt:foodMenu:edit">
-            <input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='save' />"/>&nbsp;
+            <input id="btnSubmit" class="btn btn-primary" type="button" onclick="saveFoodMenu()" value="<spring:message code='save' />"/>&nbsp;
         </shiro:hasPermission>
         <input id="btnCancel" class="btn" type="button" value="<spring:message code='return' />"
                onclick="history.go(-1)"/>
