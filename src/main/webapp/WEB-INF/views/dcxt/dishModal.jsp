@@ -6,7 +6,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="menuLabel">菜品</h3>
     </div>
-    <div class="modal-body">
+    <div class="modal-body dishesModal">
         <c:forEach items="${dishTypeVos}" var="dishTypeVo">
             <div class="container-fluid">
                 <div class="row-fluid">
@@ -24,7 +24,7 @@
                     <div class="span12">
                         <c:forEach items="${dishTypeVo.dishes}" var="dish">
                         <span class="badge badge-inverse">
-                            <input type="checkbox" id="${dish.id}" value="${dish.id}">${dish.name}
+                            <input type="checkbox" value="${dish.id}" name="${dish.name}">${dish.name}
                         </span>
                         </c:forEach>
                     </div>
@@ -33,6 +33,6 @@
         </c:forEach>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary">保存</button>
+        <button class="btn btn-primary" onclick="addDish()">保存</button>
     </div>
 </div>

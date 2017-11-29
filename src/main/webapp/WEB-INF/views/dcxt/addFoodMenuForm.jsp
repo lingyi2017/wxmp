@@ -4,7 +4,8 @@
 <head>
     <title>菜单信息</title>
     <meta name="decorator" content="default"/>
-    <script type="text/javascript" charset="utf-8" src="${ctx}/static/js/dcxt/addFoodMenu.js"></script>
+    <script type="text/javascript" charset="utf-8"
+            src="${ctx}/static/js/dcxt/addFoodMenu.js?d=<%=new java.util.Date() %>"></script>
     <script type="text/javascript">
 
         $("#inputForm").validate();
@@ -24,10 +25,7 @@
     </shiro:hasPermission>
 </ul>
 
-<form:form id="inputForm" modelAttribute="foodMenu" action="${ctx}/dcxt/foodMenu/save" method="post"
-           class="form-horizontal">
-    <tags:message content="${message}"/>
-
+<form:form id="inputForm" method="post" class="form-horizontal">
     <!-- 菜单布局 Start -->
     <div class="accordion" id="accordion2">
         <c:forEach items="${products}" var="product" varStatus="status">
@@ -66,14 +64,9 @@
                                         </tr>
                                         <tr>
                                             <c:forEach items="${meals}" var="meal">
-                                                <td id="${product.id},${meal.id}">
+                                                <td id="${product.id}-${meal.id}">
                                                 </td>
                                             </c:forEach>
-                                                <%--<td>
-                                                    <span class="label" style="cursor: pointer;">粥</span>
-                                                    <span class="label" style="cursor: pointer;">酱肉包</span>
-                                                    <span class="label" style="cursor: pointer;">咸菜</span>
-                                                </td>--%>
                                         </tr>
                                     </table>
                                 </div>
