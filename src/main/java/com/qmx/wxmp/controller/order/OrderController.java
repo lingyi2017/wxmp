@@ -78,8 +78,8 @@ public class OrderController extends BaseController {
 	@RequestMapping("/form")
 	public String form(OrderMain entity, Model model) {
 
-		model.addAttribute("account", entity);
-		return "/order/accountForm";
+		model.addAttribute("order", entity);
+		return "/order/orderForm";
 	}
 
 	@RequiresPermissions("dcxt:order:edit")

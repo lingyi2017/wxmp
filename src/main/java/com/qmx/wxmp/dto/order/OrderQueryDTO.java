@@ -1,6 +1,5 @@
 package com.qmx.wxmp.dto.order;
 
-import java.util.Date;
 
 /**
  * 查询DTO
@@ -15,11 +14,11 @@ public class OrderQueryDTO {
 	
 	private String orderStatus;
 	
-	private Date beginDate;
+	private String beginDate;
 	
-	private Date endDate;
+	private String endDate;
 	
-	private Date deliveryDate;
+	private String deliveryDate;
 
 	public String getAccountName() {
 		return accountName;
@@ -45,27 +44,27 @@ public class OrderQueryDTO {
 		this.orderStatus = orderStatus;
 	}
 
-	public Date getBeginDate() {
+	public String getBeginDate() {
 		return beginDate;
 	}
 
-	public void setBeginDate(Date beginDate) {
+	public void setBeginDate(String beginDate) {
 		this.beginDate = beginDate;
 	}
 
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 
-	public Date getDeliveryDate() {
+	public String getDeliveryDate() {
 		return deliveryDate;
 	}
 
-	public void setDeliveryDate(Date deliveryDate) {
+	public void setDeliveryDate(String deliveryDate) {
 		this.deliveryDate = deliveryDate;
 	}
 

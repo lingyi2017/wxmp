@@ -52,14 +52,13 @@ INSERT INTO `sys_dict` VALUES ('113', '进行中', '1', 'order_status', '订单�
 INSERT INTO `sys_dict` VALUES ('114', '暂停', '2', 'order_status', '订单状态', '30', 'admin', now(), 'admin', now(), null, '0');
 INSERT INTO `sys_dict` VALUES ('115', '完成', '3', 'order_status', '订单状态', '40', 'admin', now(), 'admin', now(), null, '0');
 
-INSERT INTO `sys_dict` VALUES ('116', '全部', '0', 'order_refund_status', '订单退款状态', '10', 'admin', now(), 'admin', now(), null, '0');
-INSERT INTO `sys_dict` VALUES ('117', '处理中', '1', 'order_refund_status', '订单退款状态', '20', 'admin', now(), 'admin', now(), null, '0');
-INSERT INTO `sys_dict` VALUES ('118', '完成', '2', 'order_refund_status', '订单退款状态', '30', 'admin', now(), 'admin', now(), null, '0');
-INSERT INTO `sys_dict` VALUES ('119', '拒绝', '3', 'order_refund_status', '订单退款状态', '40', 'admin', now(), 'admin', now(), null, '0');
-
 INSERT INTO `sys_dict` VALUES ('120', '微信', '0', 'pay_way', '支付方式', '10', 'admin', now(), 'admin', now(), null, '0');
 INSERT INTO `sys_dict` VALUES ('121', '积分', '1', 'pay_way', '支付方式', '20', 'admin', now(), 'admin', now(), null, '0');
 
 INSERT INTO `sys_dict` VALUES ('122', '未配送', '0', 'order_delivery_status', '订单配送状态', '10', 'admin', now(), 'admin', now(), null, '0');
 INSERT INTO `sys_dict` VALUES ('123', '配送中', '1', 'order_delivery_status', '订单配送状态', '20', 'admin', now(), 'admin', now(), null, '0');
 INSERT INTO `sys_dict` VALUES ('124', '配送完成', '2', 'order_delivery_status', '订单配送状态', '30', 'admin', now(), 'admin', now(), null, '0');
+
+INSERT INTO `sys_dict` VALUES ('125', '好评', '1', 'order_comment', '订单评价', '10', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('126', '中评', '2', 'order_comment', '订单评价', '20', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('127', '差评', '3', 'order_comment', '订单评价', '30', 'admin', now(), 'admin', now(), null, '0');

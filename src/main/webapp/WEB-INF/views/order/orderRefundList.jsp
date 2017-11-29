@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp" %>
 <html>
 <head>
-    <title>订单管理</title>
+    <title>订单退款管理</title>
     <meta name="decorator" content="default"/>
     <%@include file="/WEB-INF/views/include/dialog.jsp" %>
     <style type="text/css">.sort {
@@ -49,7 +49,7 @@
 <body>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a>订单列表</a></li>
+    <li class="active"><a>订单退款列表</a></li>
     <%-- <shiro:hasPermission name="dcxt:account:edit">
         <li><a href="${ctx}/dcxt/account/form">用户修改</a></li>
     </shiro:hasPermission> --%>
@@ -63,7 +63,7 @@
     <div style="margin-top:8px;">
         <label>用户姓名：</label><form:input path="accountName" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
         <label>用户电话：</label><form:input path="accountPhone" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
-        <label>咨询时间：</label>
+        <label>退款申请时间：</label>
 	    <label>
 	        <input id="beginDate" name="beginDate" type="text" readonly="readonly" maxlength="20" class="input-small Wdate"
 	               value="${orderQueryDTO.beginDate}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/> ~
@@ -108,11 +108,11 @@
             <td>${fns:getDictLabel(entity.orderStatus, 'order_status', '无')}</td>
             <shiro:hasPermission name="dcxt:order:edit">
                 <td>
-                	<a href="${ctx}/dcxt/order/form?id=${entity.id}">详情</a>
-                	<c:if test="${entity.orderStatus == 1 }">
-                    <a href="${ctx}/dcxt/accountaddress/formByOrderId?orderId=${entity.id}">修改收货地址</a>
+                	<a href="${ctx}/dcxt/order/pause?id=${entity.id}">详情</a>
+                	<c:if test="${entity.orderStatus == 4 }">
                 	<a href="${ctx}/dcxt/order/pause?id=${entity.id}">暂停</a>
                 	</c:if>
+                	
                 </td>
             </shiro:hasPermission>
         </tr>

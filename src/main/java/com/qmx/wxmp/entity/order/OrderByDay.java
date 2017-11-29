@@ -6,7 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.qmx.wxmp.common.persistence.BaseSimpleEntity;
 
 /**
@@ -30,6 +33,7 @@ public class OrderByDay extends BaseSimpleEntity {
 	/** 订单状态:配送完成*/
 	public static final String ORDER_STATUS_END = "3";
 	
+	/** 日订单号*/
 	private String orderNumber;
 	/** 配送日期*/
 	private Date deliveryDate;
@@ -46,6 +50,8 @@ public class OrderByDay extends BaseSimpleEntity {
 	/** 主订单*/
 	private OrderMain order;
 
+	@Temporal(TemporalType.DATE)
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	public Date getDeliveryDate() {
 		return deliveryDate;
 	}

@@ -7,7 +7,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.qmx.wxmp.common.persistence.BaseSimpleEntity;
 
 /**
@@ -31,25 +34,19 @@ public class OrderMain extends BaseSimpleEntity {
 	public static final String ORDER_STATUS_PAUSE = "2";
 	/** 订单状态:完成*/
 	public static final String ORDER_STATUS_END = "3";
-	/** 退款状态:处理中*/
-	public static final String REFUND_BEGIN = "1";
-	/** 退款状态:完成*/
-	public static final String REFUND_END = "2";
-	/** 退款状态:拒绝*/
-	public static final String REFUND_REFUSE = "3";
+	/** 订单状态:退款处理中*/
+	public static final String ORDER_REFUND_BEGIN = "4";
+	/** 订单状态:退款同意*/
+	public static final String ORDER_REFUND_AGREE = "5";
+	/** 订单状态:退款拒绝*/
+	public static final String ORDER_REFUND_REFUSE = "6";
 	
 	/** 订单号*/
 	private String orderNumber;
 	/** 下单时间*/
 	private Date orderTime;
-	/** 订单备注*/
-	private String orderMark;
 	/** 订单状态*/
 	private String orderStatus;
-	/** 退款备注*/
-	private String refundMark;
-	/** 退款回复*/
-	private String refundReply;
 	/** 订单总金额*/
 	private Float orderMoney;
 	/** 优惠金额*/
@@ -62,6 +59,17 @@ public class OrderMain extends BaseSimpleEntity {
 	private Integer days;
 	/** 完成天数*/
 	private Integer finishDays;
+
+	/** 是否发生退款*/
+	private String isRefund;
+	/** 退款申请时间*/
+	private Date refundTime;
+	/** 退款原因*/
+	private String refundReason;
+	/** 退款回复*/
+	private String refundReply;
+	/** 退款金额*/
+	private Float refundMoney;
 	/** 客户*/
 	private Account account;
 	/** 收货地址*/
@@ -77,20 +85,14 @@ public class OrderMain extends BaseSimpleEntity {
 		this.orderNumber = orderNumber;
 	}
 
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	public Date getOrderTime() {
 		return orderTime;
 	}
 
 	public void setOrderTime(Date orderTime) {
 		this.orderTime = orderTime;
-	}
-
-	public String getOrderMark() {
-		return orderMark;
-	}
-
-	public void setOrderMark(String orderMark) {
-		this.orderMark = orderMark;
 	}
 
 	public String getOrderStatus() {
@@ -101,12 +103,12 @@ public class OrderMain extends BaseSimpleEntity {
 		this.orderStatus = orderStatus;
 	}
 
-	public String getRefundMark() {
-		return refundMark;
+	public String getRefundReason() {
+		return refundReason;
 	}
 
-	public void setRefundMark(String refundMark) {
-		this.refundMark = refundMark;
+	public void setRefundReason(String refundReason) {
+		this.refundReason = refundReason;
 	}
 
 	public String getRefundReply() {
@@ -193,6 +195,32 @@ public class OrderMain extends BaseSimpleEntity {
 
 	public void setPayWay(String payWay) {
 		this.payWay = payWay;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	public Date getRefundTime() {
+		return refundTime;
+	}
+
+	public void setRefundTime(Date refundTime) {
+		this.refundTime = refundTime;
+	}
+
+	public Float getRefundMoney() {
+		return refundMoney;
+	}
+
+	public void setRefundMoney(Float refundMoney) {
+		this.refundMoney = refundMoney;
+	}
+
+	public String getIsRefund() {
+		return isRefund;
+	}
+
+	public void setIsRefund(String isRefund) {
+		this.isRefund = isRefund;
 	}
 	
 	

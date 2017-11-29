@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.qmx.wxmp.common.persistence.Page;
+import com.qmx.wxmp.common.utils.DateUtils;
 import com.qmx.wxmp.dto.order.OrderQueryDTO;
 import com.qmx.wxmp.entity.dcxt.Dish;
 import com.qmx.wxmp.entity.order.OrderMain;
@@ -61,10 +62,10 @@ public class OrderService extends BaseService {
 		if (StringUtils.isNotBlank(entity.getAccountPhone())) {
 			dc.add(Restrictions.like("account.name", "%" + entity.getAccountPhone() + "%"));
 		}
-		if(entity.getBeginDate() != null){
+		if(StringUtils.isNotBlank(entity.getBeginDate())){
 			dc.add(Restrictions.ge("orderTime", entity.getBeginDate()));
 		}
-		if(entity.getEndDate() != null){
+		if(StringUtils.isNotBlank(entity.getEndDate())){
 			dc.add(Restrictions.le("orderTime", entity.getEndDate()));
 		}
 		if (StringUtils.isNotBlank(entity.getOrderStatus())) {
