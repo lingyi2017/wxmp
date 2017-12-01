@@ -64,11 +64,54 @@ function removeDish(dish) {
  *
  */
 function saveFoodMenu() {
-    $(".dishesTd").each(function () {
-        var dishesTdId = $(this).prop("id");
 
+    var foodMenuDto = {};
+
+    var createDate = $("#createDate").val();
+    foodMenuDto['createDate'] = createDate;
+
+    var foodMenuItemDtos = new Array();
+    $(".dishesTd").each(function () {
+        var foodMenuItemDto = {};
+        var dishesTdId = $(this).prop("id");
+        var idArray = dishesTdId.split("-");
+        var productId = idArray[0];
+        var mealId = idArray[1];
+        foodMenuItemDto['productId'] = productId;
+        foodMenuItemDto['mealId'] = mealId;
+        var dishIds = new Array();
         $(this).find("span").each(function () {
             var dishId = $(this).prop("id");
+            dishIds.push(dishId);
         })
+        foodMenuItemDto['dishIds'] = dishIds;
+
+        foodMenuItemDtos.push(foodMenuItemDto);
     });
+
+    foodMenuDto['foodMenuItemDtos'] = foodMenuItemDtos;
+
+    var foodMenuDtoStr = JSON.stringify(foodMenuDto);
+    $.ajax({
+        contentType: "application/json",
+        type: "post",
+        data: foodMenuDtoStr,
+        url: "${ctx}/dcxt/foodMenu/save",
+        async: true,
+        dataType: "json",
+        success: function (data) {
+            alert('操作成功');
+            if (data) {
+                if ('200' == data.code) {
+
+                } else {
+
+                }
+            }
+        },
+        error: function (data) {
+            alert('操作失败');
+        }
+    });
+
 }
