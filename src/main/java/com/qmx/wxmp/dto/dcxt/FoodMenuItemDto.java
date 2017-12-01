@@ -13,14 +13,31 @@ public class FoodMenuItemDto implements Serializable {
 
 	private static final long	serialVersionUID	= -2031297308875425750L;
 
+	private String				id;
+
 	// 产品ID
 	private String				productId;
 
 	// 餐标ID
 	private String				mealId;
 
+	// 菜单ID
+	private String				foodMenuId;
+
 	// 菜品ID集合
 	private List<String>		dishIds;
+
+
+
+	public String getId() {
+		return id;
+	}
+
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 
 
@@ -44,6 +61,18 @@ public class FoodMenuItemDto implements Serializable {
 
 	public void setMealId(String mealId) {
 		this.mealId = mealId;
+	}
+
+
+
+	public String getFoodMenuId() {
+		return foodMenuId;
+	}
+
+
+
+	public void setFoodMenuId(String foodMenuId) {
+		this.foodMenuId = foodMenuId;
 	}
 
 

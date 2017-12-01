@@ -86,9 +86,9 @@
                                 <div class="span1">时间</div>
                                 <div class="span11">
                                     <input id="createDate" name="createDate" type="text" readonly="readonly"
-                                           maxlength="20" class="input-small Wdate"
-                                           value="${createDate}"
-                                           onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+                                           maxlength="20" class="input-large Wdate"
+                                           value=""
+                                           onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +101,8 @@
 
     <div class="form-actions">
         <shiro:hasPermission name="dcxt:foodMenu:edit">
-            <input id="btnSubmit" class="btn btn-primary" type="button" onclick="saveFoodMenu()" value="<spring:message code='save' />"/>&nbsp;
+            <input id="btnSubmit" class="btn btn-primary" type="button" onclick="saveFoodMenu()"
+                   value="<spring:message code='save' />"/>&nbsp;
         </shiro:hasPermission>
         <input id="btnCancel" class="btn" type="button" value="<spring:message code='return' />"
                onclick="history.go(-1)"/>

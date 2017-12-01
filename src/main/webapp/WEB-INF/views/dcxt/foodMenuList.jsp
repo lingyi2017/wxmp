@@ -75,8 +75,7 @@
 <table id="contentTable" class="table table-striped table-bordered table-condensed">
     <thead>
     <tr>
-        <th class="sort createDate">添加时间</th>
-        <th>备注</th>
+        <th class="sort createDate">时间</th>
         <th>状态</th>
         <th>操作</th>
     </tr>
@@ -85,7 +84,6 @@
     <c:forEach items="${page.list}" var="entity">
         <tr>
             <td><fmt:formatDate value='${entity.createDate}' type="both"/></td>
-            <td>${entity.remarks}</td>
             <td>${fns:getDictLabel(entity.state, 'dcxt_state', '无')}</td>
             <shiro:hasPermission name="dcxt:foodMenu:edit">
                 <td>

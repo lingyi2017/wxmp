@@ -96,21 +96,20 @@ function saveFoodMenu() {
         contentType: "application/json",
         type: "post",
         data: foodMenuDtoStr,
-        url: "${ctx}/dcxt/foodMenu/save",
+        url: "/wxmp/rs/dcxt/foodMenu/save",
         async: true,
         dataType: "json",
         success: function (data) {
-            alert('操作成功');
             if (data) {
-                if ('200' == data.code) {
-
+                if ('200' == data.status) {
+                    window.location.href = "/wxmp/dcxt/foodMenu";
                 } else {
-
+                    alert("保存失败！");
                 }
             }
         },
-        error: function (data) {
-            alert('操作失败');
+        error: function () {
+            alert("保存失败！");
         }
     });
 

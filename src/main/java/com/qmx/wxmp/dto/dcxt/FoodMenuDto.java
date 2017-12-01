@@ -18,7 +18,7 @@ public class FoodMenuDto implements Serializable {
 	protected String				id;
 
 	// 创建日期
-	protected Date					createDate;
+	protected String				createDate;
 
 	// 菜单明细
 	private List<FoodMenuItemDto>	foodMenuItemDtos;
@@ -37,13 +37,13 @@ public class FoodMenuDto implements Serializable {
 
 
 
-	public Date getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
 
 
 
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 
