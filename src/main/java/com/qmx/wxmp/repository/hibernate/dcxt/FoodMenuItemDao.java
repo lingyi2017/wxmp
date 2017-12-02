@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import com.qmx.wxmp.common.persistence.BaseDao;
 import com.qmx.wxmp.entity.dcxt.FoodMenuItem;
+import org.springframework.util.CollectionUtils;
+
+import java.util.List;
 
 /**
  * 菜单明细 Dao
@@ -38,6 +41,31 @@ public class FoodMenuItemDao extends BaseDao<FoodMenuItem> {
 		Parameter parameter = new Parameter();
 		parameter.put("food_menu_item_id", foodMenuItemId);
 		parameter.put("dish_id", dishId);
+		updateBySql(sql, parameter);
+	}
+
+
+
+	public String getEntityId(String foodMenuId, String productId, String mealId) {
+		String sql = "SELECT id FROM dcxt_food_menu_item WHERE food_menu_id =:food_menu_id AND "
+				+ "product_id =:product_id AND meal_id =:meal_id";
+		Parameter parameter = new Parameter();
+		parameter.put("food_menu_id", foodMenuId);
+		parameter.put("product_id", productId);
+		parameter.put("meal_id", mealId);
+		List<String> foodMenuItemIds = findBySql(sql, parameter);
+		if (CollectionUtils.isEmpty(foodMenuItemIds)) {
+			return null;
+		}
+		return foodMenuItemIds.get(0);
+	}
+
+
+
+	public void deleteFoodMenuItemDish(String foodMenuItemId) {
+		String sql = "DELETE FROM dcxt_food_menu_item_dish WHERE food_menu_item_id = :food_menu_item_id";
+		Parameter parameter = new Parameter();
+		parameter.put("food_menu_item_id", foodMenuItemId);
 		updateBySql(sql, parameter);
 	}
 }

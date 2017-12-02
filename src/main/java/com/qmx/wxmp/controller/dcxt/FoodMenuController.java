@@ -2,33 +2,26 @@ package com.qmx.wxmp.controller.dcxt;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.qmx.wxmp.common.mapper.JsonMapper;
-import com.qmx.wxmp.dto.dcxt.FoodMenuDto;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.qmx.wxmp.common.persistence.Page;
+import com.qmx.wxmp.common.utils.StringUtils;
 import com.qmx.wxmp.controller.BaseController;
-import com.qmx.wxmp.entity.dcxt.Dish;
-import com.qmx.wxmp.entity.dcxt.FoodMenu;
-import com.qmx.wxmp.entity.dcxt.Meal;
-import com.qmx.wxmp.entity.dcxt.Product;
-import com.qmx.wxmp.service.dcxt.DishService;
-import com.qmx.wxmp.service.dcxt.FoodMenuService;
-import com.qmx.wxmp.service.dcxt.MealService;
-import com.qmx.wxmp.service.dcxt.ProductService;
+import com.qmx.wxmp.entity.dcxt.*;
+import com.qmx.wxmp.service.dcxt.*;
 import com.qmx.wxmp.vo.dcxt.DishTypeVo;
 
 /**
@@ -42,16 +35,19 @@ import com.qmx.wxmp.vo.dcxt.DishTypeVo;
 public class FoodMenuController extends BaseController {
 
 	@Autowired
-	private FoodMenuService	thisService;
+	private FoodMenuService		thisService;
 
 	@Autowired
-	private ProductService	productService;
+	private ProductService		productService;
 
 	@Autowired
-	private MealService		mealService;
+	private MealService			mealService;
 
 	@Autowired
-	private DishService		dishService;
+	private DishService			dishService;
+
+	@Autowired
+	private FoodMenuItemService	foodMenuItemService;
 
 
 
@@ -68,7 +64,7 @@ public class FoodMenuController extends BaseController {
 
 	@RequiresPermissions("dcxt:foodMenu:view")
 	@RequestMapping("/addForm")
-	public String addForm(FoodMenu entity, Model model) {
+	public String addForm(Model model) {
 
 		List<Product> products = productService.findAll();
 		List<Meal> meals = mealService.findAll();
@@ -78,6 +74,63 @@ public class FoodMenuController extends BaseController {
 
 		model.addAttribute("dishTypeVos", buildDishTypeVo(dishes));
 		return "/dcxt/addFoodMenuForm";
+
+	}
+
+
+
+	@RequiresPermissions("dcxt:foodMenu:view")
+	@RequestMapping("/editForm")
+	public String editForm(String id, RedirectAttributes redirectAttributes, Model model) {
+
+		FoodMenu foodMenu = thisService.get(id);
+		if (null == foodMenu || StringUtils.isEmpty(foodMenu.getId())) {
+			addMessage(redirectAttributes, "获取菜单信息失败");
+			return "redirect:/dcxt/foodMenu/?repage";
+		}
+
+		List<FoodMenuItem> foodMenuItems = foodMenu.getFoodMenuItems();
+		if (!CollectionUtils.isEmpty(foodMenuItems)) {
+			Map<String, Product> productMap = Maps.newLinkedHashMap();
+			Map<String, Meal> mealMap = Maps.newLinkedHashMap();
+			for (FoodMenuItem foodMenuItem : foodMenuItems) {
+				Product product = foodMenuItem.getProduct();
+				Meal meal = foodMenuItem.getMeal();
+				if (null != product && StringUtils.isNotBlank(product.getId())) {
+					if (!productMap.containsKey(product.getId())) {
+						productMap.put(product.getId(), product);
+					}
+				}
+				if (null != meal && StringUtils.isNotBlank(meal.getId())) {
+					if (!mealMap.containsKey(meal.getId())) {
+						mealMap.put(meal.getId(), meal);
+					}
+				}
+			}
+
+			if (!CollectionUtils.isEmpty(productMap)) {
+				List<Product> products = Lists.newArrayList();
+				Set<String> productSet = productMap.keySet();
+				for (String productId : productSet) {
+					products.add(productMap.get(productId));
+					model.addAttribute("products", products);
+				}
+			}
+			if (!CollectionUtils.isEmpty(mealMap)) {
+				List<Meal> meals = Lists.newArrayList();
+				Set<String> mealSet = mealMap.keySet();
+				for (String mealId : mealSet) {
+					meals.add(mealMap.get(mealId));
+					model.addAttribute("meals", meals);
+				}
+			}
+		}
+
+		List<Dish> dishes = dishService.findAll();
+		model.addAttribute("dishTypeVos", buildDishTypeVo(dishes));
+
+		model.addAttribute("foodMenu", foodMenu);
+		return "/dcxt/editFoodMenuForm";
 
 	}
 

@@ -33,4 +33,16 @@ public class FoodMenuDao extends BaseDao<FoodMenu> {
 		updateBySql(sql, parameter);
 
 	}
+
+
+
+	public void editBySql(FoodMenuDto foodMenuDto) {
+
+		String sql = "UPDATE dcxt_food_menu SET create_date = :create_date WHERE id = :id";
+		Parameter parameter = new Parameter();
+		parameter.put("create_date", foodMenuDto.getCreateDate());
+		parameter.put("id", foodMenuDto.getId());
+		updateBySql(sql, parameter);
+
+	}
 }

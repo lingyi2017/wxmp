@@ -78,6 +78,41 @@ public class FoodMenuService extends BaseService {
 
 
 
+	@Transactional
+	public Boolean editFoodMenu(FoodMenuDto foodMenuDto) {
+
+		try {
+			String foodMenuId = foodMenuDto.getId();
+			thisDao.editBySql(foodMenuDto);
+
+			List<FoodMenuItemDto> foodMenuItemDtos = foodMenuDto.getFoodMenuItemDtos();
+			if (!CollectionUtils.isEmpty(foodMenuItemDtos)) {
+				for (FoodMenuItemDto foodMenuItemDto : foodMenuItemDtos) {
+					String productId = foodMenuItemDto.getProductId();
+					String mealId = foodMenuItemDto.getMealId();
+					String foodMenuItemId = foodMenuItemDao.getEntityId(foodMenuId, productId, mealId);
+
+					foodMenuItemDao.deleteFoodMenuItemDish(foodMenuItemId);
+
+					List<String> dishIds = foodMenuItemDto.getDishIds();
+					if (!CollectionUtils.isEmpty(dishIds)) {
+						for (String dishId : dishIds) {
+							foodMenuItemDao.saveFoodMenuItemDish(foodMenuItemId, dishId);
+						}
+					}
+				}
+			}
+			return true;
+		} catch (Exception e) {
+			logger.error("==== 保存菜单失败：", e);
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+
+
+
 	@Transactional(readOnly = false)
 	public void save(FoodMenu entity) {
 		thisDao.clear();
