@@ -62,6 +62,12 @@
 
     <div style="margin-top:8px;">
         <label>名称：</label><form:input path="name" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
+        <label>类型：</label>
+        <form:select path="type" cssClass="input-small">
+            <form:option value="" label=""/>
+            <form:options items="${fns:getDictList('dcxt_dish_type')}" itemLabel="label" itemValue="value"
+                          htmlEscape="false"/>
+        </form:select>&nbsp;
         <label>状态：</label>
         <form:select path="state" cssClass="input-small">
             <form:option value="" label=""/>
@@ -76,8 +82,8 @@
 <table id="contentTable" class="table table-striped table-bordered table-condensed">
     <thead>
     <tr>
-        <th>名称</th>
         <th>图片</th>
+        <th>名称</th>
         <th>类型</th>
         <th>状态</th>
         <th class="sort createDate">添加时间</th>
@@ -87,12 +93,15 @@
     <tbody>
     <c:forEach items="${page.list}" var="entity">
         <tr>
-            <td>${entity.name}</td>
             <td>
+                <c:if test="${entity.image == '' || entity.image == null}">
+                    <img src="${ctx}/static/images/dish.jpg" style="width: 80px;height: 80px;">
+                </c:if>
                 <c:if test="${entity.image != '' && entity.image != null}">
                     <img src="${ctx}${fns:getUrl(entity.image)}" style="width: 80px;height: 80px;">
                 </c:if>
             </td>
+            <td>${entity.name}</td>
             <td>${fns:getDictLabel(entity.type, 'dcxt_dish_type', '无')}</td>
             <td>${fns:getDictLabel(entity.state, 'dcxt_state', '无')}</td>
             <td><fmt:formatDate value='${entity.createDate}' type="both"/></td>

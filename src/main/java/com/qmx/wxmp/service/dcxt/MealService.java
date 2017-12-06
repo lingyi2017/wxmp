@@ -63,7 +63,7 @@ public class MealService extends BaseService {
 		DetachedCriteria dc = thisDao.createDetachedCriteria();
 
 		if (StringUtils.isNotBlank(entity.getType())) {
-			dc.add(Restrictions.eq("type", entity.getType()));
+			dc.add(Restrictions.like("type", "%" + entity.getType() + "%"));
 		}
 		if (StringUtils.isNotEmpty(entity.getState())) {
 			dc.add(Restrictions.eq("state", entity.getState()));
@@ -71,7 +71,7 @@ public class MealService extends BaseService {
 
 		dc.add(Restrictions.eq("delFlag", Meal.DEL_FLAG_NORMAL));
 		if (StringUtils.isBlank(page.getOrderBy())) {
-			dc.addOrder(Order.desc("createDate"));
+			dc.addOrder(Order.asc("sort"));
 		}
 		return thisDao.find(page, dc);
 

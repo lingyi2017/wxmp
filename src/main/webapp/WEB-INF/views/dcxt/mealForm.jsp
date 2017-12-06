@@ -6,8 +6,10 @@
     <meta name="decorator" content="default"/>
     <script type="text/javascript">
 
-        $("#type").focus();
-        $("#inputForm").validate();
+        $(function () {
+            $("#type").focus();
+            $("#inputForm").validate();
+        });
 
     </script>
 </head>
@@ -26,19 +28,23 @@
     <div class="control-group">
         <label class="control-label">类型:</label>
         <div class="controls">
-            <form:select path="type">
-                <form:options items="${fns:getDictList('dcxt_meal_type')}" itemLabel="label" itemValue="value"
-                              htmlEscape="false"/>
-            </form:select>
+            <form:input path="type" htmlEscape="false" maxlength="50" class="required"/>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">状态:</label>
         <div class="controls">
             <form:select path="state">
-                <form:options items="${fns:getDictList('dcxt_state')}" itemLabel="label" itemValue="value"
+                <form:options items="${fns:getDictList('dcxt_meal_state')}" itemLabel="label" itemValue="value"
                               htmlEscape="false"/>
             </form:select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">序号:</label>
+        <div class="controls">
+            <form:input path="sort" htmlEscape="false" maxlength="50" class="required"/>&nbsp;
+            <label style="color: red;">数字越小越靠前显示</label>
         </div>
     </div>
     <div class="control-group">

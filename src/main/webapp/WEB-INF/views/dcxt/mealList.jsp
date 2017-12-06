@@ -62,15 +62,11 @@
 
     <div style="margin-top:8px;">
         <label>类型：</label>
-        <form:select path="type" cssClass="input-small">
-            <form:option value="" label=""/>
-            <form:options items="${fns:getDictList('dcxt_meal_type')}" itemLabel="label" itemValue="value"
-                          htmlEscape="false"/>
-        </form:select>&nbsp;
+        <form:input path="type" cssClass="input-small"/>&nbsp;
         <label>状态：</label>
         <form:select path="state" cssClass="input-small">
             <form:option value="" label=""/>
-            <form:options items="${fns:getDictList('dcxt_state')}" itemLabel="label" itemValue="value"
+            <form:options items="${fns:getDictList('dcxt_meal_state')}" itemLabel="label" itemValue="value"
                           htmlEscape="false"/>
         </form:select>&nbsp;&nbsp;
         <input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='query' />"
@@ -91,20 +87,20 @@
     <tbody>
     <c:forEach items="${page.list}" var="entity">
         <tr>
-            <td>${fns:getDictLabel(entity.type, 'dcxt_meal_type', '无')}</td>
+            <td>${entity.type}</td>
             <td>${entity.description}</td>
-            <td>${fns:getDictLabel(entity.state, 'dcxt_state', '无')}</td>
+            <td>${fns:getDictLabel(entity.state, 'dcxt_meal_state', '无')}</td>
             <td><fmt:formatDate value='${entity.createDate}' type="both"/></td>
             <shiro:hasPermission name="dcxt:meal:edit">
                 <td>
                     <c:if test="${entity.state == 1}">
                         <a href="${ctx}/dcxt/meal/updateState?id=${entity.id}&state=2"
-                           onclick="return confirmx('确认要上架该餐标吗？', this.href)">上架</a>
+                           onclick="return confirmx('确认要启用该餐标吗？', this.href)">启用</a>
                         <a href="${ctx}/dcxt/meal/form?id=${entity.id}"><spring:message code='update'/></a>
                     </c:if>
                     <c:if test="${entity.state == 2}">
                         <a href="${ctx}/dcxt/meal/updateState?id=${entity.id}&state=3"
-                           onclick="return confirmx('确认要下架该餐标吗？', this.href)">下架</a>
+                           onclick="return confirmx('确认要启用该餐标吗？', this.href)">不启用</a>
                     </c:if>
                     <a href="${ctx}/dcxt/meal/delete?id=${entity.id}"
                        onclick="return confirmx('确认要删除该餐标吗？', this.href)"><spring:message code='delete'/></a>

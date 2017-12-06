@@ -17,19 +17,23 @@ public class Meal extends BaseSimpleEntity {
 
 	private static final long	serialVersionUID	= 5663148551245769143L;
 
-	// 类型（1-早餐；2-午餐；3-晚餐）
+	// 类型
 	private String				type;
 
 	// 描述
 	private String				description;
 
-	// 状态（1-新增；2-上架；3-下架）
+	// 状态（1-新增；2-启用；3-不启用）
 	private String				state;
+
+	// 排序（ASC）
+	private Integer				sort;
 
 
 
 	public Meal() {
 		super();
+		this.sort = 9999;
 	}
 
 
@@ -66,5 +70,17 @@ public class Meal extends BaseSimpleEntity {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+
+
+	public Integer getSort() {
+		return sort;
+	}
+
+
+
+	public void setSort(Integer sort) {
+		this.sort = sort;
 	}
 }

@@ -68,6 +68,9 @@ public class DishService extends BaseService {
 		if (StringUtils.isNotEmpty(entity.getState())) {
 			dc.add(Restrictions.eq("state", entity.getState()));
 		}
+		if (StringUtils.isNotEmpty(entity.getType())) {
+			dc.add(Restrictions.eq("type", entity.getType()));
+		}
 
 		dc.add(Restrictions.eq("delFlag", Dish.DEL_FLAG_NORMAL));
 		if (StringUtils.isBlank(page.getOrderBy())) {
