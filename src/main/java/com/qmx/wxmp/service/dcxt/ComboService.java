@@ -66,7 +66,10 @@ public class ComboService extends BaseService {
 		if (StringUtils.isNotEmpty(entity.getState())) {
 			dc.add(Restrictions.eq("state", entity.getState()));
 		}
-
+		dc.createAlias("product", "product");
+		if (null != entity.getProduct() && StringUtils.isNotEmpty(entity.getProduct().getId())) {
+			dc.add(Restrictions.eq("product.id", entity.getProduct().getId()));
+		}
 		dc.add(Restrictions.eq("delFlag", Combo.DEL_FLAG_NORMAL));
 		if (StringUtils.isBlank(page.getOrderBy())) {
 			dc.addOrder(Order.desc("createDate"));

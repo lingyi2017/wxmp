@@ -4,7 +4,7 @@
      aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="menuLabel">菜品</h3>
+        <h4 id="menuLabel">菜品</h4>
     </div>
     <div class="modal-body dishesModal">
         <c:forEach items="${dishTypeVos}" var="dishTypeVo">
@@ -13,7 +13,7 @@
                     <div class="span12">
                         <fieldset>
                             <legend style="font-size: 15px;">
-                                <strong>${fns:getDictLabel(dishTypeVo.type, 'dcxt_dish_type', '无')}</strong>
+                                ${fns:getDictLabel(dishTypeVo.type, 'dcxt_dish_type', '无')}
                             </legend>
                         </fieldset>
                     </div>
@@ -23,7 +23,7 @@
                 <div class="row-fluid">
                     <div class="span12">
                         <c:forEach items="${dishTypeVo.dishes}" var="dish">
-                        <span class="badge badge-inverse">
+                        <span class="badge badge-success">
                             <input type="checkbox" value="${dish.id}" name="${dish.name}">${dish.name}
                         </span>
                         </c:forEach>

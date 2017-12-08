@@ -67,7 +67,15 @@
             <form:option value="" label=""/>
             <form:options items="${fns:getDictList('dcxt_state')}" itemLabel="label" itemValue="value"
                           htmlEscape="false"/>
-        </form:select>&nbsp;&nbsp;
+        </form:select>&nbsp;
+        <label>所属产品：</label>
+        <form:select path="product.id" cssClass="input-small">
+            <form:option value="" label=""/>
+            <c:forEach items="${products}" var="product">
+                <form:option value="${product.id}" label="${product.name}"/>
+            </c:forEach>
+        </form:select>&nbsp;
+        &nbsp;&nbsp;
         <input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='query' />"
                onclick="return page();"/>
     </div>
@@ -76,12 +84,12 @@
 <table id="contentTable" class="table table-striped table-bordered table-condensed">
     <thead>
     <tr>
+        <th>所属产品</th>
         <th>名称</th>
         <th>价格</th>
         <th>获得积分</th>
         <th>兑换积分</th>
         <th>状态</th>
-        <th>所属产品</th>
         <th class="sort createDate">添加时间</th>
         <th>操作</th>
     </tr>
@@ -89,12 +97,12 @@
     <tbody>
     <c:forEach items="${page.list}" var="entity">
         <tr>
+            <td>${entity.product.name}</td>
             <td>${entity.name}</td>
             <td>${entity.price}</td>
             <td>${entity.gainIntegral}</td>
             <td>${entity.exchangeIntegral}</td>
             <td>${fns:getDictLabel(entity.state, 'dcxt_state', '无')}</td>
-            <td>${entity.product.name}</td>
             <td><fmt:formatDate value='${entity.createDate}' type="both"/></td>
             <shiro:hasPermission name="dcxt:combo:edit">
                 <td>

@@ -43,8 +43,21 @@
                                 <div class="span11">
                                     <c:forEach items="${product.combos}" var="combo">
                                         <span class="badge badge-info" data-html="true" data-trigger="hover"
-                                              data-container="body" data-toggle="popover" data-placement="top"
-                                              data-content="<div><label>价格：</label><label>${combo.price}</label></div><div>">${combo.name}</span>
+                                              data-container="body" data-toggle="popover" data-placement="bottom"
+                                              data-content="<div><table class='table'>
+                                              <tr>
+                                                <td style='width:60px;'>价格</td><td>${combo.price}</td>
+                                              </tr>
+                                              <tr>
+                                                <td>获得积分</td><td>${combo.gainIntegral}</td>
+                                              </tr>
+                                              <tr>
+                                                <td>兑换积分</td><td>${combo.exchangeIntegral}</td>
+                                              </tr>
+                                              <tr>
+                                                <td>适用人群</td><td>${combo.applicablePeople}</td>
+                                              </tr>
+                                              </table><div>">${combo.name}</span>
                                     </c:forEach>
                                 </div>
                             </div>
@@ -88,7 +101,7 @@
                                     <input id="createDate" name="createDate" type="text" readonly="readonly"
                                            maxlength="20" class="input-large Wdate"
                                            value=""
-                                           onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                                           onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
                                 </div>
                             </div>
                         </div>

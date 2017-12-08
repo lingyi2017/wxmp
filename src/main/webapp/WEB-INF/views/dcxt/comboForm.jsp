@@ -25,9 +25,12 @@
     <div class="control-group">
         <label class="control-label">产品:</label>
         <div class="controls">
-            <tags:treeselect id="product" name="product.id" value="${combo.product.id}" labelName="product.name"
-                             labelValue="${combo.product.name}"
-                             title="产品" url="/dcxt/product/treeData" cssClass="required"/>
+            <form:select path="product.id">
+                <form:option value="" label=""/>
+                <c:forEach items="${products}" var="product">
+                    <form:option value="${product.id}" label="${product.name}"/>
+                </c:forEach>
+            </form:select>
         </div>
     </div>
     <div class="control-group">

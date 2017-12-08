@@ -3,6 +3,8 @@ package com.qmx.wxmp.controller.dcxt;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.qmx.wxmp.entity.dcxt.Product;
+import com.qmx.wxmp.service.dcxt.ProductService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ import com.qmx.wxmp.controller.BaseController;
 import com.qmx.wxmp.entity.dcxt.Combo;
 import com.qmx.wxmp.service.dcxt.ComboService;
 
+import java.util.List;
+
 /**
  * 份量Controller
  *
@@ -29,7 +33,10 @@ import com.qmx.wxmp.service.dcxt.ComboService;
 public class ComboController extends BaseController {
 
 	@Autowired
-	private ComboService thisService;
+	private ComboService	thisService;
+
+	@Autowired
+	private ProductService	productService;
 
 
 
@@ -47,7 +54,10 @@ public class ComboController extends BaseController {
 	@RequiresPermissions("dcxt:combo:view")
 	@RequestMapping({ "list", "" })
 	public String list(Combo entity, HttpServletRequest request, HttpServletResponse response, Model model) {
+
 		Page<Combo> page = thisService.findList(new Page<Combo>(request, response), entity);
+		List<Product> products = productService.findAll();
+		model.addAttribute("products", products);
 		model.addAttribute("page", page);
 
 		return "/dcxt/comboList";
@@ -58,7 +68,8 @@ public class ComboController extends BaseController {
 	@RequiresPermissions("dcxt:combo:view")
 	@RequestMapping("/form")
 	public String form(Combo entity, Model model) {
-
+		List<Product> products = productService.findAll();
+		model.addAttribute("products", products);
 		model.addAttribute("combo", entity);
 		return "/dcxt/comboForm";
 	}
@@ -101,6 +112,8 @@ public class ComboController extends BaseController {
 		}
 		return "redirect:/dcxt/combo/?repage";
 	}
+
+
 
 	@RequiresPermissions("dcxt:combo:edit")
 	@RequestMapping("/updateState")
