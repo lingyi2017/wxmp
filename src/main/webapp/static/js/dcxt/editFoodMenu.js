@@ -31,7 +31,7 @@ $(function () {
                         var dishesTdHTM = "";
                         var dishes = dishTd.dishes;
                         $(dishes).each(function (index, dish) {
-                            dishesTdHTM += "<span class='label label-inverse' style='margin-right: 5px;' id='" + dish.id + "'>" + dish.name +
+                            dishesTdHTM += "<span class='label label-success' style='margin-right: 5px;' id='" + dish.id + "'>" + dish.name +
                                 " <i class='icon-remove-sign icon-white' style='cursor: pointer;' onclick='removeDish(this)'></i>" +
                                 "</span>";
                         });
@@ -59,12 +59,26 @@ $(function () {
 function showFoodMenu(productId, mealId) {
 
     $("#menuModal").modal('show');
-    $(".dishesModal").find("input").each(function () {
-        $(this).prop("checked", false);
-    });
+    $(".warnDiv").html("");
     nowProductId = productId;
     nowMealId = mealId;
 
+    // 清除之前选择的菜品
+    $(".dishesModal").find("input").each(function () {
+        $(this).prop("checked", false);
+    });
+
+    // 回显当前TD中选中的菜品
+    var dishesTdId = nowProductId + "-" + nowMealId;
+    var dishIdArray = new Array();
+    $("#" + dishesTdId).find("span").each(function () {
+        dishIdArray.push($(this).prop("id"));
+    });
+    $(".dishesModal").find("input").each(function () {
+        if (isInArray(dishIdArray, $(this).prop("value"))) {
+            $(this).prop("checked", true);
+        }
+    });
 }
 
 /**
@@ -73,16 +87,38 @@ function showFoodMenu(productId, mealId) {
  */
 function addDish() {
 
+    var dishesTdId = nowProductId + "-" + nowMealId;
+    var dishIdArray = new Array();
+    $("#" + dishesTdId).find("span").each(function () {
+        dishIdArray.push($(this).prop("id"));
+    });
+    var isExist = false;
+    $(".dishesModal").find("input").each(function () {
+        if ($(this).prop("checked")) {
+            if (isInArray(dishIdArray, $(this).prop("value"))) {
+                isExist = true;
+                return false;
+            }
+        }
+    });
+    if (isExist) {
+        var warnHTM = "<div class='alert'>" +
+            "<button type='button' class='close' data-dismiss='alert'>&times;</button>" +
+            "菜品不能重复添加" +
+            "</div>"
+        $(".warnDiv").html(warnHTM);
+        return false;
+    }
+
     var dishesTdHTM = "";
     $(".dishesModal").find("input").each(function () {
         if ($(this).prop("checked")) {
-            dishesTdHTM += "<span class='label label-inverse' style='margin-right: 5px;' id='" + $(this).prop("value") + "'>" +
+            dishesTdHTM += "<span class='label label-success' style='margin-right: 5px;' id='" + $(this).prop("value") + "'>" +
                 $(this).prop("name") +
                 " <i class='icon-remove-sign icon-white' style='cursor: pointer;' onclick='removeDish(this)'></i>" +
                 "</span>";
         }
     });
-    var dishesTdId = nowProductId + "-" + nowMealId;
     if (dishesTdHTM != "") {
         if ($("#" + dishesTdId + " span").size() > 0) {
             $("#" + dishesTdId + " span:last").after(dishesTdHTM);
@@ -114,8 +150,8 @@ function editFoodMenu() {
     var foodMenuId = $("#foodMenuId").val();
     foodMenuDto['id'] = foodMenuId;
 
-    var createDate = $("#createDate").val();
-    foodMenuDto['createDate'] = createDate;
+    var addDate = $("#addDate").val();
+    foodMenuDto['addDate'] = addDate;
 
     var foodMenuItemDtos = new Array();
     $(".dishesTd").each(function () {
@@ -160,4 +196,14 @@ function editFoodMenu() {
         }
     });
 
+}
+
+function isInArray(array, value) {
+
+    for (var i = 0; i < array.length; i++) {
+        if (value == array[i]) {
+            return true;
+        }
+    }
+    return false;
 }

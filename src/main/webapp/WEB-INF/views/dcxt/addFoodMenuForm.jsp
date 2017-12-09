@@ -99,7 +99,7 @@
                             <div class="row-fluid">
                                 <div class="span1">时间</div>
                                 <div class="span11">
-                                    <input id="createDate" name="createDate" type="text" readonly="readonly"
+                                    <input id="addDate" name="addDate" type="text" readonly="readonly"
                                            maxlength="20" class="input-large Wdate"
                                            value=""
                                            onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>

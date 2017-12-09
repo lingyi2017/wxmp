@@ -83,7 +83,7 @@
     <tbody>
     <c:forEach items="${page.list}" var="entity">
         <tr>
-            <td>${entity.createDate}</td>
+            <td>${entity.addDate}</td>
             <td>${fns:getDictLabel(entity.state, 'dcxt_state', '无')}</td>
             <shiro:hasPermission name="dcxt:foodMenu:edit">
                 <td>

@@ -44,8 +44,21 @@
                                 <div class="span11">
                                     <c:forEach items="${product.combos}" var="combo">
                                         <span class="badge badge-info" data-html="true" data-trigger="hover"
-                                              data-container="body" data-toggle="popover" data-placement="top"
-                                              data-content="<div><label>价格：</label><label>${combo.price}</label></div><div>">${combo.name}</span>
+                                              data-container="body" data-toggle="popover" data-placement="bottom"
+                                              data-content="<div><table class='table'>
+                                              <tr>
+                                                <td style='width:60px;'>价格</td><td>${combo.price}</td>
+                                              </tr>
+                                              <tr>
+                                                <td>获得积分</td><td>${combo.gainIntegral}</td>
+                                              </tr>
+                                              <tr>
+                                                <td>兑换积分</td><td>${combo.exchangeIntegral}</td>
+                                              </tr>
+                                              <tr>
+                                                <td>适用人群</td><td>${combo.applicablePeople}</td>
+                                              </tr>
+                                              </table><div>">${combo.name}</span>
                                     </c:forEach>
                                 </div>
                             </div>
@@ -54,9 +67,10 @@
                                 <div class="span11">
                                     <table class="table">
                                         <tr>
-                                            <c:forEach items="${meals}" var="meal">
-                                                <td>
-                                                        ${fns:getDictLabel(meal.type, 'dcxt_meal_type', '无')}（${meal.description}）
+                                            <c:forEach items="${meals}" var="meal" varStatus="status">
+                                                <td <c:if
+                                                        test="${!status.last}"> style="width: ${mealTdWidth}%;" </c:if>>
+                                                        ${meal.type}（${meal.description}）
                                                     <i class="icon-plus-sign"
                                                        style="cursor: pointer;margin-top: 2px;"
                                                        onclick="showFoodMenu('${product.id}', '${meal.id}');"></i>
@@ -86,10 +100,10 @@
                             <div class="row-fluid">
                                 <div class="span1">时间</div>
                                 <div class="span11">
-                                    <input id="createDate" name="createDate" type="text" readonly="readonly"
+                                    <input id="addDate" name="addDate" type="text" readonly="readonly"
                                            maxlength="20" class="input-large Wdate"
-                                           value="${foodMenu.createDate}"
-                                           onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+                                           value="${foodMenu.addDate}"
+                                           onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
                                 </div>
                             </div>
                         </div>

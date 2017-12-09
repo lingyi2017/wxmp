@@ -71,7 +71,7 @@ public class ProductService extends BaseService {
 
 		dc.add(Restrictions.eq("delFlag", Product.DEL_FLAG_NORMAL));
 		if (StringUtils.isBlank(page.getOrderBy())) {
-			dc.addOrder(Order.desc("createDate"));
+			dc.addOrder(Order.asc("sort"));
 		}
 		return thisDao.find(page, dc);
 
@@ -84,7 +84,7 @@ public class ProductService extends BaseService {
 		DetachedCriteria dc = thisDao.createDetachedCriteria();
 		dc.add(Restrictions.eq("delFlag", Product.DEL_FLAG_NORMAL));
 		dc.add(Restrictions.eq("state", Product.STATE_ACTIVE));
-		dc.addOrder(Order.desc("createDate"));
+		dc.addOrder(Order.asc("sort"));
 		return thisDao.find(dc);
 
 	}

@@ -106,6 +106,13 @@
 			</div>
 		</div>
 		<div class="control-group">
+			<label class="control-label">序号:</label>
+			<div class="controls">
+				<form:input path="sort" htmlEscape="false" maxlength="50" class="required"/>&nbsp;
+				<label style="color: red;">数字越小越靠前显示</label>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label">描述:</label>
 			<div class="controls">
 				<form:textarea path="description" htmlEscape="false" rows="3" maxlength="200" class="input-xlarge"/>

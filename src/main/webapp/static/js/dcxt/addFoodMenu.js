@@ -61,7 +61,7 @@ function addDish() {
     if (isExist) {
         var warnHTM = "<div class='alert'>" +
             "<button type='button' class='close' data-dismiss='alert'>&times;</button>" +
-            "不能菜品重复添加" +
+            "菜品不能重复添加" +
             "</div>"
         $(".warnDiv").html(warnHTM);
         return false;
@@ -105,8 +105,8 @@ function saveFoodMenu() {
 
     var foodMenuDto = {};
 
-    var createDate = $("#createDate").val();
-    foodMenuDto['createDate'] = createDate;
+    var addDate = $("#addDate").val();
+    foodMenuDto['addDate'] = addDate;
 
     var foodMenuItemDtos = new Array();
     $(".dishesTd").each(function () {

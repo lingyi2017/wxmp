@@ -1,12 +1,11 @@
 package com.qmx.wxmp.entity.dcxt;
 
+import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.NotFound;
@@ -38,6 +37,9 @@ public class FoodMenu extends BaseSimpleEntity {
 	// 状态（1-新增；2-上架；3-下架）
 	private String				state;
 
+	// 添加日期
+	protected Date				addDate;
+
 
 
 	@OneToMany(mappedBy = "foodMenu", fetch = FetchType.LAZY)
@@ -63,5 +65,19 @@ public class FoodMenu extends BaseSimpleEntity {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+
+
+	@Temporal(TemporalType.DATE)
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+	public Date getAddDate() {
+		return addDate;
+	}
+
+
+
+	public void setAddDate(Date addDate) {
+		this.addDate = addDate;
 	}
 }

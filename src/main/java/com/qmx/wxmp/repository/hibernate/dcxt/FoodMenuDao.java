@@ -24,10 +24,10 @@ public class FoodMenuDao extends BaseDao<FoodMenu> {
 
 	public void saveBySql(FoodMenuDto foodMenuDto) {
 
-		String sql = "INSERT INTO dcxt_food_menu(id, create_date, state, del_flag) VALUES(:id, :create_date, :state, :del_flag)";
+		String sql = "INSERT INTO dcxt_food_menu(id, add_date, state, del_flag) VALUES(:id, :add_date, :state, :del_flag)";
 		Parameter parameter = new Parameter();
 		parameter.put("id", foodMenuDto.getId());
-		parameter.put("create_date", foodMenuDto.getCreateDate());
+		parameter.put("add_date", foodMenuDto.getAddDate());
 		parameter.put("state", FoodMenu.STATE_NEW);
 		parameter.put("del_flag", FoodMenu.DEL_FLAG_NORMAL);
 		updateBySql(sql, parameter);
@@ -38,9 +38,9 @@ public class FoodMenuDao extends BaseDao<FoodMenu> {
 
 	public void editBySql(FoodMenuDto foodMenuDto) {
 
-		String sql = "UPDATE dcxt_food_menu SET create_date = :create_date WHERE id = :id";
+		String sql = "UPDATE dcxt_food_menu SET add_date = :add_date WHERE id = :id";
 		Parameter parameter = new Parameter();
-		parameter.put("create_date", foodMenuDto.getCreateDate());
+		parameter.put("add_date", foodMenuDto.getAddDate());
 		parameter.put("id", foodMenuDto.getId());
 		updateBySql(sql, parameter);
 

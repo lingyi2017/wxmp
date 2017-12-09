@@ -35,6 +35,9 @@ public class Product extends BaseSimpleEntity {
 	// 状态（1-下架；2-上架）
 	private String				state;
 
+	// 排序（ASC）
+	private Integer				sort;
+
 	// 份量列表
 	private List<Combo>			combos;
 
@@ -90,6 +93,18 @@ public class Product extends BaseSimpleEntity {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+
+
+	public Integer getSort() {
+		return sort;
+	}
+
+
+
+	public void setSort(Integer sort) {
+		this.sort = sort;
 	}
 
 

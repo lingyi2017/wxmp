@@ -1,8 +1,6 @@
 package com.qmx.wxmp.controller.dcxt;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -117,22 +115,38 @@ public class FoodMenuController extends BaseController {
 				Set<String> productSet = productMap.keySet();
 				for (String productId : productSet) {
 					products.add(productMap.get(productId));
-					model.addAttribute("products", products);
 				}
+
+				Collections.sort(products, new Comparator<Product>() {
+					@Override
+					public int compare(Product o1, Product o2) {
+						return o1.getSort().compareTo(o2.getSort());
+					}
+				});
+				model.addAttribute("products", products);
 			}
 			if (!CollectionUtils.isEmpty(mealMap)) {
 				List<Meal> meals = Lists.newArrayList();
 				Set<String> mealSet = mealMap.keySet();
 				for (String mealId : mealSet) {
 					meals.add(mealMap.get(mealId));
-					model.addAttribute("meals", meals);
 				}
+				int mealsSize = meals.size() < 1 ? 1 : meals.size();
+				int mealTdWidth = 100 / mealsSize;
+
+				Collections.sort(meals, new Comparator<Meal>() {
+					@Override
+					public int compare(Meal o1, Meal o2) {
+						return o1.getSort().compareTo(o2.getSort());
+					}
+				});
+				model.addAttribute("meals", meals);
+				model.addAttribute("mealTdWidth", mealTdWidth);
 			}
 		}
 
 		List<Dish> dishes = dishService.findAll();
 		model.addAttribute("dishTypeVos", buildDishTypeVo(dishes));
-
 		model.addAttribute("foodMenu", foodMenu);
 		return "/dcxt/editFoodMenuForm";
 
