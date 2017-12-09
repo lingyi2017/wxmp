@@ -63,6 +63,14 @@ public class DishController extends BaseController {
 		return "/dcxt/dishForm";
 	}
 
+	@RequiresPermissions("dcxt:dish:view")
+	@RequestMapping("/viewForm")
+	public String viewForm(Dish entity, Model model) {
+
+		model.addAttribute("dish", entity);
+		return "/dcxt/viewDishForm";
+	}
+
 
 
 	@RequiresPermissions("dcxt:dish:edit")

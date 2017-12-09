@@ -116,6 +116,7 @@
                         <a href="${ctx}/dcxt/dish/updateState?id=${entity.id}&state=3"
                            onclick="return confirmx('确认要下架该菜品吗？', this.href)">下架</a>
                     </c:if>
+                    <a href="${ctx}/dcxt/dish/viewForm?id=${entity.id}"><spring:message code='check'/></a>
                     <a href="${ctx}/dcxt/dish/delete?id=${entity.id}"
                        onclick="return confirmx('确认要删除该菜品吗？', this.href)"><spring:message code='delete'/></a>
                 </td>
