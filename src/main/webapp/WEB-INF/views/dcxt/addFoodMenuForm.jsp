@@ -66,9 +66,10 @@
                                 <div class="span11">
                                     <table class="table">
                                         <tr>
-                                            <c:forEach items="${meals}" var="meal">
-                                                <td>
-                                                        ${fns:getDictLabel(meal.type, 'dcxt_meal_type', '无')}（${meal.description}）
+                                            <c:forEach items="${meals}" var="meal" varStatus="status">
+                                                <td <c:if
+                                                        test="${!status.last}"> style="width: ${mealTdWidth}%;" </c:if>>
+                                                        ${meal.type}（${meal.description}）
                                                     <i class="icon-plus-sign"
                                                        style="cursor: pointer;margin-top: 2px;"
                                                        onclick="showFoodMenu('${product.id}', '${meal.id}');"></i>

@@ -69,10 +69,14 @@ public class FoodMenuController extends BaseController {
 		List<Product> products = productService.findAll();
 		List<Meal> meals = mealService.findAll();
 		List<Dish> dishes = dishService.findAll();
+
+		int mealsSize = meals.size() < 1 ? 1 : meals.size();
+		int mealTdWidth = 100 / mealsSize;
+
 		model.addAttribute("products", products);
 		model.addAttribute("meals", meals);
-
 		model.addAttribute("dishTypeVos", buildDishTypeVo(dishes));
+		model.addAttribute("mealTdWidth", mealTdWidth);
 		return "/dcxt/addFoodMenuForm";
 
 	}

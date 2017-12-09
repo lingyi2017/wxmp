@@ -15,11 +15,26 @@ var nowMealId;
 function showFoodMenu(productId, mealId) {
 
     $("#menuModal").modal('show');
+    $(".warnDiv").html("");
+    nowProductId = productId;
+    nowMealId = mealId;
+
+    // 清除之前选择的菜品
     $(".dishesModal").find("input").each(function () {
         $(this).prop("checked", false);
     });
-    nowProductId = productId;
-    nowMealId = mealId;
+
+    // 回显当前TD中选中的菜品
+    var dishesTdId = nowProductId + "-" + nowMealId;
+    var dishIdArray = new Array();
+    $("#" + dishesTdId).find("span").each(function () {
+        dishIdArray.push($(this).prop("id"));
+    });
+    $(".dishesModal").find("input").each(function () {
+        if (isInArray(dishIdArray, $(this).prop("value"))) {
+            $(this).prop("checked", true);
+        }
+    });
 
 }
 
@@ -29,16 +44,39 @@ function showFoodMenu(productId, mealId) {
  */
 function addDish() {
 
+    var dishesTdId = nowProductId + "-" + nowMealId;
+    var dishIdArray = new Array();
+    $("#" + dishesTdId).find("span").each(function () {
+        dishIdArray.push($(this).prop("id"));
+    });
+    var isExist = false;
+    $(".dishesModal").find("input").each(function () {
+        if ($(this).prop("checked")) {
+            if (isInArray(dishIdArray, $(this).prop("value"))) {
+                isExist = true;
+                return false;
+            }
+        }
+    });
+    if (isExist) {
+        var warnHTM = "<div class='alert'>" +
+            "<button type='button' class='close' data-dismiss='alert'>&times;</button>" +
+            "不能菜品重复添加" +
+            "</div>"
+        $(".warnDiv").html(warnHTM);
+        return false;
+    }
+
+
     var dishesTdHTM = "";
     $(".dishesModal").find("input").each(function () {
         if ($(this).prop("checked")) {
-            dishesTdHTM += "<span class='label label-inverse' style='margin-right: 5px;' id='" + $(this).prop("value") + "'>" +
+            dishesTdHTM += "<span class='label label-success' style='margin-right: 5px;' id='" + $(this).prop("value") + "'>" +
                 $(this).prop("name") +
                 " <i class='icon-remove-sign icon-white' style='cursor: pointer;' onclick='removeDish(this)'></i>" +
                 "</span>";
         }
     });
-    var dishesTdId = nowProductId + "-" + nowMealId;
     if (dishesTdHTM != "") {
         if ($("#" + dishesTdId + " span").size() > 0) {
             $("#" + dishesTdId + " span:last").after(dishesTdHTM);
@@ -113,4 +151,14 @@ function saveFoodMenu() {
         }
     });
 
+}
+
+function isInArray(array, value) {
+
+    for (var i = 0; i < array.length; i++) {
+        if (value == array[i]) {
+            return true;
+        }
+    }
+    return false;
 }

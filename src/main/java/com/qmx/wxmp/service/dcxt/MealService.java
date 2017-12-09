@@ -84,7 +84,7 @@ public class MealService extends BaseService {
 		DetachedCriteria dc = thisDao.createDetachedCriteria();
 		dc.add(Restrictions.eq("delFlag", Meal.DEL_FLAG_NORMAL));
 		dc.add(Restrictions.eq("state", Meal.STATE_ACTIVE));
-		dc.addOrder(Order.asc("type"));
+		dc.addOrder(Order.asc("sort"));
 		return thisDao.find(dc);
 
 	}

@@ -6,6 +6,8 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h4 id="menuLabel">菜品</h4>
     </div>
+    <div class="warnDiv">
+    </div>
     <div class="modal-body dishesModal">
         <c:forEach items="${dishTypeVos}" var="dishTypeVo">
             <div class="container-fluid">
@@ -13,7 +15,7 @@
                     <div class="span12">
                         <fieldset>
                             <legend style="font-size: 15px;">
-                                ${fns:getDictLabel(dishTypeVo.type, 'dcxt_dish_type', '无')}
+                                    ${fns:getDictLabel(dishTypeVo.type, 'dcxt_dish_type', '无')}
                             </legend>
                         </fieldset>
                     </div>
