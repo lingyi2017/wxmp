@@ -77,7 +77,7 @@
     <tr>
         <th class="sort createDate">时间</th>
         <th>状态</th>
-        <th>操作</th>
+        <th style="width:150px;">操作</th>
     </tr>
     </thead>
     <tbody>
@@ -96,6 +96,7 @@
                         <a href="${ctx}/dcxt/foodMenu/updateState?id=${entity.id}&state=3"
                            onclick="return confirmx('确认要下架该菜单吗？', this.href)">下架</a>
                     </c:if>
+                    <a href="${ctx}/dcxt/foodMenu/viewForm?id=${entity.id}"><spring:message code='check'/></a>
                     <a href="${ctx}/dcxt/foodMenu/delete?id=${entity.id}"
                        onclick="return confirmx('确认要删除该菜单吗？', this.href)"><spring:message code='delete'/></a>
                 </td>

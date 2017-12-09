@@ -39,12 +39,12 @@ $(function () {
                     });
 
                 } else {
-                    alert("保存失败！");
+                    alert("获取数据失败！");
                 }
             }
         },
         error: function () {
-            alert("保存失败！");
+            alert("获取数据失败！");
         }
     });
 
