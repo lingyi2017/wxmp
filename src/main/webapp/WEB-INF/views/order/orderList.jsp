@@ -63,7 +63,7 @@
     <div style="margin-top:8px;">
         <label>用户姓名：</label><form:input path="accountName" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
         <label>用户电话：</label><form:input path="accountPhone" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
-        <label>咨询时间：</label>
+        <label>订单时间：</label>
 	    <label>
 	        <input id="beginDate" name="beginDate" type="text" readonly="readonly" maxlength="20" class="input-small Wdate"
 	               value="${orderQueryDTO.beginDate}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/> ~
@@ -80,8 +80,8 @@
     <tr>
         <th>订单号</th>
         <th>下单时间</th>
-        <th>客户姓名</th>
-        <th>客户电话</th>
+        <th>用户姓名</th>
+        <th>用户电话</th>
         <th>购买产品</th>
         <th>支付方式</th>
         <th>购买天数</th>
@@ -105,13 +105,17 @@
             <td>${entity.finishDays}</td>
             <td>${entity.orderMoney}</td>
             <td>${entity.paidMoney}</td>
-            <td>${fns:getDictLabel(entity.orderStatus, 'order_status', '无')}</td>
+            <td>${fns:getDictLabel(entity.status, 'order_status', '无')}</td>
             <shiro:hasPermission name="dcxt:order:edit">
                 <td>
                 	<a href="${ctx}/dcxt/order/form?id=${entity.id}">详情</a>
-                	<c:if test="${entity.orderStatus == 1 }">
-                    <a href="${ctx}/dcxt/accountaddress/formByOrderId?orderId=${entity.id}">修改收货地址</a>
-                	<a href="${ctx}/dcxt/order/pause?id=${entity.id}">暂停</a>
+                	<c:if test="${entity.status == 2 }">
+                	<a href="${ctx}/dcxt/order/pause?id=${entity.id}" 
+                		onclick="return confirmx('确认要暂停该订单吗？', this.href)">暂停订单</a>
+                	</c:if>
+                	<c:if test="${entity.status == 3 }">
+                	<a href="${ctx}/dcxt/order/recover?id=${entity.id}" 
+                		onclick="return confirmx('确认要恢复该订单吗？', this.href)">恢复订单</a>
                 	</c:if>
                 </td>
             </shiro:hasPermission>

@@ -40,7 +40,7 @@
         function page(n, s) {
             $("#pageNo").val(n);
             $("#pageSize").val(s);
-            $("#searchForm").attr("action", "${ctx}/dcxt/order/");
+            $("#searchForm").attr("action", "${ctx}/dcxt/orderrefund/");
             $("#searchForm").submit();
             return false;
         }
@@ -50,19 +50,20 @@
 
 <ul class="nav nav-tabs">
     <li class="active"><a>订单退款列表</a></li>
-    <%-- <shiro:hasPermission name="dcxt:account:edit">
-        <li><a href="${ctx}/dcxt/account/form">用户修改</a></li>
-    </shiro:hasPermission> --%>
 </ul>
-<form:form id="searchForm" modelAttribute="orderQueryDTO" action="${ctx}/dcxt/order/" method="post"
+<form:form id="searchForm" modelAttribute="orderQueryDTO" action="${ctx}/dcxt/orderrefund/" method="post"
            class="breadcrumb form-search">
     <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
     <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
     <input id="orderBy" name="orderBy" type="hidden" value="${page.orderBy}"/>
 
     <div style="margin-top:8px;">
-        <label>用户姓名：</label><form:input path="accountName" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
-        <label>用户电话：</label><form:input path="accountPhone" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
+        <label>订单号：</label><form:input path="orderNumber" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
+        <label>退款状态:</label>
+            <form:select path="status">
+                <form:options items="${fns:getDictList('order_refund_status')}" itemLabel="label" itemValue="value"
+                              htmlEscape="false"/>
+            </form:select>
         <label>退款申请时间：</label>
 	    <label>
 	        <input id="beginDate" name="beginDate" type="text" readonly="readonly" maxlength="20" class="input-small Wdate"
@@ -79,42 +80,38 @@
     <thead>
     <tr>
         <th>订单号</th>
-        <th>下单时间</th>
-        <th>客户姓名</th>
-        <th>客户电话</th>
+        <th>订单时间</th>
+        <th>用户姓名</th>
+        <th>用户电话</th>
         <th>购买产品</th>
-        <th>支付方式</th>
-        <th>购买天数</th>
-        <th>已完成天数</th>
         <th>订单总金额</th>
-        <th>订单实付金额</th>
-        <th>订单状态</th>
+        <th>退款原因</th>
+        <th>退款时间</th>
+        <th>退款金额</th>
+        <th>退款状态</th>
         <th>操作</th>
     </tr>
     </thead>
     <tbody>
     <c:forEach items="${page.list}" var="entity">
         <tr>
-            <td>${entity.orderNumber}</td>
-            <td>${entity.orderTime}</td>
-            <td>${entity.account.name}</td>
-            <td>${entity.account.phone}</td>
+            <td>${entity.order.orderNumber}</td>
+            <td>${entity.order.orderTime}</td>
+            <td>${entity.order.account.name}</td>
+            <td>${entity.order.account.phone}</td>
             <td></td>
-            <td>${fns:getDictLabel(entity.payWay, 'pay_way', '无')}</td>
-            <td>${entity.days}</td>
-            <td>${entity.finishDays}</td>
-            <td>${entity.orderMoney}</td>
-            <td>${entity.paidMoney}</td>
-            <td>${fns:getDictLabel(entity.orderStatus, 'order_status', '无')}</td>
-            <shiro:hasPermission name="dcxt:order:edit">
-                <td>
-                	<a href="${ctx}/dcxt/order/pause?id=${entity.id}">详情</a>
-                	<c:if test="${entity.orderStatus == 4 }">
-                	<a href="${ctx}/dcxt/order/pause?id=${entity.id}">暂停</a>
-                	</c:if>
-                	
-                </td>
-            </shiro:hasPermission>
+            <td>${entity.order.orderMoney}</td>
+            <td>${entity.refundReason}</td>
+            <td>${entity.refundTime}</td>
+            <td>${entity.refundMoney}</td>
+            <td>${fns:getDictLabel(entity.status, 'order_refund_status', '无')}</td>
+            <td>
+            	<a href="${ctx}/dcxt/order/pause?id=${entity.id}">详情</a>
+            	<c:if test="${entity.status == 1 }">
+            	<a href="${ctx}/dcxt/orderrefund/form?id=${entity.id}">处理</a>
+            	</c:if>
+            	
+            </td>
         </tr>
     </c:forEach>
     </tbody>

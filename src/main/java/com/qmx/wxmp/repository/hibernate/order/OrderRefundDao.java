@@ -3,14 +3,14 @@ package com.qmx.wxmp.repository.hibernate.order;
 import org.springframework.stereotype.Repository;
 
 import com.qmx.wxmp.common.persistence.BaseDao;
-import com.qmx.wxmp.entity.order.OrderMain;
+import com.qmx.wxmp.entity.order.OrderRefund;
 
 /**
- * 订单
+ * 退款单
  * @author itismin
  *
  */
 @Repository
-public class OrderDao extends BaseDao<OrderMain> {
+public class OrderRefundDao extends BaseDao<OrderRefund> {
 
 }

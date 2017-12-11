@@ -11,9 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.qmx.wxmp.common.persistence.Page;
 import com.qmx.wxmp.controller.BaseController;
+import com.qmx.wxmp.dto.order.OrderQueryDTO;
 import com.qmx.wxmp.entity.order.OrderByDay;
 import com.qmx.wxmp.service.order.OrderByDayService;
 
@@ -40,12 +42,38 @@ public class OrderByDayController extends BaseController {
 
 	@RequiresPermissions("dcxt:orderbyday:view")
 	@RequestMapping({ "list", "" })
-	public String list(OrderByDay entity, HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String list(OrderQueryDTO entity, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<OrderByDay> page = byDayService.findList(new Page<OrderByDay>(request, response), entity);
 		model.addAttribute("page", page);
 		return "/order/orderbydayList";
 	}
-
 	
+	/**
+	 * 今日配送列表
+	 * @param entity
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("todayList")
+	public String todayList(OrderQueryDTO entity, HttpServletRequest request, HttpServletResponse response, Model model) {
+		Page<OrderByDay> page = byDayService.findTodayList(new Page<OrderByDay>(request, response), entity);
+		model.addAttribute("page", page);
+		return "/order/orderbytodayList";
+	}
 
+	@RequestMapping("deliveryByDay")
+	@ResponseBody
+	public String deliveryByDay(@RequestParam(value = "orderIds[]") String[] orderIds) {
+		try {
+			byDayService.deliveryByDay(orderIds);
+			return "true";
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			e.printStackTrace();
+			return "false";
+		}
+	}
+	
 }

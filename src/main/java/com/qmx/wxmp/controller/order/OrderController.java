@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.qmx.wxmp.common.persistence.Page;
+import com.qmx.wxmp.common.utils.DateUtils;
 import com.qmx.wxmp.controller.BaseController;
 import com.qmx.wxmp.dto.order.OrderQueryDTO;
 import com.qmx.wxmp.entity.order.OrderMain;
@@ -57,23 +58,6 @@ public class OrderController extends BaseController {
 		return "/order/orderList";
 	}
 	
-	/**
-	 * 订单列表
-	 * @param entity
-	 * @param request
-	 * @param response
-	 * @param model
-	 * @return
-	 */
-	@RequiresPermissions("dcxt:order:view")
-	@RequestMapping("/daylist")
-	public String dayList(OrderQueryDTO entity, HttpServletRequest request, HttpServletResponse response, Model model) {
-		Page<OrderMain> page = orderService.findDayOrderList(new Page<OrderMain>(request, response), entity);
-		model.addAttribute("orderQueryDTO", entity);
-		model.addAttribute("page", page);
-		return "/order/orderdayList";
-	}
-
 	@RequiresPermissions("dcxt:order:view")
 	@RequestMapping("/form")
 	public String form(OrderMain entity, Model model) {
@@ -102,4 +86,47 @@ public class OrderController extends BaseController {
 
 	}
 
+	/**
+	 * 暂停订单
+	 * @param id
+	 * @param redirectAttributes
+	 * @return
+	 */
+	@RequestMapping("/pause")
+	public String pause(String id, RedirectAttributes redirectAttributes) {
+		
+		try {
+			OrderMain order = orderService.pause(id);
+			addMessage(redirectAttributes, "暂停订单成功," + DateUtils.dataToStr(order.getPauseTime(), "yyyy-MM-dd") + "后的订单将不在配送");
+
+		} catch (Exception e) {
+			addMessage(redirectAttributes, "暂停订单失败");
+			logger.error(e.getMessage(), e);
+			e.printStackTrace();
+		}
+		return "redirect:/dcxt/order/?repage";
+
+	}
+	
+	/**
+	 * 暂停订单
+	 * @param id
+	 * @param redirectAttributes
+	 * @return
+	 */
+	@RequestMapping("/recover")
+	public String recover(String id, RedirectAttributes redirectAttributes) {
+		
+		try {
+			OrderMain order = orderService.recover(id);
+			addMessage(redirectAttributes, "恢复订单成功,订单将于" + DateUtils.dataToStr(DateUtils.getDayByAdd(order.getRecoverTime(), 1), "yyyy-MM-dd") + "开始配送");
+
+		} catch (Exception e) {
+			addMessage(redirectAttributes, "恢复订单失败");
+			logger.error(e.getMessage(), e);
+			e.printStackTrace();
+		}
+		return "redirect:/dcxt/order/?repage";
+
+	}
 }

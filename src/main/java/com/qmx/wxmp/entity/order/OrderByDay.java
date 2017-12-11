@@ -1,7 +1,9 @@
 package com.qmx.wxmp.entity.order;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,14 +31,24 @@ public class OrderByDay extends BaseSimpleEntity {
 	/** 订单状态:未配送*/
 	public static final String ORDER_STATUS_READY = "1";
 	/** 订单状态:配送中*/
-	public static final String ORDER_STATUS_BEGIN = "2";
+	public static final String ORDER_STATUS_START = "2";
 	/** 订单状态:配送完成*/
-	public static final String ORDER_STATUS_END = "3";
+	public static final String ORDER_STATUS_SUCCESS = "3";
+	/** 订单状态:配送失败*/
+	public static final String ORDER_STATUS_FAIL = "4";
+	/** 订单状态:退款中*/
+	public static final String ORDER_STATUS_REFUNDING = "5";
+	/** 订单状态:退款完成*/
+	public static final String ORDER_STATUS_REFUNDED = "6";
+	/** 订单状态:暂停*/
+	public static final String ORDER_STATUS_PAUSE = "7";
 	
 	/** 日订单号*/
 	private String orderNumber;
 	/** 配送日期*/
 	private Date deliveryDate;
+	/** 订单金额*/
+	private BigDecimal orderMoney;
 	/** 配送状态*/
 	private String status;
 	/** 收货人*/
@@ -57,6 +69,13 @@ public class OrderByDay extends BaseSimpleEntity {
 	}
 	public void setDeliveryDate(Date deliveryDate) {
 		this.deliveryDate = deliveryDate;
+	}
+	@Column(precision=8,scale=2)
+	public BigDecimal getOrderMoney() {
+		return orderMoney;
+	}
+	public void setOrderMoney(BigDecimal orderMoney) {
+		this.orderMoney = orderMoney;
 	}
 	public String getStatus() {
 		return status;

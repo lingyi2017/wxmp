@@ -71,10 +71,11 @@
                 
             }
             if(orderIds.length == 0){
-            	$("#myAlert").css("display", "");
+            	$("#alert_true").css("display", "none");
+            	$("#alert_false").css("display", "");
             	return;
             }else{
-            	$("#myAlert").css("display", "none");
+            	$("#alert_false").css("display", "none");
             }
         	$.ajax({
         	    url:'${ctx}/dcxt/orderbyday/deliveryByDay',
@@ -91,6 +92,7 @@
         	    success:function(data){
         	    	console.info(data);
         	        if(data){
+        	        	$("#alert_true").css("display", "");
         	        	$("#searchForm").submit();
         	        }else{
         	        	alert("操作失败");
@@ -109,37 +111,25 @@
         <li><a href="${ctx}/dcxt/account/form">用户修改</a></li>
     </shiro:hasPermission> --%>
 </ul>
-<form:form id="searchForm" modelAttribute="orderQueryDTO" action="${ctx}/dcxt/orderbyday/" method="post"
+<form:form id="searchForm" modelAttribute="orderQueryDTO" action="${ctx}/dcxt/orderbyday/todayList" method="post"
            class="breadcrumb form-search">
     <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
     <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
     <input id="orderBy" name="orderBy" type="hidden" value="${page.orderBy}"/>
 
-    <div style="margin-top:8px;">
-        <label>用户姓名：</label><form:input path="accountName" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
-        <label>用户电话：</label><form:input path="accountPhone" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
-        <label>配送状态:</label>
-            <form:select path="status">
-                <form:options items="${fns:getDictList('order_delivery_status')}" itemLabel="label" itemValue="value"
-                              htmlEscape="false"/>
-            </form:select>
-        <label>配送日期：</label>
-	    <label>
-	        <form:input path="deliveryDate" type="text" readonly="readonly" maxlength="20" class="input-small Wdate"
-	               onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
-	    </label>
-	    <input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='query' />"
-               onclick="return page();"/>
-    </div>
-</form:form>
-<div style="margin-top:10px;margin-bottom: 10px">
-	<button type="button" class="btn btn-default btn-sm" onclick="check_delivery()">  
+    	<button type="button" class="btn btn-primary" onclick="check_delivery()">  
         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>全部出餐  
     </button>
+</form:form>
+<div style="margin-top:10px;margin-bottom: 10px">
+
 </div>
 
-<div id="myAlert" class="alert alert-danger" style="display: none">
+<div id="alert_false" class="alert alert-danger" style="display: none">
          <strong>请选择记录!</strong>
+</div>
+<div id="alert_true" class="alert alert-success" style="display: none">
+         <strong>出餐成功!</strong>
 </div>
 
 <tags:message content="${message}"/>

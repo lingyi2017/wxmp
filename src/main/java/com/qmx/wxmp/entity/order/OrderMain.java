@@ -1,10 +1,15 @@
 package com.qmx.wxmp.entity.order;
 
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -28,54 +33,45 @@ public class OrderMain extends BaseSimpleEntity {
 		super();
 	}
 	
+	/** 订单状态:未支付*/
+	public static final String ORDER_STATUS_NOPAY= "1";
 	/** 订单状态:进行中*/
-	public static final String ORDER_STATUS_BEGIN = "1";
+	public static final String ORDER_STATUS_START = "2";
 	/** 订单状态:暂停*/
-	public static final String ORDER_STATUS_PAUSE = "2";
+	public static final String ORDER_STATUS_PAUSE = "3";
+	/** 订单状态:退款中*/
+	public static final String ORDER_STATUS_REFUND = "4";
 	/** 订单状态:完成*/
-	public static final String ORDER_STATUS_END = "3";
-	/** 订单状态:退款处理中*/
-	public static final String ORDER_REFUND_BEGIN = "4";
-	/** 订单状态:退款同意*/
-	public static final String ORDER_REFUND_AGREE = "5";
-	/** 订单状态:退款拒绝*/
-	public static final String ORDER_REFUND_REFUSE = "6";
+	public static final String ORDER_REFUND_END = "5";
 	
 	/** 订单号*/
 	private String orderNumber;
 	/** 下单时间*/
 	private Date orderTime;
+	/** 暂停时间*/
+	private Date pauseTime;
+	/** 恢复时间*/
+	private Date recoverTime;
 	/** 订单状态*/
-	private String orderStatus;
+	private String status;
 	/** 订单总金额*/
-	private Float orderMoney;
+	private BigDecimal orderMoney;
 	/** 优惠金额*/
-	private Float favourableMoney;
+	private BigDecimal favourableMoney;
 	/** 实付金额*/
-	private Float paidMoney;
+	private BigDecimal paidMoney;
 	/** 支付方式*/
 	private String payWay;
 	/** 购买天数*/
 	private Integer days;
 	/** 完成天数*/
 	private Integer finishDays;
-
-	/** 是否发生退款*/
-	private String isRefund;
-	/** 退款申请时间*/
-	private Date refundTime;
-	/** 退款原因*/
-	private String refundReason;
-	/** 退款回复*/
-	private String refundReply;
-	/** 退款金额*/
-	private Float refundMoney;
 	/** 客户*/
 	private Account account;
-	/** 收货地址*/
-	private AccountAddress address;
 	/** 订单评价*/
 	private OrderComment comment;
+	/** 子订单*/
+	private List<OrderByDay> orderByDays;
 
 	public String getOrderNumber() {
 		return orderNumber;
@@ -95,51 +91,58 @@ public class OrderMain extends BaseSimpleEntity {
 		this.orderTime = orderTime;
 	}
 
-	public String getOrderStatus() {
-		return orderStatus;
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	public Date getPauseTime() {
+		return pauseTime;
 	}
 
-	public void setOrderStatus(String orderStatus) {
-		this.orderStatus = orderStatus;
+	public void setPauseTime(Date pauseTime) {
+		this.pauseTime = pauseTime;
 	}
 
-	public String getRefundReason() {
-		return refundReason;
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	public Date getRecoverTime() {
+		return recoverTime;
 	}
 
-	public void setRefundReason(String refundReason) {
-		this.refundReason = refundReason;
+	public void setRecoverTime(Date recoverTime) {
+		this.recoverTime = recoverTime;
+	}
+	
+	public String getStatus() {
+		return status;
 	}
 
-	public String getRefundReply() {
-		return refundReply;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
-	public void setRefundReply(String refundReply) {
-		this.refundReply = refundReply;
-	}
-
-	public Float getOrderMoney() {
+	@Column(precision=8,scale=2)
+	public BigDecimal getOrderMoney() {
 		return orderMoney;
 	}
 
-	public void setOrderMoney(Float orderMoney) {
+	public void setOrderMoney(BigDecimal orderMoney) {
 		this.orderMoney = orderMoney;
 	}
 
-	public Float getFavourableMoney() {
+	@Column(precision=8,scale=2)
+	public BigDecimal getFavourableMoney() {
 		return favourableMoney;
 	}
 
-	public void setFavourableMoney(Float favourableMoney) {
+	public void setFavourableMoney(BigDecimal favourableMoney) {
 		this.favourableMoney = favourableMoney;
 	}
 
-	public Float getPaidMoney() {
+	@Column(precision=8,scale=2)
+	public BigDecimal getPaidMoney() {
 		return paidMoney;
 	}
 
-	public void setPaidMoney(Float paidMoney) {
+	public void setPaidMoney(BigDecimal paidMoney) {
 		this.paidMoney = paidMoney;
 	}
 
@@ -159,17 +162,6 @@ public class OrderMain extends BaseSimpleEntity {
 
 	public void setAccount(Account account) {
 		this.account = account;
-	}
-
-
-	@ManyToOne
-	@JoinColumn(name="address_id")
-	public AccountAddress getAddress() {
-		return address;
-	}
-
-	public void setAddress(AccountAddress address) {
-		this.address = address;
 	}
 
 	@OneToOne(mappedBy="order")
@@ -197,31 +189,13 @@ public class OrderMain extends BaseSimpleEntity {
 		this.payWay = payWay;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	public Date getRefundTime() {
-		return refundTime;
+	@OneToMany(mappedBy="order",cascade={CascadeType.ALL})
+	public List<OrderByDay> getOrderByDays() {
+		return orderByDays;
 	}
 
-	public void setRefundTime(Date refundTime) {
-		this.refundTime = refundTime;
+	public void setOrderByDays(List<OrderByDay> orderByDays) {
+		this.orderByDays = orderByDays;
 	}
-
-	public Float getRefundMoney() {
-		return refundMoney;
-	}
-
-	public void setRefundMoney(Float refundMoney) {
-		this.refundMoney = refundMoney;
-	}
-
-	public String getIsRefund() {
-		return isRefund;
-	}
-
-	public void setIsRefund(String isRefund) {
-		this.isRefund = isRefund;
-	}
-	
 	
 }

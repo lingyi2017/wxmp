@@ -303,7 +303,18 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
         return formatDate2(cal.getTime(), "yyyy-MM-dd");
     }
     
-    
+    /**
+     * 日期加减天数
+     * @param date
+     * @param days
+     * @return
+     */
+    public static Date getDayByAdd(Date date, int days) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, days);
+        return formatDate2(cal.getTime(), "yyyy-MM-dd");
+    }
 
     /**
      * @param args

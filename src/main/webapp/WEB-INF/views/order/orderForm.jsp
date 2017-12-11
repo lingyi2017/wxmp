@@ -30,7 +30,7 @@
 
 <ul class="nav nav-tabs">
     <li><a href="${ctx}/dcxt/order/">订单列表</a></li>
-    <shiro:hasPermission name="dcxt:account:edit">
+    <shiro:hasPermission name="dcxt:order:edit">
         <li class="active"><a>订单信息</a></li>
     </shiro:hasPermission>
 </ul>
@@ -38,160 +38,133 @@
 <form:form id="inputForm" modelAttribute="order" action="${ctx}/dcxt/account/save" method="post" class="form-horizontal">
     <form:hidden path="id"/>
     <tags:message content="${message}"/>
-    <div class="control-group">
+   
+    <div class="control-group" style="width: 33%;float: left;">
         <label class="control-label">订单号:</label>
         <div class="controls">
             <form:input path="orderNumber" htmlEscape="false" maxlength="50" readonly="true"/>
         </div>
     </div>
-    <div class="control-group">
+     <div class="control-group" style="width: 33%;float: left;">
         <label class="control-label">下单时间:</label>
         <div class="controls">
             <form:input path="orderTime" htmlEscape="false" readonly="true"/>
         </div>
     </div>
-    <div class="control-group">
+    <div class="control-group" style="width: 34%;float: left;">
         <label class="control-label">客户姓名:</label>
         <div class="controls">
             <form:input path="account.name" htmlEscape="false" readonly="true"/>
         </div>
     </div>
-    <div class="control-group">
+    <div class="control-group" style="width: 33%;float: left;">
         <label class="control-label">客户电话:</label>
         <div class="controls">
             <form:input path="account.phone" htmlEscape="false" readonly="true"/>
         </div>
     </div>
-    <div class="control-group">
+    <div class="control-group" style="width: 33%;float: left;">
         <label class="control-label">购买产品:</label>
         <div class="controls">
             
         </div>
     </div>
-    <div class="control-group">
+    <div class="control-group" style="width: 33%;float: left;">
         <label class="control-label">支付方式:</label>
         <div class="controls">
-        	 <form:select path="payWay" disabled="true">
-                <form:options items="${fns:getDictList('pay_way')}" itemLabel="label" itemValue="value"
-                              htmlEscape="false"/>
-            </form:select>
+            <form:input path="payWay" htmlEscape="false" readonly="true" value="${fns:getDictLabel('order.payWay','pay_way','无')}"/>
         </div>
     </div>
-    <div class="control-group">
+    <div class="control-group" style="width: 33%;float: left;">
         <label class="control-label">购买天数:</label>
         <div class="controls">
             <form:input path="days" htmlEscape="false" readonly="true"/>
         </div>
     </div>
-     <div class="control-group">
+     <div class="control-group" style="width: 33%;float: left;">
         <label class="control-label">完成天数:</label>
         <div class="controls">
             <form:input path="finishDays" htmlEscape="false" readonly="true"/>
         </div>
     </div>
-    <div class="control-group">
+    <div class="control-group" style="width: 33%;float: left;">
         <label class="control-label">总金额:</label>
         <div class="controls">
             <form:input path="days" htmlEscape="false" readonly="true"/>
         </div>
     </div>
-    <div class="control-group">
+    <div class="control-group" style="width: 33%;float: left;">
         <label class="control-label">实付金额:</label>
         <div class="controls">
             <form:input path="days" htmlEscape="false" readonly="true"/>
         </div>
     </div>
-    <div class="control-group">
+    <div class="control-group" style="width: 33%;float: left;">
         <label class="control-label">优惠金额:</label>
         <div class="controls">
             <form:input path="days" htmlEscape="false" readonly="true"/>
         </div>
     </div>
-    <div class="control-group">
+    <div class="control-group" style="width: 33%;float: left;">
         <label class="control-label">订单状态:</label>
         <div class="controls">
-        	 <form:select path="orderStatus" disabled="true">
-                <form:options items="${fns:getDictList('order_status')}" itemLabel="label" itemValue="value"
-                              htmlEscape="false"/>
-            </form:select>
+        	<form:input path="payWay" htmlEscape="false" readonly="true" value="${fns:getDictLabel('order.orderStatus','order_status','无')}"/>
         </div>
     </div>
-    <c:if test="${order.isRefund == '1' }">
-    <div class="control-group">
-        <label class="control-label">退款申请时间:</label>
-        <div class="controls">
-            <form:input path="refundTime" htmlEscape="false" readonly="true"/>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label">退款原因:</label>
-        <div class="controls">
-            <form:input path="refundReason" htmlEscape="false" readonly="true"/>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label">退款回复:</label>
-        <div class="controls">
-            <form:input path="refundReply" htmlEscape="false" readonly="true"/>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label">退款金额:</label>
-        <div class="controls">
-            <form:input path="refundMoney" htmlEscape="false" readonly="true"/>
-        </div>
-    </div>
-    </c:if>
-    <div class="control-group">
-        <label class="control-label">收货信息:</label>
-        <div class="controls">-------------------------------------
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label">收货人:</label>
-        <div class="controls">
-            <form:input path="address.person" htmlEscape="false" maxlength="50" class="required" readonly="true"/>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label">收货人电话:</label>
-        <div class="controls">
-            <form:input path="address.phone" htmlEscape="false" maxlength="50" cssClass="required phone" readonly="true"/>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label">收货地址:</label>
-        <div class="controls">
-            <form:textarea path="address.address" htmlEscape="false" rows="2" maxlength="200" class="input-xlarge" readonly="true"/>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label">评价信息:</label>
-        <div class="controls">-------------------------------------
-        </div>
-    </div>
-    <div class="control-group">
+    <div class="control-group" style="width: 33%;float: left;">
         <label class="control-label">评价:</label>
         <div class="controls">
-            <form:select path="comment.comment" disabled="true">
-                <form:options items="${fns:getDictList('order_comment')}" itemLabel="label" itemValue="value"
-                              htmlEscape="false"/>
-            </form:select>
+        	<form:input path="payWay" htmlEscape="false" readonly="true" value="${fns:getDictLabel('order.comment.comment','order_comment','无')}"/>
+
         </div>
     </div>
-    <div class="control-group">
+    <div class="control-group" style="width: 33%;float: left;">
         <label class="control-label">评价内容:</label>
         <div class="controls">
-            <form:textarea path="comment.commentMark" htmlEscape="false" maxlength="50" cssClass="required phone" readonly="true"/>
+            <form:textarea path="comment.commentMark" htmlEscape="false" readonly="true"/>
         </div>
     </div>
-    <div class="control-group">
+        <div class="control-group" style="width: 33%;float: left;">
         <label class="control-label">追加评价内容:</label>
         <div class="controls">
-            <form:textarea path="comment.commentAddMark" htmlEscape="false" rows="2" maxlength="200" class="input-xlarge" readonly="true"/>
+            <form:textarea path="comment.commentAddMark" htmlEscape="false"  readonly="true"/>
         </div>
     </div>
-    <div class="form-actions">
+    <!-- 子订单信息 -->
+    <table id="contentTable" class="table table-striped table-bordered table-condensed">
+	    <thead>
+	    <tr>
+	        <th>订单号</th>
+	        <th>配送日期</th>
+	        <th>订单金额</th>
+	        <th>收货人</th>
+	        <th>收货电话</th>
+	        <th>收货地址</th>
+	        <th>配送状态</th>
+	        <th>操作</th>
+	    </tr>
+	    </thead>
+	    <tbody>
+	    <c:forEach items="${order.orderByDays}" var="entity">
+	        <tr>
+	            <td>${entity.orderNumber}</td>
+	            <td>${entity.deliveryDate}</td>
+	            <td>${entity.orderMoney}</td>
+	            <td>${entity.person}</td>
+	            <td>${entity.phone}</td>
+	            <td>${entity.address}</td>
+	            <td>${fns:getDictLabel(entity.status, 'order_delivery_status', '无')}</td>
+                <td>
+                	<c:if test="${entity.status == 2 }">
+                		<a href="${ctx}/dcxt/accountaddress/formByOrderId?orderId=${entity.id}">修改收货地址</a>
+                	</c:if>
+                    
+                </td>
+	        </tr>
+	    </c:forEach>
+	    </tbody>
+	</table>
+    <div class="form-actions" style="width: 100%;float: left;">
         <shiro:hasPermission name="dcxt:account:edit">
             <input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='save' />"/>&nbsp;
         </shiro:hasPermission>
