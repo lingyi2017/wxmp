@@ -1,12 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html class="pixel-ratio-1">
 <head>
-    <title>产品列表</title>
+    <title>产品信息</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
+    <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css" rel="stylesheet">
 
     <style type="text/css">
 
@@ -14,43 +14,40 @@
 </head>
 <body>
 
-<div class="weui-panel weui-panel_access">
-    <div class="weui-panel__hd">产品列表</div>
-    <div class="weui-panel__bd">
-        <a href="" class="weui-media-box weui-media-box_appmsg">
-            <div class="weui-media-box__hd">
-                <img class="weui-media-box__thumb"
-                     src="/wxmp/static/images/weixin/prod1.jpg">
-            </div>
-            <div class="weui-media-box__bd">
-                <h4 class="weui-media-box__title">增肌</h4>
-                <p class="weui-media-box__desc">健美训练看似简单，但是训练很讲究科学。不科学的训练，轻则不产生效果，重则容易令人受伤</p>
-            </div>
-        </a>
-        <a href="" class="weui-media-box weui-media-box_appmsg">
-            <div class="weui-media-box__hd">
-                <img class="weui-media-box__thumb"
-                     src="/wxmp/static/images/weixin/prod2.jpg">
-            </div>
-            <div class="weui-media-box__bd">
-                <h4 class="weui-media-box__title">塑形</h4>
-                <p class="weui-media-box__desc">健美操只能有效地减少脂肪，但不能完全塑造形体，至于练习瑜伽，呵呵，那只会让你成为一个柔软的胖子。</p>
-            </div>
-        </a>
-        <a href="" class="weui-media-box weui-media-box_appmsg">
-            <div class="weui-media-box__hd">
-                <img class="weui-media-box__thumb"
-                     src="/wxmp/static/images/weixin/prod3.jpg">
-            </div>
-            <div class="weui-media-box__bd">
-                <h4 class="weui-media-box__title">减脂</h4>
-                <p class="weui-media-box__desc">我的所有健身知识都在哑铃8和吴师哥学习的，饮食的、训练的、恢复的，在开始健身也算少走了些弯路</p>
-            </div>
+<div class="swiper-container" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="1000"
+     style="height: 30%;">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="/wxmp/static/images/wx/swiper-1.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="/wxmp/static/images/wx/swiper-2.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="/wxmp/static/images/wx/swiper-3.jpg" alt=""></div>
+    </div>
+</div>
+<div class="weui-form-preview">
+    <div class="weui-form-preview__hd">
+        <label class="weui-form-preview__label">商品名称</label>
+        <em class="weui-form-preview__value">增肌</em>
+    </div>
+    <div class="weui-form-preview__bd">
+        <div class="weui-form-preview__item">
+            <label class="weui-form-preview__label">描述</label>
+            <span class="weui-form-preview__value">
+                肌肉，是男性力量的象征。正如不少女性上健身房的主要目的在于减肥，男士们则寄希望于健身锻炼能够增强肌肉，塑造完美的体形。
+                可是，不少人忽视了一点：肌肉不仅仅是练出来，还是“吃出来”的——要想增大肌肉块，就必须给身体提供大量糖类和蛋白质。
+            </span>
+        </div>
+    </div>
+    <div class="weui-form-preview__ft">
+        <a type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="/wxmp/wx/product/dishes">本周菜品
         </a>
     </div>
 </div>
 
-<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/swiper.min.js"></script>
+
+<script type="text/javascript">
+    $(".swiper-container").swiper();
+</script>
 </body>
 </html>

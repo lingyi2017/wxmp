@@ -1,4 +1,4 @@
-package com.qmx.wxmp.controller.weixin;
+package com.qmx.wxmp.controller.wx;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,5 +23,19 @@ public class WxProductController {
 	public String list(Product entity, HttpServletRequest request, HttpServletResponse response, Model model) {
 
 		return "/wx/productList";
+	}
+
+
+
+	@RequestMapping("/form")
+	public String form() {
+		return "/wx/productForm";
+	}
+
+
+
+	@RequestMapping("/dishes")
+	public String detail() {
+		return "/wx/productDishes";
 	}
 }
