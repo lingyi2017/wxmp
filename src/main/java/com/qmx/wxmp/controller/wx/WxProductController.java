@@ -22,6 +22,6 @@ public class WxProductController {
 	@RequestMapping({ "list", "" })
 	public String list(Product entity, HttpServletRequest request, HttpServletResponse response, Model model) {
 
-		return "/weixin/productList";
+		return "/wx/productList";
 	}
 }
