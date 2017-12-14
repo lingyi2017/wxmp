@@ -34,8 +34,8 @@ public class WxProductController {
 
 
 
-	@RequestMapping("/dishes")
-	public String detail() {
-		return "/wx/productDishes";
+	@RequestMapping("/weekDishes")
+	public String productWeekDishes() {
+		return "/wx/productWeekDishes";
 	}
 }
