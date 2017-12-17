@@ -29,10 +29,7 @@
 <body>
 
 <ul class="nav nav-tabs">
-    <li><a href="${ctx}/dcxt/account/">订单列表</a></li>
-    <shiro:hasPermission name="dcxt:order:edit">
-        <li class="active"><a>退款处理</a></li>
-    </shiro:hasPermission>
+    <li class="active"><a>退款处理</a></li>
 </ul>
 
 <form:form id="inputForm" modelAttribute="account" action="${ctx}/dcxt/account/save" method="post" class="form-horizontal">

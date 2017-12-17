@@ -27,7 +27,7 @@ public class Account extends BaseSimpleEntity {
 	
 	/** 微信标识id*/
 	private String openid;
-	/** 姓名*/
+	/** 昵称*/
 	private String name;
 	/** 性别*/
 	private String sex;
@@ -48,7 +48,6 @@ public class Account extends BaseSimpleEntity {
 	/** 备注*/
 	private String mark;
 
-	@Column(name="DAW")
 	public String getOpenid() {
 		return openid;
 	}

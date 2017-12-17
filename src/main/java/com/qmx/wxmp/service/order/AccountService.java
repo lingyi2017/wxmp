@@ -67,4 +67,13 @@ public class AccountService extends BaseService {
 		return accountDao.find(page, dc);
 
 	}
+	
+	/**
+	 * 根据openid得到用户
+	 * @param openId
+	 * @return
+	 */
+	public Account findByOpenId(String openId){
+		return accountDao.getAccountByOpenId(openId);
+	}
 }

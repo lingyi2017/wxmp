@@ -75,4 +75,32 @@ public class AccountController extends BaseController {
 
 	}
 
+	/**
+	 * 微信端：个人中心
+	 * @param accountId
+	 * @return
+	 */
+	@RequestMapping("/personCenterByWeiXin")
+	public String personCenterByWeiXin(String openId, Model model) {
+		openId = "123";
+		Account account = accountService.findByOpenId(openId);
+		if(account == null){
+			//调至注册
+		}else{
+			model.addAttribute("account", account);
+		}
+		return "/weixin/person_center";
+	}
+	
+	/**
+	 * 微信端：个人资料
+	 * @param accountId
+	 * @return
+	 */
+	@RequestMapping("/accountEditByWeiXin")
+	public String accountEditByWeiXin(String accountId, Model model) {
+		Account account = accountService.get(accountId);
+		model.addAttribute("account", account);
+		return "/weixin/account_edit";
+	}
 }

@@ -26,10 +26,16 @@ public class AccountAddress extends BaseSimpleEntity {
 	private String person;
 	/** 收货电话*/
 	private String phone;
+	/** 地址:省*/
+	private String provence;
+	/** 地址:城市*/
+	private String city;
+	/** 地址:区县*/
+	private String county;
 	/** 详细地址*/
 	private String address;
 	/** 是否默认*/
-	private String isDefault;
+	private Integer isDefault;
 	/** 用户*/
 	private Account account;
 
@@ -57,11 +63,11 @@ public class AccountAddress extends BaseSimpleEntity {
 		this.address = address;
 	}
 
-	public String getIsDefault() {
+	public Integer getIsDefault() {
 		return isDefault;
 	}
 
-	public void setIsDefault(String isDefault) {
+	public void setIsDefault(Integer isDefault) {
 		this.isDefault = isDefault;
 	}
 
@@ -74,6 +80,29 @@ public class AccountAddress extends BaseSimpleEntity {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
-	
-	
+
+	public String getProvence() {
+		return provence;
+	}
+
+	public void setProvence(String provence) {
+		this.provence = provence;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getCounty() {
+		return county;
+	}
+
+	public void setCounty(String county) {
+		this.county = county;
+	}
+
 }
