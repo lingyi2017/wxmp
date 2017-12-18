@@ -18,7 +18,7 @@
 <div class="weui-panel weui-panel_access">
     <div class="weui-panel__hd">产品列表</div>
     <div class="weui-panel__bd">
-        <a href="/wxmp/wx/product/form" class="weui-media-box weui-media-box_appmsg">
+        <a href="/wxmp/wx/weui/productForm" class="weui-media-box weui-media-box_appmsg">
             <div class="weui-media-box__hd">
                 <img class="weui-media-box__thumb"
                      src="/wxmp/static/images/wx/prod1.jpg">
@@ -28,7 +28,7 @@
                 <p class="weui-media-box__desc">健美训练看似简单，但是训练很讲究科学。不科学的训练，轻则不产生效果，重则容易令人受伤</p>
             </div>
         </a>
-        <a href="/wxmp/wx/product/form" class="weui-media-box weui-media-box_appmsg">
+        <a href="/wxmp/wx/weui/productForm" class="weui-media-box weui-media-box_appmsg">
             <div class="weui-media-box__hd">
                 <img class="weui-media-box__thumb"
                      src="/wxmp/static/images/wx/prod2.jpg">
@@ -38,7 +38,7 @@
                 <p class="weui-media-box__desc">健美操只能有效地减少脂肪，但不能完全塑造形体，至于练习瑜伽，呵呵，那只会让你成为一个柔软的胖子。</p>
             </div>
         </a>
-        <a href="/wxmp/wx/product/form" class="weui-media-box weui-media-box_appmsg">
+        <a href="/wxmp/wx/weui/productForm" class="weui-media-box weui-media-box_appmsg">
             <div class="weui-media-box__hd">
                 <img class="weui-media-box__thumb"
                      src="/wxmp/static/images/wx/prod3.jpg">

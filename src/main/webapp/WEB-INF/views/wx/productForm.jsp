@@ -46,7 +46,7 @@
     </div>
     <div class="weui-form-preview__ft">
         <a type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary"
-           href="/wxmp/wx/product/weekDishes">本周菜品
+           href="/wxmp/wx/weui/productWeekDishes">本周菜品
         </a>
     </div>
 </div>
