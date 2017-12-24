@@ -82,7 +82,6 @@ public class AccountController extends BaseController {
 	 */
 	@RequestMapping("/personCenterByWeiXin")
 	public String personCenterByWeiXin(String openId, Model model) {
-		openId = "123";
 		Account account = accountService.findByOpenId(openId);
 		if(account == null){
 			//调至注册
