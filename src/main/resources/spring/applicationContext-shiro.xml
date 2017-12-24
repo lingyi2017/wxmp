@@ -68,6 +68,7 @@
                 /login = authc
                 /logout = logout
                 /index = user
+            	/MP_verify_KxFCuxwWpsBOqlKw.txt = anon
             </value>
         </property>
     </bean>
