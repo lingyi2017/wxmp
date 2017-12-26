@@ -41,6 +41,10 @@
 		<jersey.version>2.15</jersey.version>
 		<jsonrpc4j.version>1.1</jsonrpc4j.version>
 		<websocket.version>1.1</websocket.version>
+		<weixin4j.version>1.7.4</weixin4j.version>
+		<ezmorph.version>1.0.6</ezmorph.version>
+		<json-lib.version>2.4</json-lib.version>
+		<weixin-java-tools.version>2.9.0</weixin-java-tools.version>
 		<!-- Plugin的属性定义 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.7</java.version>
@@ -703,6 +707,34 @@
 			<scope>provided</scope>
 		</dependency>
 		<!-- Java API for WebSocket end -->
+		
+		<!-- weixin SDK -->
+		<dependency>
+		    <groupId>net.sf.ezmorph</groupId>
+		    <artifactId>ezmorph</artifactId>
+		    <version>${ezmorph.version}</version>
+		</dependency> 
+		<dependency>
+		    <groupId>net.sf.json-lib</groupId>
+		    <artifactId>json-lib</artifactId>
+		    <version>${json-lib.version}</version>
+		    <classifier>jdk15</classifier>
+		</dependency>
+		<!-- <dependency>
+		    <groupId>com.foxinmy</groupId>
+		    <artifactId>weixin4j-mp</artifactId>
+		    <version>1.7.4</version>
+		</dependency> -->
+		<dependency>
+		    <groupId>com.github.binarywang</groupId>
+		    <artifactId>weixin-java-mp</artifactId>
+		    <version>${weixin-java-tools.version}</version>
+		</dependency>
+		<dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-pay</artifactId>
+            <version>${weixin-java-tools.version}</version>
+        </dependency>
 
 	</dependencies>
 
