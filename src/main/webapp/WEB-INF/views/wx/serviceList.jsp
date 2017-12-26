@@ -75,13 +75,19 @@
             <div class="weui-media-box weui-media-box_text">
                 <div class="weui-flex">
                     <div class="weui-flex__item">
+                        <a href="http://www.baidu.com">
                         <div class="placeholder red">工薪贷</div>
+                        </a>
                     </div>
                     <div class="weui-flex__item">
+                        <a href="http://www.baidu.com">
                         <div class="placeholder">放大贷</div>
+                        </a>
                     </div>
                     <div class="weui-flex__item">
+                        <a href="http://www.baidu.com">
                         <div class="placeholder">月供贷</div>
+                        </a>
                     </div>
                 </div>
                 <div class="weui-flex">
@@ -106,13 +112,19 @@
             <div class="weui-media-box weui-media-box_text">
                 <div class="weui-flex">
                     <div class="weui-flex__item">
-                        <div class="placeholder red">工薪贷</div>
+                        <a href="http://www.baidu.com">
+                            <div class="placeholder red">工薪贷</div>
+                        </a>
                     </div>
                     <div class="weui-flex__item">
-                        <div class="placeholder">放大贷</div>
+                        <a href="http://www.baidu.com">
+                            <div class="placeholder">放大贷</div>
+                        </a>
                     </div>
                     <div class="weui-flex__item">
-                        <div class="placeholder">月供贷</div>
+                        <a href="http://www.baidu.com">
+                            <div class="placeholder">月供贷</div>
+                        </a>
                     </div>
                 </div>
                 <div class="weui-flex">
@@ -137,13 +149,19 @@
             <div class="weui-media-box weui-media-box_text">
                 <div class="weui-flex">
                     <div class="weui-flex__item">
-                        <div class="placeholder red">工薪贷</div>
+                        <a href="http://www.baidu.com">
+                            <div class="placeholder red">工薪贷</div>
+                        </a>
                     </div>
                     <div class="weui-flex__item">
-                        <div class="placeholder">放大贷</div>
+                        <a href="http://www.baidu.com">
+                            <div class="placeholder">放大贷</div>
+                        </a>
                     </div>
                     <div class="weui-flex__item">
-                        <div class="placeholder">月供贷</div>
+                        <a href="http://www.baidu.com">
+                            <div class="placeholder">月供贷</div>
+                        </a>
                     </div>
                 </div>
                 <div class="weui-flex">
