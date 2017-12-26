@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html class="pixel-ratio-1">
 <head>
-    <title>服务列表</title>
+    <title>企明星</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -11,47 +11,166 @@
 
     <style type="text/css">
 
+        body {
+            font-size: 14px;
+            line-height: 1;
+            overflow-x: hidden;
+            max-width: 640px;
+            margin: 0 auto;
+            color: #333;
+            background-color: #f5f5fa;
+            -webkit-overflow-scrolling: touch;
+            -webkit-touch-callout: none;
+        }
+
+        .header{
+            background-color: #3475eb;
+            height: 50px;
+            line-height: 35px;
+            top: 0px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .header h3{
+            color: white;
+            margin-left: 40%;
+        }
+
+        .weui-media-box {
+            padding: 10px;
+            position: relative;
+        }
+
+        .service_container h3 {
+            color: #333;
+        }
+
+        .placeholder {
+            margin: 5px;
+            padding: 0 10px;
+            height: 2em;
+            line-height: 2.3em;
+            text-align: center;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .mt20 {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
 
-<div class="weui-panel weui-panel_access">
-    <div class="weui-panel__hd">产品列表</div>
-    <div class="weui-panel__bd">
-        <a href="/wxmp/wx/weui/productForm" class="weui-media-box weui-media-box_appmsg">
-            <div class="weui-media-box__hd">
-                <img class="weui-media-box__thumb"
-                     src="/wxmp/static/images/wx/prod1.jpg">
+<div class="weui-search-bar header" id="searchBar">
+    <h3>服务列表</h3>
+</div>
+<div class="service_container">
+    <div class="weui-panel weui-panel_access mt20">
+        <div class="weui-panel__hd"><h3>小额贷款</h3></div>
+        <div class="weui-panel__bd">
+            <div class="weui-media-box weui-media-box_text">
+                <div class="weui-flex">
+                    <div class="weui-flex__item">
+                        <div class="placeholder red">工薪贷</div>
+                    </div>
+                    <div class="weui-flex__item">
+                        <div class="placeholder">放大贷</div>
+                    </div>
+                    <div class="weui-flex__item">
+                        <div class="placeholder">月供贷</div>
+                    </div>
+                </div>
+                <div class="weui-flex">
+                    <div class="weui-flex__item">
+                        <a href="http://www.baidu.com">
+                            <div class="placeholder red">车辆信用贷</div>
+                        </a>
+                    </div>
+                    <div class="weui-flex__item">
+                        <div class=""></div>
+                    </div>
+                    <div class="weui-flex__item">
+                        <div class=""></div>
+                    </div>
+                </div>
             </div>
-            <div class="weui-media-box__bd">
-                <h4 class="weui-media-box__title">增肌</h4>
-                <p class="weui-media-box__desc">健美训练看似简单，但是训练很讲究科学。不科学的训练，轻则不产生效果，重则容易令人受伤</p>
+        </div>
+    </div>
+    <div class="weui-panel weui-panel_access mt20">
+        <div class="weui-panel__hd"><h3>小额贷款</h3></div>
+        <div class="weui-panel__bd">
+            <div class="weui-media-box weui-media-box_text">
+                <div class="weui-flex">
+                    <div class="weui-flex__item">
+                        <div class="placeholder red">工薪贷</div>
+                    </div>
+                    <div class="weui-flex__item">
+                        <div class="placeholder">放大贷</div>
+                    </div>
+                    <div class="weui-flex__item">
+                        <div class="placeholder">月供贷</div>
+                    </div>
+                </div>
+                <div class="weui-flex">
+                    <div class="weui-flex__item">
+                        <a href="http://www.baidu.com">
+                            <div class="placeholder red">车辆信用贷</div>
+                        </a>
+                    </div>
+                    <div class="weui-flex__item">
+                        <div class=""></div>
+                    </div>
+                    <div class="weui-flex__item">
+                        <div class=""></div>
+                    </div>
+                </div>
             </div>
-        </a>
-        <a href="/wxmp/wx/weui/productForm" class="weui-media-box weui-media-box_appmsg">
-            <div class="weui-media-box__hd">
-                <img class="weui-media-box__thumb"
-                     src="/wxmp/static/images/wx/prod2.jpg">
+        </div>
+    </div>
+    <div class="weui-panel weui-panel_access mt20">
+        <div class="weui-panel__hd"><h3>小额贷款</h3></div>
+        <div class="weui-panel__bd">
+            <div class="weui-media-box weui-media-box_text">
+                <div class="weui-flex">
+                    <div class="weui-flex__item">
+                        <div class="placeholder red">工薪贷</div>
+                    </div>
+                    <div class="weui-flex__item">
+                        <div class="placeholder">放大贷</div>
+                    </div>
+                    <div class="weui-flex__item">
+                        <div class="placeholder">月供贷</div>
+                    </div>
+                </div>
+                <div class="weui-flex">
+                    <div class="weui-flex__item">
+                        <a href="http://www.baidu.com">
+                            <div class="placeholder red">车辆信用贷</div>
+                        </a>
+                    </div>
+                    <div class="weui-flex__item">
+                        <div class=""></div>
+                    </div>
+                    <div class="weui-flex__item">
+                        <div class=""></div>
+                    </div>
+                </div>
             </div>
-            <div class="weui-media-box__bd">
-                <h4 class="weui-media-box__title">塑形</h4>
-                <p class="weui-media-box__desc">健美操只能有效地减少脂肪，但不能完全塑造形体，至于练习瑜伽，呵呵，那只会让你成为一个柔软的胖子。</p>
-            </div>
-        </a>
-        <a href="/wxmp/wx/weui/productForm" class="weui-media-box weui-media-box_appmsg">
-            <div class="weui-media-box__hd">
-                <img class="weui-media-box__thumb"
-                     src="/wxmp/static/images/wx/prod3.jpg">
-            </div>
-            <div class="weui-media-box__bd">
-                <h4 class="weui-media-box__title">减脂</h4>
-                <p class="weui-media-box__desc">我的所有健身知识都在哑铃8和吴师哥学习的，饮食的、训练的、恢复的，在开始健身也算少走了些弯路</p>
-            </div>
-        </a>
+        </div>
     </div>
 </div>
 
+
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/swiper.min.js"></script>
+
+<script type="text/javascript">
+
+</script>
 </body>
 </html>
