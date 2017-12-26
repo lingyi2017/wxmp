@@ -5,7 +5,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletResponse;
 
 import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.common.exception.WxErrorException;
@@ -31,15 +30,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.qmx.wxmp.wx.handler.LogHandler;
 import com.qmx.wxmp.wx.handler.MsgHandler;
 import com.qmx.wxmp.wx.handler.SubscribeHandler;
-import com.qmx.wxmp.wx.util.ReturnModel;
 
 /**
- * Created by FirenzesEagle on 2016/5/30 0030.
+ * Created by FirenzesEagle on 2016/5/30 0030.s
  * Email:liumingbo2008@gmail.com
  */
 @Service

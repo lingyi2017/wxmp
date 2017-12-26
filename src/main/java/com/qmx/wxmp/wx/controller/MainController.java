@@ -42,11 +42,11 @@ public class MainController extends GenericController {
      * @param response
      * @throws Exception
      */
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "")
     public void wechatCore(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
-
+        System.out.println("---");
         String signature = request.getParameter("signature");
         String nonce = request.getParameter("nonce");
         String timestamp = request.getParameter("timestamp");

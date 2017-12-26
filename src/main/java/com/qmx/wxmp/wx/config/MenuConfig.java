@@ -117,7 +117,7 @@ public class MenuConfig {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		MainConfig mainConfig = new MainConfig("wxe29fd1d0c2cef90c", "67f6652929e02f48fc1cf42d1a45cc0a", "wjdcxt", "");
+		MainConfig mainConfig = new MainConfig("wxa1dda5439feefd36", "e0c53f4007c6bd2cb7299bf0fcf48a58", "wjdcxt", "");
 		WxMpService wxMpService = mainConfig.wxMpService();
 		try {
 			wxMpService.getMenuService().menuCreate(testMenu());
@@ -127,16 +127,20 @@ public class MenuConfig {
 	}
 
 	public static WxMenu testMenu(){
-		MainConfig mainConfig = new MainConfig("wxe29fd1d0c2cef90c", "67f6652929e02f48fc1cf42d1a45cc0a", "wjdcxt", "");
+		MainConfig mainConfig = new MainConfig("wxa1dda5439feefd36", "e0c53f4007c6bd2cb7299bf0fcf48a58", "wjdcxt", "");
 		WxMpService wxMpService = mainConfig.wxMpService();
 
 		WxMenu menu = new WxMenu();
 		WxMenuButton button1 = new WxMenuButton();
 		button1.setType(MenuButtonType.VIEW);
-		button1.setName("买家订单");
+		button1.setName("测试获取openid");
 		button1.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/page/person_center", "snsapi_base", ""));
-		
+		WxMenuButton button2 = new WxMenuButton();
+		button2.setType(MenuButtonType.VIEW);
+		button2.setName("订单页面");
+		button2.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/page/ordertest_1", "snsapi_base", ""));
 		menu.getButtons().add(button1);
+		menu.getButtons().add(button2);
 		return menu;
 	}
 }
