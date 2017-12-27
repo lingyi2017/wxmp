@@ -23,7 +23,7 @@
             -webkit-touch-callout: none;
         }
 
-        .header{
+        .header {
             background-color: #3475eb;
             height: 50px;
             line-height: 35px;
@@ -32,7 +32,7 @@
             margin-bottom: 20px;
         }
 
-        .header h3{
+        .header h3 {
             color: white;
             margin-left: 40%;
         }
@@ -76,17 +76,17 @@
                 <div class="weui-flex">
                     <div class="weui-flex__item">
                         <a href="http://www.baidu.com">
-                        <div class="placeholder red">工薪贷</div>
+                            <div class="placeholder red">工薪贷</div>
                         </a>
                     </div>
                     <div class="weui-flex__item">
                         <a href="http://www.baidu.com">
-                        <div class="placeholder">放大贷</div>
+                            <div class="placeholder">放大贷</div>
                         </a>
                     </div>
                     <div class="weui-flex__item">
                         <a href="http://www.baidu.com">
-                        <div class="placeholder">月供贷</div>
+                            <div class="placeholder">月供贷</div>
                         </a>
                     </div>
                 </div>
@@ -182,13 +182,15 @@
     </div>
 </div>
 
-
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/swiper.min.js"></script>
+<script src="https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
 
 <script type="text/javascript">
-
+    $(function () {
+        FastClick.attach(document.body);
+    });
 </script>
 </body>
 </html>

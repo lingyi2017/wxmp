@@ -18,4 +18,11 @@ public class WxPageController {
 		return "/wx/serviceList";
 	}
 
+
+
+	@RequestMapping(value = "/serviceForm")
+	public String serviceFormUI() {
+		return "/wx/serviceForm";
+	}
+
 }
