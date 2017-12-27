@@ -61,10 +61,63 @@
         </div>
     </div>
     <div class="weui-form-preview__ft">
-        <a class="weui-form-preview__btn weui-form-preview__btn_default" style="color: #3475eb;" href="javascript:">我要咨询</a>
+        <a class="weui-form-preview__btn weui-form-preview__btn_default open-popup" style="color: #3475eb;"
+           href="javascript:" data-target="#half">我要咨询</a>
         <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary"
                 style="background-color: #3475eb; color: white;" href="javascript:">我要购买
         </button>
+    </div>
+</div>
+
+<div id="half" class='weui-popup__container popup-bottom'>
+    <div class="weui-popup__overlay"></div>
+    <div class="weui-popup__modal">
+        <div class="toolbar">
+            <div class="toolbar-inner">
+                <a href="javascript:;" class="picker-button close-popup" style="color: #3475eb;">关闭</a>
+                <h1 class="title">服务咨询</h1>
+            </div>
+        </div>
+        <div class="modal-content">
+            <div class="weui-cells weui-cells_form">
+                <div class="weui-cell weui-cell_select weui-cell_select-after">
+                    <div class="weui-cell__hd">
+                        <label for="" class="weui-label">性质</label>
+                    </div>
+                    <div class="weui-cell__bd">
+                        <select class="weui-select" name="select2">
+                            <option value="1">个人</option>
+                            <option value="2">企业</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">名称</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input">
+                    </div>
+                </div>
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">联系方式</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input">
+                    </div>
+                </div>
+                <div class="weui-cells weui-cells_form">
+                    <div class="weui-cell">
+                        <div class="weui-cell__bd">
+                            <textarea class="weui-textarea" placeholder="咨询内容" rows="3"></textarea>
+                            <div class="weui-textarea-counter"><span>0</span>/200</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="weui-form-preview__ft">
+                    <a class="weui-form-preview__btn weui-form-preview__btn_default"
+                       style="background-color: #3475eb;color: white;"
+                       href="javascript:">提交</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
