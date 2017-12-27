@@ -41,7 +41,7 @@
 <body>
 
 <div class="weui-search-bar header" id="searchBar">
-    <h3>小额贷款</h3>
+    <h3>车辆信用贷</h3>
 </div>
 <div class="weui-form-preview">
     <div class="weui-form-preview__hd">
@@ -50,24 +50,8 @@
     </div>
     <div class="weui-form-preview__bd">
         <div class="weui-form-preview__item">
-            <label class="weui-form-preview__label">服务名称</label>
-            <span class="weui-form-preview__value">车辆信用贷</span>
-        </div>
-        <div class="weui-form-preview__item">
-            <label class="weui-form-preview__label">支持客户性质</label>
-            <span class="weui-form-preview__value">个人、企业</span>
-        </div>
-        <div class="weui-form-preview__item">
-            <label class="weui-form-preview__label">是否支持购买</label>
-            <span class="weui-form-preview__value">支持</span>
-        </div>
-        <div class="weui-form-preview__item">
-            <label class="weui-form-preview__label">个人材料</label>
-            <span class="weui-form-preview__value">身份证、户口簿</span>
-        </div>
-        <div class="weui-form-preview__item">
-            <label class="weui-form-preview__label">企业材料</label>
-            <span class="weui-form-preview__value">身份证、营业执照</span>
+            <label class="weui-form-preview__label">服务类型</label>
+            <span class="weui-form-preview__value">小额贷款</span>
         </div>
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">服务介绍</label>
