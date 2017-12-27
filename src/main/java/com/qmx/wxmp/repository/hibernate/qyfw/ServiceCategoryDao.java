@@ -34,4 +34,8 @@ public class ServiceCategoryDao extends BaseDao<ServiceCategory> {
 				"from ServiceCategory where delFlag=:p1 and (id=:p2 or parent.id=:p2 or parentIds like :p3) order by sort asc",
 				new Parameter("0", parentId, likeParentIds));
 	}
+	
+	public List<ServiceCategory> findAllChildByWxMenuId(String wxMenuId){
+		return findBySql("select * from qyfw_service_category where parent_id = (select id from qyfw_service_category where wx_menu_id = :p1)", new Parameter(wxMenuId), ServiceCategory.class);
+	}
 }

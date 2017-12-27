@@ -1,5 +1,7 @@
 package com.qmx.wxmp.service.qyfw;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.hibernate.criterion.DetachedCriteria;
@@ -78,5 +80,7 @@ public class BasicServiceService extends BaseService {
 		return basicServiceDao.find(page, dc);
 	}
 	
-	
+	public List<BasicService> findByServiceCategoryId(String serviceCategoryId){
+		return basicServiceDao.findByServiceCategoryId(serviceCategoryId);
+	}
 }

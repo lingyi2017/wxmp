@@ -42,16 +42,18 @@ public class WxOauthController {
 	public String oauthNotifyBase(HttpServletResponse response,
             HttpServletRequest request, Model model) {
 		String code = request.getParameter("code");//微信授权code
-		String page = request.getParameter("state");//要跳转的页面
+		String page = request.getParameter("page");//要跳转的页面
+		String state = request.getParameter("state");
 		String openid = "";
 		try {
 			openid = wxOauthService.getOpenid(code);
-			System.out.println("openid"+openid);
 		} catch (WxErrorException e) {
 			logger.info("获取openid失败");
 			e.printStackTrace();
 		}
+		model.addAttribute("state",state);
 		model.addAttribute("openid",openid);
+		System.out.println(openid);
 		return page;
 	}
 	

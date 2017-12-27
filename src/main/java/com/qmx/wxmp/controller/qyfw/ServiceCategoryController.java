@@ -1,5 +1,6 @@
 package com.qmx.wxmp.controller.qyfw;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,8 +21,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.qmx.wxmp.controller.BaseController;
+import com.qmx.wxmp.dto.ajax.AjaxResult;
+import com.qmx.wxmp.dto.category.BasicServiceDTO;
+import com.qmx.wxmp.dto.category.ServiceCategoryDTO;
+import com.qmx.wxmp.entity.qyfw.BasicService;
 import com.qmx.wxmp.entity.qyfw.ServiceCategory;
-import com.qmx.wxmp.service.qyfw.OrderService;
+import com.qmx.wxmp.service.qyfw.BasicServiceService;
 import com.qmx.wxmp.service.qyfw.ServiceCategoryService;
 
 /**
@@ -36,7 +41,8 @@ public class ServiceCategoryController extends BaseController {
 
 	@Autowired
 	private ServiceCategoryService thisService;
-
+	@Autowired
+	private BasicServiceService basicService;
 
 
 	@ModelAttribute("serviceCategory")
@@ -152,4 +158,47 @@ public class ServiceCategoryController extends BaseController {
 
 	}
 
+	/**
+	 * 微信端，展示的服务列表页面
+	 * @param wxid 微信菜单ID
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "wx_service_list")
+	public AjaxResult wxServiceList(@RequestParam(required = true) String wxMenuId){
+		AjaxResult result = new AjaxResult();
+		try{
+			List<ServiceCategoryDTO> categoryDTOs = new ArrayList<ServiceCategoryDTO>();
+			List<ServiceCategory> categories = thisService.findAllChildByWxMenuId(wxMenuId);
+			for(ServiceCategory category : categories){
+				ServiceCategoryDTO categoryDTO = new ServiceCategoryDTO();
+				categoryDTO.setServiceCategoryId(category.getId());
+				categoryDTO.setServiceCategoryName(category.getName());
+				List<BasicServiceDTO> serviceDTOs = new ArrayList<BasicServiceDTO>();
+				List<BasicService> basicServices = basicService.findByServiceCategoryId(category.getId());
+				for(BasicService basicService : basicServices){
+					BasicServiceDTO serviceDTO = new BasicServiceDTO();
+					serviceDTO.setBasicServiceId(basicService.getId());
+					serviceDTO.setBasicServiceName(basicService.getName());
+					serviceDTO.setIsHot(basicService.getIsHot());
+					serviceDTOs.add(serviceDTO);
+				}
+				categoryDTO.setBasicServiceDTOs(serviceDTOs);
+				categoryDTOs.add(categoryDTO);
+			}
+			result.setResult(true);
+			result.setObj(categoryDTOs);
+		} catch(Exception e){
+			result.setResult(false);
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	@RequestMapping(value = "wx_service_list_view")
+	public String wxServiceListView() {
+
+		return "/wx/service_list";
+
+	}
 }

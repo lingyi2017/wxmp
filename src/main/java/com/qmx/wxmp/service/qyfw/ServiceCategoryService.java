@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.qmx.wxmp.common.utils.IdGen;
 import com.qmx.wxmp.common.utils.StringUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,6 +71,15 @@ public class ServiceCategoryService extends BaseService {
 	public void delete(String id) {
 		thisDao.deleteById(id, "%," + id + ",%");
 		UserUtils.removeCache(UserUtils.CACHE_SERVICE_CATEGORY_LIST);
+	}
+	
+	/**
+	 * 根据微信id获取要显示的服务列表
+	 * @param wxMenuId 微信菜单id
+	 * @return
+	 */
+	public List<ServiceCategory> findAllChildByWxMenuId(String wxMenuId){
+		return thisDao.findAllChildByWxMenuId(wxMenuId);
 	}
 
 }
