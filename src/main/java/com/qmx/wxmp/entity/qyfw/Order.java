@@ -5,7 +5,17 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.DynamicInsert;
@@ -32,6 +42,18 @@ public class Order implements Serializable {
 	@Id
 	private String				id;
 
+	/* 公众号的用户识别id**/
+	@Column(name="openid")
+	private String openid;
+	
+	/* 系统内订单号**/
+	@Column(name="out_trade_no")
+	private String outTradeNo;
+	
+	/* 交易说明**/
+	@Column(name="_trade_desc")
+	private String tradeDesc;
+	
 	/** 联系人 */
 	private String				contact;
 
@@ -60,6 +82,9 @@ public class Order implements Serializable {
 
 	@OneToMany(mappedBy = "order")
 	private Set<OrderMaterial>	orderMaterials;
+	
+	@OneToOne(mappedBy = "order",cascade=CascadeType.ALL)
+	private OrderPayRecord orderParRecord;
 
 	/** 创建日期 */
 	@Temporal(TemporalType.TIMESTAMP)
@@ -184,5 +209,53 @@ public class Order implements Serializable {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+
+
+	public String getOutTradeNo() {
+		return outTradeNo;
+	}
+
+
+
+	public void setOutTradeNo(String outTradeNo) {
+		this.outTradeNo = outTradeNo;
+	}
+
+
+
+	public OrderPayRecord getOrderParRecord() {
+		return orderParRecord;
+	}
+
+
+
+	public void setOrderParRecord(OrderPayRecord orderParRecord) {
+		this.orderParRecord = orderParRecord;
+	}
+
+
+
+	public String getOpenid() {
+		return openid;
+	}
+
+
+
+	public void setOpenid(String openid) {
+		this.openid = openid;
+	}
+
+
+
+	public String getTradeDesc() {
+		return tradeDesc;
+	}
+
+
+
+	public void setTradeDesc(String tradeDesc) {
+		this.tradeDesc = tradeDesc;
 	}
 }
