@@ -25,4 +25,11 @@ public class WxPageController {
 		return "/wx/serviceForm";
 	}
 
+
+
+	@RequestMapping(value = "/serviceBuy")
+	public String serviceBuyUI() {
+		return "/wx/serviceBuy";
+	}
+
 }
