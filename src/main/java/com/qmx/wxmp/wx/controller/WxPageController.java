@@ -32,4 +32,9 @@ public class WxPageController {
 		return "/wx/serviceBuy";
 	}
 
+    @RequestMapping(value = "/personalCenter")
+    public String personalCenterUI() {
+        return "/wx/personalCenter";
+    }
+
 }
