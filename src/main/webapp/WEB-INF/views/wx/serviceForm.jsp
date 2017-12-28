@@ -80,17 +80,6 @@
         </div>
         <div class="modal-content">
             <div class="weui-cells weui-cells_form">
-                <div class="weui-cell weui-cell_select weui-cell_select-after">
-                    <div class="weui-cell__hd">
-                        <label for="" class="weui-label">性质</label>
-                    </div>
-                    <div class="weui-cell__bd">
-                        <select class="weui-select" name="select2">
-                            <option value="1">个人</option>
-                            <option value="2">企业</option>
-                        </select>
-                    </div>
-                </div>
                 <div class="weui-cell">
                     <div class="weui-cell__hd"><label class="weui-label">名称</label></div>
                     <div class="weui-cell__bd">
@@ -112,7 +101,7 @@
                     </div>
                 </div>
                 <div class="weui-form-preview__ft">
-                    <a class="weui-form-preview__btn weui-form-preview__btn_default"
+                    <a class="weui-form-preview__btn weui-form-preview__btn_default close-popup"
                        style="background-color: #3475eb;color: white;"
                        href="javascript:">提交</a>
                 </div>
