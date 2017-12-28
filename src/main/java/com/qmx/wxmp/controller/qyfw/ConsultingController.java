@@ -14,12 +14,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.qmx.wxmp.common.persistence.Page;
 import com.qmx.wxmp.common.utils.IdGen;
 import com.qmx.wxmp.controller.BaseController;
+import com.qmx.wxmp.dto.ajax.AjaxResult;
 import com.qmx.wxmp.dto.order.QueryOrderDto;
+import com.qmx.wxmp.entity.qyfw.BasicService;
 import com.qmx.wxmp.entity.qyfw.Consulting;
 import com.qmx.wxmp.entity.qyfw.Customer;
 import com.qmx.wxmp.service.qyfw.ConsultingService;
@@ -113,4 +116,29 @@ public class ConsultingController extends BaseController {
 		}
 		return "redirect:/qyfw/consulting/wait/list?repage";
 	}
+	
+	@RequestMapping(value = "/wx_save_consulting")
+	@ResponseBody
+	public AjaxResult wxSave(String openid, String person, String phone
+			, String content, String basicServiceId, Model model){
+		AjaxResult result = new AjaxResult();
+		try{
+			Consulting consulting = new Consulting();
+			consulting.setOpenid(openid);
+			consulting.setPerson(person);
+			consulting.setPhone(phone);
+			consulting.setContent(content);
+			consulting.setTime(new Date());
+			BasicService basicService = new BasicService();
+			basicService.setId(basicServiceId);
+			consulting.setBasicService(basicService);
+			consultingService.save(consulting);
+			result.setResult(true);
+		} catch(Exception e){
+			e.printStackTrace();
+			result.setResult(false);
+		}
+		return result;
+	}
+	
 }

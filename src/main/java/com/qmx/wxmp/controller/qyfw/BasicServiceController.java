@@ -85,4 +85,11 @@ public class BasicServiceController extends BaseController {
 		addMessage(redirectAttributes, "删除基础服务成功");
 		return "redirect:/qyfw/basicService/";
 	}
+	
+	@RequestMapping(value = "wx_service_form")
+	public String wxServiceForm(String openid, String basicServiceId, Model model) {
+		model.addAttribute("basicService",basicServiceService.get(basicServiceId));
+		model.addAttribute("openid", openid);
+		return "/wx/service_form";
+	}
 }

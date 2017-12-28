@@ -167,6 +167,7 @@ public class ServiceCategoryController extends BaseController {
 	@RequestMapping(value = "wx_service_list")
 	public AjaxResult wxServiceList(@RequestParam(required = true) String wxMenuId){
 		AjaxResult result = new AjaxResult();
+		wxMenuId="kbgs";
 		try{
 			List<ServiceCategoryDTO> categoryDTOs = new ArrayList<ServiceCategoryDTO>();
 			List<ServiceCategory> categories = thisService.findAllChildByWxMenuId(wxMenuId);

@@ -41,17 +41,17 @@
 <body>
 
 <div class="weui-search-bar header" id="searchBar">
-    <h3>车辆信用贷</h3>
+    <h3>${basicService.name }</h3>
 </div>
 <div class="weui-form-preview">
     <div class="weui-form-preview__hd">
         <label class="weui-form-preview__label">价格</label>
-        <span class="weui-form-preview__value">¥8888</span>
+        <span class="weui-form-preview__value">¥${basicService.price }</span>
     </div>
     <div class="weui-form-preview__bd">
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">服务类型</label>
-            <span class="weui-form-preview__value">小额贷款</span>
+            <span class="weui-form-preview__value">${basicService.serviceCategory.name}</span>
         </div>
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">服务介绍</label>
@@ -80,22 +80,23 @@
         </div>
         <div class="modal-content">
             <div class="weui-cells weui-cells_form">
+            	<input type="hidden" id="openid" value="${openid }">
                 <div class="weui-cell">
-                    <div class="weui-cell__hd"><label class="weui-label">名称</label></div>
+                    <div class="weui-cell__hd"><label class="weui-label">联系人</label></div>
                     <div class="weui-cell__bd">
-                        <input class="weui-input">
+                        <input class="weui-input" id="person">
                     </div>
                 </div>
                 <div class="weui-cell">
                     <div class="weui-cell__hd"><label class="weui-label">联系方式</label></div>
                     <div class="weui-cell__bd">
-                        <input class="weui-input">
+                        <input class="weui-input" id="phone">
                     </div>
                 </div>
                 <div class="weui-cells weui-cells_form">
                     <div class="weui-cell">
                         <div class="weui-cell__bd">
-                            <textarea class="weui-textarea" placeholder="咨询内容" rows="3"></textarea>
+                            <textarea class="weui-textarea" placeholder="咨询内容" rows="3" id="content"></textarea>
                             <div class="weui-textarea-counter"><span>0</span>/200</div>
                         </div>
                     </div>
@@ -103,7 +104,7 @@
                 <div class="weui-form-preview__ft">
                     <a class="weui-form-preview__btn weui-form-preview__btn_default close-popup"
                        style="background-color: #3475eb;color: white;"
-                       href="javascript:">提交</a>
+                       href="javascript:submit_consult()">提交</a>
                 </div>
             </div>
         </div>
@@ -119,6 +120,54 @@
     $(function () {
         FastClick.attach(document.body);
     });
+    function submit_consult(){
+    	var person = $("#person").val();
+    	var phone = $("#phone").val();
+    	var content = $("#content").val();
+    	var openid = $("#openid").val();
+    	var basicServiceId = "${basicService.id}";
+    	if(phone == ""){
+    		$.toptip('请输入联系方式', 'warning');
+    		return;
+    	}
+    	if(content == ""){
+    		$.toptip('请输入咨询内容', 'warning');
+    		return;
+    	}
+    	var tel = /(^0[1-9]{1}\d{9,10}$)|(^1[3,5,8]\d{9}$)/g;
+    	if(!tel.test(phone)){
+    		$.toptip('请输入正确的电话号码', 'warning');
+    		return;
+    	}
+    	$.ajax({
+	        url : "${pageContext.request.contextPath}/qyfw/consulting/wx_save_consulting",
+	        type : "post",
+	        dataType : "json",
+	        data : {
+	        		openid:openid,
+	        		person:person,
+	        		phone:phone,
+	        		content:content,
+	        		basicServiceId:basicServiceId
+	        },
+	        cache : false,
+	        async : false,
+	        success : function(data) {
+	            if(data.result){
+	            	alert("咨询成功!请等待客服人员与您联系");
+	            	window.location.reload(true);
+	            	
+	            }else{
+	            	alert("抱歉,发生了不可预知的错误,请稍后再试!");
+	            	window.location.reload;
+	            }
+	        },
+	        error : function(err) {
+	        	alert("抱歉,发生了不可预知的错误,请稍后再试!");
+	        	window.location.reload;
+	        }
+	    });
+    };
 </script>
 </body>
 </html>

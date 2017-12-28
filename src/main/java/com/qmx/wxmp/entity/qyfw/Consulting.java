@@ -30,6 +30,8 @@ public class Consulting {
 	@Id
 	private String id;
 	
+	private String openid;
+	
 	/** 咨询人*/
 	private String person;
 	
@@ -151,6 +153,14 @@ public class Consulting {
 
 	public void setBasicService(BasicService basicService) {
 		this.basicService = basicService;
+	}
+
+	public String getOpenid() {
+		return openid;
+	}
+
+	public void setOpenid(String openid) {
+		this.openid = openid;
 	}
 	
 }

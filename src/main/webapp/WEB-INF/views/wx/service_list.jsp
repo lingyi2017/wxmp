@@ -98,7 +98,7 @@
 	            			}
 
             				div = div + "<div class='weui-flex__item'>";
-            				div = div + "<a href='http://www.baidu.com'>";
+            				div = div + "<a href='${pageContext.request.contextPath}/qyfw/basicService/wx_service_form?openid=${openid}&basicServiceId="+basic_service_list[j].basicServiceId+"'>";
             				if(basic_service_list[j].isHot){
             					div = div + "<div class='placeholder red' style='font-size:12px'>"+basic_service_list[j].basicServiceName+"</div>";
             				}else{

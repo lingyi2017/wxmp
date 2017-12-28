@@ -45,6 +45,14 @@ public class ConsultingService extends BaseService {
 	}
 	
 	@Transactional(readOnly = false)
+	public void wxSave(Consulting consulting){
+		if (StringUtils.isEmpty(consulting.getId())) {
+			consulting.setId(IdGen.uuid());
+		}
+		consultingDao.save(consulting);
+	}
+	
+	@Transactional(readOnly = false)
 	public void delete(String id){
 		consultingDao.delById(id);
 	}
