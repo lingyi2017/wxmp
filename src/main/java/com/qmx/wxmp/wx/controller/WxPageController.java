@@ -32,9 +32,39 @@ public class WxPageController {
 		return "/wx/serviceBuy";
 	}
 
-    @RequestMapping(value = "/personalCenter")
-    public String personalCenterUI() {
-        return "/wx/personalCenter";
-    }
+
+
+	@RequestMapping(value = "/personalCenter")
+	public String personalCenterUI() {
+		return "/wx/personalCenter";
+	}
+
+
+
+	@RequestMapping(value = "/orderList")
+	public String orderListUI() {
+		return "/wx/orderList";
+	}
+
+
+
+	@RequestMapping(value = "/orderForm")
+	public String orderFormUI() {
+		return "/wx/orderForm";
+	}
+
+
+
+	@RequestMapping(value = "/consultList")
+	public String consultListUI() {
+		return "/wx/consultList";
+	}
+
+
+
+	@RequestMapping(value = "/consultForm")
+	public String consultFormUI() {
+		return "/wx/consultForm";
+	}
 
 }
