@@ -1,8 +1,10 @@
 package com.qmx.wxmp.entity.qyfw;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -45,7 +47,8 @@ public class BasicService {
 	private String customerType;
 
 	/** 服务价格*/
-	private Float price;
+	@Column(precision = 8, scale = 2)
+	private BigDecimal price;
 	
 	/** 服务介绍*/
 	private String desciption;
@@ -122,11 +125,11 @@ public class BasicService {
 		this.customerType = customerType;
 	}
 
-	public Float getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(Float price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 

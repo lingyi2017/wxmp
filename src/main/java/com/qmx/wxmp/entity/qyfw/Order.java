@@ -61,6 +61,7 @@ public class Order implements Serializable {
 	private String				phone;
 
 	/** 支付金额 */
+	@Column(precision = 8, scale = 2)
 	private BigDecimal			money;
 
 	/** 订单状态（1-已购买；2-结束） */

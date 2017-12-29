@@ -51,7 +51,7 @@
     <div class="weui-form-preview__bd">
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">服务类型</label>
-            <span class="weui-form-preview__value">${basicService.serviceCategory.name}</span>
+            <span class="weui-form-preview__value">${basicService.name}</span>
         </div>
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">服务介绍</label>
@@ -63,8 +63,8 @@
     <div class="weui-form-preview__ft">
         <a class="weui-form-preview__btn weui-form-preview__btn_default open-popup" style="color: #3475eb;"
            href="javascript:" data-target="#half">我要咨询</a>
-        <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary"
-                style="background-color: #3475eb; color: white;" href="javascript:">我要购买
+        <button type="submit" id="buy_button" class="weui-form-preview__btn weui-form-preview__btn_primary"
+                style="background-color: #3475eb; color: white;">我要购买
         </button>
     </div>
 </div>
@@ -119,6 +119,9 @@
 <script type="text/javascript">
     $(function () {
         FastClick.attach(document.body);
+        $("#buy_button").click(function(){
+        	window.location.href = "${pageContext.request.contextPath}/qyfw/order/wx_serivce_buy?openid=${openid}&serviceId=${basicService.id}";
+        });
     });
     function submit_consult(){
     	var person = $("#person").val();

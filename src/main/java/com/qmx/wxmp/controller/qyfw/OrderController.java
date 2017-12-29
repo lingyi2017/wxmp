@@ -25,6 +25,7 @@ import com.qmx.wxmp.dto.order.QueryOrderDto;
 import com.qmx.wxmp.entity.qyfw.BasicService;
 import com.qmx.wxmp.entity.qyfw.Customer;
 import com.qmx.wxmp.entity.qyfw.Order;
+import com.qmx.wxmp.service.qyfw.BasicServiceService;
 import com.qmx.wxmp.service.qyfw.CustomerService;
 import com.qmx.wxmp.service.qyfw.OrderService;
 import com.qmx.wxmp.wx.service.WxOwnPayService;
@@ -47,6 +48,9 @@ public class OrderController extends BaseController {
 	
 	@Autowired
 	private WxOwnPayService wxOwnPayService;
+	
+	@Autowired
+	private BasicServiceService basicServiceService;
 
 
 
@@ -136,32 +140,57 @@ public class OrderController extends BaseController {
 		return "redirect:/qyfw/order/wait/list?repage";
 	}
 	
+	/**
+	 * 微信订单购买页面
+	 * @param order
+	 * @return
+	 */
+	@RequestMapping(value = "/wx_serivce_buy")
+	public String wxServiceBuy(String serviceId,String openid, Model model
+			,HttpServletResponse response, HttpServletRequest request){
+		try{
+			if(StringUtils.isBlank(openid) || StringUtils.isBlank(serviceId)){
+				response.getWriter().write("发生了不可预知的错误,请返回公众号内重新操作");
+			}
+			BasicService basicService = basicServiceService.get(serviceId);
+			model.addAttribute("basicService", basicService);
+			model.addAttribute("openid", openid);
+			return "/wx/service_buy";
+		} catch(Exception e){
+			return null;
+		}
+		
+	}
 	
 	/**
 	 * 微信端订单提交，保存后进入支付页面
 	 * @param order
 	 * @return
 	 */
-	@RequestMapping(value = "/save")
-	public String save(Order order,String openid, Model model
+	@RequestMapping(value = "/wx_save")
+	public String wxSave(String basicServiceId, String openid, String contact, String phone, Model model
 			,HttpServletResponse response, HttpServletRequest request){
 		try {
 			//保存订单
-			BasicService test = new BasicService();
-			test.setId("3bff6d9c29f548a4bbc80c391b45e904");
-			order.setBasicService(test);
+			BasicService basicService = basicServiceService.get(basicServiceId);
+			Order order = new Order();
+			order.setBasicService(basicService);
 			order.setOpenid(openid);
-			order.setContact("18782929924");
-			order.setMoney(new BigDecimal("0.01"));
-			order.setTradeDesc("启明星服务-个人贷款");
+			order.setContact(contact);
+			order.setPhone(phone);
+			order.setMoney(basicService.getPrice());
+			order.setTradeDesc("启明星服务-"+basicService.getName());
 			thisService.save(order);
 			//获取支付页面需要的微信支付参数
 			WxPayMpOrderResult payInfo = wxOwnPayService.getJSSDKPayInfo(order.getOpenid()
 					, order.getOutTradeNo(), order.getMoney().multiply(new BigDecimal("100")).intValue()
 					, order.getTradeDesc(), "JSAPI", request.getRemoteAddr());
 			model.addAttribute("payInfo", payInfo);
-			return "/wx/pay_test";
+			return "/wx/order_pay";
 		} catch (WxPayException e) {
+			e.printStackTrace();
+			return "/error/500";
+		} catch (Exception e) {
 			e.printStackTrace();
 			return "/error/500";
 		}

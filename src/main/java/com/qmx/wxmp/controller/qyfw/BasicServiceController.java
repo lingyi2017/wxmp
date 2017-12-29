@@ -92,4 +92,6 @@ public class BasicServiceController extends BaseController {
 		model.addAttribute("openid", openid);
 		return "/wx/service_form";
 	}
+	
+	
 }
