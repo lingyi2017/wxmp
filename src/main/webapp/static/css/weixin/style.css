@@ -99,14 +99,14 @@ header,.weui-navbar{
 .weui-tabbar__item.weui-bar__item--on .weui-tabbar__label{color:#e21323;}
 .weui-tabbar__label{color:#666;}
 .weui-tabbar__icon{width:22px; height:22px;}
-.weui-tabbar__item .foot-menu-home{background:url(../images/footer01.png) no-repeat; background-size:22px;}
-.weui-tabbar__item.weui-bar__item--on .foot-menu-home{background:url(../images/footer001.png) no-repeat; background-size:22px;}
-.weui-tabbar__item .foot-menu-list{background:url(../images/footer02.png) no-repeat; background-size:22px;}
-.weui-tabbar__item.weui-bar__item--on .foot-menu-list{background:url(../images/footer002.png) no-repeat; background-size:22px;}
-.weui-tabbar__item .foot-menu-cart{background:url(../images/footer03.png) no-repeat; background-size:22px;}
-.weui-tabbar__item.weui-bar__item--on .foot-menu-cart{background:url(../images/footer003.png) no-repeat; background-size:22px;}
-.weui-tabbar__item .foot-menu-member{background:url(../images/footer04.png) no-repeat; background-size:22px;}
-.weui-tabbar__item.weui-bar__item--on .foot-menu-member{background:url(../images/footer004.png) no-repeat; background-size:22px;}
+.weui-tabbar__item .foot-menu-home{background:url(../../images/weixin/footer01.png) no-repeat; background-size:22px;}
+.weui-tabbar__item.weui-bar__item--on .foot-menu-home{background:url(../../images/weixin/footer001.png) no-repeat; background-size:22px;}
+.weui-tabbar__item .foot-menu-list{background:url(../../images/weixin/footer02.png) no-repeat; background-size:22px;}
+.weui-tabbar__item.weui-bar__item--on .foot-menu-list{background:url(../../images/weixin/footer002.png) no-repeat; background-size:22px;}
+.weui-tabbar__item .foot-menu-cart{background:url(../../images/weixin/footer03.png) no-repeat; background-size:22px;}
+.weui-tabbar__item.weui-bar__item--on .foot-menu-cart{background:url(../../images/weixin/footer003.png) no-repeat; background-size:22px;}
+.weui-tabbar__item .foot-menu-member{background:url(../../images/weixin/footer04.png) no-repeat; background-size:22px;}
+.weui-tabbar__item.weui-bar__item--on .foot-menu-member{background:url(../../images/weixin/footer004.png) no-repeat; background-size:22px;}
 /*首页轮播*/
 .swiper-container {width: 100%;} 
 .swiper-container img {display: block;width: 100%;}

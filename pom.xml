@@ -859,7 +859,6 @@
 									<searchTransitive>true</searchTransitive>
 									<!-- 避免引入过期的jar包 -->
 									<excludes>
-										<exclude>commons-logging</exclude>
 										<exclude>aspectj:aspectj*</exclude>
 										<exclude>org.springframework</exclude>
 										<exclude>c3p0:*:[,1.0]</exclude>

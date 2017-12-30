@@ -150,4 +150,12 @@ public class WxPageController {
             HttpServletRequest request, Model model) {
 		return "/wx/pay_test";
 	}
+	
+	
+	@RequestMapping(value = "/orderApply")
+	public String orderApply(HttpServletResponse response,
+            HttpServletRequest request, Model model) {
+		return "/wx/order_apply";
+	}
+
 }
