@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html class="pixel-ratio-1">
 <head>
     <title>企明星</title>
@@ -61,6 +62,62 @@
 </div>
 
 <form id="form" action="${pageContext.request.contextPath}/qyfw/order/wx_save" method="post" onsubmit="return sumbit_order()">
+<div class="weui-cells__title">客户性质</div>
+<div class="weui-cells weui-cells_radio">
+	<c:if test="${basicService.customerType == '1'}">
+		<label class="weui-cell weui-check__label" for="x11">
+		    <div class="weui-cell__bd">
+		      <label class="weui-form-preview__label" style="font-size: 17px">企业</label>
+		    </div>
+		    <div class="weui-cell__ft">
+		      <input type="radio" class="weui-check" name="customerType" value="1" id="x11">
+		      <span class="weui-icon-checked"></span>
+		    </div>
+		  </label>
+	</c:if>
+  	<c:if test="${basicService.customerType == '2'}">
+		<label class="weui-cell weui-check__label" for="x12">
+		    <div class="weui-cell__bd">
+		      <label class="weui-form-preview__label" style="font-size: 17px">个人</label>
+		    </div>
+		    <div class="weui-cell__ft">
+		      <input type="radio" class="weui-check" name="customerType" value="2" id="x12">
+		      <span class="weui-icon-checked"></span>
+		    </div>
+		  </label>
+	</c:if>
+	<c:if test="${basicService.customerType == '1,2'}">
+		
+		  <label class="weui-cell weui-check__label" for="x12">
+		    <div class="weui-cell__bd">
+		      <label class="weui-form-preview__label" style="font-size: 17px">个人</label>
+		    </div>
+		    <div class="weui-cell__ft">
+		      <input type="radio" class="weui-check" name="customerType" value="2" id="x12">
+		      <span class="weui-icon-checked"></span>
+		    </div>
+		  </label>
+		  <label class="weui-cell weui-check__label" for="x11">
+		    <div class="weui-cell__bd">
+		      <label class="weui-form-preview__label" style="font-size: 17px">企业</label>
+		    </div>
+		    <div class="weui-cell__ft">
+		      <input type="radio" class="weui-check" name="customerType" value="1" id="x11">
+		      <span class="weui-icon-checked"></span>
+		    </div>
+		  </label>
+	</c:if>
+
+</div>
+
+<div class="weui-cells weui-cells_form">
+    <div class="weui-cell" style="font-size: 17px;color: #999;">
+        <div class="weui-cell__hd"><label class="weui-label" id="label_contact"></label></div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" id="contact" name="contact">
+        </div>
+    </div>
+</div>
 <div class="weui-cells weui-cells_form">
     <div class="weui-cell" style="font-size: 17px;color: #999;">
     	<input type="hidden" name="openid" value="${openid }">
@@ -72,7 +129,7 @@
     </div>
 </div>
 <div class="weui-panel">
-    <div class="weui-panel__hd"><p style="font-size: 17px">支付方式${basicService.id }</p></div>
+    <div class="weui-panel__hd"><p style="font-size: 17px">支付方式</p></div>
     <div class="weui-panel__bd">
         <div class="weui-media-box weui-media-box_small-appmsg">
             <div class="weui-cells">
@@ -101,6 +158,20 @@
 <script type="text/javascript">
     $(function () {
         FastClick.attach(document.body);
+		if("${basicService.customerType}" == 2){
+			$("#label_contact").html("联系人");
+        }else{
+        	$("#label_contact").html("企业名称");
+        }
+        $('input[name=customerType]').click(function(){
+        	var value = $("input[name='customerType']:checked").val();
+        	if(value == '1'){
+        		$("#label_contact").html("企业名称");
+        	}else{
+        		$("#label_contact").html("联系人");
+        	}
+        	
+        });
     });
     function sumbit_order(){
     	var phone = $("#phone").val();
@@ -111,11 +182,11 @@
     	}
     		var data = $('form').serialize();
             var content = JSON.stringify(data).replace(/"/gi, '').replace(/&/gi, '<br>');
-            console.info(content);
             $('form').submit();
     	
     	
     };
+    
 </script>
 </body>
 </html>

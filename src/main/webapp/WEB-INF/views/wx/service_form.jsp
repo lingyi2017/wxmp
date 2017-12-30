@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html class="pixel-ratio-1">
 <head>
     <title>企明星</title>
@@ -55,17 +56,26 @@
         </div>
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">服务介绍</label>
-            <span class="weui-form-preview__value">
-                车身侧面采用双腰线设计，强调车身线条在三位空间的变化，让光影形成从上而下流淌、从前到后流转的丰富变化，呈现完美的视觉效果。
+            <span class="weui-form-preview__value" id="span_desciption">
             </span>
         </div>
     </div>
-    <div class="weui-form-preview__ft">
+    <div class="weui-form-preview__ft ">
         <a class="weui-form-preview__btn weui-form-preview__btn_default open-popup" style="color: #3475eb;"
-           href="javascript:" data-target="#half">我要咨询</a>
-        <button type="submit" id="buy_button" class="weui-form-preview__btn weui-form-preview__btn_primary"
-                style="background-color: #3475eb; color: white;">我要购买
-        </button>
+           href="javascript:" data-target="#half" >我要咨询</a>
+        <c:if test="${basicService.isBuy == false}">
+        	<button type="submit" id="buy_button" class="weui-form-preview__btn weui-form-preview__btn_primary"
+                style="background-color: #AAAAAA; color: white;" disabled="disabled">暂不支持购买
+        	</button>
+        </c:if>
+        
+        <c:if test="${basicService.isBuy == true}">
+        	<button type="submit" id="buy_button" class="weui-form-preview__btn weui-form-preview__btn_primary"
+                style="background-color: #3475eb; color: white;"
+                onclick="javascript:window.location.href = '${pageContext.request.contextPath}/qyfw/order/wx_serivce_buy?openid=${openid}&serviceId=${basicService.id}'">我要购买
+        	</button>
+        </c:if>
+        
     </div>
 </div>
 
@@ -81,14 +91,61 @@
         <div class="modal-content">
             <div class="weui-cells weui-cells_form">
             	<input type="hidden" id="openid" value="${openid }">
+            	<div class="weui-cells__title">客户性质</div>
+					<div class="weui-cells weui-cells_radio">
+						<c:if test="${basicService.customerType == '1'}">
+							<label class="weui-cell weui-check__label" for="x11">
+							    <div class="weui-cell__bd">
+							      <label class="weui-form-preview__label" style="font-size: 17px">企业</label>
+							    </div>
+							    <div class="weui-cell__ft">
+							      <input type="radio" class="weui-check" name="customerType" value="1" id="x11">
+							      <span class="weui-icon-checked"></span>
+							    </div>
+							  </label>
+						</c:if>
+					  	<c:if test="${basicService.customerType == '2'}">
+							<label class="weui-cell weui-check__label" for="x12">
+							    <div class="weui-cell__bd">
+							      <label class="weui-form-preview__label" style="font-size: 17px">个人</label>
+							    </div>
+							    <div class="weui-cell__ft">
+							      <input type="radio" class="weui-check" name="customerType" value="2" id="x12">
+							      <span class="weui-icon-checked"></span>
+							    </div>
+							  </label>
+						</c:if>
+						<c:if test="${basicService.customerType == '1,2'}">
+							
+							  <label class="weui-cell weui-check__label" for="x12">
+							    <div class="weui-cell__bd">
+							      <label class="weui-form-preview__label" style="font-size: 17px">个人</label>
+							    </div>
+							    <div class="weui-cell__ft">
+							      <input type="radio" class="weui-check" name="customerType" value="2" id="x12">
+							      <span class="weui-icon-checked"></span>
+							    </div>
+							  </label>
+							  <label class="weui-cell weui-check__label" for="x11">
+							    <div class="weui-cell__bd">
+							      <label class="weui-form-preview__label" style="font-size: 17px">企业</label>
+							    </div>
+							    <div class="weui-cell__ft">
+							      <input type="radio" class="weui-check" name="customerType" value="1" id="x11">
+							      <span class="weui-icon-checked"></span>
+							    </div>
+							  </label>
+						</c:if>
+					
+					</div>
                 <div class="weui-cell">
-                    <div class="weui-cell__hd"><label class="weui-label">联系人</label></div>
+                    <div class="weui-cell__hd"><label class="weui-label" id="label_contact"></label></div>
                     <div class="weui-cell__bd">
                         <input class="weui-input" id="person">
                     </div>
                 </div>
                 <div class="weui-cell">
-                    <div class="weui-cell__hd"><label class="weui-label">联系方式</label></div>
+                    <div class="weui-cell__hd"><label class="weui-form-preview__label" style="font-size: 17px">联系方式</label></div>
                     <div class="weui-cell__bd">
                         <input class="weui-input" id="phone">
                     </div>
@@ -119,10 +176,33 @@
 <script type="text/javascript">
     $(function () {
         FastClick.attach(document.body);
-        $("#buy_button").click(function(){
-        	window.location.href = "${pageContext.request.contextPath}/qyfw/order/wx_serivce_buy?openid=${openid}&serviceId=${basicService.id}";
+        if("${basicService.customerType}" == 2){
+			$("#label_contact").html("联系人");
+        }else{
+        	$("#label_contact").html("企业名称");
+        }
+        $('input[name=customerType]').click(function(){
+        	var value = $("input[name='customerType']:checked").val();
+        	if(value == '1'){
+        		$("#label_contact").html("企业名称");
+        	}else{
+        		$("#label_contact").html("联系人");
+        	}
+        	
         });
+        $("#span_desciption").append(htmlDecodeByRegExp("${basicService.desciption}"));
     });
+    function htmlDecodeByRegExp(str){
+		var s = "";
+        if(str.length == 0) return "";
+        s = str.replace(/&amp;/g,"&");
+        s = s.replace(/&lt;/g,"<");
+        s = s.replace(/&gt;/g,">");
+        s = s.replace(/&nbsp;/g," ");
+        s = s.replace(/&#39;/g,"\'");
+        s = s.replace(/&quot;/g,"\"");
+        return s;
+	};
     function submit_consult(){
     	var person = $("#person").val();
     	var phone = $("#phone").val();

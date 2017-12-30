@@ -86,6 +86,11 @@ public class BasicServiceController extends BaseController {
 		return "redirect:/qyfw/basicService/";
 	}
 	
+	@RequestMapping(value = "test_test")
+	public String test() {
+		return "/wx/test";
+	}
+	
 	@RequestMapping(value = "wx_service_form")
 	public String wxServiceForm(String openid, String basicServiceId, Model model) {
 		model.addAttribute("basicService",basicServiceService.get(basicServiceId));

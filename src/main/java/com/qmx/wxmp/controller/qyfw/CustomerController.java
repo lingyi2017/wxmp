@@ -1,5 +1,7 @@
 package com.qmx.wxmp.controller.qyfw;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -8,13 +10,21 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.qmx.wxmp.common.persistence.Page;
 import com.qmx.wxmp.controller.BaseController;
+import com.qmx.wxmp.entity.qyfw.Consulting;
 import com.qmx.wxmp.entity.qyfw.Customer;
+import com.qmx.wxmp.entity.qyfw.Order;
+import com.qmx.wxmp.service.qyfw.ConsultingService;
 import com.qmx.wxmp.service.qyfw.CustomerService;
+import com.qmx.wxmp.service.qyfw.OrderService;
 
 /**
  * 客户 Controller
@@ -28,7 +38,10 @@ public class CustomerController extends BaseController {
 
 	@Autowired
 	private CustomerService thisService;
-
+	@Autowired
+	private OrderService orderService;
+	@Autowired
+	private ConsultingService consultingService;
 
 
 	@ModelAttribute
@@ -145,4 +158,22 @@ public class CustomerController extends BaseController {
 
 	}
 
+	@RequestMapping(value = "/wx_order_list")
+	public String wxOrderList(String openid, Model model) {
+		List<Order> list = orderService.findByOpenid(openid);
+		model.addAttribute("orderList", list);
+		return "/wx/order_list";
+	}
+	
+	@RequestMapping(value = "/wx_consulting_list")
+	public String wxConsultingList(String openid, Model model) {
+		List<Consulting> list = consultingService.findByOpenid(openid);
+		model.addAttribute("consultingList", list);
+		return "/wx/consulting_list";
+	}
+	
+	@RequestMapping(value = "/wx_personal_center")
+	public String wxPersonalCenter(String openid, Model model) {
+		return "/wx/personal_center";
+	}
 }

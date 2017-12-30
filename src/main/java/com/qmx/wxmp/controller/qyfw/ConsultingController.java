@@ -120,7 +120,7 @@ public class ConsultingController extends BaseController {
 	@RequestMapping(value = "/wx_save_consulting")
 	@ResponseBody
 	public AjaxResult wxSave(String openid, String person, String phone
-			, String content, String basicServiceId, Model model){
+			, String customerType, String content, String basicServiceId, Model model){
 		AjaxResult result = new AjaxResult();
 		try{
 			Consulting consulting = new Consulting();
@@ -129,6 +129,8 @@ public class ConsultingController extends BaseController {
 			consulting.setPhone(phone);
 			consulting.setContent(content);
 			consulting.setTime(new Date());
+			consulting.setCustomerType(customerType);
+			consulting.setDealStatus(Consulting.DEAL_NO);
 			BasicService basicService = new BasicService();
 			basicService.setId(basicServiceId);
 			consulting.setBasicService(basicService);
@@ -139,6 +141,12 @@ public class ConsultingController extends BaseController {
 			result.setResult(false);
 		}
 		return result;
+	}
+	
+	@RequestMapping(value = "/wx_consulting_form")
+	public String wxConsultingForm(String consultingId, Model model){
+		model.addAttribute("consulting", consultingService.get(consultingId));
+		return "/wx/consulting_form";
 	}
 	
 }

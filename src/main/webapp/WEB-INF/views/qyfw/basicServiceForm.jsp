@@ -4,11 +4,18 @@
 <head>
 	<title>基础服务管理</title>
 	<meta name="decorator" content="default"/>
+	<script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/static/ueditor1_4_3/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/static/ueditor1_4_3/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath}/static/ueditor1_4_3/lang/zh-cn/zh-cn.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
+			var ue = UE.getEditor('editor');
+			setContent("${basicService.desciption}");
 			$("#value").focus();
 			$("#inputForm").validate({
 				submitHandler: function(form){
+					var content = getContent();
+					$("#desciption").val(content);
 					loading('正在提交，请稍等...');
 					var chk_value =[]; 
 					$('input[name="customerTypeBox"]:checked').each(function(){ 
@@ -64,6 +71,26 @@
 			}else{
 				$("#price").css("display", "none");
 			}
+		}
+		function getContent() {
+	        return UE.getEditor('editor').getContent()
+	    }
+		function setContent(isAppendTo) {
+			UE.getEditor('editor').addListener("ready", function () {
+			       //UE.getEditor('editor').setContent(isAppendTo);
+			       UE.getEditor('editor').execCommand('insertHtml', htmlDecodeByRegExp(isAppendTo));
+			});
+	    }
+		function htmlDecodeByRegExp(str){
+			var s = "";
+            if(str.length == 0) return "";
+            s = str.replace(/&amp;/g,"&");
+            s = s.replace(/&lt;/g,"<");
+            s = s.replace(/&gt;/g,">");
+            s = s.replace(/&nbsp;/g," ");
+            s = s.replace(/&#39;/g,"\'");
+            s = s.replace(/&quot;/g,"\"");
+            return s;
 		}
 	</script>
 </head>
@@ -150,12 +177,20 @@
 				<form:input path="sort" htmlEscape="false" maxlength="50" class="required"/>
 			</div>
 		</div>
+		<div class="control-group">
+			<label class="control-label">服务介绍:</label>
+			<div class="controls">
+				<form:hidden path="desciption" id="desciption"/>
+				<script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
+			</div>
+		</div>
 		<div class="form-actions">
 			<shiro:hasPermission name="qyfw:basicService:edit">
 				<input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='save' />"/>&nbsp;
 			</shiro:hasPermission>
 			<input id="btnCancel" class="btn" type="button" value="<spring:message code='return' />" onclick="history.go(-1)"/>
 		</div>
+		
 	</form:form>
 </body>
 </html>

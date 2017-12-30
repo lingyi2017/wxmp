@@ -48,8 +48,10 @@ public class MenuConfig {
 
 		WxMenuButton button3 = new WxMenuButton();
 		button3.setName("个人中心");
+		button3.setType(MenuButtonType.VIEW);
+		button3.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_user?page=/wx/personal_center", "snsapi_userinfo", ""));
 
-		WxMenuButton button31 = new WxMenuButton();
+		/*WxMenuButton button31 = new WxMenuButton();
 		button31.setType(MenuButtonType.VIEW);
 		button31.setName("我的咨询");
 		button31.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_base?page=/wx/service_list", "snsapi_base", "kbgs"));
@@ -60,7 +62,7 @@ public class MenuConfig {
 		button32.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_base?page=/wx/service_list", "snsapi_base", "kbgs"));
 		
 		button3.getSubButtons().add(button31);
-		button3.getSubButtons().add(button32);
+		button3.getSubButtons().add(button32);*/
 		
 		menu.getButtons().add(button1);
 		menu.getButtons().add(button2);

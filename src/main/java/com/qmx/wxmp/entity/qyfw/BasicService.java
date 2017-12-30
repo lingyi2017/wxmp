@@ -51,6 +51,7 @@ public class BasicService {
 	private BigDecimal price;
 	
 	/** 服务介绍*/
+	@Column(columnDefinition="text")
 	private String desciption;
 	
 	/** 排序号*/

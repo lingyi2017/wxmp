@@ -1,11 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<%
-System.out.println("进入了支付页面");
-%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -39,16 +35,18 @@ System.out.println("进入了支付页面");
 		            	if (res.errMsg == "chooseWXPay:ok") {  
                             //支付成功  
                             alert('支付成功');  
+    			        	window.location.href = "${pageContext.request.contextPath}/qyfw/customer/wx_order_list?openid=${openid}";
                         } else {  
                             alert(res.errMsg);  
                         } 
-			        	//window.location.href = "${pageContext.request.contextPath}/wx/ordertest_4?orderId=${orderId}";
 		            },
 		            cancel: function (e) {
 		            	alert('取消了支付'); 
+		            	History.back();
 		            },
 		            error: function (e) {
 		            	alert('请重新支付'); 
+		            	History.back();
 		            }
 		        });
 		    });

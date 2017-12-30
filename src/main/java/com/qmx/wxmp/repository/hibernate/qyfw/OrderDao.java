@@ -1,9 +1,12 @@
 package com.qmx.wxmp.repository.hibernate.qyfw;
 
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
 import com.qmx.wxmp.common.persistence.BaseDao;
 import com.qmx.wxmp.common.persistence.Parameter;
 import com.qmx.wxmp.entity.qyfw.Order;
-import org.springframework.stereotype.Repository;
 
 /**
  * 订单 Dao
@@ -22,7 +25,7 @@ public class OrderDao extends BaseDao<Order> {
 		return getByHql("from Order where outTradeNo =:p1", new Parameter(outTradeNo));
 	}
 	
-	public Order findByOpenid(String openid) {
-		return getByHql("from Order where openid =:p1", new Parameter(openid));
+	public List<Order> findByOpenid(String openid) {
+		return find("from Order where openid =:p1 and status<>'0' order by createDate desc", new Parameter(openid));
 	}
 }

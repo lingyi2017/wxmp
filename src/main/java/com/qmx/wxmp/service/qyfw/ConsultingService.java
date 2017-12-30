@@ -1,6 +1,7 @@
 package com.qmx.wxmp.service.qyfw;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -78,5 +79,9 @@ public class ConsultingService extends BaseService {
 			dc.add(Restrictions.eq("dealStatus", queryDto.getStatus()));
 		}
 		return consultingDao.find(page, dc);
+	}
+	
+	public List<Consulting> findByOpenid(String openid) {
+		return consultingDao.findByOpenid(openid);
 	}
 }

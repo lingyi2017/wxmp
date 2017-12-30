@@ -2,8 +2,6 @@ package com.qmx.wxmp.wx.service;
 
 import java.math.BigDecimal;
 
-import javax.persistence.Id;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +12,6 @@ import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.github.binarywang.wxpay.bean.result.WxPayBaseResult;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.WxPayService;
-import com.qmx.wxmp.common.persistence.BaseDao;
 import com.qmx.wxmp.common.utils.DateUtils;
 import com.qmx.wxmp.common.utils.IdGen;
 import com.qmx.wxmp.entity.qyfw.Order;

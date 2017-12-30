@@ -54,6 +54,9 @@ public class Order implements Serializable {
 	@Column(name="_trade_desc")
 	private String tradeDesc;
 	
+	/** 客户性质（1：企业；2-个人） */
+	private String				customerType;
+	
 	/** 联系人 */
 	private String				contact;
 
@@ -64,7 +67,7 @@ public class Order implements Serializable {
 	@Column(precision = 8, scale = 2)
 	private BigDecimal			money;
 
-	/** 订单状态（1-已购买；2-结束） */
+	/** 订单状态（0=未支付1-已购买；2-结束） */
 	private String				status;
 
 	/** 处理反馈 */
@@ -258,5 +261,17 @@ public class Order implements Serializable {
 
 	public void setTradeDesc(String tradeDesc) {
 		this.tradeDesc = tradeDesc;
+	}
+
+
+
+	public String getCustomerType() {
+		return customerType;
+	}
+
+
+
+	public void setCustomerType(String customerType) {
+		this.customerType = customerType;
 	}
 }

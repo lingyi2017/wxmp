@@ -168,7 +168,7 @@ public class OrderController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/wx_save")
-	public String wxSave(String basicServiceId, String openid, String contact, String phone, Model model
+	public String wxSave(String basicServiceId, String openid, String customerType, String contact, String phone, Model model
 			,HttpServletResponse response, HttpServletRequest request){
 		try {
 			//保存订单
@@ -179,13 +179,17 @@ public class OrderController extends BaseController {
 			order.setContact(contact);
 			order.setPhone(phone);
 			order.setMoney(basicService.getPrice());
-			order.setTradeDesc("启明星服务-"+basicService.getName());
+			order.setCreateDate(new Date());
+			order.setTradeDesc("企明星服务咨询");
+			order.setStatus("0");
+			order.setCustomerType(customerType);
 			thisService.save(order);
 			//获取支付页面需要的微信支付参数
 			WxPayMpOrderResult payInfo = wxOwnPayService.getJSSDKPayInfo(order.getOpenid()
 					, order.getOutTradeNo(), order.getMoney().multiply(new BigDecimal("100")).intValue()
 					, order.getTradeDesc(), "JSAPI", request.getRemoteAddr());
 			model.addAttribute("payInfo", payInfo);
+			model.addAttribute("openid", openid);
 			return "/wx/order_pay";
 		} catch (WxPayException e) {
 			e.printStackTrace();
@@ -196,25 +200,10 @@ public class OrderController extends BaseController {
 		}
 	}
 	
-	/**
-	 * 微信端订单提交，保存后进入支付页面
-	 * @param order
-	 * @return
-	 */
-	@RequestMapping(value = "/savetest")
-	public String savetest(Order order,String openid, Model model
-			,HttpServletResponse response, HttpServletRequest request){
-			//保存订单
-			BasicService test = new BasicService();
-			test.setId("3bff6d9c29f548a4bbc80c391b45e904");
-			order.setBasicService(test);
-			order.setOpenid(openid);
-			order.setContact("18782929924");
-			order.setMoney(new BigDecimal("0.01"));
-			order.setTradeDesc("启明星服务-个人贷款");
-			thisService.save(order);
-			
-			return "/error/500t";
+	@RequestMapping(value = "/wx_order_form")
+	public String wxOrderForm(String orderId, Model model){
+		model.addAttribute("order", thisService.get(orderId));
+		return "/wx/order_form";
 	}
 
 }

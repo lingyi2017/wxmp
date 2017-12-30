@@ -1,6 +1,7 @@
 package com.qmx.wxmp.service.qyfw;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
@@ -13,7 +14,6 @@ import com.qmx.wxmp.common.persistence.Page;
 import com.qmx.wxmp.common.utils.DateUtils;
 import com.qmx.wxmp.common.utils.IdGen;
 import com.qmx.wxmp.dto.order.QueryOrderDto;
-import com.qmx.wxmp.entity.qyfw.Customer;
 import com.qmx.wxmp.entity.qyfw.Order;
 import com.qmx.wxmp.repository.hibernate.qyfw.CustomerDao;
 import com.qmx.wxmp.repository.hibernate.qyfw.OrderDao;
@@ -103,7 +103,7 @@ public class OrderService extends BaseService {
 	public Order findByOutTradeNo(String outTradeNo) {
 		return thisDao.findByOutTradeNo(outTradeNo);
 	}
-	public Order findByOpenid(String openid) {
+	public List<Order> findByOpenid(String openid) {
 		return thisDao.findByOpenid(openid);
 	}
 	
