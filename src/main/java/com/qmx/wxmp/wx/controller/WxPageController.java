@@ -157,5 +157,12 @@ public class WxPageController {
             HttpServletRequest request, Model model) {
 		return "/wx/order_apply";
 	}
+	
+	@RequestMapping(value = "/carteList")
+	public String carteList(HttpServletResponse response,
+            HttpServletRequest request, Model model) {
+		return "/wx/carte_list";
+	}
+
 
 }
