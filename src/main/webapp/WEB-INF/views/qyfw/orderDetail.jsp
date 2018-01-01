@@ -48,7 +48,13 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">联系人:</label>
+        <label class="control-label">客户性质:</label>
+        <div class="controls">
+            <label class="lbl">${fns:getDictLabel(order.customerType, 'customer_type', '无')}</label>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">名称/企业名称:</label>
         <div class="controls">
             <label class="lbl">${order.contact}</label>
         </div>
@@ -72,15 +78,15 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">处理反馈:</label>
-        <div class="controls">
-            <label class="lbl">${order.resp}</label>
-        </div>
-    </div>
-    <div class="control-group">
         <label class="control-label">创建日期:</label>
         <div class="controls">
             <label class="lbl"><fmt:formatDate value="${order.createDate}" pattern="yyyy-MM-dd hh:mm:ss"/></label>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">处理反馈:</label>
+        <div class="controls">
+            <label class="lbl">${order.resp}</label>
         </div>
     </div>
 

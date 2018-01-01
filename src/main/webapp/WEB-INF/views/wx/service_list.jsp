@@ -80,7 +80,7 @@
 	        url : "${pageContext.request.contextPath}/qyfw/serviceCategory/wx_service_list",
 	        type : "post",
 	        dataType : "json",
-	        data : {wxMenuId:"${state}"},
+	        data : {wxMenuId:"${wxMenuId}"},
 	        cache : false,
 	        async : false,
 	        success : function(data) {
@@ -91,7 +91,14 @@
 	            		div = div + "<div class='weui-panel__hd'><h3>"+service_list[i].serviceCategoryName+"</h3></div>";
 	            		div = div + "<div class='weui-panel__bd'>";
 	            		div = div + "<div class='weui-media-box weui-media-box_text'>";
-	            		var basic_service_list = service_list[i].basicServiceDTOs;
+	            		var basic_service_list = {};
+		            	if(typeof(service_list[i].basicServiceDTOs)=="undefined"){
+		            		basic_service_list.length = 0;
+		            		console.info(basic_service_list.length);
+		            	}else{
+		            		basic_service_list = service_list[i].basicServiceDTOs;
+		            	}
+	            		
 	            		for(var j = 0; j < basic_service_list.length; j++){
 	            			if((j+1) % 3 ==1){//每一行
 	            				div = div + "<div class='weui-flex'>";

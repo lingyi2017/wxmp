@@ -70,7 +70,7 @@
 		      <label class="weui-form-preview__label" style="font-size: 17px">企业</label>
 		    </div>
 		    <div class="weui-cell__ft">
-		      <input type="radio" class="weui-check" name="customerType" value="1" id="x11">
+		      <input type="radio" class="weui-check"  name="customerType" value="1" id="x11">
 		      <span class="weui-icon-checked"></span>
 		    </div>
 		  </label>
@@ -128,6 +128,14 @@
         </div>
     </div>
 </div>
+<div class="weui-cells weui-cells_form">
+                    <div class="weui-cell">
+                        <div class="weui-cell__bd">
+                            <textarea class="weui-textarea" placeholder="订单备注" rows="3" id="mark" name="mark"></textarea>
+                            <div class="weui-textarea-counter"><span>0</span>/200</div>
+                        </div>
+                    </div>
+                </div>
 <div class="weui-panel">
     <div class="weui-panel__hd"><p style="font-size: 17px">支付方式</p></div>
     <div class="weui-panel__bd">

@@ -67,9 +67,16 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">支付金额:</label>
+        <label class="control-label">咨询内容:</label>
         <div class="controls">
             <label class="lbl">${consulting.content}</label>
+        </div>
+    </div>
+    
+    <div class="control-group">
+        <label class="control-label">咨询时间:</label>
+        <div class="controls">
+            <label class="lbl"><fmt:formatDate value="${consulting.time}" pattern="yyyy-MM-dd hh:mm:ss"/></label>
         </div>
     </div>
     <div class="control-group">
@@ -81,16 +88,11 @@
             </form:select>
         </div>
     </div>
+    
     <div class="control-group">
         <label class="control-label">处理反馈:</label>
         <div class="controls">
             <form:textarea path="dealBack" htmlEscape="false" rows="3" maxlength="200" class="input-xlarge"/>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label">咨询时间:</label>
-        <div class="controls">
-            <label class="lbl"><fmt:formatDate value="${consulting.time}" pattern="yyyy-MM-dd hh:mm:ss"/></label>
         </div>
     </div>
 

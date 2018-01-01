@@ -69,6 +69,9 @@ public class Order implements Serializable {
 
 	/** 订单状态（0=未支付1-已购买；2-结束） */
 	private String				status;
+	
+	/** 订单备注 */
+	private String				mark;
 
 	/** 处理反馈 */
 	private String				resp;
@@ -273,5 +276,17 @@ public class Order implements Serializable {
 
 	public void setCustomerType(String customerType) {
 		this.customerType = customerType;
+	}
+
+
+
+	public String getMark() {
+		return mark;
+	}
+
+
+
+	public void setMark(String mark) {
+		this.mark = mark;
 	}
 }

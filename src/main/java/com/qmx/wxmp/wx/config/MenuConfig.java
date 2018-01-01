@@ -27,22 +27,46 @@ public class MenuConfig {
 
 		WxMenu menu = new WxMenu();
 		WxMenuButton button1 = new WxMenuButton();
-		button1.setName("企业服务");
+		button1.setName("知识产权");
 		
 		WxMenuButton button11 = new WxMenuButton();
 		button11.setType(MenuButtonType.VIEW);
-		button11.setName("开办公司");
-		button11.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_base?page=/wx/service_list", "snsapi_base", "kbgs"));
+		button11.setName("公司注册");
+		button11.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=gszc", "snsapi_base", ""));
 
+		WxMenuButton button12 = new WxMenuButton();
+		button12.setType(MenuButtonType.VIEW);
+		button12.setName("商标注册");
+		button12.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=sbzc", "snsapi_base", ""));
+		
+		WxMenuButton button13 = new WxMenuButton();
+		button13.setType(MenuButtonType.VIEW);
+		button13.setName("专利申请1");
+		button13.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=zlsq", "snsapi_base", ""));
+		
+		WxMenuButton button14 = new WxMenuButton();
+		button14.setType(MenuButtonType.VIEW);
+		button14.setName("版权申请");
+		button14.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=bqsq", "snsapi_base", ""));
+		
+		WxMenuButton button15 = new WxMenuButton();
+		button15.setType(MenuButtonType.VIEW);
+		button15.setName("企业许可证咨询");
+		button15.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=qyxkzzx", "snsapi_base", ""));
+		
 		button1.getSubButtons().add(button11);
+		button1.getSubButtons().add(button12);
+		button1.getSubButtons().add(button13);
+		button1.getSubButtons().add(button14);
+		button1.getSubButtons().add(button15);
 		
 		WxMenuButton button2 = new WxMenuButton();
-		button2.setName("企业服务2");
+		button2.setName("企业服务");
 
 		WxMenuButton button21 = new WxMenuButton();
 		button21.setType(MenuButtonType.VIEW);
-		button21.setName("开办公司");
-		button21.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_base?page=/wx/service_list", "snsapi_base", "kbgs"));
+		button21.setName("公司注册");
+		button21.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_base?page=/wx/service_list", "snsapi_base", "gszc"));
 
 		button2.getSubButtons().add(button21);
 

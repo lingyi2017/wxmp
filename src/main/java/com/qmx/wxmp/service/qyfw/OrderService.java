@@ -74,7 +74,7 @@ public class OrderService extends BaseService {
 		if (null == queryDto) {
 			return thisDao.find(page, dc);
 		}
-
+		dc.add(Restrictions.ne("status", "0"));
 		if (StringUtils.isNotEmpty(queryDto.getBeginDate()) && StringUtils.isNotEmpty(queryDto.getEndDate())) {
 			dc.add(Restrictions.between("createDate", DateUtils.parseDate(queryDto.getBeginDate() + " 00:00:00"),
 					DateUtils.parseDate(queryDto.getEndDate() + " 23:59:59")));

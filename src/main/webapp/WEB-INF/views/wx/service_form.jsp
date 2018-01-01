@@ -99,7 +99,7 @@
 							      <label class="weui-form-preview__label" style="font-size: 17px">企业</label>
 							    </div>
 							    <div class="weui-cell__ft">
-							      <input type="radio" class="weui-check" name="customerType" value="1" id="x11">
+							      <input type="radio" class="weui-check" name="customerType" value="1" id="x11" checked="checked">
 							      <span class="weui-icon-checked"></span>
 							    </div>
 							  </label>
@@ -110,7 +110,7 @@
 							      <label class="weui-form-preview__label" style="font-size: 17px">个人</label>
 							    </div>
 							    <div class="weui-cell__ft">
-							      <input type="radio" class="weui-check" name="customerType" value="2" id="x12">
+							      <input type="radio" class="weui-check" name="customerType" value="2" id="x12" checked="checked">
 							      <span class="weui-icon-checked"></span>
 							    </div>
 							  </label>
@@ -207,6 +207,7 @@
     	var person = $("#person").val();
     	var phone = $("#phone").val();
     	var content = $("#content").val();
+    	var customerType = $("input[name='customerType']:checked").val();
     	var openid = $("#openid").val();
     	var basicServiceId = "${basicService.id}";
     	if(phone == ""){
@@ -231,6 +232,7 @@
 	        		person:person,
 	        		phone:phone,
 	        		content:content,
+	        		customerType:customerType,
 	        		basicServiceId:basicServiceId
 	        },
 	        cache : false,

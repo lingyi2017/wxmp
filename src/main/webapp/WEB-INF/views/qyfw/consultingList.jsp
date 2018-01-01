@@ -44,6 +44,7 @@
         <th>客户性质</th>
         <th>联系方式</th>
         <th>服务名称</th>
+        <th>咨询内容</th>
         <th>处理状态</th>
         <th>咨询时间</th>
         <shiro:hasPermission name="qyfw:consulting:edit">
@@ -57,6 +58,7 @@
             <td>${fns:getDictLabel(consulting.customerType, 'customer_type', '无')}</td>
             <td>${consulting.phone}</td>
             <td>${consulting.basicService.name}</td>
+            <td>${consulting.content}</td>
             <td>${fns:getDictLabel(consulting.dealStatus, 'consulting_status', '无')}</td>
             <td><fmt:formatDate value="${consulting.time}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
             <shiro:hasPermission name="qyfw:consulting:edit">

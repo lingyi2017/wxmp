@@ -40,12 +40,12 @@
 <table id="contentTable" class="table table-striped table-bordered table-condensed">
     <thead>
     <tr>
-        <th>客户名称</th>
-        <th>客户性质</th>
-        <th>联系人</th>
-        <th>联系方式</th>
         <th>服务名称</th>
+        <th>客户性质</th>
+        <th>名称/企业名称</th>
+        <th>联系方式</th>
         <th>支付金额</th>
+        <th>订单备注</th>
         <th>购买时间</th>
         <shiro:hasPermission name="qyfw:order:edit">
             <th>操作</th>
@@ -54,12 +54,12 @@
     <tbody>
     <c:forEach items="${page.list}" var="order">
         <tr>
-            <td>${order.customer.name}</td>
-            <td>${fns:getDictLabel(order.customer.customerType, 'customer_type', '无')}</td>
+            <td>${order.basicService.name}</td>
+            <td>${fns:getDictLabel(order.customerType, 'customer_type', '无')}</td>
             <td>${order.contact}</td>
             <td>${order.phone}</td>
-            <td>${order.basicService.name}</td>
             <td>${order.money}</td>
+            <td>${order.mark}</td>
             <td><fmt:formatDate value="${order.createDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
             <shiro:hasPermission name="qyfw:order:edit">
                 <td>

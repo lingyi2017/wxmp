@@ -168,8 +168,8 @@ public class OrderController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/wx_save")
-	public String wxSave(String basicServiceId, String openid, String customerType, String contact, String phone, Model model
-			,HttpServletResponse response, HttpServletRequest request){
+	public String wxSave(String basicServiceId, String openid, String customerType, String contact, String phone, String mark
+			, Model model,HttpServletResponse response, HttpServletRequest request){
 		try {
 			//保存订单
 			BasicService basicService = basicServiceService.get(basicServiceId);
@@ -183,6 +183,7 @@ public class OrderController extends BaseController {
 			order.setTradeDesc("企明星服务咨询");
 			order.setStatus("0");
 			order.setCustomerType(customerType);
+			order.setMark(mark);
 			thisService.save(order);
 			//获取支付页面需要的微信支付参数
 			WxPayMpOrderResult payInfo = wxOwnPayService.getJSSDKPayInfo(order.getOpenid()

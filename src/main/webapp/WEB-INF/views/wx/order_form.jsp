@@ -67,6 +67,10 @@
             <span class="weui-form-preview__value">${order.phone }</span>
         </div>
         <div class="weui-form-preview__item">
+            <label class="weui-form-preview__label">订单备注</label>
+            <span class="weui-form-preview__value">${order.mark }</span>
+        </div>
+        <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">购买时间</label>
             <span class="weui-form-preview__value">${order.createDate }</span>
         </div>
