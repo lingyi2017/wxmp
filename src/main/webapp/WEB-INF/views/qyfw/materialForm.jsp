@@ -41,7 +41,7 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/qyfw/material/">材料列表</a></li>
-		<li class="active">添加材料<a href="${ctx}/qyfw/material/form"></a></li>
+		<li class="active"><a href="${ctx}/qyfw/material/form">添加材料</a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="material" action="${ctx}/qyfw/material/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
