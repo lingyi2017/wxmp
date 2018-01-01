@@ -67,7 +67,6 @@
                 /wx/** = anon
                 /login = authc
                 /logout = logout
-                /wx/** = anon
                 /MP_verify_KxFCuxwWpsBOqlKw.txt = anon
                 /index = user
                 <!-- 404，测试注释:  
