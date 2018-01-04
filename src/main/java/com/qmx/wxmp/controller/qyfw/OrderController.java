@@ -129,6 +129,7 @@ public class OrderController extends BaseController {
 				customer.setCreateDate(new Date());
 				customerService.save(customer);
 				order.setCustomer(customer);
+				order.setDealDate(new Date());
 			}
 
 			thisService.save(order);
@@ -168,7 +169,7 @@ public class OrderController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/wx_save")
-	public String wxSave(String basicServiceId, String openid, String customerType, String contact, String phone, String mark
+	public String wxSave(String basicServiceId, String openid, String customerType, String contact, String phone, String mark, String companyName
 			, Model model,HttpServletResponse response, HttpServletRequest request){
 		try {
 			//保存订单
@@ -184,6 +185,7 @@ public class OrderController extends BaseController {
 			order.setStatus("0");
 			order.setCustomerType(customerType);
 			order.setMark(mark);
+			order.setCompanyName(companyName);
 			thisService.save(order);
 			//获取支付页面需要的微信支付参数
 			WxPayMpOrderResult payInfo = wxOwnPayService.getJSSDKPayInfo(order.getOpenid()

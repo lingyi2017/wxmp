@@ -57,6 +57,9 @@ public class Order implements Serializable {
 	/** 客户性质（1：企业；2-个人） */
 	private String				customerType;
 	
+	/** 企业名称 */
+	private String				companyName;
+	
 	/** 联系人 */
 	private String				contact;
 
@@ -97,6 +100,11 @@ public class Order implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	protected Date				createDate;
+	
+	/** 处理日期 */
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	protected Date				dealDate;
 
 
 
@@ -288,5 +296,29 @@ public class Order implements Serializable {
 
 	public void setMark(String mark) {
 		this.mark = mark;
+	}
+
+
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+
+
+	public Date getDealDate() {
+		return dealDate;
+	}
+
+
+
+	public void setDealDate(Date dealDate) {
+		this.dealDate = dealDate;
 	}
 }

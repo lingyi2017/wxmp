@@ -67,6 +67,12 @@ public class CustomerService extends BaseService {
 		if (StringUtils.isNotEmpty(customer.getName())) {
 			dc.add(Restrictions.like("name", "%" + customer.getName() + "%"));
 		}
+		if (StringUtils.isNotEmpty(customer.getContact())) {
+			dc.add(Restrictions.like("contact", "%" + customer.getContact() + "%"));
+		}
+		if (StringUtils.isNotEmpty(customer.getPhone())) {
+			dc.add(Restrictions.like("phone", "%" + customer.getPhone() + "%"));
+		}
 		dc.add(Restrictions.eq("delFlag", "0"));
 		dc.addOrder(Order.desc("createDate"));
 		return thisDao.find(page, dc);

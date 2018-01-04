@@ -78,7 +78,7 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">咨询日期:</label>
+        <label class="control-label">咨询时间:</label>
         <div class="controls">
             <label class="lbl"><fmt:formatDate value="${consulting.time}" pattern="yyyy-MM-dd hh:mm:ss"/></label>
         </div>

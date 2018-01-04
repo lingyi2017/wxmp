@@ -57,6 +57,8 @@
         </form:select>&nbsp;&nbsp;
     </label>
     <label>客户名称 ：</label><label><form:input path="name" htmlEscape="false" maxlength="50" class="input-small"/></label>&nbsp;
+    <label>联系人 ：</label><label><form:input path="contact" htmlEscape="false" maxlength="50" class="input-small"/></label>&nbsp;
+    <label>联系电话 ：</label><label><form:input path="phone" htmlEscape="false" maxlength="50" class="input-small"/></label>&nbsp;
     <input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='query'/>"/>
 </form:form>
 <tags:message content="${message}"/>

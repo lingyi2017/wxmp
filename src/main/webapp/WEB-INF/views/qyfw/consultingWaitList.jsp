@@ -40,10 +40,10 @@
 <table id="contentTable" class="table table-striped table-bordered table-condensed">
     <thead>
     <tr>
-        <th>客户名称</th>
-        <th>客户性质</th>
-        <th>联系方式</th>
         <th>服务名称</th>
+        <th>客户性质</th>
+        <th>客户名称</th>
+        <th>联系电话</th>
         <th>咨询内容</th>
         <th>咨询时间</th>
         <shiro:hasPermission name="qyfw:consulting:edit">
@@ -53,10 +53,10 @@
     <tbody>
     <c:forEach items="${page.list}" var="consulting">
         <tr>
-            <td>${consulting.person}</td>
-            <td>${fns:getDictLabel(consulting.customerType, 'customer_type', '无')}</td>
-            <td>${consulting.phone}</td>
             <td>${consulting.basicService.name}</td>
+            <td>${fns:getDictLabel(consulting.customerType, 'customer_type', '无')}</td>
+            <td>${consulting.person}</td>
+            <td>${consulting.phone}</td>
             <td>${consulting.content}</td>
             <td><fmt:formatDate value="${consulting.time}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
             <shiro:hasPermission name="qyfw:consulting:edit">

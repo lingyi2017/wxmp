@@ -27,7 +27,7 @@
         });
 
         function queryCustomer() {
-            var url = "${ctx}/qyfw/customer/dialogList";
+            var url = encodeURI(encodeURI("${ctx}/qyfw/customer/dialogList?customerType=${order.customerType}&name=${order.companyName}&contact=${order.contact}&phone=${order.phone}"));
             art.dialog.open(url, {width: 800, height: 410, title: '选择客户', id: 'id'});
         }
     </script>
@@ -55,13 +55,27 @@
         </div>
     </div>
     <div class="control-group">
+        <label class="control-label">客户性质:</label>
+        <div class="controls">
+            <label class="lbl">${fns:getDictLabel(order.customerType, 'customer_type', '无')}</label>
+        </div>
+    </div>
+    <c:if test="${order.customerType } == '1'">
+    	<div class="control-group">
+	        <label class="control-label">企业名称:</label>
+	        <div class="controls">
+	            <label class="lbl">${order.companyName}</label>
+	        </div>
+	    </div>
+    </c:if>
+    <div class="control-group">
         <label class="control-label">联系人:</label>
         <div class="controls">
             <label class="lbl">${order.contact}</label>
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">联系方式:</label>
+        <label class="control-label">联系电话:</label>
         <div class="controls">
             <label class="lbl">${order.phone}</label>
         </div>
@@ -70,6 +84,18 @@
         <label class="control-label">支付金额:</label>
         <div class="controls">
             <label class="lbl">${order.money}</label>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">订单备注:</label>
+        <div class="controls">
+            <label class="lbl">${order.mark}</label>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">购买时间:</label>
+        <div class="controls">
+            <label class="lbl"><fmt:formatDate value="${order.createDate}" pattern="yyyy-MM-dd hh:mm:ss"/></label>
         </div>
     </div>
     <div class="control-group">
@@ -87,12 +113,6 @@
             <form:textarea path="resp" htmlEscape="false" rows="3" maxlength="200" class="input-xlarge"/>
         </div>
     </div>
-    <div class="control-group">
-        <label class="control-label">创建日期:</label>
-        <div class="controls">
-            <label class="lbl"><fmt:formatDate value="${order.createDate}" pattern="yyyy-MM-dd hh:mm:ss"/></label>
-        </div>
-    </div>
 
     <fieldset>
         <legend>
@@ -105,7 +125,7 @@
             <form:hidden path="customer.id"/>
             <c:if test="${order.customer.id == null}">
                 <form:input path="customer.name" htmlEscape="false" maxlength="100" cssClass="required"
-                            value="${order.contact}"/>
+                            value="${order.companyName}"/>
             </c:if>
             <c:if test="${order.customer.id != null}">
                 <form:input path="customer.name" htmlEscape="false" maxlength="100" cssClass="required"/>
@@ -127,7 +147,7 @@
         <label class="control-label">联系人:</label>
         <div class="controls">
             <c:if test="${order.customer.id == null}">
-                <form:input path="customer.contact" htmlEscape="false" maxlength="100" cssClass="required"
+                <form:input path="customer.contact" id="123" htmlEscape="false" maxlength="100" cssClass="required"
                             value="${order.contact}"/>
             </c:if>
             <c:if test="${order.customer.id != null}">
@@ -139,7 +159,7 @@
         <label class="control-label">联系电话:</label>
         <div class="controls">
             <c:if test="${order.customer.id == null}">
-                <form:input path="customer.phone" htmlEscape="false" maxlength="100" cssClass="required"
+                <form:input path="customer.phone" id="1234" htmlEscape="false" maxlength="100" cssClass="required"
                             value="${order.phone}"/>
             </c:if>
             <c:if test="${order.customer.id != null}">

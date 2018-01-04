@@ -53,14 +53,23 @@
             <label class="lbl">${fns:getDictLabel(order.customerType, 'customer_type', '无')}</label>
         </div>
     </div>
+    <c:if test="${order.customerType } == '1'">
+    	<div class="control-group">
+	        <label class="control-label">企业名称:</label>
+	        <div class="controls">
+	            <label class="lbl">${order.companyName}</label>
+	        </div>
+	    </div>
+    </c:if>
+    
     <div class="control-group">
-        <label class="control-label">名称/企业名称:</label>
+        <label class="control-label">联系人:</label>
         <div class="controls">
             <label class="lbl">${order.contact}</label>
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">联系方式:</label>
+        <label class="control-label">联系电话:</label>
         <div class="controls">
             <label class="lbl">${order.phone}</label>
         </div>
@@ -72,13 +81,19 @@
         </div>
     </div>
     <div class="control-group">
+        <label class="control-label">订单备注:</label>
+        <div class="controls">
+            <label class="lbl">${order.mark}</label>
+        </div>
+    </div>
+    <div class="control-group">
         <label class="control-label">订单状态:</label>
         <div class="controls">
             <label class="lbl">${fns:getDictLabel(order.status, 'order_status', '无')}</label>
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">创建日期:</label>
+        <label class="control-label">购买时间:</label>
         <div class="controls">
             <label class="lbl"><fmt:formatDate value="${order.createDate}" pattern="yyyy-MM-dd hh:mm:ss"/></label>
         </div>
@@ -87,6 +102,12 @@
         <label class="control-label">处理反馈:</label>
         <div class="controls">
             <label class="lbl">${order.resp}</label>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">反馈时间:</label>
+        <div class="controls">
+            <label class="lbl"><fmt:formatDate value="${order.dealDate}" pattern="yyyy-MM-dd hh:mm:ss"/></label>
         </div>
     </div>
 
@@ -134,34 +155,41 @@
 
     <fieldset>
         <legend>
-            <strong>材料信息</strong>
+            <strong>材料说明</strong>
         </legend>
     </fieldset>
-    <table id="contentTable" class="table table-striped table-condensed">
-        <thead>
-        <tr>
-            <th>序号</th>
-            <th>名称</th>
-            <th>材料详情</th>
-            <shiro:hasPermission name="qyfw:order:edit">
-                <th>操作</th>
-            </shiro:hasPermission></tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${order.orderMaterials}" var="material" varStatus="status">
-            <tr>
-                <td>${status.index + 1}</td>
-                <td>${material.name}</td>
-                <td><img src="${material.path}" class="img-rounded"></td>
-                <shiro:hasPermission name="qyfw:order:edit">
-                    <td>
-                        <a href="${ctx}/qyfw/order/detail?id=${order.id}"><spring:message code='download'/></a>
-                    </td>
-                </shiro:hasPermission>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+    <c:if test="${fn:length(order.orderMaterials) == 0}">
+        	暂无材料
+    </c:if>
+    <c:if test="${fn:length(order.orderMaterials) > 0}">
+    	<table id="contentTable" class="table table-striped table-condensed">
+	        <thead>
+	        <tr>
+	            <th>序号</th>
+	            <th>名称</th>
+	            <th>材料详情</th>
+	            <shiro:hasPermission name="qyfw:order:edit">
+	                <th>操作</th>
+	            </shiro:hasPermission></tr>
+	        </thead>
+	        <tbody>
+	        
+	        <c:forEach items="${order.orderMaterials}" var="material" varStatus="status">
+	            <tr>
+	                <td>${status.index + 1}</td>
+	                <td>${material.name}</td>
+	                <td><img src="${material.path}" class="img-rounded"></td>
+	                <shiro:hasPermission name="qyfw:order:edit">
+	                    <td>
+	                        <a href="${ctx}/qyfw/order/detail?id=${order.id}"><spring:message code='download'/></a>
+	                    </td>
+	                </shiro:hasPermission>
+	            </tr>
+	        </c:forEach>
+	        </tbody>
+	    </table>
+    </c:if>
+    
 
     <div class="form-actions">
         <input id="btnCancel" class="btn" type="button" value="<spring:message code='return' />"

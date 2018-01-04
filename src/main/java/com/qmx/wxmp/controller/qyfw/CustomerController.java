@@ -1,5 +1,7 @@
 package com.qmx.wxmp.controller.qyfw;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -67,7 +69,10 @@ public class CustomerController extends BaseController {
 
 	@RequiresPermissions("qyfw:customer:view")
 	@RequestMapping(value = "dialogList")
-	public String dialogList(Customer customer, HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String dialogList(Customer customer, HttpServletRequest request, HttpServletResponse response, Model model) throws UnsupportedEncodingException {
+		customer.setName(URLDecoder.decode(customer.getName(), "utf-8"));
+		customer.setContact((URLDecoder.decode(customer.getContact(), "utf-8")));
+		customer.setPhone((URLDecoder.decode(customer.getPhone(), "utf-8")));
 		Page<Customer> queryPage = new Page<>(request, response);
 		queryPage.setPageSize(10);
 		Page<Customer> page = thisService.find(queryPage, customer);

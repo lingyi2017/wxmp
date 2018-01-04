@@ -22,7 +22,9 @@ public class QueryOrderDto implements Serializable {
 
 	private String				status;
 
-
+	private String				phone;
+	
+	private String				companyName;
 
 	public String getBeginDate() {
 		return beginDate;
@@ -81,4 +83,29 @@ public class QueryOrderDto implements Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+
+
+	public String getPhone() {
+		return phone;
+	}
+
+
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+	
 }

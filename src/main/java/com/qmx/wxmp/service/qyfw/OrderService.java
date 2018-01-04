@@ -82,6 +82,12 @@ public class OrderService extends BaseService {
 		if (StringUtils.isNotEmpty(queryDto.getContact())) {
 			dc.add(Restrictions.like("contact", "%" + queryDto.getContact() + "%"));
 		}
+		if (StringUtils.isNotEmpty(queryDto.getPhone())) {
+			dc.add(Restrictions.like("phone", "%" + queryDto.getPhone() + "%"));
+		}
+		if (StringUtils.isNotEmpty(queryDto.getCompanyName())) {
+			dc.add(Restrictions.like("companyName", "%" + queryDto.getCompanyName() + "%"));
+		}
 		dc.createAlias("basicService", "basicService");
 		if (StringUtils.isNotEmpty(queryDto.getServiceName())) {
 			dc.add(Restrictions.like("basicService.name", "%" + queryDto.getServiceName() + "%"));
