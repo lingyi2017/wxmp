@@ -1,0 +1,53 @@
+@CHARSET "UTF-8";
+
+/*Global Style Start*/
+html, body {
+    font-family: Microsoft YaHei, SimHei, SimSun;
+    font-size: 14px;
+    line-height: 1;
+    overflow-x: hidden;
+    max-width: 640px;
+    margin: 0 auto;
+    color: #333;
+    background-color: #f5f5fa;
+    -webkit-overflow-scrolling: touch;
+    -webkit-touch-callout: none;
+}
+
+header {
+    background-color: #3475eb;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: white;
+}
+
+/*Global Style End*/
+
+.red {
+    color: red;
+}
+
+.orange {
+    color: orange;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+.bg-color-white {
+    background-color: white;
+}
+
+.service-title {
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 12px;
+}
+
+.no-service {
+    padding: 20px 10px;
+    text-align: center;
+    color: #aaa;
+}
