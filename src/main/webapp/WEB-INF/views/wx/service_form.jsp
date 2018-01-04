@@ -1,84 +1,53 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<html class="pixel-ratio-1">
+<%@ include file="/WEB-INF/views/wx/_head.jsp" %>
+<html>
 <head>
-    <title>企明星</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
-    <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css" rel="stylesheet">
-
+    <title><spring:message code='wx.title'/></title>
     <style type="text/css">
-
-        body {
-            font-size: 14px;
-            line-height: 1;
-            overflow-x: hidden;
-            max-width: 640px;
-            margin: 0 auto;
-            color: #333;
-            background-color: #f5f5fa;
-            -webkit-overflow-scrolling: touch;
-            -webkit-touch-callout: none;
-        }
-
-        .header {
-            background-color: #3475eb;
-            height: 50px;
-            line-height: 35px;
-            top: 0px;
-            width: 100%;
-        }
-
-        .header h3 {
-            color: white;
-            margin-left: 40%;
-        }
-
     </style>
 </head>
 <body>
-
-<div class="weui-search-bar header" id="searchBar">
+<header>
     <h3>${basicService.name }</h3>
-</div>
+</header>
 <div class="weui-form-preview">
-    <div class="weui-form-preview__hd">
-        <label class="weui-form-preview__label">价格</label>
-        <span class="weui-form-preview__value">¥${basicService.price }</span>
-    </div>
+    <c:if test="${basicService.isBuy == true}">
+        <div class="weui-form-preview__hd">
+            <label class="weui-form-preview__label">价格</label>
+            <span class="weui-form-preview__value">¥${basicService.price }</span>
+        </div>
+    </c:if>
     <div class="weui-form-preview__bd">
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">服务类型</label>
-            <span class="weui-form-preview__value">${basicService.name}</span>
+            <span class="weui-form-preview__value value-color">${basicService.name}</span>
         </div>
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">服务介绍</label>
-            <span class="weui-form-preview__value" id="span_desciption">
+            <span class="weui-form-preview__value value-color" id="span_desciption">
             </span>
         </div>
     </div>
+</div>
+<div class="bottom-btn">
     <div class="weui-form-preview__ft ">
-        <a class="weui-form-preview__btn weui-form-preview__btn_default open-popup" style="color: #3475eb;"
-           href="javascript:" data-target="#half" >我要咨询</a>
         <c:if test="${basicService.isBuy == false}">
-        	<button type="submit" id="buy_button" class="weui-form-preview__btn weui-form-preview__btn_primary"
-                style="background-color: #AAAAAA; color: white;" disabled="disabled">暂不支持购买
-        	</button>
+            <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary open-popup white"
+                    style="background-color: #3475eb;" data-target="#half">我要咨询
+            </button>
         </c:if>
-        
         <c:if test="${basicService.isBuy == true}">
-        	<button type="submit" id="buy_button" class="weui-form-preview__btn weui-form-preview__btn_primary"
-                style="background-color: #3475eb; color: white;"
-                onclick="javascript:window.location.href = '${pageContext.request.contextPath}/qyfw/order/wx_serivce_buy?openid=${openid}&serviceId=${basicService.id}'">我要购买
-        	</button>
+            <a class="weui-form-preview__btn weui-form-preview__btn_default open-popup" style="color: #3475eb;"
+               href="javascript:" data-target="#half" >我要咨询</a>
+            <button type="submit" id="buy_button" class="weui-form-preview__btn weui-form-preview__btn_primary white"
+                    style="background-color: #3475eb;"
+                    onclick="javascript:window.location.href = '${pageContext.request.contextPath}/qyfw/order/wx_serivce_buy?openid=${openid}&serviceId=${basicService.id}'">我要购买
+            </button>
         </c:if>
-        
     </div>
 </div>
 
+<!------- 咨询页面 START ------->
 <div id="half" class='weui-popup__container popup-bottom'>
     <div class="weui-popup__overlay"></div>
     <div class="weui-popup__modal">
@@ -167,15 +136,11 @@
         </div>
     </div>
 </div>
-
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
-<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/swiper.min.js"></script>
-<script src="https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+<!------- 咨询页面 END ------->
+<%@ include file="/WEB-INF/views/wx/_foot.jsp" %>
 
 <script type="text/javascript">
     $(function () {
-        FastClick.attach(document.body);
         if("${basicService.customerType}" == 2){
 			$("#label_contact").html("联系人");
         }else{
