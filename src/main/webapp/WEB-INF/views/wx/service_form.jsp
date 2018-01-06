@@ -24,11 +24,14 @@
         </div>
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">服务介绍</label>
+        </div>
+        <div class="weui-form-preview__item">
             <span class="weui-form-preview__value value-color" id="span_desciption">
             </span>
         </div>
     </div>
 </div>
+
 <div class="bottom-btn">
     <div class="weui-form-preview__ft ">
         <c:if test="${basicService.isBuy == false}">
