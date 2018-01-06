@@ -5,20 +5,9 @@
     <title>咨询列表</title>
     <style type="text/css">
         .placeholder {
-            margin: 2px;
-            padding: 0 12px;
-            height: 1.5em;
-            line-height: 1.5em;
+            height: 2em;
+            line-height: 2em;
         }
-
-        .left {
-            text-align: left;
-        }
-
-        .right {
-            text-align: right;
-        }
-
     </style>
 </head>
 <body>
@@ -28,21 +17,28 @@
         </div>
     </div>
     <c:forEach items="${consultingList }" var="consulting">
-        <div class="weui-panel">
+        <div class="weui-panel weui-panel_access">
             <div class="weui-panel__bd" onclick="consulting_form('${consulting.id}')">
-                <div class="weui-flex">
-                    <div class="weui-flex__item">
-                        <div class="placeholder left" style="color: #000;">${consulting.basicService.name }</div>
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb" src="${pageContext.request.contextPath}/static/images/wx/icon-msg-2.png" alt="">
                     </div>
-                    <div class="weui-flex__item">
-                        <div class="placeholder right" style="color: red;">${fns:getDictLabel(consulting.dealStatus, 'consulting_status', '无')}</div>
+                    <div class="weui-media-box__bd">
+                        <div class="weui-flex">
+                            <div class="weui-flex__item">
+                                <div class="placeholder left" style="color: #000;">${consulting.basicService.name }</div>
+                            </div>
+                            <div class="weui-flex__item">
+                                <div class="placeholder right red">${fns:getDictLabel(consulting.dealStatus, 'consulting_status', '无')}</div>
+                            </div>
+                        </div>
+                        <div class="weui-flex">
+                            <div class="weui-flex__item">
+                                <div class="placeholder left" style="color: #BBB;"><fmt:formatDate value="${consulting.time}" pattern="yyyy-MM-dd hh:mm:ss"/></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="weui-flex">
-                    <div class="weui-flex__item">
-                        <div class="placeholder left" style="color: #BBB;">${consulting.time }</div>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
     </c:forEach>
@@ -54,7 +50,7 @@
             <img src="${pageContext.request.contextPath}/static/images/wx/busideal.png">
         </div>
         <div style="color: #aaa; margin-top: 8px;">
-            订单列表为空
+            咨询列表为空
         </div>
     </div>
 </c:if>

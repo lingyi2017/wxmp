@@ -105,3 +105,11 @@ header {
     font-size: inherit;
     width: 40%;
 }
+
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}

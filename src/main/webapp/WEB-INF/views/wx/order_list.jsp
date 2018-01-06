@@ -5,20 +5,9 @@
     <title>订单列表</title>
     <style type="text/css">
         .placeholder {
-            margin: 2px;
-            padding: 0 12px;
             height: 1.5em;
             line-height: 1.5em;
         }
-
-        .left {
-            text-align: left;
-        }
-
-        .right {
-            text-align: right;
-        }
-
     </style>
 </head>
 <body>
@@ -29,21 +18,27 @@
     </div>
     <c:forEach items="${orderList }" var="order">
         <div class="weui-panel">
-            <div class="weui-panel__bd">
-
-                <div class="weui-flex" onclick="order_form('${order.id}')">
-                    <div class="weui-flex__item">
-                        <div class="placeholder left" style="color: #000;">${order.basicService.name }</div>
+            <div class="weui-panel__bd" onclick="order_form('${order.id}')">
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb" src="${pageContext.request.contextPath}/static/images/wx/icon-msg-1.png" alt="">
                     </div>
-                    <div class="weui-flex__item">
-                        <div class="placeholder right" style="font-weight: bold; font-size: 16px">${order.money }</div>
+                    <div class="weui-media-box__bd">
+                        <div class="weui-flex">
+                            <div class="weui-flex__item">
+                                <div class="placeholder left" style="color: #000;">${order.basicService.name }</div>
+                            </div>
+                            <div class="weui-flex__item">
+                                <div class="placeholder right" style="font-weight: bold; font-size: 16px">${order.money}</div>
+                            </div>
+                        </div>
+                        <div class="weui-flex">
+                            <div class="weui-flex__item">
+                                <div class="placeholder left" style="color: #BBB;"><fmt:formatDate value="${order.createDate}" pattern="yyyy-MM-dd hh:mm:ss"/></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="weui-flex">
-                    <div class="weui-flex__item">
-                        <div class="placeholder left" style="color: #BBB;">${order.createDate}</div>
-                    </div>
-                </div>
+                </a>
 
 
             </div>
