@@ -49,7 +49,7 @@
                                 serviceHTM += "</a>";
                             }
                         } else {
-                            serviceHTM += "<div class='weui-flex'><div class='weui-flex__item'><div class='no-service orange'>暂无服务</div></div></div>";
+                            serviceHTM += "<div class='weui-flex'><div class='weui-flex__item'><div class='no-service'>暂无服务</div></div></div>";
                         }
                         serviceHTM += "</div></div>";
                     }

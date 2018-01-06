@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/WEB-INF/views/wx/_head.jsp" %>
-<html class="pixel-ratio-1">
+<html>
 <head>
     <title><spring:message code='wx.title'/></title>
     <style type="text/css">
@@ -15,7 +15,7 @@
                 <img class="weui-media-box__thumb" src="${wxUser.headImgUrl}" alt="">
             </div>
             <div class="weui-media-box__bd">
-                <h4 class="weui-media-box__title" style="color: black;">${wxUser.nickname } Always Online</h4>
+                <h4 class="weui-media-box__title" style="color: black;">${wxUser.nickname }</h4>
                 <!-- <p class="weui-media-box__desc" style="margin-top: 10px; color: orange;">性质：个人</p> -->
             </div>
         </a>
