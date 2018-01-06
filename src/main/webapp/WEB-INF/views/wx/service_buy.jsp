@@ -95,7 +95,8 @@
     <div class="weui-cells weui-cells_form fs14">
         <div class="weui-cell">
             <div class="weui-cell__bd">
-                <textarea class="weui-textarea value-color" placeholder="订单备注" rows="3" id="mark" name="mark"></textarea>
+                <textarea class="weui-textarea value-color" placeholder="订单备注" rows="3" id="mark"
+                          name="mark"></textarea>
                 <div class="weui-textarea-counter"><span>0</span>/200</div>
             </div>
         </div>
@@ -116,7 +117,12 @@
     </div>--%>
     <div class="bottom-btn">
         <div class="weui-form-preview__ft ">
-            <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary"
+            <a class="weui-form-preview__btn" href="javascript:;" style="background-color: white">
+                <p style="text-align: left;color: #999; margin-left: 15px">
+                    实际支付<span class="red">¥${basicService.price }</span>
+                </p>
+            </a>
+            <button type="submit" class="weui-form-preview__btn2"
                     style="background-color: red; color: white;" onclick="javascript:sumbit_order()">确认支付
             </button>
         </div>
