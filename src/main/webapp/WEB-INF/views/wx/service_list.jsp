@@ -21,8 +21,7 @@
             url: "${pageContext.request.contextPath}/qyfw/serviceCategory/wx_service_list",
             type: "post",
             dataType: "json",
-            data: {wxMenuId: "gszc"},
-            /*data : {wxMenuId:"${wxMenuId}"},*/
+            data : {wxMenuId:"${wxMenuId}"},
             cache: false,
             async: false,
             success: function (data) {
