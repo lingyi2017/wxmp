@@ -8,6 +8,12 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#treeTable").treeTable({expandLevel: 2});
+            	$("tr").bind("mouseover",function(){  
+            	    $(this).css("background-color","#eeeeee");  
+            	})  
+            	$("tr").bind("mouseout",function(){  
+            	    $(this).css("background-color","#ffffff");  
+            	}) 
         });
         function page(n, s) {
             $("#pageNo").val(n);
@@ -25,7 +31,7 @@
     </shiro:hasPermission>
 </ul>
 <tags:message content="${message}"/>
-<table id="treeTable" class="table table-striped table-bordered table-condensed">
+<table id="treeTable" class="table table-bordered table-condensed">
     <tr>
         <th>服务名称</th>
         <th>是否显示</th>
@@ -58,7 +64,10 @@
                             code='update'/></a>
                     <a href="${ctx}/qyfw/serviceCategory/delete?id=${serviceCategory.id}"
                        onclick="return confirmx('要删除该分类及所有子分类吗？', this.href)"><spring:message code='delete'/></a>
+                    <c:if test="${fn:length(fn:split(serviceCategory.parentIds, ',')) < 3}">
                     <a href="${ctx}/qyfw/serviceCategory/form?parent.id=${serviceCategory.id}">添加下级分类</a>
+                    </c:if>
+                    
                 </td>
             </shiro:hasPermission>
         </tr>

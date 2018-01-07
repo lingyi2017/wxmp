@@ -82,4 +82,7 @@ public class ServiceCategoryService extends BaseService {
 		return thisDao.findAllChildByWxMenuId(wxMenuId);
 	}
 
+	public Integer getMaxSort(){
+		return thisDao.getMaxSort();
+	}
 }

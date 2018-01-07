@@ -24,6 +24,7 @@
                     }
                 }
             });
+            $("#selCustomerType").val("${order.customerType}");
         });
 
         function queryCustomer() {
@@ -137,7 +138,7 @@
     <div class="control-group">
         <label class="control-label">客户性质:</label>
         <div class="controls">
-            <form:select path="customer.customerType">
+            <form:select path="customer.customerType" id="selCustomerType">
                 <form:options items="${fns:getDictList('customer_type')}" itemLabel="label"
                               itemValue="value" htmlEscape="false"/>
             </form:select>

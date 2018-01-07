@@ -38,4 +38,9 @@ public class ServiceCategoryDao extends BaseDao<ServiceCategory> {
 	public List<ServiceCategory> findAllChildByWxMenuId(String wxMenuId){
 		return findBySql("select * from qyfw_service_category where del_flag = '0' and parent_id = (select id from qyfw_service_category where wx_menu_id = :p1)", new Parameter(wxMenuId), ServiceCategory.class);
 	}
+	
+	public Integer getMaxSort(){
+		List<Integer> result = find("select max(sort) from ServiceCategory");
+		return result.size() > 0 ? (result.get(0).intValue() + 1) : 1;
+	}
 }

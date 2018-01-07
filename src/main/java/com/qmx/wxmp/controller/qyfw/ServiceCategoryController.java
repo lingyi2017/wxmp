@@ -201,4 +201,11 @@ public class ServiceCategoryController extends BaseController {
 		return "/wx/service_list";
 
 	}
+	
+	@RequestMapping(value = "getMaxSort")
+	@ResponseBody
+	public Integer getMaxSort() {
+		Integer sort = thisService.getMaxSort();
+		return sort;
+	}
 }

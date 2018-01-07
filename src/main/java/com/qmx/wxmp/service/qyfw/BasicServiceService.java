@@ -76,11 +76,19 @@ public class BasicServiceService extends BaseService {
 		if (StringUtils.isNotEmpty(basicService.getName())) {
 			dc.add(Restrictions.like("name", "%" + basicService.getName() + "%"));
 		}
+		if (basicService.getServiceCategory() != null && StringUtils.isNotEmpty(basicService.getServiceCategory().getName())) {
+			dc.createAlias("serviceCategory", "serviceCategory");
+			dc.add(Restrictions.like("serviceCategory.name", "%" + basicService.getServiceCategory().getName() + "%"));
+		}
 		dc.addOrder(Order.asc("sort"));
 		return basicServiceDao.find(page, dc);
 	}
 	
 	public List<BasicService> findByServiceCategoryId(String serviceCategoryId){
 		return basicServiceDao.findByServiceCategoryId(serviceCategoryId);
+	}
+	
+	public Integer getMaxSort(){
+		return basicServiceDao.getMaxSort();
 	}
 }

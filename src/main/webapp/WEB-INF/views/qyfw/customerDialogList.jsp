@@ -40,6 +40,12 @@
 
             art.dialog.close();
         }
+        
+        function resetQuery(){
+        	$("#query_name").val("");
+        	$("#query_contact").val("");
+        	$("#query_phone").val("");
+        };
     </script>
 </head>
 <body>
@@ -56,9 +62,10 @@
                           htmlEscape="false"/>
         </form:select>&nbsp;&nbsp;
     </label>
-    <label>客户名称 ：</label><label><form:input path="name" htmlEscape="false" maxlength="50" class="input-small"/></label>&nbsp;
-    <label>联系人 ：</label><label><form:input path="contact" htmlEscape="false" maxlength="50" class="input-small"/></label>&nbsp;
-    <label>联系电话 ：</label><label><form:input path="phone" htmlEscape="false" maxlength="50" class="input-small"/></label>&nbsp;
+    <label>客户名称 ：</label><label><form:input path="name" id="query_name" htmlEscape="false" maxlength="50" class="input-small" cssStyle="width:150px"/></label>&nbsp;
+    <label>联系人 ：</label><label><form:input path="contact" id="query_contact" htmlEscape="false" maxlength="50" class="input-small"/></label>&nbsp;
+    <label>联系电话 ：</label><label><form:input path="phone" id="query_phone" htmlEscape="false" maxlength="50" class="input-small"/></label>&nbsp;
+    <input id="btnReset" class="btn btn-primary" type="button" onclick="resetQuery()" value="重置"/>
     <input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='query'/>"/>
 </form:form>
 <tags:message content="${message}"/>

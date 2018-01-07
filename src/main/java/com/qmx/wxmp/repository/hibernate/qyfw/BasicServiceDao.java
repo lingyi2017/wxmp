@@ -14,4 +14,9 @@ public class BasicServiceDao extends BaseDao<BasicService> {
 	public List<BasicService> findByServiceCategoryId(String serviceCategoryId){
 		return findBySql("select * from qyfw_basic_service where service_category_id = :p1 order by sort", new Parameter(serviceCategoryId), BasicService.class);
 	}
+	
+	public Integer getMaxSort(){
+		List<Integer> result = find("select max(sort) from BasicService");
+		return result.size() > 0 ? (result.get(0).intValue() + 1) : 1;
+	}
 }

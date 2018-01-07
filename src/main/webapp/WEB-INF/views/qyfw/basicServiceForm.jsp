@@ -52,6 +52,8 @@
 					}
 			    }
 			}
+			//初始化排序号
+			getMaxSort();
 		});
 		function changeCustomerType(){
 			$("#peopleMaterialIds").css("display", "none");
@@ -91,6 +93,21 @@
             s = s.replace(/&#39;/g,"\'");
             s = s.replace(/&quot;/g,"\"");
             return s;
+		}
+		function getMaxSort(){
+			$.ajax({
+	            url: "${pageContext.request.contextPath}/qyfw/serviceCategory/getMaxSort",
+	            type: "post",
+	            dataType: "json",
+	            cache: false,
+	            async: false,
+	            success: function (data) {
+	                $("#sort").val(data)
+	            },
+	            error: function (err) {
+
+	            }
+	        });
 		}
 	</script>
 </head>
@@ -174,7 +191,7 @@
 		<div class="control-group">
 			<label class="control-label">排序:</label>
 			<div class="controls">
-				<form:input path="sort" htmlEscape="false" maxlength="50" class="required"/>
+				<form:input path="sort" id="sort" htmlEscape="false" maxlength="50" class="required"/>
 			</div>
 		</div>
 		<div class="control-group">

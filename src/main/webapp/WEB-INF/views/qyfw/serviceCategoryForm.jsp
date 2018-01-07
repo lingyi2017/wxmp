@@ -22,7 +22,24 @@
                     }
                 }
             });
+          //初始化排序号
+			getMaxSort();
         });
+        function getMaxSort(){
+			$.ajax({
+	            url: "${pageContext.request.contextPath}/qyfw/basicService/getMaxSort",
+	            type: "post",
+	            dataType: "json",
+	            cache: false,
+	            async: false,
+	            success: function (data) {
+	                $("#sort").val(data)
+	            },
+	            error: function (err) {
+
+	            }
+	        });
+		}
     </script>
 </head>
 <body>
@@ -73,7 +90,7 @@
     <div class="control-group">
         <label class="control-label">序号:</label>
         <div class="controls">
-            <form:input path="sort" htmlEscape="false"/>
+            <form:input path="sort" htmlEscape="false" class="required"/>
         </div>
     </div>
     <div class="control-group">

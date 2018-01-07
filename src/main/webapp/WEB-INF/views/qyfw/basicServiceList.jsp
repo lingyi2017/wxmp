@@ -5,6 +5,14 @@
     <title>基础服务</title>
     <meta name="decorator" content="default"/>
     <script type="text/javascript">
+    $(function(){
+    	$("tr").bind("mouseover",function(){  
+    	    $(this).css("background-color","#eeeeee");  
+    	})  
+    	$("tr").bind("mouseout",function(){  
+    	    $(this).css("background-color","#ffffff");  
+    	}) 
+    });
     function page(n, s) {
         $("#pageNo").val(n);
         $("#pageSize").val(s);
@@ -30,10 +38,11 @@
                               itemValue="value" htmlEscape="false"/>
             	</form:select></label> --%>
     <label>基础服务名称 ：</label><label><form:input path="name" htmlEscape="false" maxlength="50" class="input-small"/></label>&nbsp;
+    <label>服务分类名称 ：</label><label><form:input path="serviceCategory.name" htmlEscape="false" maxlength="50" class="input-small"/></label>&nbsp;
     <input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='query'/>"/>
 </form:form>
 <tags:message content="${message}"/>
-<table id="contentTable" class="table table-striped table-bordered table-condensed">
+<table id="contentTable" class="table table-bordered table-condensed">
     <thead>
     <tr>
         <th>基础服务名称</th>

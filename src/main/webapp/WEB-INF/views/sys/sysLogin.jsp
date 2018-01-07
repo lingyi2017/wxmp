@@ -46,7 +46,7 @@
 		</div>
         <div id="login-wraper">
             <form id="loginForm"  class="form login-form" action="${ctx}/login" method="post">
-                <fieldset><legend><span style="color:#08c;"><spring:message code='production.name' /></span></legend></fieldset>
+                <fieldset><legend><span style="color:white;"><spring:message code='production.name' /></span></legend></fieldset>
                 <div class="body">
 					<div class="control-group">
 						<div class="controls">
@@ -69,7 +69,7 @@
                     <input class="btn btn-primary" type="submit" value="登 录"/>
                 </div>
 				<div id="themeSwitch" class="dropdown pull-right">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">${fns:getDictLabel(cookie.theme.value,'theme','默认主题')}<b class="caret"></b></a>
+					<%-- <a class="dropdown-toggle" data-toggle="dropdown" href="#">${fns:getDictLabel(cookie.theme.value,'theme','默认主题')}<b class="caret"></b></a> --%>
 					<ul class="dropdown-menu">
 					  <c:forEach items="${fns:getDictList('theme')}" var="dict"><li><a href="#" onclick="location='${pageContext.request.contextPath}/theme/${dict.value}?url='+location.href">${dict.label}</a></li></c:forEach>
 					</ul>
