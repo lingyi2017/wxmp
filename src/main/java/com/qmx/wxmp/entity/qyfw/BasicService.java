@@ -60,6 +60,9 @@ public class BasicService {
 	/** 点击量*/
 	private Integer client;
 	
+	/** 删除标记（0：正常；1：删除） */
+	protected String delFlag;
+	
 	
 	/** 上级服务分类*/
 	@ManyToOne
@@ -78,6 +81,10 @@ public class BasicService {
 	@Transient
 	public List<String> companyMaterialList;
 	
+	public BasicService() {
+		this.delFlag = "0";
+	}
+
 	public String getId() {
 		return id;
 	}

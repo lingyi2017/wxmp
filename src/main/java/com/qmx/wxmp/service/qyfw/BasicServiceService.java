@@ -10,6 +10,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.qmx.wxmp.common.persistence.BaseEntity;
 import com.qmx.wxmp.common.persistence.Page;
 import com.qmx.wxmp.common.utils.IdGen;
 import com.qmx.wxmp.common.utils.StringUtils;
@@ -65,11 +66,12 @@ public class BasicServiceService extends BaseService {
 	
 	@Transactional(readOnly = false)
 	public void delete(String id){
-		basicServiceDao.delById(id);
+		basicServiceDao.deleteById(id);
 	}
 	
 	public Page<BasicService> findByPage(Page<BasicService> page, BasicService basicService) {
 		DetachedCriteria dc = basicServiceDao.createDetachedCriteria();
+		dc.add(Restrictions.eq("delFlag", BaseEntity.DEL_FLAG_NORMAL));
 		if (StringUtils.isNotEmpty(basicService.getCustomerType())) {
 			dc.add(Restrictions.eq("customerType", basicService.getCustomerType()));
 		}
