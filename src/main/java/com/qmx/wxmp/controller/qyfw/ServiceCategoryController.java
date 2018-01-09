@@ -40,9 +40,10 @@ import com.qmx.wxmp.service.qyfw.ServiceCategoryService;
 public class ServiceCategoryController extends BaseController {
 
 	@Autowired
-	private ServiceCategoryService thisService;
+	private ServiceCategoryService	thisService;
 	@Autowired
-	private BasicServiceService basicService;
+	private BasicServiceService		basicService;
+
 
 
 	@ModelAttribute("serviceCategory")
@@ -142,7 +143,7 @@ public class ServiceCategoryController extends BaseController {
 
 		response.setContentType("application/json; charset=UTF-8");
 		List<Map<String, Object>> mapList = Lists.newArrayList();
-		List<ServiceCategory> list = thisService.findAll();
+		List<ServiceCategory> list = thisService.findFirstCategorys();
 		for (int i = 0; i < list.size(); i++) {
 			ServiceCategory e = list.get(i);
 			if (extId == null || (extId != null && !extId.equals(e.getId())
@@ -158,25 +159,29 @@ public class ServiceCategoryController extends BaseController {
 
 	}
 
+
+
 	/**
 	 * 微信端，展示的服务列表页面
-	 * @param wxid 微信菜单ID
+	 * 
+	 * @param wxid
+	 *            微信菜单ID
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping(value = "wx_service_list")
-	public AjaxResult wxServiceList(@RequestParam(required = true) String wxMenuId){
+	public AjaxResult wxServiceList(@RequestParam(required = true) String wxMenuId) {
 		AjaxResult result = new AjaxResult();
-		try{
+		try {
 			List<ServiceCategoryDTO> categoryDTOs = new ArrayList<ServiceCategoryDTO>();
 			List<ServiceCategory> categories = thisService.findAllChildByWxMenuId(wxMenuId);
-			for(ServiceCategory category : categories){
+			for (ServiceCategory category : categories) {
 				ServiceCategoryDTO categoryDTO = new ServiceCategoryDTO();
 				categoryDTO.setServiceCategoryId(category.getId());
 				categoryDTO.setServiceCategoryName(category.getName());
 				List<BasicServiceDTO> serviceDTOs = new ArrayList<BasicServiceDTO>();
 				List<BasicService> basicServices = basicService.findByServiceCategoryId(category.getId());
-				for(BasicService basicService : basicServices){
+				for (BasicService basicService : basicServices) {
 					BasicServiceDTO serviceDTO = new BasicServiceDTO();
 					serviceDTO.setBasicServiceId(basicService.getId());
 					serviceDTO.setBasicServiceName(basicService.getName());
@@ -185,23 +190,27 @@ public class ServiceCategoryController extends BaseController {
 				}
 				categoryDTO.setBasicServiceDTOs(serviceDTOs);
 				categoryDTOs.add(categoryDTO);
-			} 
+			}
 			result.setResult(true);
 			result.setObj(categoryDTOs);
-		} catch(Exception e){
+		} catch (Exception e) {
 			result.setResult(false);
 			e.printStackTrace();
 		}
 		return result;
 	}
-	
+
+
+
 	@RequestMapping(value = "wx_service_list_view")
 	public String wxServiceListView() {
 
 		return "/wx/service_list";
 
 	}
-	
+
+
+
 	@RequestMapping(value = "getMaxSort")
 	@ResponseBody
 	public Integer getMaxSort() {

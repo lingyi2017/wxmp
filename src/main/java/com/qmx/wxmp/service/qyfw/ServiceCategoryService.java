@@ -41,6 +41,12 @@ public class ServiceCategoryService extends BaseService {
 
 
 
+	public List<ServiceCategory> findFirstCategorys() {
+		return thisDao.findFirstCategoryList();
+	}
+
+
+
 	@Transactional(readOnly = false)
 	public void save(ServiceCategory serviceCategory) {
 
@@ -72,17 +78,23 @@ public class ServiceCategoryService extends BaseService {
 		thisDao.deleteById(id, "%," + id + ",%");
 		UserUtils.removeCache(UserUtils.CACHE_SERVICE_CATEGORY_LIST);
 	}
-	
+
+
+
 	/**
 	 * 根据微信id获取要显示的服务列表
-	 * @param wxMenuId 微信菜单id
+	 * 
+	 * @param wxMenuId
+	 *            微信菜单id
 	 * @return
 	 */
-	public List<ServiceCategory> findAllChildByWxMenuId(String wxMenuId){
+	public List<ServiceCategory> findAllChildByWxMenuId(String wxMenuId) {
 		return thisDao.findAllChildByWxMenuId(wxMenuId);
 	}
 
-	public Integer getMaxSort(){
+
+
+	public Integer getMaxSort() {
 		return thisDao.getMaxSort();
 	}
 }

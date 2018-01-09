@@ -29,17 +29,30 @@ public class ServiceCategoryDao extends BaseDao<ServiceCategory> {
 
 
 
+	public List<ServiceCategory> findFirstCategoryList() {
+		return find("from ServiceCategory where parent.id=:p1 or parent.id=:p2 order by sort asc",
+				new Parameter("1", "0"));
+	}
+
+
+
 	public List<ServiceCategory> findAllChild(String parentId, String likeParentIds) {
 		return find(
 				"from ServiceCategory where delFlag=:p1 and (id=:p2 or parent.id=:p2 or parentIds like :p3) order by sort asc",
 				new Parameter("0", parentId, likeParentIds));
 	}
-	
-	public List<ServiceCategory> findAllChildByWxMenuId(String wxMenuId){
-		return findBySql("select * from qyfw_service_category where del_flag = '0' and parent_id = (select id from qyfw_service_category where wx_menu_id = :p1)", new Parameter(wxMenuId), ServiceCategory.class);
+
+
+
+	public List<ServiceCategory> findAllChildByWxMenuId(String wxMenuId) {
+		return findBySql(
+				"select * from qyfw_service_category where del_flag = '0' and parent_id = (select id from qyfw_service_category where wx_menu_id = :p1)",
+				new Parameter(wxMenuId), ServiceCategory.class);
 	}
-	
-	public Integer getMaxSort(){
+
+
+
+	public Integer 	getMaxSort() {
 		List<Integer> result = find("select max(sort) from ServiceCategory");
 		return result.size() > 0 ? (result.get(0).intValue() + 1) : 1;
 	}
