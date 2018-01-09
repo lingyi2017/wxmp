@@ -26,8 +26,14 @@
 			getMaxSort();
         });
         function getMaxSort(){
+
+            var id = $("#id").val();
+            if (id) {
+                return;
+            }
+
 			$.ajax({
-	            url: "${pageContext.request.contextPath}/qyfw/basicService/getMaxSort",
+	            url: "${pageContext.request.contextPath}/qyfw/serviceCategory/getMaxSort",
 	            type: "post",
 	            dataType: "json",
 	            cache: false,
