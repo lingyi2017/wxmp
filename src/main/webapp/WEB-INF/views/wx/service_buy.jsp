@@ -60,7 +60,7 @@
                     <label class="weui-form-preview__label fs14">个人</label>
                 </div>
                 <div class="weui-cell__ft">
-                    <input type="radio" class="weui-check" name="customerType" value="2" id="x12">
+                    <input type="radio" class="weui-check" name="customerType" value="2" id="x12" checked="checked">
                     <span class="weui-icon-checked"></span>
                 </div>
             </label>
@@ -77,8 +77,14 @@
     </div>
 
     <div class="weui-cells weui-cells_form fs14">
+    	<div class="weui-cell" id="div_companyName">
+            <div class="weui-cell__hd"><label class="weui-form-preview__label">企业名称</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" id="companyName" name="companyName">
+            </div>
+        </div>
         <div class="weui-cell" style="color: #999;">
-            <div class="weui-cell__hd"><label class="weui-label" id="label_contact"></label></div>
+            <div class="weui-cell__hd"><label class="weui-label">联系人</label></div>
             <div class="weui-cell__bd value-color">
                 <input class="weui-input" id="contact" name="contact">
             </div>
@@ -133,17 +139,17 @@
 
 <script type="text/javascript">
     $(function () {
-        if ("${basicService.customerType}" == 2) {
-            $("#label_contact").html("联系人");
+    	if ("${basicService.customerType}" == 2) {
+        	$("#div_companyName").show();
         } else {
-            $("#label_contact").html("企业名称");
+        	$("#div_companyName").hide();
         }
         $('input[name=customerType]').click(function () {
             var value = $("input[name='customerType']:checked").val();
             if (value == '1') {
-                $("#label_contact").html("企业名称");
+                $("#div_companyName").show();
             } else {
-                $("#label_contact").html("联系人");
+            	$("#div_companyName").hide();
             }
 
         });

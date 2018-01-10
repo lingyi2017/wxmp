@@ -97,7 +97,7 @@
                                 <label class="weui-form-preview__label">个人</label>
                             </div>
                             <div class="weui-cell__ft">
-                                <input type="radio" class="weui-check" name="customerType" value="2" id="x12">
+                                <input type="radio" class="weui-check" name="customerType" value="2" id="x12" checked="checked">
                                 <span class="weui-icon-checked"></span>
                             </div>
                         </label>
@@ -115,8 +115,14 @@
             </div>
 
             <div class="weui-panel weui-panel_access fs17">
+            	<div class="weui-cell" id="div_companyName">
+                    <div class="weui-cell__hd"><label class="weui-form-preview__label">企业名称</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" id="companyName">
+                    </div>
+                </div>
                 <div class="weui-cell">
-                    <div class="weui-cell__hd"><label class="weui-form-preview__label" id="label_contact"></label></div>
+                    <div class="weui-cell__hd"><label class="weui-form-preview__label">联系人</label></div>
                     <div class="weui-cell__bd">
                         <input class="weui-input" id="person">
                     </div>
@@ -152,19 +158,20 @@
 <script type="text/javascript">
     $(function () {
         if ("${basicService.customerType}" == 2) {
-            $("#label_contact").html("联系人");
+        	$("#div_companyName").show();
         } else {
-            $("#label_contact").html("企业名称");
+        	$("#div_companyName").hide();
         }
         $('input[name=customerType]').click(function () {
             var value = $("input[name='customerType']:checked").val();
             if (value == '1') {
-                $("#label_contact").html("企业名称");
+                $("#div_companyName").show();
             } else {
-                $("#label_contact").html("联系人");
+            	$("#div_companyName").hide();
             }
 
         });
+        
         $("#span_desciption").append(htmlDecodeByRegExp("${basicService.desciption}"));
     });
     function htmlDecodeByRegExp(str) {
@@ -180,6 +187,7 @@
     };
     function submit_consult() {
         var person = $("#person").val();
+        var companyName = $("#companyName").val();
         var phone = $("#phone").val();
         var content = $("#content").val();
         var customerType = $("input[name='customerType']:checked").val();
@@ -205,6 +213,7 @@
             data: {
                 openid: openid,
                 person: person,
+                companyName: companyName,
                 phone: phone,
                 content: content,
                 customerType: customerType,

@@ -36,6 +36,9 @@
                             <div class="weui-flex__item">
                                 <div class="placeholder left" style="color: #BBB;"><fmt:formatDate value="${order.createDate}" pattern="yyyy-MM-dd hh:mm:ss"/></div>
                             </div>
+                            <div class="weui-flex__item">
+                                <div class="placeholder right red">${fns:getDictLabel(order.status, 'order_status', '无')}</div>
+                            </div>
                         </div>
                     </div>
                 </a>

@@ -129,9 +129,9 @@ public class OrderController extends BaseController {
 				customer.setCreateDate(new Date());
 				customerService.save(customer);
 				order.setCustomer(customer);
-				order.setDealDate(new Date());
 			}
 
+			order.setDealDate(new Date());
 			thisService.save(order);
 			addMessage(redirectAttributes, "处理订单成功");
 		} catch (Exception e) {

@@ -38,6 +38,9 @@ public class Consulting {
 	/** 联系方式*/
 	private String phone;
 	
+	/** 企业名称*/
+	private String companyName;
+	
 	/** 客户性质*/
 	private String customerType;
 	
@@ -161,6 +164,14 @@ public class Consulting {
 
 	public void setOpenid(String openid) {
 		this.openid = openid;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 	
 }

@@ -120,7 +120,7 @@ public class ConsultingController extends BaseController {
 	@RequestMapping(value = "/wx_save_consulting")
 	@ResponseBody
 	public AjaxResult wxSave(String openid, String person, String phone
-			, String customerType, String content, String basicServiceId, Model model){
+			, String customerType, String content, String basicServiceId, String companyName, Model model){
 		AjaxResult result = new AjaxResult();
 		try{
 			Consulting consulting = new Consulting();
@@ -130,6 +130,7 @@ public class ConsultingController extends BaseController {
 			consulting.setContent(content);
 			consulting.setTime(new Date());
 			consulting.setCustomerType(customerType);
+			consulting.setCompanyName(companyName);
 			consulting.setDealStatus(Consulting.DEAL_NO);
 			BasicService basicService = new BasicService();
 			basicService.setId(basicServiceId);

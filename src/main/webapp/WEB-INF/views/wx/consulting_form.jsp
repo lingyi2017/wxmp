@@ -21,6 +21,18 @@
             <span class="weui-form-preview__value">${fns:getDictLabel(consulting.dealStatus, 'consulting_status', '无')}</span>
         </div>
         <div class="weui-form-preview__item">
+            <label class="weui-form-preview__label">客户性质</label>
+            <span class="weui-form-preview__value">${fns:getDictLabel(consulting.customerType , 'customer_type', '无')}</span>
+        </div>
+        <c:if test="${consulting.customerType == '1' }">
+        	<div class="weui-form-preview__item">
+	            <label class="weui-form-preview__label">企业名称</label>
+	            <span class="weui-form-preview__value">
+	                ${consulting.companyName }
+	            </span>
+	        </div>
+        </c:if>
+        <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">联系人</label>
             <span class="weui-form-preview__value">
                 ${consulting.person }
@@ -39,14 +51,19 @@
             </span>
         </div>
         <div class="weui-form-preview__item">
+            <label class="weui-form-preview__label">咨询时间</label>
+            <span class="weui-form-preview__value"><fmt:formatDate value="${consulting.time }"
+                                                                   pattern="yyyy-MM-dd hh:mm:ss"/></span>
+        </div>
+        <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">咨询反馈</label>
             <span class="weui-form-preview__value">
                 ${consulting.dealBack }
             </span>
         </div>
         <div class="weui-form-preview__item">
-            <label class="weui-form-preview__label">咨询时间</label>
-            <span class="weui-form-preview__value"><fmt:formatDate value="${consulting.time }"
+            <label class="weui-form-preview__label">反馈时间</label>
+            <span class="weui-form-preview__value"><fmt:formatDate value="${consulting.dealTime }"
                                                                    pattern="yyyy-MM-dd hh:mm:ss"/></span>
         </div>
     </div>

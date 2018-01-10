@@ -31,21 +31,29 @@
     </div>
     <div class="weui-form-preview__bd">
         <div class="weui-form-preview__item">
-            <label class="weui-form-preview__label">当前状态</label>
-            <span class="weui-form-preview__value">${fns:getDictLabel(order.status, 'order_status', '无')}</span>
-        </div>
-        <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">服务名称</label>
             <span class="weui-form-preview__value">${order.basicService.name }</span>
+        </div>
+        <div class="weui-form-preview__item">
+            <label class="weui-form-preview__label">当前状态</label>
+            <span class="weui-form-preview__value">${fns:getDictLabel(order.status, 'order_status', '无')}</span>
         </div>
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">客户性质</label>
             <span class="weui-form-preview__value">${fns:getDictLabel(order.customerType , 'customer_type', '无')}</span>
         </div>
+        <c:if test="${order.customerType == '1' }">
+        	<div class="weui-form-preview__item">
+	            <label class="weui-form-preview__label">企业名称</label>
+	            <span class="weui-form-preview__value">
+	                ${order.companyName }
+	            </span>
+	        </div>
+        </c:if>
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">联系人</label>
             <span class="weui-form-preview__value">${order.contact }</span>
-        </div>
+        </div>SSS
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">联系电话</label>
             <span class="weui-form-preview__value">${order.phone }</span>
@@ -66,6 +74,11 @@
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">处理反馈</label>
             <span class="weui-form-preview__value">${order.resp }</span>
+        </div>
+        <div class="weui-form-preview__item">
+            <label class="weui-form-preview__label">反馈时间</label>
+            <span class="weui-form-preview__value"><fmt:formatDate value="${order.dealDate }"
+                                                                   pattern="yyyy-MM-dd hh:mm:ss"/></span>
         </div>
     </div>
 </div>
