@@ -1,11 +1,15 @@
 package com.qmx.wxmp.controller.qyfw;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.common.collect.Lists;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -113,5 +117,20 @@ public class MaterialController extends BaseController {
 			}
 		}
 		return check;
+	}
+
+	@RequiresPermissions("qyfw:material:view")
+	@RequestMapping(value = "templateList")
+	public String templateList(String path, Model model) throws UnsupportedEncodingException {
+		String paths =  URLDecoder.decode(path, "utf-8");
+		if(StringUtils.isNotBlank(paths)){
+			String[] pathArray = paths.split(",");
+			List<String> pathList = Lists.newArrayList();
+			for(String p : pathArray){
+				pathList.add(p);
+			}
+			model.addAllAttributes(pathList);
+		}
+		return "/qyfw/templateDownload";
 	}
 }

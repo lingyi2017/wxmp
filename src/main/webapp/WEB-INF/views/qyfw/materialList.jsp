@@ -4,20 +4,28 @@
 <head>
     <title>材料</title>
     <meta name="decorator" content="default"/>
+    <script src="${ctxStatic}/artDialog/artDialog.js?skin=blue"></script>
+    <script src="${ctxStatic}/artDialog/plugins/iframeTools.js"></script>
     <script type="text/javascript">
-    function page(n, s) {
-        $("#pageNo").val(n);
-        $("#pageSize").val(s);
-        $("#searchForm").submit();
-        return false;
-    }
+
+        function page(n, s) {
+            $("#pageNo").val(n);
+            $("#pageSize").val(s);
+            $("#searchForm").submit();
+            return false;
+        }
+
+        function templateDownload(path) {
+            var url = encodeURI(encodeURI("${ctx}/qyfw/material/templateList?path=" + path));
+            art.dialog.open(url, {width: 600, height: 300, title: '模板下载', id: 'id'});
+        }
     </script>
 </head>
 <body>
- <ul class="nav nav-tabs">
- 	<li class="active"><a href="${ctx}/qyfw/material/">材料列表</a></li>
-	<shiro:hasPermission name="qyfw:material:edit">
-    <li><a href="${ctx}/qyfw/material/form">分类添加</a></li>
+<ul class="nav nav-tabs">
+    <li class="active"><a href="${ctx}/qyfw/material/">材料列表</a></li>
+    <shiro:hasPermission name="qyfw:material:edit">
+        <li><a href="${ctx}/qyfw/material/form">分类添加</a></li>
     </shiro:hasPermission>
 </ul>
 <form:form id="searchForm" modelAttribute="material" action="${ctx}/qyfw/material/" method="post"
@@ -38,7 +46,6 @@
     <tr>
         <th>材料名称</th>
         <th>客户性质</th>
-        <th>附件模板路径</th>
         <th>材料说明</th>
         <th>排序号</th>
         <shiro:hasPermission name="qyfw:material:edit">
@@ -50,7 +57,6 @@
         <tr>
             <td><a href="${ctx}/qyfw/material/form?id=${material.id}">${material.name}</a></td>
             <td>${fns:getDictLabel(material.customerType, 'customer_type', '个人、企业')}</td>
-            <td>${material.path}</td>
             <td>${material.descption}</td>
             <td>${material.sort}</td>
             <shiro:hasPermission name="qyfw:material:edit">
@@ -58,7 +64,8 @@
                     <a href="${ctx}/qyfw/material/form?id=${material.id}"><spring:message code='update'/></a>
                     <a href="${ctx}/qyfw/material/delete?id=${material.id}"
                        onclick="return confirmx('确认要删除该材料吗？', this.href)"><spring:message code='delete'/></a>
-                    <a href="#"><spring:message code='download'/></a>
+                    <a onclick="templateDownload('${material.path}')" href="javascript:void(0)"><spring:message
+                            code='download'/></a>
                 </td>
             </shiro:hasPermission>
         </tr>
