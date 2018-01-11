@@ -53,7 +53,7 @@
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">联系人</label>
             <span class="weui-form-preview__value">${order.contact }</span>
-        </div>SSS
+        </div>
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">联系电话</label>
             <span class="weui-form-preview__value">${order.phone }</span>
