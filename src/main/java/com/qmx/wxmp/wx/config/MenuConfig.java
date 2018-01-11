@@ -32,27 +32,27 @@ public class MenuConfig {
 		WxMenuButton button11 = new WxMenuButton();
 		button11.setType(MenuButtonType.VIEW);
 		button11.setName("公司注册");
-		button11.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=gszc", "snsapi_base", ""));
+		button11.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://www.qmxqyzx.com/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=gszc", "snsapi_base", ""));
 
 		WxMenuButton button12 = new WxMenuButton();
 		button12.setType(MenuButtonType.VIEW);
 		button12.setName("商标注册");
-		button12.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=sbzc", "snsapi_base", ""));
+		button12.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://www.qmxqyzx.com/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=sbzc", "snsapi_base", ""));
 		
 		WxMenuButton button13 = new WxMenuButton();
 		button13.setType(MenuButtonType.VIEW);
-		button13.setName("专利申请1");
-		button13.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=zlsq", "snsapi_base", ""));
+		button13.setName("专利申请");
+		button13.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://www.qmxqyzx.com/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=zlsq", "snsapi_base", ""));
 		
 		WxMenuButton button14 = new WxMenuButton();
 		button14.setType(MenuButtonType.VIEW);
 		button14.setName("版权申请");
-		button14.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=bqsq", "snsapi_base", ""));
+		button14.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://www.qmxqyzx.com/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=bqsq", "snsapi_base", ""));
 		
 		WxMenuButton button15 = new WxMenuButton();
 		button15.setType(MenuButtonType.VIEW);
 		button15.setName("企业许可证咨询");
-		button15.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=qyxkzzx", "snsapi_base", ""));
+		button15.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://www.qmxqyzx.com/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=qyxkzzx", "snsapi_base", ""));
 		
 		button1.getSubButtons().add(button11);
 		button1.getSubButtons().add(button12);
@@ -66,14 +66,14 @@ public class MenuConfig {
 		WxMenuButton button21 = new WxMenuButton();
 		button21.setType(MenuButtonType.VIEW);
 		button21.setName("公司注册");
-		button21.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_base?page=/wx/service_list", "snsapi_base", "gszc"));
+		button21.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://www.qmxqyzx.com/wx/oauth/oauth_notify_base?page=/wx/service_list", "snsapi_base", "gszc"));
 
 		button2.getSubButtons().add(button21);
 
 		WxMenuButton button3 = new WxMenuButton();
 		button3.setName("个人中心");
 		button3.setType(MenuButtonType.VIEW);
-		button3.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_user?page=/wx/personal_center", "snsapi_userinfo", ""));
+		button3.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://www.qmxqyzx.com/wx/oauth/oauth_notify_user?page=/wx/personal_center", "snsapi_userinfo", ""));
 
 		/*WxMenuButton button31 = new WxMenuButton();
 		button31.setType(MenuButtonType.VIEW);
@@ -141,7 +141,7 @@ public class MenuConfig {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		MainConfig mainConfig = new MainConfig("wxa1dda5439feefd36", "e0c53f4007c6bd2cb7299bf0fcf48a58", "wjdcxt", "mFaxY8bRcuBS80YUWM9KM7j6ls04lotEQ98lAus3uZw");
+		MainConfig mainConfig = new MainConfig("wxa1dda5439feefd36", "e0c53f4007c6bd2cb7299bf0fcf48a58", "qmx", "mFaxY8bRcuBS80YUWM9KM7j6ls04lotEQ98lAus3uZw");
 		WxMpService wxMpService = mainConfig.wxMpService();
 		try {
 			wxMpService.getMenuService().menuCreate(getMenu());
