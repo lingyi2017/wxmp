@@ -34,7 +34,6 @@
 		            success: function (res) {
 		            	if (res.errMsg == "chooseWXPay:ok") {  
                             //支付成功  
-                            alert('支付成功');  
     			        	window.location.href = "${pageContext.request.contextPath}/qyfw/customer/wx_order_list?openid=${openid}";
                         } else {  
                             alert(res.errMsg);  

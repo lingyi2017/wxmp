@@ -20,7 +20,7 @@
     <div class="weui-form-preview__bd">
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">服务类型</label>
-            <span class="weui-form-preview__value value-color">${basicService.name}</span>
+            <span class="weui-form-preview__value value-color">${basicService.serviceCategory.name}</span>
         </div>
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">服务介绍</label>
@@ -139,7 +139,7 @@
                 <div class="weui-cell">
                     <div class="weui-cell__bd">
                         <textarea class="weui-textarea fs14" placeholder="咨询内容" rows="3" id="content"></textarea>
-                        <div class="weui-textarea-counter"><span>0</span>/200</div>
+                        <div class="weui-textarea-counter"><span>限200字</span></div>
                     </div>
                 </div>
             </div>
@@ -225,7 +225,7 @@
                 if (data.result) {
                     $.toptip('<div class="toptip">咨询成功!请等待客服人员与您联系</div>', 'success');
                     $.closePopup();
-                    window.location.reload(true);
+                    window.location.href = "${pageContext.request.contextPath}/qyfw/customer/wx_consulting_list?openid=${openid}";
                 } else {
                     $.toptip('<div class="toptip">抱歉,发生了不可预知的错误,请稍后再试!</div>', 'error');
                     $.closePopup();

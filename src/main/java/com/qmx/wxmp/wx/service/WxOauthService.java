@@ -17,9 +17,9 @@ import org.springframework.stereotype.Service;
 public class WxOauthService {
 
 	/** 微信授权:静默*/
-	public static final String OAUTH2_NOTIFY_BASE_URL = "http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_base";
+	public static final String OAUTH2_NOTIFY_BASE_URL = "http://www.qmxqyzx.com/wx/oauth/oauth_notify_base";
 	/** 微信授权:用户信息*/
-	public static final String OAUTH2_NOTIFY_USER_URL = "http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_user";
+	public static final String OAUTH2_NOTIFY_USER_URL = "http://www.qmxqyzx.com/wx/oauth/oauth_notify_user";
 	
     @Autowired
     protected WxMpService wxMpService;

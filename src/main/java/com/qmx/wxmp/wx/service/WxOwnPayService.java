@@ -28,7 +28,7 @@ import com.qmx.wxmp.service.qyfw.OrderService;
 public class WxOwnPayService {
 
 	/** 微信支付：通知回调地址*/
-	public static final String WX_PAY_NOTIFY_URL = "http://1u9288562a.imwork.net/wxmp/wx/pay/notify";
+	public static final String WX_PAY_NOTIFY_URL = "http://www.qmxqyzx.com/wx/pay/notify";
 
 	@Autowired
 	private WxPayService wxPayService;
