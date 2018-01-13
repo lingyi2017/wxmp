@@ -97,7 +97,8 @@
                                 <label class="weui-form-preview__label">个人</label>
                             </div>
                             <div class="weui-cell__ft">
-                                <input type="radio" class="weui-check" name="customerType" value="2" id="x12" checked="checked">
+                                <input type="radio" class="weui-check" name="customerType" value="2" id="x12"
+                                       checked="checked">
                                 <span class="weui-icon-checked"></span>
                             </div>
                         </label>
@@ -115,7 +116,7 @@
             </div>
 
             <div class="weui-panel weui-panel_access fs17">
-            	<div class="weui-cell" id="div_companyName">
+                <div class="weui-cell" id="div_companyName">
                     <div class="weui-cell__hd"><label class="weui-form-preview__label">企业名称</label></div>
                     <div class="weui-cell__bd">
                         <input class="weui-input" id="companyName">
@@ -138,8 +139,9 @@
             <div class="weui-panel weui-panel_access fs17">
                 <div class="weui-cell">
                     <div class="weui-cell__bd">
-                        <textarea class="weui-textarea fs14" placeholder="咨询内容" rows="3" id="content"></textarea>
-                        <div class="weui-textarea-counter"><span>限200字</span></div>
+                        <textarea class="weui-textarea fs14" placeholder="咨询内容" rows="3" maxlength="200"
+                                  id="content"></textarea>
+                        <div class="weui-textarea-counter"><span id="enteredNum">0</span>/200</div>
                     </div>
                 </div>
             </div>
@@ -158,22 +160,25 @@
 <script type="text/javascript">
     $(function () {
         if ("${basicService.customerType}" == 2) {
-        	$("#div_companyName").show();
+            $("#div_companyName").show();
         } else {
-        	$("#div_companyName").hide();
+            $("#div_companyName").hide();
         }
         $('input[name=customerType]').click(function () {
             var value = $("input[name='customerType']:checked").val();
             if (value == '1') {
                 $("#div_companyName").show();
             } else {
-            	$("#div_companyName").hide();
+                $("#div_companyName").hide();
             }
 
         });
-        
+
         $("#span_desciption").append(htmlDecodeByRegExp("${basicService.desciption}"));
+
+        calculator();
     });
+
     function htmlDecodeByRegExp(str) {
         var s = "";
         if (str.length == 0) return "";
@@ -185,6 +190,7 @@
         s = s.replace(/&quot;/g, "\"");
         return s;
     };
+
     function submit_consult() {
         var person = $("#person").val();
         var companyName = $("#companyName").val();
@@ -239,6 +245,13 @@
             }
         });
     };
+
+    function calculator() {
+        $("#content").on('blur keyup input', function () {
+            var enteredNum = $("#content").val().length;
+            $("#enteredNum").text(enteredNum);
+        });
+    }
 </script>
 </body>
 </html>

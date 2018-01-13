@@ -77,7 +77,7 @@
     </div>
 
     <div class="weui-cells weui-cells_form fs14">
-    	<div class="weui-cell" id="div_companyName">
+        <div class="weui-cell" id="div_companyName">
             <div class="weui-cell__hd"><label class="weui-form-preview__label">企业名称</label></div>
             <div class="weui-cell__bd">
                 <input class="weui-input" id="companyName" name="companyName">
@@ -102,8 +102,8 @@
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <textarea class="weui-textarea value-color" placeholder="订单备注" rows="3" id="mark"
-                          name="mark"></textarea>
-                <div class="weui-textarea-counter"><span>0</span>/200</div>
+                          maxlength="200" name="mark"></textarea>
+                <div class="weui-textarea-counter"><span id="enteredNum">0</span>/200</div>
             </div>
         </div>
     </div>
@@ -139,21 +139,31 @@
 
 <script type="text/javascript">
     $(function () {
-    	if ("${basicService.customerType}" == 2) {
-        	$("#div_companyName").show();
+        if ("${basicService.customerType}" == 2) {
+            $("#div_companyName").show();
         } else {
-        	$("#div_companyName").hide();
+            $("#div_companyName").hide();
         }
         $('input[name=customerType]').click(function () {
             var value = $("input[name='customerType']:checked").val();
             if (value == '1') {
                 $("#div_companyName").show();
             } else {
-            	$("#div_companyName").hide();
+                $("#div_companyName").hide();
             }
 
         });
+
+        calculator();
     });
+
+    function calculator() {
+        $("#mark").on('blur keyup input', function () {
+            var enteredNum = $("#mark").val().length;
+            $("#enteredNum").text(enteredNum);
+        });
+    }
+
     function sumbit_order() {
         var phone = $("#phone").val();
         var tel = /(^0[1-9]{1}\d{9,10}$)|(^1[3,5,8]\d{9}$)/g;
