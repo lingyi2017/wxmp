@@ -73,7 +73,7 @@
         </div>
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">处理反馈</label>
-            <span class="weui-form-preview__value">${order.resp }</span>
+            <span class="weui-form-preview__value left">${order.resp }</span>
         </div>
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">反馈时间</label>

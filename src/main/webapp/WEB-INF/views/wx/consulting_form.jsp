@@ -46,7 +46,7 @@
         </div>
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">咨询内容</label>
-            <span class="weui-form-preview__value">
+            <span class="weui-form-preview__value left">
                 ${consulting.content }
             </span>
         </div>
@@ -57,7 +57,7 @@
         </div>
         <div class="weui-form-preview__item">
             <label class="weui-form-preview__label">咨询反馈</label>
-            <span class="weui-form-preview__value">
+            <span class="weui-form-preview__value left">
                 ${consulting.dealBack }
             </span>
         </div>
