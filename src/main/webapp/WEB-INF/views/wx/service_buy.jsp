@@ -98,7 +98,7 @@
             </div>
         </div>
     </div>
-    <div class="weui-cells weui-cells_form fs14">
+    <div class="weui-cells weui-cells_form fs14" style="margin-bottom: 60px;">
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <textarea class="weui-textarea value-color" placeholder="订单备注" rows="3" id="mark"
