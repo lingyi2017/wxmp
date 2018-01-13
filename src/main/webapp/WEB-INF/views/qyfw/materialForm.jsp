@@ -50,7 +50,7 @@
                     url: "${ctx}/file/upload",  // 图片上传的服务器地址
                     addRemoveLinks: true,  // 添加删除连接
                     maxFiles: 4,  // 最多文件数量(需要修改myDropzone.options.maxFiles才能生效)
-                    acceptedFiles: "image/*",  // 允许上传的文件类型
+                    //acceptedFiles: "image/*",  // 允许上传的文件类型
                     dictDefaultMessage: "拖拽或点击上传",  // 提示文本
                     dictRemoveFile: "移除文件",  // 移除文件链接的文本
                     dictMaxFilesExceeded: "您不能上传更多的文件"  // 超过最大文件数量的提示文本

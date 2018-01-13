@@ -11,8 +11,14 @@
     </script>
 </head>
 <body>
-<c:forEach items="${pathList}" var="path">
-    ${path}
-</c:forEach>
+
+<div class="row" style="margin-top: 40px; margin-bottom: 40px; text-align: center">
+    <c:forEach items="${pathList}" var="path" varStatus="index">
+        <a href="${ctx}/file/download?path=${path}" title="点击下载" style="padding-left: 10px;">
+            <img src="${ctx}/${path}" style="width: 140px;height: 140px" class="img-rounded">
+        </a>
+    </c:forEach>
+</div>
+
 </body>
 </html>

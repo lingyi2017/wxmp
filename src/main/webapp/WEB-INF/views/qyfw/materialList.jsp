@@ -17,7 +17,7 @@
 
         function templateDownload(path) {
             var url = encodeURI(encodeURI("${ctx}/qyfw/material/templateList?path=" + path));
-            art.dialog.open(url, {width: 600, height: 300, title: '模板下载', id: 'id'});
+            art.dialog.open(url, {width: 600, height: 230, title: '模板下载', id: 'id'});
         }
     </script>
 </head>
