@@ -94,7 +94,7 @@
             <input type="hidden" name="basicServiceId" value="${basicService.id }">
             <div class="weui-cell__hd"><label class="weui-label">联系电话</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input value-color" type="number" pattern="[0-9]*" id="phone">
+                <input class="weui-input value-color" type="number" pattern="[0-9]*" name="phone" id="phone">
             </div>
         </div>
     </div>
