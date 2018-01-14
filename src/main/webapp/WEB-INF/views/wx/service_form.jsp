@@ -159,7 +159,7 @@
 
 <script type="text/javascript">
     $(function () {
-        if ("${basicService.customerType}" == 2) {
+        if ("${basicService.customerType}" == 1) {
             $("#div_companyName").show();
         } else {
             $("#div_companyName").hide();
