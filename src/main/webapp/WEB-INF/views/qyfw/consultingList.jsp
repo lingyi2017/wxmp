@@ -42,8 +42,9 @@
 <table id="contentTable" class="table table-striped table-bordered table-condensed">
     <thead>
     <tr>
-        <th>服务名称</th>
+        <th style="width: 130px">服务名称</th>
         <th>客户性质</th>
+        <th>企业名称</th>
         <th>咨询人</th>
         <th>联系电话</th>
         <th>处理状态</th>
@@ -57,6 +58,10 @@
         <tr>
             <td>${consulting.basicService.name}</td>
             <td>${fns:getDictLabel(consulting.customerType, 'customer_type', '无')}</td>
+            <td>
+            	<c:if test="${empty consulting.companyName}">--</c:if>
+            	<c:if test="${not empty consulting.companyName}">${order.companyName}</c:if>
+            </td>
             <td>${consulting.person}</td>
             <td>${consulting.phone}</td>
             <td>${fns:getDictLabel(consulting.dealStatus, 'consulting_status', '无')}</td>

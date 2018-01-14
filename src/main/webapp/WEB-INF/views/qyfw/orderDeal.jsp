@@ -29,7 +29,7 @@
 
         function queryCustomer() {
             var url = encodeURI(encodeURI("${ctx}/qyfw/customer/dialogList?customerType=${order.customerType}&name=${order.companyName}&contact=${order.contact}&phone=${order.phone}"));
-            art.dialog.open(url, {width: 800, height: 410, title: '选择客户', id: 'id'});
+            art.dialog.open(url, {width: 1200, height: 410, title: '选择客户', id: 'id'});
         }
     </script>
 </head>
@@ -138,7 +138,7 @@
     <div class="control-group">
         <label class="control-label">客户性质:</label>
         <div class="controls">
-            <form:select path="customer.customerType" id="selCustomerType">
+            <form:select path="customer.customerType" id="customer.customerType">
                 <form:options items="${fns:getDictList('customer_type')}" itemLabel="label"
                               itemValue="value" htmlEscape="false"/>
             </form:select>

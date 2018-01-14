@@ -44,7 +44,7 @@
 <table id="contentTable" class="table table-striped table-bordered table-condensed">
     <thead>
     <tr>
-        <th>服务名称</th>
+        <th style="width: 130px">服务名称</th>
         <th>客户性质</th>
         <th>企业名称</th>
         <th>联系人</th>
@@ -62,8 +62,8 @@
             <td>${order.basicService.name}</td>
             <td>${fns:getDictLabel(order.customerType, 'customer_type', '无')}</td>
             <td>
-            	<c:if test="${order.companyName} == ''">--</c:if>
-            	<c:if test="${order.companyName} <> ''">${order.companyName}</c:if>
+            	<c:if test="${empty order.companyName}">--</c:if>
+            	<c:if test="${not empty order.companyName}">${order.companyName}</c:if>
             </td>
             <td>${order.contact}</td>
             <td>${order.phone}</td>

@@ -48,6 +48,12 @@
         </div>
     </div>
     <div class="control-group">
+        <label class="control-label">客户性质:</label>
+        <div class="controls">
+        	<label class="lbl">${fns:getDictLabel(consulting.customerType, 'customer_type', '无')}</label>
+        </div>
+    </div>
+    <div class="control-group">
         <label class="control-label">联系人:</label>
         <div class="controls">
             <label class="lbl">${consulting.person}</label>

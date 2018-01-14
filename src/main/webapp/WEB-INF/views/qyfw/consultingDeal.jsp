@@ -24,11 +24,12 @@
                     }
                 }
             });
+            $("#customer.customerType").val("${consulting.customerType}");
         });
 
         function queryCustomer() {
-            var url = "${ctx}/qyfw/customer/dialogList";
-            art.dialog.open(url, {width: 800, height: 410, title: '选择客户', id: 'id'});
+        	var url = encodeURI(encodeURI("${ctx}/qyfw/customer/dialogList?customerType=${consulting.customerType}&name=${consulting.companyName}&contact=${consulting.person}&phone=${consulting.phone}"));
+            art.dialog.open(url, {width: 1200, height: 410, title: '选择客户', id: 'id'});
         }
     </script>
 </head>
@@ -119,7 +120,7 @@
     <div class="control-group">
         <label class="control-label">客户性质:</label>
         <div class="controls">
-            <form:select path="customer.customerType">
+            <form:select path="customer.customerType" id="customer.customerType">
                 <form:options items="${fns:getDictList('customer_type')}" itemLabel="label"
                               itemValue="value" htmlEscape="false"/>
             </form:select>

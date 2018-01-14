@@ -76,6 +76,7 @@
         <th>联系人</th>
         <th>联系方式</th>
         <th>客户性质</th>
+        <th>联系地址</th>
         <th>添加时间</th>
     </thead>
     <tbody>
@@ -86,6 +87,7 @@
             <td>${customer.contact}</td>
             <td>${customer.phone}</td>
             <td>${fns:getDictLabel(customer.customerType, 'customer_type', '无')}</td>
+            <td>${customer.address}</td>
             <td><fmt:formatDate value="${customer.createDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
         </tr>
     </c:forEach>
