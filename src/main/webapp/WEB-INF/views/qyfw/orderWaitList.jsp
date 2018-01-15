@@ -60,7 +60,13 @@
     <c:forEach items="${page.list}" var="order">
         <tr>
             <td>${order.basicService.name}</td>
-            <td>${fns:getDictLabel(order.customerType, 'customer_type', '无')}</td>
+            <td>
+                <c:if test="${order.customer.id == null}">
+                    ${fns:getDictLabel(order.customerType, 'customer_type', '无')}</td>
+                </c:if>
+                <c:if test="${order.customer.id != null}">
+                    ${fns:getDictLabel(order.customer.customerType, 'customer_type', '无')}</td>
+                </c:if>
             <td>
             	<c:if test="${empty order.companyName}">--</c:if>
             	<c:if test="${not empty order.companyName}">${order.companyName}</c:if>

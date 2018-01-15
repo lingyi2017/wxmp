@@ -138,10 +138,18 @@
     <div class="control-group">
         <label class="control-label">客户性质:</label>
         <div class="controls">
-            <form:select path="customer.customerType" id="customer.customerType">
-                <form:options items="${fns:getDictList('customer_type')}" itemLabel="label"
-                              itemValue="value" htmlEscape="false"/>
-            </form:select>
+            <c:if test="${order.customer.id == null}">
+                <form:select path="customer.customerType" id="customer.customerType">
+                    <option value="1" <c:if test="${order.customerType == 1}" >selected="selected"</c:if>>企业</option>
+                    <option value="2" <c:if test="${order.customerType == 2}">selected="selected"</c:if>>个人</option>
+                </form:select>
+            </c:if>
+            <c:if test="${order.customer.id != null}">
+                <form:select path="customer.customerType" id="customer.customerType">
+                    <form:options items="${fns:getDictList('customer_type')}" itemLabel="label"
+                                  itemValue="value" htmlEscape="false"/>
+                </form:select>
+            </c:if>
         </div>
     </div>
     <div class="control-group">
