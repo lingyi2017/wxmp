@@ -28,7 +28,7 @@
         });
 
         function queryCustomer() {
-        	var url = encodeURI(encodeURI("${ctx}/qyfw/customer/dialogList?customerType=${consulting.customerType}&name=${consulting.companyName}&contact=${consulting.person}&phone=${consulting.phone}"));
+            var url = encodeURI(encodeURI("${ctx}/qyfw/customer/dialogList?customerType=${consulting.customerType}&name=${consulting.companyName}&contact=${consulting.person}&phone=${consulting.phone}"));
             art.dialog.open(url, {width: 1200, height: 410, title: '选择客户', id: 'id'});
         }
     </script>
@@ -73,7 +73,7 @@
             <label class="lbl">${consulting.content}</label>
         </div>
     </div>
-    
+
     <div class="control-group">
         <label class="control-label">咨询时间:</label>
         <div class="controls">
@@ -89,7 +89,7 @@
             </form:select>
         </div>
     </div>
-    
+
     <div class="control-group">
         <label class="control-label">处理反馈:</label>
         <div class="controls">
@@ -120,10 +120,18 @@
     <div class="control-group">
         <label class="control-label">客户性质:</label>
         <div class="controls">
-            <form:select path="customer.customerType" id="customer.customerType">
-                <form:options items="${fns:getDictList('customer_type')}" itemLabel="label"
-                              itemValue="value" htmlEscape="false"/>
-            </form:select>
+            <c:if test="${consulting.customer.id == null}">
+                <form:select path="customer.customerType" id="customer.customerType">
+                    <option value="1" <c:if test="${consulting.customerType == 1}">selected="selected"</c:if>>企业</option>
+                    <option value="2" <c:if test="${consulting.customerType == 2}">selected="selected"</c:if>>个人</option>
+                </form:select>
+            </c:if>
+            <c:if test="${consulting.customer.id != null}">
+                <form:select path="customer.customerType" id="customer.customerType">
+                    <form:options items="${fns:getDictList('customer_type')}" itemLabel="label"
+                                  itemValue="value" htmlEscape="false"/>
+                </form:select>
+            </c:if>
         </div>
     </div>
     <div class="control-group">
