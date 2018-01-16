@@ -22,4 +22,13 @@ public class AccountDao extends BaseDao<Account> {
 	public Account getAccountByOpenId(String openId){
 		return getByHql("from Account where openid = :p1", new Parameter(openId));
 	}
+	
+	/**
+	 * 根据nickName得到用户数
+	 * @param nickName
+	 * @return
+	 */
+	public Integer getNumByNickName(String nickName){
+		return Integer.parseInt(findBySql("select count(1) num from dcxt_account where nick_name = :p1",new Parameter(nickName)).get(0).toString());
+	}
 }

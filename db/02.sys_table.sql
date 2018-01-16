@@ -245,40 +245,65 @@ INSERT INTO `sys_dict` VALUES ('63', '异常日志', '2', 'sys_log_type', '日�
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES ('1', '0', '0,', '顶级菜单', null, null, null, '0', '1', '0', null, null, null, null, now(), null, '0');
-
--- 系统管理
+INSERT INTO `sys_menu` VALUES ('0660d9f6d0974f568cb268794335f66e', 'd074638f69b34fb2b44011f5b78145db', '0,1,100,200,d074638f69b34fb2b44011f5b78145db,', '查看', '', '', '', '10', '0', '0', 'dcxt:orderbyday:view', 'admin', '2018-01-16 15:24:32', 'admin', '2018-01-16 15:24:32', null, '0');
+INSERT INTO `sys_menu` VALUES ('1', '0', '0,', '顶级菜单', null, null, null, '0', '1', '0', null, null, null, null, '2018-01-16 14:39:08', null, '0');
+INSERT INTO `sys_menu` VALUES ('10', '3', '0,1,2,3,', '字典管理', '/sys/dict/', null, 'th-list', '60', '1', '0', null, '1', '2018-01-16 14:39:08', '1', '2018-01-16 14:39:08', null, '0');
+INSERT INTO `sys_menu` VALUES ('100', '1', '0,1,', '订餐系统', null, null, 'user', '300', '1', '0', '', null, '2018-01-16 14:39:19', 'admin', null, null, '0');
+INSERT INTO `sys_menu` VALUES ('101', '100', '0,1,100,', '菜单管理', null, null, null, '100', '1', '0', null, '1', '2018-01-16 14:39:19', 'admin', '2018-01-16 14:39:19', null, '0');
+INSERT INTO `sys_menu` VALUES ('102', '101', '0,1,100,101,', '菜品管理', '/dcxt/dish/', null, 'th', '10', '1', '0', null, 'admin', '2018-01-16 14:39:19', '1', '2018-01-16 14:39:19', null, '0');
+INSERT INTO `sys_menu` VALUES ('103', '102', '0,1,100,101,102,', '查看', null, null, 'lock', '10', '1', '0', 'dcxt:dish:view', 'admin', '2018-01-16 14:39:20', '1', '2018-01-16 14:39:20', null, '0');
+INSERT INTO `sys_menu` VALUES ('104', '102', '0,1,100,101,102,', '修改', null, null, 'lock', '10', '1', '0', 'dcxt:dish:edit', 'admin', '2018-01-16 14:39:20', '1', '2018-01-16 14:39:20', null, '0');
+INSERT INTO `sys_menu` VALUES ('105', '101', '0,1,100,101,', '餐标管理', '/dcxt/meal/', null, 'th', '20', '1', '0', null, 'admin', '2018-01-16 14:39:20', '1', '2018-01-16 14:39:20', null, '0');
+INSERT INTO `sys_menu` VALUES ('106', '105', '0,1,100,101,105,', '查看', null, null, 'lock', '10', '1', '0', 'dcxt:meal:view', 'admin', '2018-01-16 14:39:20', '1', '2018-01-16 14:39:20', null, '0');
+INSERT INTO `sys_menu` VALUES ('107', '105', '0,1,100,101,105,', '修改', null, null, 'lock', '10', '1', '0', 'dcxt:meal:edit', 'admin', '2018-01-16 14:39:20', '1', '2018-01-16 14:39:20', null, '0');
+INSERT INTO `sys_menu` VALUES ('108', '101', '0,1,100,101,', '产品管理', '/dcxt/product/', null, 'th', '30', '1', '0', null, 'admin', '2018-01-16 14:39:20', '1', '2018-01-16 14:39:20', null, '0');
+INSERT INTO `sys_menu` VALUES ('109', '108', '0,1,100,101,108,', '查看', null, null, 'lock', '10', '1', '0', 'dcxt:product:view', 'admin', '2018-01-16 14:39:20', '1', '2018-01-16 14:39:20', null, '0');
+INSERT INTO `sys_menu` VALUES ('11', '10', '0,1,2,3,10,', '查看', null, null, null, '30', '0', '0', 'sys:dict:view', '1', '2018-01-16 14:39:08', '1', '2018-01-16 14:39:08', null, '0');
+INSERT INTO `sys_menu` VALUES ('110', '108', '0,1,100,101,108,', '修改', null, null, 'lock', '10', '1', '0', 'dcxt:product:edit', 'admin', '2018-01-16 14:39:20', '1', '2018-01-16 14:39:20', null, '0');
+INSERT INTO `sys_menu` VALUES ('111', '101', '0,1,100,101,', '份量管理', '/dcxt/combo/', null, 'th', '40', '1', '0', null, 'admin', '2018-01-16 14:39:20', '1', '2018-01-16 14:39:20', null, '0');
+INSERT INTO `sys_menu` VALUES ('112', '111', '0,1,100,101,111,', '查看', null, null, 'lock', '10', '1', '0', 'dcxt:combo:view', 'admin', '2018-01-16 14:39:20', '1', '2018-01-16 14:39:20', null, '0');
+INSERT INTO `sys_menu` VALUES ('113', '111', '0,1,100,101,111,', '修改', null, null, 'lock', '10', '1', '0', 'dcxt:combo:edit', 'admin', '2018-01-16 14:39:20', '1', '2018-01-16 14:39:20', null, '0');
+INSERT INTO `sys_menu` VALUES ('114', '101', '0,1,100,101,', '菜单管理', '/dcxt/foodMenu/', null, 'th', '50', '1', '0', null, 'admin', '2018-01-16 14:39:20', '1', '2018-01-16 14:39:20', null, '0');
+INSERT INTO `sys_menu` VALUES ('115', '114', '0,1,100,101,114,', '查看', null, null, 'lock', '10', '1', '0', 'dcxt:foodMenu:view', 'admin', '2018-01-16 14:39:20', '1', '2018-01-16 14:39:20', null, '0');
+INSERT INTO `sys_menu` VALUES ('116', '114', '0,1,100,101,114,', '修改', null, null, 'lock', '10', '1', '0', 'dcxt:foodMenu:edit', 'admin', '2018-01-16 14:39:20', '1', '2018-01-16 14:39:20', null, '0');
+INSERT INTO `sys_menu` VALUES ('12', '10', '0,1,2,3,10,', '修改', null, null, null, '30', '0', '0', 'sys:dict:edit', '1', '2018-01-16 14:39:08', '1', '2018-01-16 14:39:08', null, '0');
+INSERT INTO `sys_menu` VALUES ('13', '2', '0,1,2,', '机构用户', null, null, null, '970', '1', '0', null, '1', '2018-01-16 14:39:08', '1', '2018-01-16 14:39:08', null, '0');
+INSERT INTO `sys_menu` VALUES ('14', '13', '0,1,2,13,', '区域管理', '/sys/area/', null, 'th', '50', '1', '0', null, '1', '2018-01-16 14:39:08', '1', '2018-01-16 14:39:08', null, '0');
+INSERT INTO `sys_menu` VALUES ('15', '14', '0,1,2,13,14,', '查看', null, null, null, '30', '0', '0', 'sys:area:view', '1', '2018-01-16 14:39:08', '1', '2018-01-16 14:39:08', null, '0');
+INSERT INTO `sys_menu` VALUES ('16', '14', '0,1,2,13,14,', '修改', null, null, null, '30', '0', '0', 'sys:area:edit', '1', '2018-01-16 14:39:08', '1', '2018-01-16 14:39:08', null, '0');
+INSERT INTO `sys_menu` VALUES ('17', '13', '0,1,2,13,', '机构管理', '/sys/office/', null, 'th-large', '40', '1', '0', null, '1', '2018-01-16 14:39:09', '1', '2018-01-16 14:39:09', null, '0');
+INSERT INTO `sys_menu` VALUES ('18', '17', '0,1,2,13,17,', '查看', null, null, null, '30', '0', '0', 'sys:office:view', '1', '2018-01-16 14:39:09', '1', '2018-01-16 14:39:09', null, '0');
+INSERT INTO `sys_menu` VALUES ('19', '17', '0,1,2,13,17,', '修改', null, null, null, '30', '0', '0', 'sys:office:edit', '1', '2018-01-16 14:39:09', '1', '2018-01-16 14:39:09', null, '0');
 INSERT INTO `sys_menu` VALUES ('2', '1', '0,1,', '系统管理', null, null, null, '200', '1', '0', null, null, null, null, null, null, '0');
+INSERT INTO `sys_menu` VALUES ('20', '13', '0,1,2,13,', '用户管理', '/sys/user/', null, 'user', '30', '1', '0', null, '1', '2018-01-16 14:39:09', '1', '2018-01-16 14:39:09', null, '0');
+INSERT INTO `sys_menu` VALUES ('200', '100', '0,1,100,', '订单管理', null, null, null, '200', '1', '0', null, '1', '2018-01-16 14:39:21', 'admin', '2018-01-16 14:39:21', null, '0');
+INSERT INTO `sys_menu` VALUES ('201', '200', '0,1,100,200,', '订单管理', '/dcxt/order/', '', 'th', '30', '1', '0', '', 'admin', '2018-01-16 14:39:21', 'admin', '2018-01-16 15:16:27', null, '0');
+INSERT INTO `sys_menu` VALUES ('202', '201', '0,1,100,200,201,', '查看', '', '', 'lock', '10', '0', '0', 'dcxt:order:view', 'admin', '2018-01-16 14:39:21', 'admin', '2018-01-16 15:22:36', null, '0');
+INSERT INTO `sys_menu` VALUES ('203', '201', '0,1,100,200,201,', '修改', '', '', 'lock', '10', '0', '0', 'dcxt:order:edit', 'admin', '2018-01-16 14:39:21', 'admin', '2018-01-16 15:22:43', null, '0');
+INSERT INTO `sys_menu` VALUES ('21', '20', '0,1,2,13,20,', '查看', null, null, null, '30', '0', '0', 'sys:user:view', '1', '2018-01-16 14:39:09', '1', '2018-01-16 14:39:09', null, '0');
+INSERT INTO `sys_menu` VALUES ('22', '20', '0,1,2,13,20,', '修改', null, null, null, '30', '0', '0', 'sys:user:edit', '1', '2018-01-16 14:39:09', '1', '2018-01-16 14:39:09', null, '0');
+INSERT INTO `sys_menu` VALUES ('27', '1', '0,1,', '我的面板', null, null, 'user', '100', '1', '0', '', null, '2018-01-16 14:39:09', 'admin', null, null, '0');
+INSERT INTO `sys_menu` VALUES ('28', '27', '0,1,27,', '个人信息', null, null, null, '990', '1', '0', null, '1', '2018-01-16 14:39:09', '1', '2018-01-16 14:39:09', null, '0');
+INSERT INTO `sys_menu` VALUES ('29', '28', '0,1,27,28,', '个人信息', '/sys/user/info', null, 'user', '30', '1', '0', null, '1', '2018-01-16 14:39:09', '1', '2018-01-16 14:39:09', null, '0');
 INSERT INTO `sys_menu` VALUES ('3', '2', '0,1,2,', '系统设置', null, null, null, '980', '1', '0', null, null, null, null, null, null, '0');
-INSERT INTO `sys_menu` VALUES ('4', '3', '0,1,2,3,', '菜单管理', '/sys/menu/', null, 'list-alt', '30', '1', '0', null, '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('5', '4', '0,1,2,3,4,', '查看', null, null, null, '30', '0', '0', 'sys:menu:view', '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('6', '4', '0,1,2,3,4,', '修改', null, null, null, '30', '0', '0', 'sys:menu:edit', '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('7', '3', '0,1,2,3,', '角色管理', '/sys/role/', null, 'lock', '50', '1', '0', null, '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('8', '7', '0,1,2,3,7,', '查看', null, null, null, '30', '0', '0', 'sys:role:view', '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('9', '7', '0,1,2,3,7,', '修改', null, null, null, '30', '0', '0', 'sys:role:edit', '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('10', '3', '0,1,2,3,', '字典管理', '/sys/dict/', null, 'th-list', '60', '1', '0', null, '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('11', '10', '0,1,2,3,10,', '查看', null, null, null, '30', '0', '0', 'sys:dict:view', '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('12', '10', '0,1,2,3,10,', '修改', null, null, null, '30', '0', '0', 'sys:dict:edit', '1', now(), '1', now(), null, '0');
-
-INSERT INTO `sys_menu` VALUES ('13', '2', '0,1,2,', '机构用户', null, null, null, '970', '1', '0', null, '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('14', '13', '0,1,2,13,', '区域管理', '/sys/area/', null, 'th', '50', '1', '0', null, '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('15', '14', '0,1,2,13,14,', '查看', null, null, null, '30', '0', '0', 'sys:area:view', '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('16', '14', '0,1,2,13,14,', '修改', null, null, null, '30', '0', '0', 'sys:area:edit', '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('17', '13', '0,1,2,13,', '机构管理', '/sys/office/', null, 'th-large', '40', '1', '0', null, '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('18', '17', '0,1,2,13,17,', '查看', null, null, null, '30', '0', '0', 'sys:office:view', '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('19', '17', '0,1,2,13,17,', '修改', null, null, null, '30', '0', '0', 'sys:office:edit', '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('20', '13', '0,1,2,13,', '用户管理', '/sys/user/', null, 'user', '30', '1', '0', null, '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('21', '20', '0,1,2,13,20,', '查看', null, null, null, '30', '0', '0', 'sys:user:view', '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('22', '20', '0,1,2,13,20,', '修改', null, null, null, '30', '0', '0', 'sys:user:edit', '1', now(), '1', now(), null, '0');
-
-INSERT INTO `sys_menu` VALUES ('31', '2', '0,1,2,', '日志查询', null, null, null, '985', '1', '0', null, '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('32', '31', '0,1,2,31,', '日志查询', '/sys/log', null, 'pencil', '30', '1', '0', 'sys:log:view', '1', now(), '1', now(), null, '0');
-
--- 我的面板
-INSERT INTO `sys_menu` VALUES ('27', '1', '0,1,', '我的面板', null, null, 'user', '100', '1', '0', '', null, now(), 'admin', null, null, '0');
-INSERT INTO `sys_menu` VALUES ('28', '27', '0,1,27,', '个人信息', null, null, null, '990', '1', '0', null, '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('29', '28', '0,1,27,28,', '个人信息', '/sys/user/info', null, 'user', '30', '1', '0', null, '1', now(), '1', now(), null, '0');
-INSERT INTO `sys_menu` VALUES ('30', '28', '0,1,27,28,', '修改密码', '/sys/user/modifyPwd', null, 'lock', '40', '1', '0',  null, '1', now(), '1', now(), null, '0');
+INSERT INTO `sys_menu` VALUES ('30', '28', '0,1,27,28,', '修改密码', '/sys/user/modifyPwd', null, 'lock', '40', '1', '0', null, '1', '2018-01-16 14:39:09', '1', '2018-01-16 14:39:09', null, '0');
+INSERT INTO `sys_menu` VALUES ('31', '2', '0,1,2,', '日志查询', null, null, null, '985', '1', '0', null, '1', '2018-01-16 14:39:09', '1', '2018-01-16 14:39:09', null, '0');
+INSERT INTO `sys_menu` VALUES ('32', '31', '0,1,2,31,', '日志查询', '/sys/log', null, 'pencil', '30', '1', '0', 'sys:log:view', '1', '2018-01-16 14:39:09', '1', '2018-01-16 14:39:09', null, '0');
+INSERT INTO `sys_menu` VALUES ('366079c1ae9f45d4a724a50cbf52ddad', '49f3c8d30458416d864685687af20b9c', '0,1,100,200,49f3c8d30458416d864685687af20b9c,', '修改', '', '', 'glass', '10', '0', '0', 'dcxt:orderrefund:edit', 'admin', '2018-01-16 15:22:09', 'admin', '2018-01-16 15:22:09', null, '0');
+INSERT INTO `sys_menu` VALUES ('4', '3', '0,1,2,3,', '菜单管理', '/sys/menu/', null, 'list-alt', '30', '1', '0', null, '1', '2018-01-16 14:39:08', '1', '2018-01-16 14:39:08', null, '0');
+INSERT INTO `sys_menu` VALUES ('4543b3813826444d8cd8631018f01ee7', '100', '0,1,100,', '客户管理', '', '', '', '300', '1', '0', '', 'admin', '2018-01-16 14:45:43', 'admin', '2018-01-16 14:45:43', null, '0');
+INSERT INTO `sys_menu` VALUES ('49f3c8d30458416d864685687af20b9c', '200', '0,1,100,200,', '退款管理', '/dcxt/orderrefund', '', 'bookmark', '40', '1', '0', '', 'admin', '2018-01-16 15:17:43', 'admin', '2018-01-16 15:17:43', null, '0');
+INSERT INTO `sys_menu` VALUES ('5', '4', '0,1,2,3,4,', '查看', null, null, null, '30', '0', '0', 'sys:menu:view', '1', '2018-01-16 14:39:08', '1', '2018-01-16 14:39:08', null, '0');
+INSERT INTO `sys_menu` VALUES ('54566959e35b488f8ce05ee88262036b', '49f3c8d30458416d864685687af20b9c', '0,1,100,200,49f3c8d30458416d864685687af20b9c,', '查看', '', 'dcxt:order', '', '10', '0', '0', 'dcxt:orderrefund:view', 'admin', '2018-01-16 15:23:56', 'admin', '2018-01-16 15:23:56', null, '0');
+INSERT INTO `sys_menu` VALUES ('6', '4', '0,1,2,3,4,', '修改', null, null, null, '30', '0', '0', 'sys:menu:edit', '1', '2018-01-16 14:39:08', '1', '2018-01-16 14:39:08', null, '0');
+INSERT INTO `sys_menu` VALUES ('7', '3', '0,1,2,3,', '角色管理', '/sys/role/', null, 'lock', '50', '1', '0', null, '1', '2018-01-16 14:39:08', '1', '2018-01-16 14:39:08', null, '0');
+INSERT INTO `sys_menu` VALUES ('8', '7', '0,1,2,3,7,', '查看', null, null, null, '30', '0', '0', 'sys:role:view', '1', '2018-01-16 14:39:08', '1', '2018-01-16 14:39:08', null, '0');
+INSERT INTO `sys_menu` VALUES ('9', '7', '0,1,2,3,7,', '修改', null, null, null, '30', '0', '0', 'sys:role:edit', '1', '2018-01-16 14:39:08', '1', '2018-01-16 14:39:08', null, '0');
+INSERT INTO `sys_menu` VALUES ('a5e9e103dfd64fb8b039098d6b42aeb9', '200', '0,1,100,200,', '配送记录', '/dcxt/orderbyday', '', 'book', '20', '1', '0', '', 'admin', '2018-01-16 15:17:00', 'admin', '2018-01-16 15:17:00', null, '0');
+INSERT INTO `sys_menu` VALUES ('a8a5c4028dec4e98988a924b480af29b', 'd074638f69b34fb2b44011f5b78145db', '0,1,100,200,d074638f69b34fb2b44011f5b78145db,', '修改', '', '', '', '10', '0', '0', 'dcxt:orderbyday:edit', 'admin', '2018-01-16 15:24:53', 'admin', '2018-01-16 15:24:53', null, '0');
+INSERT INTO `sys_menu` VALUES ('c8833975fb8a496198efa5bf6ca29ff7', 'a5e9e103dfd64fb8b039098d6b42aeb9', '0,1,100,200,a5e9e103dfd64fb8b039098d6b42aeb9,', '修改', '', '', '', '10', '0', '0', 'dcxt:orderbyday:edit', 'admin', '2018-01-16 15:25:33', 'admin', '2018-01-16 15:25:33', null, '0');
+INSERT INTO `sys_menu` VALUES ('d074638f69b34fb2b44011f5b78145db', '200', '0,1,100,200,', '每日出餐', '/dcxt/orderbyday/todayList', '', 'tag', '10', '1', '0', '', 'admin', '2018-01-16 14:47:14', 'admin', '2018-01-16 15:15:09', null, '0');
+INSERT INTO `sys_menu` VALUES ('e960db7775ca4abe815760430d9a1aba', 'a5e9e103dfd64fb8b039098d6b42aeb9', '0,1,100,200,a5e9e103dfd64fb8b039098d6b42aeb9,', '查看', '', '', '', '10', '0', '0', 'dcxt:orderbyday:view', 'admin', '2018-01-16 15:25:12', 'admin', '2018-01-16 15:25:12', null, '0');
 
 
 -- ----------------------------

@@ -141,30 +141,25 @@ public class MenuConfig {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		MainConfig mainConfig = new MainConfig("wxa1dda5439feefd36", "e0c53f4007c6bd2cb7299bf0fcf48a58", "qmx", "mFaxY8bRcuBS80YUWM9KM7j6ls04lotEQ98lAus3uZw");
+		MainConfig mainConfig = new MainConfig("wxe29fd1d0c2cef90c", "67f6652929e02f48fc1cf42d1a45cc0a", "wjdcxt", "");
 		WxMpService wxMpService = mainConfig.wxMpService();
 		try {
-			wxMpService.getMenuService().menuCreate(getMenu());
+			wxMpService.getMenuService().menuCreate(testMenu());
 		} catch (WxErrorException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public static WxMenu testMenu(){
-		MainConfig mainConfig = new MainConfig("wxa1dda5439feefd36", "e0c53f4007c6bd2cb7299bf0fcf48a58", "wjdcxt", "");
+		MainConfig mainConfig = new MainConfig("wxe29fd1d0c2cef90c", "67f6652929e02f48fc1cf42d1a45cc0a", "wjdcxt", "");
 		WxMpService wxMpService = mainConfig.wxMpService();
 
 		WxMenu menu = new WxMenu();
 		WxMenuButton button1 = new WxMenuButton();
 		button1.setType(MenuButtonType.VIEW);
-		button1.setName("测试获取openid");
-		button1.setUrl("http://1u9288562a.imwork.net/wxmp/wx/page/person_center");
-		WxMenuButton button2 = new WxMenuButton();
-		button2.setType(MenuButtonType.VIEW);
-		button2.setName("测试支付");
-		button2.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_base", "snsapi_base", "/wx/order_test"));
+		button1.setName("个人中心");
+		button1.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_person_center", "snsapi_userinfo", ""));
 		menu.getButtons().add(button1);
-		menu.getButtons().add(button2);
 		return menu;
 	}
 }

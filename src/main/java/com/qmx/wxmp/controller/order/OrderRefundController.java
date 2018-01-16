@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,6 +48,7 @@ public class OrderRefundController extends BaseController {
 	 * @param model
 	 * @return
 	 */
+	@RequiresPermissions("dcxt:orderrefund:view")
 	@RequestMapping({ "list", "" })
 	public String list(OrderQueryDTO entity, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<OrderRefund> page = refundService.findList(new Page<OrderRefund>(request, response), entity);

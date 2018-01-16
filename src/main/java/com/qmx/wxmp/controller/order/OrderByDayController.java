@@ -56,6 +56,7 @@ public class OrderByDayController extends BaseController {
 	 * @param model
 	 * @return
 	 */
+	@RequiresPermissions("dcxt:orderbyday:view")
 	@RequestMapping("todayList")
 	public String todayList(OrderQueryDTO entity, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<OrderByDay> page = byDayService.findTodayList(new Page<OrderByDay>(request, response), entity);

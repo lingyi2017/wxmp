@@ -136,6 +136,7 @@ public class WxMainService {
         try {
             return this.router.route(inMessage);
         } catch (Exception e) {
+        	e.printStackTrace();
             this.logger.error(e.getMessage(), e);
         }
 

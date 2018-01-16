@@ -1,9 +1,14 @@
 package com.qmx.wxmp.entity.order;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.qmx.wxmp.common.persistence.BaseSimpleEntity;
 
 /**
@@ -27,8 +32,10 @@ public class Account extends BaseSimpleEntity {
 	
 	/** 微信标识id*/
 	private String openid;
-	/** 昵称*/
+	/** 用户名*/
 	private String name;
+	/** 昵称*/
+	private String nickName;
 	/** 性别*/
 	private String sex;
 	/** 年龄*/
@@ -45,6 +52,8 @@ public class Account extends BaseSimpleEntity {
 	private Integer score;
 	/** 用户状态*/
 	private String status;
+	/** 用户关注时间*/
+	private Date subscribeTime;
 	/** 备注*/
 	private String mark;
 
@@ -53,12 +62,6 @@ public class Account extends BaseSimpleEntity {
 	}
 	public void setOpenid(String openid) {
 		this.openid = openid;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public String getSex() {
 		return sex;
@@ -113,6 +116,28 @@ public class Account extends BaseSimpleEntity {
 	}
 	public void setScore(Integer score) {
 		this.score = score;
+	}
+	@Column(name="nick_name")
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+	@Column(name="subscribe_time")
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	public Date getSubscribeTime() {
+		return subscribeTime;
+	}
+	public void setSubscribeTime(Date subscribeTime) {
+		this.subscribeTime = subscribeTime;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	

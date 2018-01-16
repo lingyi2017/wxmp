@@ -14,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.qmx.wxmp.entity.order.Account;
+import com.qmx.wxmp.service.order.AccountService;
 import com.qmx.wxmp.wx.service.WxOauthService;
 
 /**
@@ -31,6 +33,8 @@ public class WxOauthController {
     protected WxOauthService wxOauthService;
 	@Autowired
     protected WxMpService wxMpService;
+	@Autowired
+    protected AccountService accountService;
 	
 	/**
 	 * 用户静默授权回调地址
@@ -79,4 +83,28 @@ public class WxOauthController {
 		}
 		return page;
 	}
+	
+	/**
+	 * 个人中心页面授权
+	 * @param response
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/oauth_person_center")
+	public String oauthPersonCenter(HttpServletResponse response,
+            HttpServletRequest request, Model model) {
+		String code = request.getParameter("code");//微信授权code
+		WxMpUser wxUser = new WxMpUser();
+		try {
+			String openid = wxOauthService.getOpenid(code);
+			wxUser = wxOauthService.getUserInfo(openid, null);
+			Account account = accountService.findByOpenId(openid);
+			request.getSession().setAttribute("openid", account);
+			model.addAttribute("wxUser",wxUser);
+		} catch (WxErrorException e) {
+			e.printStackTrace();
+		}
+		return "/wx/person_center";
+	} 
 }

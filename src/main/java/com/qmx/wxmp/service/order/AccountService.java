@@ -76,4 +76,13 @@ public class AccountService extends BaseService {
 	public Account findByOpenId(String openId){
 		return accountDao.getAccountByOpenId(openId);
 	}
+	
+	/**
+	 * 根据昵称得到用户数
+	 * @param nickName
+	 * @return
+	 */
+	public Integer findNumByNickName(String nickName){
+		return accountDao.getNumByNickName(nickName);
+	}
 }
