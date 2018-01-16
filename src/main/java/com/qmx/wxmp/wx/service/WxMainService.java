@@ -40,7 +40,7 @@ import com.qmx.wxmp.wx.handler.SubscribeHandler;
  * Email:liumingbo2008@gmail.com
  */
 @Service
-public class MainService {
+public class WxMainService {
 
     @Autowired
     protected WxMpService wxMpService;
@@ -142,32 +142,5 @@ public class MainService {
         return null;
     }
 
-    /**
-     * 通过openid获得基本用户信息
-     *
-     * @param openid
-     * @param lang
-     * @return
-     */
-    public WxMpUser getUserInfo(String openid, String lang) {
-        WxMpUser wxMpUser = null;
-        try {
-            wxMpUser = this.wxMpService.getUserService().userInfo(openid, lang);
-        } catch (WxErrorException e) {
-            this.logger.error(e.getError().toString());
-        }
-        return wxMpUser;
-    }
-    
-    public String getOpenid(String code) {
-        WxMpOAuth2AccessToken accessToken;
-        try {
-            accessToken = this.wxMpService.oauth2getAccessToken(code);
-            return accessToken.getOpenId();
-        } catch (WxErrorException e) {
-            this.logger.error(e.getError().toString());
-        }
-        return "";
-    }
 
 }

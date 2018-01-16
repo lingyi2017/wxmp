@@ -14,7 +14,8 @@ import me.chanjar.weixin.mp.bean.result.WxMpUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.qmx.wxmp.wx.service.MainService;
+import com.qmx.wxmp.wx.service.WxMainService;
+import com.qmx.wxmp.wx.service.WxOauthService;
 
 /**
  * 用户关注公众号Handler
@@ -30,17 +31,12 @@ public class SubscribeHandler extends AbstractHandler {
     @Autowired
     protected WxMpService wxMpService;
     @Autowired
-    protected MainService coreService;
+    protected WxOauthService wxOauthService;
 
 
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage, Map<String, Object> context, WxMpService wxMpService, WxSessionManager sessionManager) throws WxErrorException {
-        WxMpUser wxMpUser = coreService.getUserInfo(wxMessage.getFromUser(), "zh_CN");
-        /*List<NameValuePair> params = new ArrayList<>();
-        params.add(new BasicNameValuePair("openId", wxMpUser.getOpenId()));
-        params.add(new BasicNameValuePair("nickname", wxMpUser.getNickname()));
-        params.add(new BasicNameValuePair("headImgUrl", wxMpUser.getHeadImgUrl()));*/
-
+        WxMpUser wxMpUser = wxOauthService.getUserInfo(wxMessage.getFromUser(), "zh_CN");
         //TODO(user) 在这里可以进行用户关注时对业务系统的相关操作（比如新增用户）
 
         WxMpXmlOutTextMessage m
