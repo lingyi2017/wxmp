@@ -14,10 +14,10 @@ import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.WxPayService;
 import com.qmx.wxmp.common.utils.DateUtils;
 import com.qmx.wxmp.common.utils.IdGen;
-import com.qmx.wxmp.entity.qyfw.Order;
-import com.qmx.wxmp.entity.qyfw.OrderPayRecord;
-import com.qmx.wxmp.service.qyfw.OrderPayRecordService;
-import com.qmx.wxmp.service.qyfw.OrderService;
+import com.qmx.wxmp.entity.order.OrderMain;
+import com.qmx.wxmp.entity.order.OrderPayRecord;
+import com.qmx.wxmp.service.order.OrderPayRecordService;
+import com.qmx.wxmp.service.order.OrderService;
 
 /**
  * 本系统需要的微信支付方法
@@ -74,8 +74,8 @@ public class WxOwnPayService {
     	String outTradeNo = result.getOutTradeNo();
     	String payTime = result.getTimeEnd();
     	//更新订单状态
-    	Order order = orderService.findByOutTradeNo(outTradeNo);
-    	order.setStatus("1");
+    	OrderMain order = orderService.findByOutTradeNo(outTradeNo);
+    	//order.setStatus("1");
     	//支付记录
     	OrderPayRecord payRecord = new OrderPayRecord();
     	payRecord.setId(IdGen.uuid());

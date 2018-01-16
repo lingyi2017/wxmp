@@ -1,80 +1,134 @@
 package com.qmx.wxmp.entity.order;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 
-import com.qmx.wxmp.common.persistence.BaseSimpleEntity;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
- * 订单支付记录
- * @author itismin
+ * 订单微信支付记录
+ * 
+ * @author zsmin
  *
  */
 @Entity
-@Table(name="dcxt_order_pay_record")
-public class OrderPayRecord extends BaseSimpleEntity {
+@Table(name = "dcxt_order_pay_record")
+public class OrderPayRecord implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long	serialVersionUID	= -3797071581257788658L;
+
+	@Id
+	private String id;
 	
-	public OrderPayRecord() {
-		super();
+	/* 用户在公众号下的唯一标识**/
+	@Column(name="openid")
+	private String openid;
+	/* 支付银行标识**/
+	@Column(name="bank_type")
+	private String bankType;
+	/* 订单总金额**/
+	@Column(name="total_fee",precision = 8, scale = 2)
+	private BigDecimal totalFee;
+	/* 货币类型**/
+	@Column(name="fee_type")
+	private String feeType;
+	/* 微信订单号**/
+	@Column(name="transaction_id")
+	private String transactionId;
+	/* 系统内订单号**/
+	@Column(name="out_trade_no")
+	private String outTradeNo;
+	/* 支付完成时间**/
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	@Column(name="pay_time")
+	private Date payTime;
+
+	@OneToOne
+	@JoinColumn(name = "order_id")
+	private OrderMain order;
+
+	public String getId() {
+		return id;
 	}
-	/** 支付类别:支付*/
-	public static final String PAY_TYPE_PAY = "1";
-	/** 支付类别:退款*/
-	public static final String PAY_TYPE_REFUND = "2";
-	/** 支付方式:微信*/
-	public static final String PAY_WAY_WECHAT = "1";
-	/** 支付方式:积分*/
-	public static final String PAY_WAY_SCORE = "2";
-	
-	/** 支付类别*/
-	private String payType;
-	/** 支付方式*/
-	private String payWay;
-	/** 支付数额*/
-	public Float payMoney;
-	/** 支付时间*/
-	public String payTime;
-	/** 支付相关信息*/
-	
-	/** 用户*/
-	private Account account;
-	
-	public Float getPayMoney() {
-		return payMoney;
+
+	public void setId(String id) {
+		this.id = id;
 	}
-	public void setPayMoney(Float payMoney) {
-		this.payMoney = payMoney;
+
+	public String getOpenid() {
+		return openid;
 	}
-	public String getPayTime() {
+
+	public void setOpenid(String openid) {
+		this.openid = openid;
+	}
+
+	public String getBankType() {
+		return bankType;
+	}
+
+	public void setBankType(String bankType) {
+		this.bankType = bankType;
+	}
+
+	public BigDecimal getTotalFee() {
+		return totalFee;
+	}
+
+	public void setTotalFee(BigDecimal totalFee) {
+		this.totalFee = totalFee;
+	}
+
+	public String getFeeType() {
+		return feeType;
+	}
+
+	public void setFeeType(String feeType) {
+		this.feeType = feeType;
+	}
+
+	public String getTransactionId() {
+		return transactionId;
+	}
+
+	public void setTransactionId(String transactionId) {
+		this.transactionId = transactionId;
+	}
+
+	public String getOutTradeNo() {
+		return outTradeNo;
+	}
+
+	public void setOutTradeNo(String outTradeNo) {
+		this.outTradeNo = outTradeNo;
+	}
+
+	public Date getPayTime() {
 		return payTime;
 	}
-	public void setPayTime(String payTime) {
+
+	public void setPayTime(Date payTime) {
 		this.payTime = payTime;
 	}
-	@ManyToOne
-	@JoinColumn(name="account_id")
-	public Account getAccount() {
-		return account;
+
+	public OrderMain getOrder() {
+		return order;
 	}
-	public void setAccount(Account account) {
-		this.account = account;
+
+	public void setOrder(OrderMain order) {
+		this.order = order;
 	}
-	public String getPayType() {
-		return payType;
-	}
-	public void setPayType(String payType) {
-		this.payType = payType;
-	}
-	public String getPayWay() {
-		return payWay;
-	}
-	public void setPayWay(String payWay) {
-		this.payWay = payWay;
-	}
-	
+
 	
 }
