@@ -1,6 +1,7 @@
 package com.qmx.wxmp.service.order;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.qmx.wxmp.common.persistence.Page;
+import com.qmx.wxmp.common.persistence.Parameter;
 import com.qmx.wxmp.common.utils.DateUtils;
 import com.qmx.wxmp.dto.order.OrderQueryDTO;
 import com.qmx.wxmp.entity.dcxt.Dish;
@@ -126,4 +128,10 @@ public class OrderService extends BaseService {
 		save(order);
 		return order;
 	}
+	
+	public OrderMain findByOutTradeNo(String outTradeNo) {
+		return orderDao.findByOutTradeNo(outTradeNo);
+	}
+	
+	
 }

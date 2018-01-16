@@ -46,6 +46,8 @@ public class OrderMain extends BaseSimpleEntity {
 	
 	/** 订单号*/
 	private String orderNumber;
+	/** 微信订单号*/
+	private String outTradeNo;
 	/** 下单时间*/
 	private Date orderTime;
 	/** 暂停时间*/
@@ -55,11 +57,11 @@ public class OrderMain extends BaseSimpleEntity {
 	/** 订单状态*/
 	private String status;
 	/** 订单总金额*/
-	private BigDecimal orderMoney;
+	private BigDecimal totalMoney;
 	/** 优惠金额*/
 	private BigDecimal favourableMoney;
 	/** 实付金额*/
-	private BigDecimal paidMoney;
+	private BigDecimal payMoney;
 	/** 支付方式*/
 	private String payWay;
 	/** 购买天数*/
@@ -70,9 +72,12 @@ public class OrderMain extends BaseSimpleEntity {
 	private Account account;
 	/** 订单评价*/
 	private OrderComment comment;
+	/** 微信支付记录*/
+	private OrderPayRecord orderPayRecord;
 	/** 子订单*/
 	private List<OrderByDay> orderByDays;
 
+	@Column(name="order_number")
 	public String getOrderNumber() {
 		return orderNumber;
 	}
@@ -81,6 +86,7 @@ public class OrderMain extends BaseSimpleEntity {
 		this.orderNumber = orderNumber;
 	}
 
+	@Column(name="order_time")
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	public Date getOrderTime() {
@@ -91,6 +97,7 @@ public class OrderMain extends BaseSimpleEntity {
 		this.orderTime = orderTime;
 	}
 
+	@Column(name="pause_time")
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	public Date getPauseTime() {
@@ -101,6 +108,7 @@ public class OrderMain extends BaseSimpleEntity {
 		this.pauseTime = pauseTime;
 	}
 
+	@Column(name="recover_time")
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	public Date getRecoverTime() {
@@ -111,6 +119,7 @@ public class OrderMain extends BaseSimpleEntity {
 		this.recoverTime = recoverTime;
 	}
 	
+	@Column(name="status")
 	public String getStatus() {
 		return status;
 	}
@@ -119,31 +128,31 @@ public class OrderMain extends BaseSimpleEntity {
 		this.status = status;
 	}
 
-	@Column(precision=8,scale=2)
-	public BigDecimal getOrderMoney() {
-		return orderMoney;
+	@Column(name="total_money",precision=8,scale=2)
+	public BigDecimal getTotalMoney() {
+		return totalMoney;
 	}
 
-	public void setOrderMoney(BigDecimal orderMoney) {
-		this.orderMoney = orderMoney;
+	public void setTotalMoney(BigDecimal totalMoney) {
+		this.totalMoney = totalMoney;
 	}
 
-	@Column(precision=8,scale=2)
+	@Column(name="pay_money",precision=8,scale=2)
+	public BigDecimal getPayMoney() {
+		return payMoney;
+	}
+
+	public void setPayMoney(BigDecimal payMoney) {
+		this.payMoney = payMoney;
+	}
+
+	@Column(name="favourable_money",precision=8,scale=2)
 	public BigDecimal getFavourableMoney() {
 		return favourableMoney;
 	}
 
 	public void setFavourableMoney(BigDecimal favourableMoney) {
 		this.favourableMoney = favourableMoney;
-	}
-
-	@Column(precision=8,scale=2)
-	public BigDecimal getPaidMoney() {
-		return paidMoney;
-	}
-
-	public void setPaidMoney(BigDecimal paidMoney) {
-		this.paidMoney = paidMoney;
 	}
 
 	public Integer getDays() {
@@ -196,6 +205,23 @@ public class OrderMain extends BaseSimpleEntity {
 
 	public void setOrderByDays(List<OrderByDay> orderByDays) {
 		this.orderByDays = orderByDays;
+	}
+
+	public String getOutTradeNo() {
+		return outTradeNo;
+	}
+
+	public void setOutTradeNo(String outTradeNo) {
+		this.outTradeNo = outTradeNo;
+	}
+
+	@OneToOne(mappedBy="order")
+	public OrderPayRecord getOrderPayRecord() {
+		return orderPayRecord;
+	}
+
+	public void setOrderPayRecord(OrderPayRecord orderPayRecord) {
+		this.orderPayRecord = orderPayRecord;
 	}
 	
 }

@@ -75,7 +75,7 @@ public class WxOwnPayService {
     	String payTime = result.getTimeEnd();
     	//更新订单状态
     	OrderMain order = orderService.findByOutTradeNo(outTradeNo);
-    	//order.setStatus("1");
+    	order.setStatus(OrderMain.ORDER_STATUS_START);
     	//支付记录
     	OrderPayRecord payRecord = new OrderPayRecord();
     	payRecord.setId(IdGen.uuid());
@@ -87,7 +87,7 @@ public class WxOwnPayService {
     	payRecord.setOutTradeNo(outTradeNo);
     	payRecord.setPayTime(DateUtils.strToDate(payTime, "yyyyMMddHHmmss"));
     	payRecord.setOrder(order);
-    	order.setOrderParRecord(payRecord);
+    	order.setOrderPayRecord(payRecord);
     	orderService.save(order);
     }
 
