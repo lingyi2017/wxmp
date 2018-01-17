@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.qmx.wxmp.common.utils.SpringWebUtil;
 import com.qmx.wxmp.controller.BaseController;
 import com.qmx.wxmp.entity.order.AccountAddress;
 import com.qmx.wxmp.service.order.AccountAddressService;
@@ -54,7 +55,7 @@ public class AccountAddressController extends BaseController {
 	@RequestMapping("/addressAddByWeiXin")
 	public String addressAddByWeiXin(String accountId, Model model) {
 		model.addAttribute("accountId", accountId);
-		return "/weixin/address_add";
+		return "/wx/address_add";
 	}
 	
 	/**
@@ -66,7 +67,7 @@ public class AccountAddressController extends BaseController {
 	public String addressEditByWeiXin(String id, Model model) {
 		AccountAddress address = accountAddressService.get(id);
 		model.addAttribute("address", address);
-		return "/weixin/address_edit";
+		return "/wx/address_edit";
 	}
 	
 	/**
@@ -74,11 +75,10 @@ public class AccountAddressController extends BaseController {
 	 * @param openId
 	 * @return
 	 */
-	@RequestMapping("/addressListByWeiXin")
-	public String addressListByWeiXin(String accountId, Model model) {
-		model.addAttribute("addressList", accountAddressService.findAddressListByAccountId(accountId));
-		model.addAttribute("accountId", accountId);
-		return "/weixin/address_list";
+	@RequestMapping("/wxAddressList")
+	public String wxAddressList(Model model) {
+		model.addAttribute("addressList", accountAddressService.findAddressListByAccountId(SpringWebUtil.getAccount().getId()));
+		return "/wx/address_list";
 	}
 	
 	/**
@@ -86,10 +86,11 @@ public class AccountAddressController extends BaseController {
 	 * @param address
 	 * @return
 	 */
-	@RequestMapping("/addressSaveByWeiXin")
+	@RequestMapping("/wxSave")
 	@ResponseBody
-	public String addressSaveByWeiXin(AccountAddress address, String accountId){
-		accountAddressService.saveByWeiXin(address,accountId);
+	public String wxSave(AccountAddress address, HttpServletRequest request
+			, HttpServletResponse response){
+		accountAddressService.saveByWeiXin(address,null);
 		return "true";
 	}
 	/**

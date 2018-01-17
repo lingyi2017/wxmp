@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>收货地址修改</title>
+	<title>个人中心</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width,maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="${ctx}/static/css/weixin/style.css">
 	<style type="text/css">
 		.topShow {
-			background-color: skyblue;
+			background-color: white;
 			margin: 0 auto;
 			min-height: 110px;
 			width: 100%;
@@ -43,13 +43,6 @@
 <body ontouchstart style="height: 100%;background-color: #F5F5F5;font-family:'黑体';">
 <!--主体-->
 	<div class="weui-cells" style="min-height: 220px;margin-top: -1%;width: 100%;background-color: orange;position: relative;">
-		<div class="weui-cell">
-			   <div class="weui-cell__bd" style="text-align:center;">
-			     <p>
-			  		<div style="margin-left:-66%;float:left;"><img src="${pageContext.request.contextPath}/static/images/wx/back.png" style="width:4%;height:4%;"></img></div>   
-			     </p>
-			   </div>
-			 </div>
 		
 		<div class="topShow">
 			<div><img class="touxiangStyle" src="${pageContext.request.contextPath}/static/images/wx/touxiang.jpg"/></div>
@@ -60,7 +53,7 @@
 	<div class="weui-cells" style="height: 65%;">
 		<a href="${ctx}/dcxt/order/list">
 			<div class="weui-cell">
-				<div class="weui-cell__bd"><img style="width: 30px;height: 30px;" src="${ctx }/static/images/wx/center-eatfood.png"></div>
+				<div class="weui-cell__bd"><img style="width: 30px;height: 30px;" src="${ctx }/static/images/wx/center-order.png"></div>
 				<div class="weui-cell__bd">
 					<div style="float: left;margin-left: -75%;">订单查询</div>
 					<div style="float: right;color: graytext;">></div>
@@ -69,7 +62,7 @@
 		</a>
 		<a href="${ctx}/dcxt/order/list">
 			<div class="weui-cell">
-				<div class="weui-cell__bd"><img style="width: 30px;height: 30px;" src="${ctx }/static/images/wx/center-eatfood.png"></div>
+				<div class="weui-cell__bd"><img style="width: 30px;height: 30px;" src="${ctx }/static/images/wx/center-score.png"></div>
 				<div class="weui-cell__bd">
 					<div style="float: left;margin-left: -75%;">积分查询</div>
 					<div style="float: right;color: graytext;">></div>
@@ -85,9 +78,9 @@
 				</div>
 			</div>
 		</a>
-		<a href="${ctx}/dcxt/order/list">
+		<a href="${ctx}/dcxt/accountaddress/wxAddressList">
 			<div class="weui-cell">
-				<div class="weui-cell__bd"><img style="width: 30px;height: 30px;" src="${ctx }/static/images/wx/center-eatfood.png"></div>
+				<div class="weui-cell__bd"><img style="width: 30px;height: 30px;" src="${ctx }/static/images/wx/center-address.png"></div>
 				<div class="weui-cell__bd">
 					<div style="float: left;margin-left: -75%;">收货地址</div>
 					<div style="float: right;color: graytext;">></div>
@@ -96,7 +89,7 @@
 		</a>
 		<a href="${ctx}/dcxt/order/list">
 			<div class="weui-cell">
-				<div class="weui-cell__bd"><img style="width: 30px;height: 30px;" src="${ctx }/static/images/wx/center-eatfood.png"></div>
+				<div class="weui-cell__bd"><img style="width: 30px;height: 30px;" src="${ctx }/static/images/wx/center-info.png"></div>
 				<div class="weui-cell__bd">
 					<div style="float: left;margin-left: -75%;">个人信息</div>
 					<div style="float: right;color: graytext;">></div>
@@ -105,7 +98,7 @@
 		</a>
 		<a href="${ctx}/dcxt/order/list">
 			<div class="weui-cell">
-				<div class="weui-cell__bd"><img style="width: 30px;height: 30px;" src="${ctx }/static/images/wx/center-eatfood.png"></div>
+				<div class="weui-cell__bd"><img style="width: 30px;height: 30px;" src="${ctx }/static/images/wx/center-jxs.png"></div>
 				<div class="weui-cell__bd">
 					<div style="float: left;margin-left: -75%;">经销商管理</div>
 					<div style="float: right;color: graytext;">></div>

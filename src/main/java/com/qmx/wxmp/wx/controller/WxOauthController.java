@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.qmx.wxmp.common.utils.SpringWebUtil;
 import com.qmx.wxmp.entity.order.Account;
 import com.qmx.wxmp.service.order.AccountService;
 import com.qmx.wxmp.wx.service.WxOauthService;
@@ -100,7 +101,7 @@ public class WxOauthController {
 			String openid = wxOauthService.getOpenid(code);
 			wxUser = wxOauthService.getUserInfo(openid, null);
 			Account account = accountService.findByOpenId(openid);
-			request.getSession().setAttribute("openid", account);
+			SpringWebUtil.setAccount(account);
 			model.addAttribute("wxUser",wxUser);
 		} catch (WxErrorException e) {
 			e.printStackTrace();

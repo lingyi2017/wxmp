@@ -29,9 +29,8 @@ public class AccountScoreHistoryController extends BaseController {
 	@Autowired
 	private AccountScoreHistoryService scoreHistoryService;
 
-	@RequestMapping("/scoreListViewByWeiXin")
-	public String scoreListViewByWeiXin(String accountId, Model model) {
-		model.addAttribute("accountId", accountId);
+	@RequestMapping("/wxScoreList")
+	public String wxScoreList(Model model) {
 		return "/weixin/account_score_list";
 	}
 	
