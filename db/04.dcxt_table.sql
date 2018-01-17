@@ -77,3 +77,7 @@ INSERT INTO `sys_dict` VALUES ('272', '差评', '3', 'order_comment', '订单评
 INSERT INTO `sys_dict` VALUES ('128', '新增', '1', 'dcxt_meal_state', '餐标状态', '10', 'admin', now(), 'admin', now(), null, '0');
 INSERT INTO `sys_dict` VALUES ('129', '启用', '2', 'dcxt_meal_state', '餐标状态', '20', 'admin', now(), 'admin', now(), null, '0');
 INSERT INTO `sys_dict` VALUES ('130', '不启用', '3', 'dcxt_meal_state', '餐标状态', '30', 'admin', now(), 'admin', now(), null, '0');
+
+INSERT INTO `sys_dict` VALUES ('131', '订餐', '1', 'dcxt_score_type', '积分变动类型', '10', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('132', '评论', '2', 'dcxt_score_type', '积分变动类型', '20', 'admin', now(), 'admin', now(), null, '0');
+INSERT INTO `sys_dict` VALUES ('133', '退款', '3', 'dcxt_score_type', '积分变动类型', '30', 'admin', now(), 'admin', now(), null, '0');

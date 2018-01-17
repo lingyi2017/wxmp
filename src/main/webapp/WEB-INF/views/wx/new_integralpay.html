@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<title>积分支付</title>
+		<link rel="stylesheet" href="lib/weui.min.css">
+		<link rel="stylesheet" href="css/jquery-weui.css">
+		<link rel="stylesheet" href="css/style.css">
+		<style>
+			select option {
+				background-color: white;color: black;
+			}
+		</style>
+	</head>
+	<body style="height: 100%;font-family:'黑体';background-color: #F5F5F5;">
+		<!-- 一 -->
+		<div class="weui-cells" style="margin-top: -0.7%;margin-bottom: -5px;">
+			 <div class="weui-cell">
+			   <div class="weui-cell__bd" style="text-align:center;height: 40px;">
+			     <div style="float: left;position: absolute;left: 3%;top: 15%;">←</div>
+				 <div style="float: left;position: absolute;left: 40%;top: 35%;text-align: center;font-size: large;">积分购买</div>
+			   </div>
+			 </div>			
+			 <div class="weui-cell" style="width: 100%;height: 70px;">
+			 	<div style="float: left;color: orange;">☞&nbsp;请填写收货地址</div>
+			 	<div style="float: right;margin-left: 45%;color: darkgray;font-size: x-large;">&gt;</div>
+			 </div>
+		</div>
+		
+		<!-- 二 -->
+		<div class="weui-cells" style="" >
+			<div class="weui-cell" style="height: 100px;width: 100%;">
+				<div style="float: left;height: 100%;width:30%;background-color: orange;">
+					<img style="height: 100%;width:100%;" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=611116088,4106962857&fm=27&gp=0.jpg" />
+				</div>
+				<div style="float: left;margin-left: 5%;width: 70%;">
+					<div style="position: absolute;top: 5px;width: 55%;">牛肉面牛肉面牛肉面牛肉面牛肉面牛肉面牛肉面牛肉面</div>
+					<div style="position: absolute;bottom: 5px;width: 100%;">
+						<p style="float: left;">
+							<div style="float: left;color: orange;">积分&nbsp;</div>
+							<div style="float: left;font-size: larger;margin-top: -1%;color: orange;">182</div>
+							<div style="float: left;margin-left: 30%;">
+								<div style="float: left;">x&nbsp;</div>
+								<div style="float: left;">1</div>
+							</div>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="weui-cell">
+				<div style="float: left;">购买分量</div>
+				<div style="float: left;margin-left: 50%;">
+					<select style="width: 80px;">
+						<option>大份</option>
+						<option>中份</option>
+						<option>小份</option>
+					</select>
+					<!--
+					<div onclick="minus()" style="float: left;height: 25px;width: 25px;background-color: lightgray;text-align: center;">-</div>
+					<input id="payNum" type="text" style="float: left;width: 40px;height: 25px;text-align: center;" readonly="readonly" value="1" />
+					<div onclick="add()" style="float: left;height: 25px;width: 25px;background-color: lightgray;text-align: center;">+</div>
+					 -->
+				</div>
+			</div>
+			<div class="weui-cell">
+				<div style="float: left;">购买方式</div>
+				<div style="float: left;margin-left: 35%;font-size: smaller;">
+					<label><input type="radio" value="1" name="buyType" style="color: orange;" checked="checked"/>按月购买</label>
+					<label><input type="radio" value="2" name="buyType" style="color: orange;"/>按月购买</label>
+				</div>
+			</div>
+			<div class="weui-cell">
+				<div style="float: left;">
+					订购日期&nbsp;
+					<p style="color: darkgray;font-size: smaller;float: left;margin-left: 35%;margin-top: -9%;">请选择你要订购的日期</p></div>
+					<div style="float: left;font-size: larger;color: darkgray;margin-left: 30%;">&gt;</div>
+			</div>
+			<div class="weui-cell">
+				<div style="float: left;">备注留言</div>
+				<div style="float: left;margin-left: 5%;">
+					<input type="text" style="font-size: small;width: 220px;" maxlength="17" placeholder="有什么特殊要求，您可以在这里填写"/>
+				</div>
+			</div>
+			<div class="weui-cell" style="padding-left: 30%;">
+				<p>共<div>1</div>件商品</p>
+				<p style="padding-left: 5%;">小计：</p>
+				<p style="font-size: small;color: orange;">积分&nbsp; <div style="font-size: larger;color: orange;">182</div></p>
+			</div>
+		</div>
+		
+		<!-- 三 -->
+		<div style="position: absolute;bottom: 0px;width: 100%;height: 60px;background-color: orange;">
+			<div style="width: 60%;float: left;background-color: white;height: 100%;padding-top: 10px;">
+				<p style="float: left;font-size: x-large;margin-left: 10%;">总额</p>
+				<p style="float: left;padding-left: 10%;padding-top: 10px;color: orange;">
+					积分&nbsp;
+					<div style="font-size: x-large;font-weight: bold;color: orange;">182</div>
+				</p>
+			</div>
+			<div style="width: 40%;float: left;height: 100%;text-align: center;color: white;padding-top: 4%;font-size: larger;" onclick="alert(1)">提交订单</div>
+		</div>
+		<script src="lib/jquery-2.1.4.js"></script> 
+		<script src="lib/fastclick.js"></script> 
+		<script src="js/jquery-weui.js"></script>
+		<script>
+			function minus(){
+				if($("#payNum").val()>1){
+					$("#payNum").val(parseInt(($("#payNum").val())-1));
+				}
+			}
+			
+			function add(){
+				if($("#payNum").val()<99){
+					$("#payNum").val((parseInt($("#payNum").val())+1));
+				}
+			}
+		</script>
+	</body>
+</html>

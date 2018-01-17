@@ -24,13 +24,18 @@ public class AccountScoreHistory extends BaseSimpleEntity {
 	public static final String SCORE_TYPE_TWO = "2";
 	/** 积分来源:退款订单增加*/
 	public static final String SCORE_TYPE_THREE = "3";
+	/** 积分来源:退款订单扣除*/
+	public static final String SCORE_TYPE_FOUR = "4";
 	
 	public AccountScoreHistory() {
 		super();
 	}
 	
+	/** 积分*/
 	private Integer score;
-	
+	/** 变动原因*/
+	private String type;
+	/** 账户*/
 	private Account account;
 
 	public Integer getScore() {
@@ -49,6 +54,14 @@ public class AccountScoreHistory extends BaseSimpleEntity {
 
 	public void setAccount(Account account) {
 		this.account = account;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	

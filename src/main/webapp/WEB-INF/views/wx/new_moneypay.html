@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<title>现金购买</title>
+		<link rel="stylesheet" href="lib/weui.min.css">
+		<link rel="stylesheet" href="css/jquery-weui.css">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body style="height: 100%;font-family:'黑体';background-color: #F5F5F5;">
+		<!-- 一 -->
+		<div class="weui-cells" style="margin-top: -0.7%;margin-bottom: -5px;">
+			 <div class="weui-cell">
+			   <div class="weui-cell__bd" style="text-align:center;height: 40px;">
+			     <div style="float: left;position: absolute;left: 3%;top: 15%;">←</div>
+				 <div style="float: left;position: absolute;left: 40%;top: 35%;text-align: center;font-size: large;">现金购买</div>
+			   </div>
+			 </div>			
+			 <div class="weui-cell" style="width: 100%;height: 70px;">
+			 	<div style="float: left;width: 10%;">☞</div>
+			 	<div style="float: left;margin-left: 10px;width: 80%;">
+			 		<div style="width: 100%;">成都市高新区天府二街</div>
+			 		<div style="font-size: smaller;color: gray;">
+			 			<div style="float: left;">收货人：皮几万</div>
+			 			<div style="float: left;margin-left: 20%;">13333333333</div>
+			 		</div>
+			 	</div>
+			 	<div style="float: right;color: darkgray;font-size: x-large;width: 10%;">&gt;</div>
+			 </div>
+		</div>
+		
+		<!-- 二 -->
+		<div class="weui-cells">
+			<div class="weui-cell" style="height: 100px;width: 100%;">
+				<div style="float: left;height: 100%;width:30%;background-color: orange;">
+					<img style="height: 100%;width:100%;" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=611116088,4106962857&fm=27&gp=0.jpg" />
+				</div>
+				<div style="float: left;margin-left: 5%;width: 70%;">
+					<div style="position: absolute;top: 5px;width: 55%;">牛肉面牛肉面牛肉面牛肉面牛肉面牛肉面牛肉面牛肉面</div>
+					<div style="position: absolute;bottom: 5px;width: 100%;">
+						<p style="float: left;">
+							<div style="float: left;color: orange;">积分&nbsp;</div>
+							<div style="float: left;font-size: larger;margin-top: -1%;color: orange;">182</div>
+							<div style="float: left;margin-left: 30%;">
+								<div style="float: left;">x&nbsp;</div>
+								<div style="float: left;">1</div>
+							</div>
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="weui-cell">
+				<div style="float: left;">购买分量</div>
+				<div style="float: left;margin-left: 50%;">
+					<select style="width: 80px;">
+						<option>大份</option>
+						<option>中份</option>
+						<option>小份</option>
+					</select>
+				</div>
+			</div>
+			<div class="weui-cell">
+				<div style="float: left;">购买方式</div>
+				<div style="float: left;margin-left: 35%;font-size: smaller;">
+					<label><input type="radio" value="1" name="buyType" style="color: orange;" checked="checked"/>按月购买</label>
+					<label><input type="radio" value="2" name="buyType" style="color: orange;"/>按月购买</label>
+				</div>
+			</div>
+			<div class="weui-cell">
+				<div style="float: left;">
+					订购日期&nbsp;
+					<p style="color: darkgray;font-size: smaller;float: left;margin-left: 35%;margin-top: -9%;">请选择你要订购的日期</p></div>
+					<div style="float: left;font-size: larger;color: darkgray;margin-left: 30%;">&gt;</div>
+			</div>
+			<div class="weui-cell">
+				<div style="float: left;">备注留言</div>
+				<div style="float: left;margin-left: 5%;">
+					<input type="text" style="font-size: small;width: 220px;" maxlength="17" placeholder="有什么特殊要求，您可以在这里填写"/>
+				</div>
+			</div>
+			<div class="weui-cell" style="padding-left: 30%;">
+				<p>共<div>1</div>件商品</p>
+				<p style="padding-left: 5%;">小计：</p>
+				<p style="font-size: small;color: orange;">积分&nbsp; <div style="font-size: larger;color: orange;">182</div></p>
+			</div>
+		</div>
+		
+		<!-- 三 -->
+		<div class="weui-cells" style="width: 100%;" >
+			<div class="weui-cell" style="color: darkgray;font-size: small;">选择支付方式</div>
+			<div class="weui-cell" style="width: 100%;" onclick="wxpay()">
+				<div style="width: 100%;">
+					<label>
+						<img src="images/wxpay.png" style="height: 25px;width: 25px;float: left;" />
+						<div style="margin-left: 10px;float: left;">微信支付</div>
+						<input value="1" id="wxpay" type="radio" name="payType" style="margin-left: 50%;float: left;margin-top: 1.3%;" checked="checked"/>
+					</label>
+				</div>
+			</div>
+			<div class="weui-cell" style="width: 100%;" onclick="alipay()">
+				<div style="width: 100%;">
+					<label>
+						<img src="images/alipay.png" style="height: 20px;width: 20px;float: left;margin-left: 3px;" />
+						<div style="margin-left: 10px;float: left;">支付宝支付</div>
+						<input value="2" id="alipay" type="radio" name="payType" style="margin-left: 46%;float: left;margin-top: 1.3%;"/>
+					</label>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 四 -->
+		<div class="weui-cells" style="width: 100%;height: 60px;background-color: orange;">
+			<div style="width: 60%;float: left;background-color: white;height: 100%;padding-top: 10px;">
+				<p style="float: left;font-size: x-large;margin-left: 10%;">总额</p>
+				<p style="float: left;padding-left: 10%;padding-top: 10px;color: orange;">
+					积分&nbsp;
+					<div style="font-size: x-large;font-weight: bold;color: orange;">182</div>
+				</p>
+			</div>
+			<div style="width: 40%;float: left;height: 100%;text-align: center;color: white;padding-top: 4%;font-size: larger;" onclick="alert(1)">提交订单</div>
+		</div>
+		<script src="lib/jquery-2.1.4.js"></script> 
+		<script src="lib/fastclick.js"></script> 
+		<script src="js/jquery-weui.js"></script>
+		<script>
+			function minus(){
+				if($("#payNum").val()>1){
+					$("#payNum").val(parseInt(($("#payNum").val())-1));
+				}
+			}
+			
+			function add(){
+				if($("#payNum").val()<99){
+					$("#payNum").val((parseInt($("#payNum").val())+1));
+				}
+			}
+			
+			function wxpay(){
+				$("#alipay").removeAttr("checked");
+				$("#wxpay").attr("checked","checked");
+				$("#wxpay").prop("checked", "checked");
+			}
+			function alipay(){
+				$("#wxpay").removeAttr("checked");
+				$("#alipay").attr("checked","checked");
+				$("#alipay").prop("checked", "checked");
+			}
+		</script>
+	</body>
+</html>

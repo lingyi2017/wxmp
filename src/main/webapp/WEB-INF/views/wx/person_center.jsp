@@ -46,7 +46,7 @@
 		
 		<div class="topShow">
 			<div><img class="touxiangStyle" src="${pageContext.request.contextPath}/static/images/wx/touxiang.jpg"/></div>
-			<div style="margin-top: 17.5%;text-align: center;">昵称</div>
+			<div style="margin-top: 17.5%;text-align: center;"></div>
 		</div>
 	</div>
 	
@@ -60,7 +60,7 @@
 				</div>
 			</div>
 		</a>
-		<a href="${ctx}/dcxt/order/list">
+		<a href="${ctx}/dcxt/accountscorehistory/wx_score_list">
 			<div class="weui-cell">
 				<div class="weui-cell__bd"><img style="width: 30px;height: 30px;" src="${ctx }/static/images/wx/center-score.png"></div>
 				<div class="weui-cell__bd">
