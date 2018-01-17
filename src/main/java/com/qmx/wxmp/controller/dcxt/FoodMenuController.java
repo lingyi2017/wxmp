@@ -5,6 +5,7 @@ import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.qmx.wxmp.common.utils.DateUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,19 +34,16 @@ import com.qmx.wxmp.vo.dcxt.DishTypeVo;
 public class FoodMenuController extends BaseController {
 
 	@Autowired
-	private FoodMenuService		thisService;
+	private FoodMenuService	thisService;
 
 	@Autowired
-	private ProductService		productService;
+	private ProductService	productService;
 
 	@Autowired
-	private MealService			mealService;
+	private MealService		mealService;
 
 	@Autowired
-	private DishService			dishService;
-
-	@Autowired
-	private FoodMenuItemService	foodMenuItemService;
+	private DishService		dishService;
 
 
 
@@ -75,6 +73,7 @@ public class FoodMenuController extends BaseController {
 		model.addAttribute("meals", meals);
 		model.addAttribute("dishTypeVos", buildDishTypeVo(dishes));
 		model.addAttribute("mealTdWidth", mealTdWidth);
+		model.addAttribute("addDate", DateUtils.getNextMonday(new Date()));
 		return "/dcxt/addFoodMenuForm";
 
 	}
@@ -151,6 +150,8 @@ public class FoodMenuController extends BaseController {
 		return "/dcxt/editFoodMenuForm";
 
 	}
+
+
 
 	@RequiresPermissions("dcxt:foodMenu:view")
 	@RequestMapping("/viewForm")

@@ -101,7 +101,7 @@
                                 <div class="span11">
                                     <input id="addDate" name="addDate" type="text" readonly="readonly"
                                            maxlength="20" class="input-large Wdate"
-                                           value=""
+                                           value="${addDate}"
                                            onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
                                 </div>
                             </div>
