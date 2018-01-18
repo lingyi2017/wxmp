@@ -46,9 +46,9 @@
 	</head>
 	<body style="height: 100%;background-color: #F5F5F5;font-family:'黑体';">
 		<div class="weui-cells" style="margin-top: -1%;width: 100%;background-color: white;position: relative;">
-			<div class="weui-cell" style="height: 300px;background-color: orange;">
+			<div class="weui-cell" style="height: 300px;background-color: #F6B92A;">
 				<div style="height: 60%;">
-					<div style="float: left;position: absolute;left: 3%;top: 5%;color: white;" onclick="javascript:history.back(-1)"><</div>
+					<div style="float: left;position: absolute;left: 3%;top: 5%;color: white;" onclick="javascript:history.back(-1)"><img style="width: 30px;height: 30px;" src="${ctx }/static/images/wx/score-back.png"></div>
 					<div style="float: left;position: absolute;left: 40%;top: 5%;color: white;">积分查询</div>
 					<div class="quan">
 						<div style="margin-top: 20%;font-size: small;">当前积分</div>

@@ -87,7 +87,7 @@
 				</div>
 			</div>
 		</a>
-		<a href="${ctx}/dcxt/order/list">
+		<a href="${ctx}/dcxt/account/wx_account_edit">
 			<div class="weui-cell">
 				<div class="weui-cell__bd"><img style="width: 30px;height: 30px;" src="${ctx }/static/images/wx/center-info.png"></div>
 				<div class="weui-cell__bd">

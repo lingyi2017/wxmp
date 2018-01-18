@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.qmx.wxmp.common.persistence.Page;
+import com.qmx.wxmp.common.utils.SpringWebUtil;
 import com.qmx.wxmp.controller.BaseController;
 import com.qmx.wxmp.entity.order.Account;
 import com.qmx.wxmp.service.order.AccountService;
@@ -96,10 +97,9 @@ public class AccountController extends BaseController {
 	 * @param accountId
 	 * @return
 	 */
-	@RequestMapping("/accountEditByWeiXin")
-	public String accountEditByWeiXin(String accountId, Model model) {
-		Account account = accountService.get(accountId);
-		model.addAttribute("account", account);
-		return "/weixin/account_edit";
+	@RequestMapping("/wx_account_edit")
+	public String wxAccountEdit(Model model) {
+		model.addAttribute("account", SpringWebUtil.getAccount());
+		return "/wx/account_edit";
 	}
 }

@@ -1,29 +1,32 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-		<title>现金购买</title>
-		<link rel="stylesheet" href="lib/weui.min.css">
-		<link rel="stylesheet" href="css/jquery-weui.css">
-		<link rel="stylesheet" href="css/style.css">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>个人中心</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
+	<link rel="stylesheet" href="${ctx}/static/css/weixin/style.css">
 	</head>
-	<body style="height: 100%;font-family:'黑体';background-color: #F5F5F5;">
-		<!-- 一 -->
+	<body style="height: 100%;font-family:'é»ä½';background-color: #F5F5F5;">
+		<!-- ä¸ -->
 		<div class="weui-cells" style="margin-top: -0.7%;margin-bottom: -5px;">
 			 <div class="weui-cell">
 			   <div class="weui-cell__bd" style="text-align:center;height: 40px;">
-			     <div style="float: left;position: absolute;left: 3%;top: 15%;">←</div>
-				 <div style="float: left;position: absolute;left: 40%;top: 35%;text-align: center;font-size: large;">现金购买</div>
+			     <div style="float: left;position: absolute;left: 3%;top: 15%;">â</div>
+				 <div style="float: left;position: absolute;left: 40%;top: 35%;text-align: center;font-size: large;">ç°éè´­ä¹°</div>
 			   </div>
 			 </div>			
 			 <div class="weui-cell" style="width: 100%;height: 70px;">
-			 	<div style="float: left;width: 10%;">☞</div>
+			 	<div style="float: left;width: 10%;">â</div>
 			 	<div style="float: left;margin-left: 10px;width: 80%;">
-			 		<div style="width: 100%;">成都市高新区天府二街</div>
+			 		<div style="width: 100%;">æé½å¸é«æ°åºå¤©åºäºè¡</div>
 			 		<div style="font-size: smaller;color: gray;">
-			 			<div style="float: left;">收货人：皮几万</div>
+			 			<div style="float: left;">æ¶è´§äººï¼ç®å ä¸</div>
 			 			<div style="float: left;margin-left: 20%;">13333333333</div>
 			 		</div>
 			 	</div>
@@ -31,17 +34,17 @@
 			 </div>
 		</div>
 		
-		<!-- 二 -->
+		<!-- äº -->
 		<div class="weui-cells">
 			<div class="weui-cell" style="height: 100px;width: 100%;">
 				<div style="float: left;height: 100%;width:30%;background-color: orange;">
 					<img style="height: 100%;width:100%;" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=611116088,4106962857&fm=27&gp=0.jpg" />
 				</div>
 				<div style="float: left;margin-left: 5%;width: 70%;">
-					<div style="position: absolute;top: 5px;width: 55%;">牛肉面牛肉面牛肉面牛肉面牛肉面牛肉面牛肉面牛肉面</div>
+					<div style="position: absolute;top: 5px;width: 55%;">çèé¢çèé¢çèé¢çèé¢çèé¢çèé¢çèé¢çèé¢</div>
 					<div style="position: absolute;bottom: 5px;width: 100%;">
 						<p style="float: left;">
-							<div style="float: left;color: orange;">积分&nbsp;</div>
+							<div style="float: left;color: orange;">ç§¯å&nbsp;</div>
 							<div style="float: left;font-size: larger;margin-top: -1%;color: orange;">182</div>
 							<div style="float: left;margin-left: 30%;">
 								<div style="float: left;">x&nbsp;</div>
@@ -52,49 +55,49 @@
 				</div>
 			</div>
 			<div class="weui-cell">
-				<div style="float: left;">购买分量</div>
+				<div style="float: left;">è´­ä¹°åé</div>
 				<div style="float: left;margin-left: 50%;">
 					<select style="width: 80px;">
-						<option>大份</option>
-						<option>中份</option>
-						<option>小份</option>
+						<option>å¤§ä»½</option>
+						<option>ä¸­ä»½</option>
+						<option>å°ä»½</option>
 					</select>
 				</div>
 			</div>
 			<div class="weui-cell">
-				<div style="float: left;">购买方式</div>
+				<div style="float: left;">è´­ä¹°æ¹å¼</div>
 				<div style="float: left;margin-left: 35%;font-size: smaller;">
-					<label><input type="radio" value="1" name="buyType" style="color: orange;" checked="checked"/>按月购买</label>
-					<label><input type="radio" value="2" name="buyType" style="color: orange;"/>按月购买</label>
+					<label><input type="radio" value="1" name="buyType" style="color: orange;" checked="checked"/>ææè´­ä¹°</label>
+					<label><input type="radio" value="2" name="buyType" style="color: orange;"/>ææè´­ä¹°</label>
 				</div>
 			</div>
 			<div class="weui-cell">
 				<div style="float: left;">
-					订购日期&nbsp;
-					<p style="color: darkgray;font-size: smaller;float: left;margin-left: 35%;margin-top: -9%;">请选择你要订购的日期</p></div>
+					è®¢è´­æ¥æ&nbsp;
+					<p style="color: darkgray;font-size: smaller;float: left;margin-left: 35%;margin-top: -9%;">è¯·éæ©ä½ è¦è®¢è´­çæ¥æ</p></div>
 					<div style="float: left;font-size: larger;color: darkgray;margin-left: 30%;">&gt;</div>
 			</div>
 			<div class="weui-cell">
-				<div style="float: left;">备注留言</div>
+				<div style="float: left;">å¤æ³¨çè¨</div>
 				<div style="float: left;margin-left: 5%;">
-					<input type="text" style="font-size: small;width: 220px;" maxlength="17" placeholder="有什么特殊要求，您可以在这里填写"/>
+					<input type="text" style="font-size: small;width: 220px;" maxlength="17" placeholder="æä»ä¹ç¹æ®è¦æ±ï¼æ¨å¯ä»¥å¨è¿éå¡«å"/>
 				</div>
 			</div>
 			<div class="weui-cell" style="padding-left: 30%;">
-				<p>共<div>1</div>件商品</p>
-				<p style="padding-left: 5%;">小计：</p>
-				<p style="font-size: small;color: orange;">积分&nbsp; <div style="font-size: larger;color: orange;">182</div></p>
+				<p>å±<div>1</div>ä»¶åå</p>
+				<p style="padding-left: 5%;">å°è®¡ï¼</p>
+				<p style="font-size: small;color: orange;">ç§¯å&nbsp; <div style="font-size: larger;color: orange;">182</div></p>
 			</div>
 		</div>
 		
-		<!-- 三 -->
+		<!-- ä¸ -->
 		<div class="weui-cells" style="width: 100%;" >
-			<div class="weui-cell" style="color: darkgray;font-size: small;">选择支付方式</div>
+			<div class="weui-cell" style="color: darkgray;font-size: small;">éæ©æ¯ä»æ¹å¼</div>
 			<div class="weui-cell" style="width: 100%;" onclick="wxpay()">
 				<div style="width: 100%;">
 					<label>
 						<img src="images/wxpay.png" style="height: 25px;width: 25px;float: left;" />
-						<div style="margin-left: 10px;float: left;">微信支付</div>
+						<div style="margin-left: 10px;float: left;">å¾®ä¿¡æ¯ä»</div>
 						<input value="1" id="wxpay" type="radio" name="payType" style="margin-left: 50%;float: left;margin-top: 1.3%;" checked="checked"/>
 					</label>
 				</div>
@@ -103,27 +106,27 @@
 				<div style="width: 100%;">
 					<label>
 						<img src="images/alipay.png" style="height: 20px;width: 20px;float: left;margin-left: 3px;" />
-						<div style="margin-left: 10px;float: left;">支付宝支付</div>
+						<div style="margin-left: 10px;float: left;">æ¯ä»å®æ¯ä»</div>
 						<input value="2" id="alipay" type="radio" name="payType" style="margin-left: 46%;float: left;margin-top: 1.3%;"/>
 					</label>
 				</div>
 			</div>
 		</div>
 		
-		<!-- 四 -->
+		<!-- å -->
 		<div class="weui-cells" style="width: 100%;height: 60px;background-color: orange;">
 			<div style="width: 60%;float: left;background-color: white;height: 100%;padding-top: 10px;">
-				<p style="float: left;font-size: x-large;margin-left: 10%;">总额</p>
+				<p style="float: left;font-size: x-large;margin-left: 10%;">æ»é¢</p>
 				<p style="float: left;padding-left: 10%;padding-top: 10px;color: orange;">
-					积分&nbsp;
+					ç§¯å&nbsp;
 					<div style="font-size: x-large;font-weight: bold;color: orange;">182</div>
 				</p>
 			</div>
-			<div style="width: 40%;float: left;height: 100%;text-align: center;color: white;padding-top: 4%;font-size: larger;" onclick="alert(1)">提交订单</div>
+			<div style="width: 40%;float: left;height: 100%;text-align: center;color: white;padding-top: 4%;font-size: larger;" onclick="alert(1)">æäº¤è®¢å</div>
 		</div>
-		<script src="lib/jquery-2.1.4.js"></script> 
-		<script src="lib/fastclick.js"></script> 
-		<script src="js/jquery-weui.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+<script type="text/javascript" src="${ctx}/static/js/weixin/fastclick.js"></script>
 		<script>
 			function minus(){
 				if($("#payNum").val()>1){

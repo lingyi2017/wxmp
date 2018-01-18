@@ -56,6 +56,8 @@ public class Account extends BaseSimpleEntity {
 	private Date subscribeTime;
 	/** 备注*/
 	private String mark;
+	/** 图片*/
+	private String imageBase64;
 
 	public String getOpenid() {
 		return openid;
@@ -138,6 +140,13 @@ public class Account extends BaseSimpleEntity {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	@Column(columnDefinition="text")
+	public String getImageBase64() {
+		return imageBase64;
+	}
+	public void setImageBase64(String imageBase64) {
+		this.imageBase64 = imageBase64;
 	}
 	
 	
