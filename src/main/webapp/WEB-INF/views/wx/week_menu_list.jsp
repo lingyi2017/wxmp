@@ -58,26 +58,7 @@
         </div>
     </div>
     <div class="weui-cell js-day-panel">
-        <div class="weekStyle" onclick="selectedOneDay(this, '1')">
-            <div>周一</div>
-            <div class="numberStyle numberActive">15</div>
-        </div>
-        <div class="weekStyle" onclick="selectedOneDay(this, '2')">
-            <div>周二</div>
-            <div class="numberStyle">16</div>
-        </div>
-        <div class="weekStyle" onclick="selectedOneDay(this, '3')">
-            <div>周三</div>
-            <div class="numberStyle">17</div>
-        </div>
-        <div class="weekStyle" onclick="selectedOneDay(this, '4')">
-            <div>周四</div>
-            <div class="numberStyle">18</div>
-        </div>
-        <div class="weekStyle" onclick="selectedOneDay(this, '5')">
-            <div>周五</div>
-            <div class="numberStyle">19</div>
-        </div>
+        <jsp:include page="loadmore.jsp" flush="true"/>
     </div>
 </div>
 <div class="weui-cells js-product">

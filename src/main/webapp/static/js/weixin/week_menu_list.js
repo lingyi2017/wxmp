@@ -1,3 +1,52 @@
+var loadmoreHTM =
+    "<div class='weui-loadmore'>" +
+    "<i class='weui-loading'></i>" +
+    "<span class='weui-loadmore__tips'>正在加载</span>" +
+    "</div>";
+
+$(function () {
+
+    $.ajax({
+        contentType: "application/json",
+        type: "post",
+        url: "/wxmp/rs/wx/foodMenu/weekDays/1",
+        async: true,
+        dataType: "json",
+        success: function (data) {
+            if (data) {
+                if ('200' == data.status) {
+
+                    var weekDays = data.content;
+                    if (weekDays == undefined) {
+                        return;
+                    }
+
+                    var weekDaysHTM = "";
+                    $(weekDays).each(function (index, day) {
+                        if (0 == index) {
+                            weekDaysHTM += "<div class='weekStyle' onclick='selectedOneDay(this, " + day.date + ")'>" +
+                                "<div>" + day.chnName + "</div>" +
+                                "<div class='numberStyle numberActive'>" + day.num + "</div></div>";
+                        } else {
+                            weekDaysHTM += "<div class='weekStyle' onclick='selectedOneDay(this, " + day.date + ")'>" +
+                                "<div>" + day.chnName + "</div>" +
+                                "<div class='numberStyle'>" + day.num + "</div></div>";
+                        }
+                    });
+                    $(".js-day-panel").html(weekDaysHTM);
+                } else {
+
+                }
+            }
+        },
+        error: function () {
+
+        }
+    });
+
+
+});
+
 /**
  * 选中某一天
  *

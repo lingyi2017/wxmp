@@ -64,7 +64,6 @@
                 /servlet/validateCodeServlet = anon
                 /websocket/** = anon
                 /rs/** = anon
-                /wx/** = anon
                 /login = authc
                 /logout = logout
                 /index = user

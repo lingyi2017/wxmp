@@ -390,21 +390,57 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
 
 	/**
+	 * 获取指定日期所在周的第几天时间
+	 * 
+	 * @param date
+	 * @param num
+	 *            周一为第一天
+	 * @return
+	 */
+	public static String getWeekDate(Date date, Integer num) {
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY); // 当前日期的 周一
+		calendar.add(GregorianCalendar.DATE, (num - 1));
+		return formatDate(calendar.getTime());
+
+	}
+
+
+
+	/**
+	 * 获取某天的号数（18号）
+	 * 
+	 * @param dateStr
+	 *            （yyyy-MM-dd）
+	 * @return
+	 */
+	public static Integer getDayNum(String dateStr) {
+
+		if (StringUtils.isEmpty(dateStr)) {
+			return 1;
+		}
+
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		format.setLenient(false);
+		try {
+			format.parse(dateStr);
+			String[] dateArray = dateStr.split("-");
+			return Integer.valueOf(dateArray[2]);
+		} catch (ParseException e) {
+			return 1;
+		}
+
+	}
+
+
+
+	/**
 	 * @param args
 	 * @throws ParseException
 	 */
 	public static void main(String[] args) throws ParseException {
-
-		System.out.println(formatDate(parseDate("2010/3/6")));
-		System.out.println(getDate("yyyy年MM月dd日 E"));
-		long time = new Date().getTime() - parseDate("2012-11-19").getTime();
-		System.out.println(time / (24 * 60 * 60 * 1000));
-
-		Date date = new Date();
-
-		System.out.println("pastDays=" + pastDays(date));
-		System.out.println("getDateStart=" + formatDate(getDateStart(date), parsePatterns[1]));
-		System.out.println("getDateEnd=" + formatDate(getDateEnd(date), parsePatterns[1]));
 
 	}
 }
