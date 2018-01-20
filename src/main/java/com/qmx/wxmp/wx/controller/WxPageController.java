@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/wx/page")
 public class WxPageController {
 
-	@RequestMapping(value = "/person_center")
-	public String serviceListUI() {
-		return "/wx/person_center";
+	@RequestMapping(value = "/week_menu_list")
+	public String weekMenuListUI() {
+		return "/wx/week_menu_list";
 	}
 
 
