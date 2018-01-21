@@ -49,7 +49,7 @@
                     <label class="weui-form-preview__label fs14">个人</label>
                 </div>
                 <div class="weui-cell__ft">
-                    <input type="radio" class="weui-check" name="customerType" value="2" id="x12">
+                    <input type="radio" class="weui-check" name="customerType" value="2" id="x12" checked="checked">
                     <span class="weui-icon-checked"></span>
                 </div>
             </label>
@@ -69,7 +69,7 @@
                     <label class="weui-form-preview__label fs14">企业</label>
                 </div>
                 <div class="weui-cell__ft">
-                    <input type="radio" class="weui-check" name="customerType" value="1" id="x11">
+                    <input type="radio" class="weui-check" name="customerType" value="1" id="x11" checked="checked">
                     <span class="weui-icon-checked"></span>
                 </div>
             </label>

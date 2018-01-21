@@ -130,7 +130,7 @@ public class OrderController extends BaseController {
 				customerService.save(customer);
 				order.setCustomer(customer);
 			}
-
+			order.setStatus("2");
 			order.setDealDate(new Date());
 			thisService.save(order);
 			addMessage(redirectAttributes, "处理订单成功");

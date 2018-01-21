@@ -22,7 +22,7 @@ public class MenuConfig {
 	 */
 	protected static WxMenu getMenu() {
 
-		MainConfig mainConfig = new MainConfig("wxa1dda5439feefd36", "e0c53f4007c6bd2cb7299bf0fcf48a58", "wjdcxt", "");
+		MainConfig mainConfig = new MainConfig("wxa1dda5439feefd36", "e0c53f4007c6bd2cb7299bf0fcf48a58", "qmx", "");
 		WxMpService wxMpService = mainConfig.wxMpService();
 
 		WxMenu menu = new WxMenu();
@@ -31,34 +31,22 @@ public class MenuConfig {
 		
 		WxMenuButton button11 = new WxMenuButton();
 		button11.setType(MenuButtonType.VIEW);
-		button11.setName("公司注册");
-		button11.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://www.qmxqyzx.com/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=gszc", "snsapi_base", ""));
+		button11.setName("商标注册");
+		button11.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://www.qmxqyzx.com/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=sbzc", "snsapi_base", ""));
 
 		WxMenuButton button12 = new WxMenuButton();
 		button12.setType(MenuButtonType.VIEW);
-		button12.setName("商标注册");
-		button12.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://www.qmxqyzx.com/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=sbzc", "snsapi_base", ""));
+		button12.setName("专利咨询");
+		button12.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://www.qmxqyzx.com/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=zlsq", "snsapi_base", ""));
 		
 		WxMenuButton button13 = new WxMenuButton();
 		button13.setType(MenuButtonType.VIEW);
-		button13.setName("专利申请");
-		button13.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://www.qmxqyzx.com/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=zlsq", "snsapi_base", ""));
-		
-		WxMenuButton button14 = new WxMenuButton();
-		button14.setType(MenuButtonType.VIEW);
-		button14.setName("版权申请");
-		button14.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://www.qmxqyzx.com/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=bqsq", "snsapi_base", ""));
-		
-		WxMenuButton button15 = new WxMenuButton();
-		button15.setType(MenuButtonType.VIEW);
-		button15.setName("企业许可证咨询");
-		button15.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://www.qmxqyzx.com/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=qyxkzzx", "snsapi_base", ""));
+		button13.setName("版权申请");
+		button13.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://www.qmxqyzx.com/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=bqsq", "snsapi_base", ""));
 		
 		button1.getSubButtons().add(button11);
 		button1.getSubButtons().add(button12);
 		button1.getSubButtons().add(button13);
-		button1.getSubButtons().add(button14);
-		button1.getSubButtons().add(button15);
 		
 		WxMenuButton button2 = new WxMenuButton();
 		button2.setName("企业服务");
@@ -66,9 +54,27 @@ public class MenuConfig {
 		WxMenuButton button21 = new WxMenuButton();
 		button21.setType(MenuButtonType.VIEW);
 		button21.setName("公司注册");
-		button21.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://www.qmxqyzx.com/wx/oauth/oauth_notify_base?page=/wx/service_list", "snsapi_base", "gszc"));
+		button21.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://www.qmxqyzx.com/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=gszc", "snsapi_base", ""));
 
+		WxMenuButton button22 = new WxMenuButton();
+		button22.setType(MenuButtonType.VIEW);
+		button22.setName("企业财税咨询");
+		button22.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://www.qmxqyzx.com/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=cszx", "snsapi_base", ""));
+		
+		WxMenuButton button23 = new WxMenuButton();
+		button23.setType(MenuButtonType.VIEW);
+		button23.setName("企业许可咨询");
+		button23.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://www.qmxqyzx.com/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=qyxkz", "snsapi_base", ""));
+		
+		WxMenuButton button24 = new WxMenuButton();
+		button24.setType(MenuButtonType.VIEW);
+		button24.setName("企业认证咨询");
+		button24.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://www.qmxqyzx.com/wx/oauth/oauth_notify_base?page=/wx/service_list&wxMenuId=qyrz", "snsapi_base", ""));
+		
 		button2.getSubButtons().add(button21);
+		button2.getSubButtons().add(button22);
+		button2.getSubButtons().add(button23);
+		button2.getSubButtons().add(button24);
 
 		WxMenuButton button3 = new WxMenuButton();
 		button3.setName("个人中心");
@@ -141,7 +147,7 @@ public class MenuConfig {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		MainConfig mainConfig = new MainConfig("wxa1dda5439feefd36", "e0c53f4007c6bd2cb7299bf0fcf48a58", "qmx", "mFaxY8bRcuBS80YUWM9KM7j6ls04lotEQ98lAus3uZw");
+		MainConfig mainConfig = new MainConfig("wxa1dda5439feefd36", "e0c53f4007c6bd2cb7299bf0fcf48a58", "qmx", "");
 		WxMpService wxMpService = mainConfig.wxMpService();
 		try {
 			wxMpService.getMenuService().menuCreate(getMenu());
@@ -151,20 +157,15 @@ public class MenuConfig {
 	}
 
 	public static WxMenu testMenu(){
-		MainConfig mainConfig = new MainConfig("wxa1dda5439feefd36", "e0c53f4007c6bd2cb7299bf0fcf48a58", "wjdcxt", "");
+		MainConfig mainConfig = new MainConfig("wxe29fd1d0c2cef90c", "67f6652929e02f48fc1cf42d1a45cc0a", "wjdcxt", "");
 		WxMpService wxMpService = mainConfig.wxMpService();
 
 		WxMenu menu = new WxMenu();
 		WxMenuButton button1 = new WxMenuButton();
 		button1.setType(MenuButtonType.VIEW);
-		button1.setName("测试获取openid");
-		button1.setUrl("http://1u9288562a.imwork.net/wxmp/wx/page/person_center");
-		WxMenuButton button2 = new WxMenuButton();
-		button2.setType(MenuButtonType.VIEW);
-		button2.setName("测试支付");
-		button2.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_notify_base", "snsapi_base", "/wx/order_test"));
+		button1.setName("个人中心");
+		button1.setUrl(wxMpService.oauth2buildAuthorizationUrl("http://1u9288562a.imwork.net/wxmp/wx/oauth/oauth_person_center", "snsapi_userinfo", ""));
 		menu.getButtons().add(button1);
-		menu.getButtons().add(button2);
 		return menu;
 	}
 }

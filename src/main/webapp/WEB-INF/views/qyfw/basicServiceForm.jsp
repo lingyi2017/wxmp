@@ -48,10 +48,10 @@
                 for (var i = 0; i < value.length; i++) {
                     $(":checkbox[value='" + value[i] + "']").prop("checked", true);
                     if (value[i] == '1') {
-                        $("#peopleMaterialIds").css("display", "");
+                        $("#companyMaterialIds").css("display", "");
                     }
                     if (value[i] == '2') {
-                        $("#companyMaterialIds").css("display", "");
+                        $("#peopleMaterialIds").css("display", "");
                     }
                 }
             }
@@ -63,10 +63,10 @@
             $("#companyMaterialIds").css("display", "none");
             $('input[name="customerTypeBox"]:checked').each(function () {
                 if ($(this).val() == '1') {
-                    $("#peopleMaterialIds").css("display", "");
+                    $("#companyMaterialIds").css("display", "");
                 }
                 if ($(this).val() == '2') {
-                    $("#companyMaterialIds").css("display", "");
+                    $("#peopleMaterialIds").css("display", "");
                 }
             });
         }
@@ -140,8 +140,8 @@
     <label class="control-label">支持客户性质:</label>
     <div class="controls">
         <form:hidden path="customerType"/>
-        <input type="checkbox" name="customerTypeBox" value="1" onchange="changeCustomerType()">个人
-        <input type="checkbox" name="customerTypeBox" value="2" onchange="changeCustomerType()">企业
+        <input type="checkbox" name="customerTypeBox" value="1" onchange="changeCustomerType()">企业
+        <input type="checkbox" name="customerTypeBox" value="2" onchange="changeCustomerType()">个人
     </div>
 </div>
 <div class="control-group">

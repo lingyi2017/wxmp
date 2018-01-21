@@ -18,7 +18,7 @@ import com.qmx.wxmp.entity.qyfw.ServiceCategory;
 public class ServiceCategoryDao extends BaseDao<ServiceCategory> {
 
 	public List<ServiceCategory> findByParentIdsLike(String parentIds) {
-		return find("from ServiceCategory where parentIds like :p1", new Parameter(parentIds));
+		return find("from ServiceCategory where parentIds like :p1 and delFlag='0'", new Parameter(parentIds));
 	}
 
 
@@ -30,8 +30,7 @@ public class ServiceCategoryDao extends BaseDao<ServiceCategory> {
 
 
 	public List<ServiceCategory> findFirstCategoryList() {
-		return find("from ServiceCategory where parent.id=:p1 or parent.id=:p2 order by sort asc",
-				new Parameter("1", "0"));
+		return find("from ServiceCategory where delFlag=:p1 order by sort asc", new Parameter("0"));
 	}
 
 
@@ -46,7 +45,7 @@ public class ServiceCategoryDao extends BaseDao<ServiceCategory> {
 
 	public List<ServiceCategory> findAllChildByWxMenuId(String wxMenuId) {
 		return findBySql(
-				"select * from qyfw_service_category where del_flag = '0' and parent_id = (select id from qyfw_service_category where wx_menu_id = :p1)",
+				"select * from qyfw_service_category where del_flag = '0' and parent_id = (select id from qyfw_service_category where wx_menu_id = :p1) order by sort",
 				new Parameter(wxMenuId), ServiceCategory.class);
 	}
 
