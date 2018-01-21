@@ -73,4 +73,9 @@ public class WxPageController {
 		return "/wx/account_edit";
 	}
 
+	@RequestMapping(value = "/areaEdit")
+	public String areaEdit() {
+		return "/wx/area_edit";
+	}
+
 }
