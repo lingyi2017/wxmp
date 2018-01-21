@@ -14,9 +14,16 @@ var noneDataHTM =
     "<span class='weui-loadmore__tips'>暂无数据</span>" +
     "</div>";
 
+var initSelectedDay;
+var initSelectedProduct;
+
 $(function () {
 
     initWeekDays();
+
+    initProducts();
+
+    initMeals();
 
 });
 
@@ -30,7 +37,7 @@ function initWeekDays() {
         contentType: "application/json",
         type: "post",
         url: "/wxmp/rs/wx/foodMenu/weekDays/1",
-        async: true,
+        async: false, // 同步加载
         dataType: "json",
         success: function (data) {
             if (data) {
@@ -45,11 +52,12 @@ function initWeekDays() {
                     var weekDaysHTM = "";
                     $(weekDays).each(function (index, day) {
                         if (0 == index) {
-                            weekDaysHTM += "<div class='weekStyle' onclick='selectedOneDay(this, " + day.date + ")'>" +
+                            weekDaysHTM += "<div class='weekStyle' onclick='selectedOneDay(this, \"" + day.date + "\")'>" +
                                 "<div>" + day.chnName + "</div>" +
                                 "<div class='numberStyle numberActive'>" + day.num + "</div></div>";
+                            initSelectedDay = day.date;
                         } else {
-                            weekDaysHTM += "<div class='weekStyle' onclick='selectedOneDay(this, " + day.date + ")'>" +
+                            weekDaysHTM += "<div class='weekStyle' onclick='selectedOneDay(this, \"" + day.date + "\")'>" +
                                 "<div>" + day.chnName + "</div>" +
                                 "<div class='numberStyle'>" + day.num + "</div></div>";
                         }
@@ -65,6 +73,63 @@ function initWeekDays() {
             $(".js-day-panel").html(loadFailHTM);
         }
     });
+
+}
+
+/**
+ * 初始化本商品
+ *
+ */
+function initProducts() {
+
+    $.ajax({
+        contentType: "application/json",
+        type: "post",
+        url: "/wxmp/rs/wx/product/list",
+        async: false, // 同步加载
+        dataType: "json",
+        success: function (data) {
+            if (data) {
+                if ('200' == data.status) {
+
+                    var products = data.content;
+                    if (products == undefined) {
+                        $(".js-product").html(noneDataHTM);
+                        return;
+                    }
+
+                    var productsHTM = "";
+                    $(products).each(function (index, product) {
+                        if (0 == index) {
+                            productsHTM += "<div class='packStyle packActive' onclick='selectedOneProduct(this, \"" + product.id + "\")'>" + product.name + "</div>";
+                            initSelectedProduct = product.id;
+                        } else {
+                            productsHTM += "<div class='packStyle' onclick='selectedOneProduct(this, \"" + product.id + "\")'>" + product.name + "</div>";
+                        }
+                    });
+                    $(".js-product-panel").html(productsHTM);
+
+                } else {
+                    $(".js-product").html(loadFailHTM);
+                }
+            }
+        },
+        error: function () {
+            $(".js-product").html(loadFailHTM);
+        }
+    });
+
+}
+
+/**
+ * 初始化餐标
+ *
+ */
+function initMeals() {
+
+    if (null != initSelectedDay && null != initSelectedProduct) {
+
+    }
 
 }
 

@@ -64,9 +64,6 @@
 <div class="weui-cells js-product">
     <div class="weui-cell">
         <div class="weui-cell__bd js-product-panel" style="text-align:center;margin-left: 15%;">
-            <div class="packStyle packActive" onclick="selectedOneProduct(this, '1')">减脂</div>
-            <div class="packStyle" onclick="selectedOneProduct(this, '1')">塑形</div>
-            <div class="packStyle" onclick="selectedOneProduct(this, '1')">增脂</div>
         </div>
     </div>
 </div>
