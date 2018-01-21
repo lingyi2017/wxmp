@@ -401,6 +401,11 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
+
+		if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) { // 当前日期为周末
+			calendar.add(GregorianCalendar.DATE, -1);
+		}
+
 		calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY); // 当前日期的 周一
 		calendar.add(GregorianCalendar.DATE, (num - 1));
 		return formatDate(calendar.getTime());

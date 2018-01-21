@@ -16,34 +16,38 @@ import java.util.List;
 public class WeekDayUtils {
 
 	public static List<WeekDayVo> getWeekDays() {
+
 		List<WeekDayVo> weekDays = new ArrayList<>();
+		Date currDate = new Date();
 		for (int i = 1; i <= 5; i++) {
 			WeekDayVo weekDay = new WeekDayVo();
 			weekDay.setChnName(getWeekDayCHNName(i));
-			String date = DateUtils.getWeekDate(new Date(), i);
+			String date = DateUtils.getWeekDate(currDate, i);
 			weekDay.setDate(date);
 			weekDay.setNum(DateUtils.getDayNum(date));
 			weekDays.add(weekDay);
 		}
 		return weekDays;
+
 	}
 
 
 
 	public static List<WeekDayVo> getNextWeekDays() {
 
-		String nextMonday = DateUtils.getNextMonday(new Date());
-		Date nextMondayDate = DateUtils.parseDate(nextMonday);
+		String nextMondayStr = DateUtils.getNextMonday(new Date());
+		Date nextMonday = DateUtils.parseDate(nextMondayStr);
 		List<WeekDayVo> weekDays = new ArrayList<>();
 		for (int i = 1; i <= 5; i++) {
 			WeekDayVo weekDay = new WeekDayVo();
 			weekDay.setChnName(getWeekDayCHNName(i));
-			String date = DateUtils.getWeekDate(nextMondayDate, i);
+			String date = DateUtils.getWeekDate(nextMonday, i);
 			weekDay.setDate(date);
 			weekDay.setNum(DateUtils.getDayNum(date));
 			weekDays.add(weekDay);
 		}
 		return weekDays;
+
 	}
 
 
@@ -55,6 +59,7 @@ public class WeekDayUtils {
 	 * @return
 	 */
 	public static String getWeekDayCHNName(Integer num) {
+
 		switch (num) {
 		case 1:
 			return "周一";
@@ -69,5 +74,7 @@ public class WeekDayUtils {
 		default:
 			return "周一";
 		}
+
 	}
+
 }

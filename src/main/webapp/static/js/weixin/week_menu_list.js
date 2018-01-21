@@ -4,7 +4,27 @@ var loadmoreHTM =
     "<span class='weui-loadmore__tips'>正在加载</span>" +
     "</div>";
 
+var loadFailHTM =
+    "<div class='weui-loadmore'>" +
+    "<span class='weui-loadmore__tips'>加载失败</span>" +
+    "</div>";
+
+var noneDataHTM =
+    "<div class='weui-loadmore'>" +
+    "<span class='weui-loadmore__tips'>暂无数据</span>" +
+    "</div>";
+
 $(function () {
+
+    initWeekDays();
+
+});
+
+/**
+ * 初始化本周时间
+ *
+ */
+function initWeekDays() {
 
     $.ajax({
         contentType: "application/json",
@@ -18,6 +38,7 @@ $(function () {
 
                     var weekDays = data.content;
                     if (weekDays == undefined) {
+                        $(".js-day-panel").html(noneDataHTM);
                         return;
                     }
 
@@ -34,18 +55,18 @@ $(function () {
                         }
                     });
                     $(".js-day-panel").html(weekDaysHTM);
-                } else {
 
+                } else {
+                    $(".js-day-panel").html(loadFailHTM);
                 }
             }
         },
         error: function () {
-
+            $(".js-day-panel").html(loadFailHTM);
         }
     });
 
-
-});
+}
 
 /**
  * 选中某一天
