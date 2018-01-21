@@ -67,4 +67,10 @@ public class WxPageController {
 		return "/wx/consultForm";
 	}
 
+
+	@RequestMapping(value = "/accountEdit")
+	public String accountEdit() {
+		return "/wx/account_edit";
+	}
+
 }

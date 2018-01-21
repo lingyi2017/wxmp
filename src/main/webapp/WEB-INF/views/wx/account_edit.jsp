@@ -21,7 +21,7 @@
 			}
 		</style>
 	</head>
-	<body style="height: 100%;font-family:'黑体';background-color: #F5F5F5;width: 100%;">
+	<body style="height: 100%;font-family:'黑体';background-color: #F5F5F5;width: 100%;margin-top: -10%;">
 	<form id="form" action="${pageContext.request.contextPath}/dcxt/account/wx_save" method="post"
       onsubmit="return sumbit_form()">
 
@@ -34,13 +34,11 @@
 			</div>
 			<div class="weui-cell" style="width: 100%;">
 				<div style="float: left;width: 30%;">头像</div>
-				<div style="float: left;width: 65%;text-align: right;">
+				<div style="float: left;width: 60%;text-align: right;" onclick="changeToux()">
 					<input type="hidden" name="imageBase64" id="imageBase64"/>
 					<img src="${account.imageBase64 }" class="toux" id="image"/> 
 				</div>
-				<div style="float: left;margin-left: 3%;">
-					<input type="file"  id="image_upload" style="opacity:0;" onchange="read_file(this)" />&gt;
-				</div>
+				<input type="file" id="image_upload" style="display: none;" onchange="read_file(this)" />
 					
 			</div>
 			<div class="weui-cell" style="width: 100%;">
@@ -69,13 +67,13 @@
 				</div>
 			</div>
 		</div>
-		
-		<div class="weui-cell">
+	</div>
+	
+		<div class="weui-cell" style="position:absolute;bottom: 10px;height: 30px;width: 100%;margin-left: -4%;">
 			<div class="weui-cell__bd">
 				<a href="javascript:sumbit_form()" class="weui-btn weui-btn_primary" style="background-color: orange;">确定</a>
 			</div>
 		</div>
-	</div>
 	</form>
 <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
@@ -86,6 +84,10 @@
 	    console.info();
 	    $("input[name='sex'][value='"+"${account.sex}"+"']").attr("checked",true);
 	});
+	function changeToux(){
+		$("#image_upload").click();
+	}
+	
 	function read_file(obj){   
 	    var file = obj.files[0];      
 	    //判断类型是不是图片  
