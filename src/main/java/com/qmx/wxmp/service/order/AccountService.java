@@ -78,11 +78,21 @@ public class AccountService extends BaseService {
 	}
 	
 	/**
-	 * 根据昵称得到用户数
+	 * 生成用户名
 	 * @param nickName
 	 * @return
 	 */
-	public Integer findNumByNickName(String nickName){
-		return accountDao.getNumByNickName(nickName);
+	public String createName(){
+		int count = accountDao.getCount();
+		return getKey() + (count+1);
+	}
+	
+	private String getKey(){    
+		String chars = "abcdefghijklmnopqrstuvwxyz";
+		String key = "";
+		for(int i=1; i<=4; i++){
+			key += chars.charAt((int)(Math.random() * 26));
+		}
+		return key;
 	}
 }

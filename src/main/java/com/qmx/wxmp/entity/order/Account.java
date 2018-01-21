@@ -56,6 +56,8 @@ public class Account extends BaseSimpleEntity {
 	private Date subscribeTime;
 	/** 备注*/
 	private String mark;
+	/** 微信图片url*/
+	private String imageWxUrl;
 	/** 图片*/
 	private String imageBase64;
 
@@ -141,12 +143,19 @@ public class Account extends BaseSimpleEntity {
 	public void setName(String name) {
 		this.name = name;
 	}
-	@Column(columnDefinition="text")
+	@Column(name="image_base64",columnDefinition="text")
 	public String getImageBase64() {
 		return imageBase64;
 	}
 	public void setImageBase64(String imageBase64) {
 		this.imageBase64 = imageBase64;
+	}
+	@Column(name="image_wx_url")
+	public String getImageWxUrl() {
+		return imageWxUrl;
+	}
+	public void setImageWxUrl(String imageWxUrl) {
+		this.imageWxUrl = imageWxUrl;
 	}
 	
 	

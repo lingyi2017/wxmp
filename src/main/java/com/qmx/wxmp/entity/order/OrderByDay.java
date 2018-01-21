@@ -7,12 +7,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.qmx.wxmp.common.persistence.BaseSimpleEntity;
+import com.qmx.wxmp.entity.dcxt.FoodMenu;
 
 /**
  * 每日订单
@@ -61,6 +63,8 @@ public class OrderByDay extends BaseSimpleEntity {
 	private Date updateTime;
 	/** 主订单*/
 	private OrderMain order;
+	/** 主订单*/
+	private FoodMenu foodMenu;
 
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
@@ -120,6 +124,14 @@ public class OrderByDay extends BaseSimpleEntity {
 	}
 	public void setOrder(OrderMain order) {
 		this.order = order;
+	}
+	@OneToOne
+	@JoinColumn(name="food_menu_id")
+	public FoodMenu getFoodMenu() {
+		return foodMenu;
+	}
+	public void setFoodMenu(FoodMenu foodMenu) {
+		this.foodMenu = foodMenu;
 	}
 	
 }

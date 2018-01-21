@@ -81,15 +81,16 @@ public class AccountController extends BaseController {
 	 * @param accountId
 	 * @return
 	 */
-	@RequestMapping("/personCenterByWeiXin")
-	public String personCenterByWeiXin(String openId, Model model) {
-		Account account = accountService.findByOpenId(openId);
+	@RequestMapping("/person_center")
+	public String personCenter(String openId, Model model) {
+		Account account = accountService.findByOpenId("oqF1q0eSAVHeyjaCs_h02V0qUcx8");
+		SpringWebUtil.setAccount(account);
 		if(account == null){
 			//调至注册
 		}else{
 			model.addAttribute("account", account);
 		}
-		return "/weixin/person_center";
+		return "/wx/person_center";
 	}
 	
 	/**

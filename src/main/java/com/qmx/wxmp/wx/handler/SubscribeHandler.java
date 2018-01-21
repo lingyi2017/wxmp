@@ -44,13 +44,13 @@ public class SubscribeHandler extends AbstractHandler {
         Account account = accountService.findByOpenId(wxMpUser.getOpenId());
         if(account == null){
         	account = new Account();
-        	int count = accountService.findNumByNickName(wxMpUser.getNickname());
-        	account.setName(count == 0 ? wxMpUser.getNickname() : wxMpUser.getNickname() + (count+1));
+        	account.setName(accountService.createName());
         	account.setNickName(wxMpUser.getNickname());
         	account.setOpenid(wxMpUser.getOpenId());
         	account.setSex(wxMpUser.getSex());
         	account.setScore(0);
         	account.setSubscribeTime(new Date(wxMpUser.getSubscribeTime()));
+        	account.setImageWxUrl(wxMpUser.getHeadImgUrl());
         	accountService.save(account);
         }
         WxMpXmlOutTextMessage m
@@ -62,4 +62,5 @@ public class SubscribeHandler extends AbstractHandler {
         logger.info("subscribeMessageHandler" + m.getContent());
         return m;
     }
+    
 };

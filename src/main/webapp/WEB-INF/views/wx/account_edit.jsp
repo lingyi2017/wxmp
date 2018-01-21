@@ -22,7 +22,9 @@
 		</style>
 	</head>
 	<body style="height: 100%;font-family:'黑体';background-color: #F5F5F5;width: 100%;">
-	<form action="">
+	<form id="form" action="${pageContext.request.contextPath}/dcxt/account/wx_save" method="post"
+      onsubmit="return sumbit_form()">
+
 	<div class="weui-cells weui-cells_form">
 		<div class="weui-cells" style="margin-top: -0.7%;margin-bottom: -5px;">
 			<div class="weui-cell">
@@ -33,10 +35,11 @@
 			<div class="weui-cell" style="width: 100%;">
 				<div style="float: left;width: 30%;">头像</div>
 				<div style="float: left;width: 65%;text-align: right;">
+					<input type="hidden" name="imageBase64" id="imageBase64"/>
 					<img src="${account.imageBase64 }" class="toux" id="image"/> 
 				</div>
 				<div style="float: left;margin-left: 3%;">
-					<input type="file"  id="imageBase64" name="imageBase64" style="opacity:0;" onchange="read_file(this)" />&gt;
+					<input type="file"  id="image_upload" style="opacity:0;" onchange="read_file(this)" />&gt;
 				</div>
 					
 			</div>
@@ -67,17 +70,22 @@
 			</div>
 		</div>
 		
-			<div class="weui-cell">
-				<div class="weui-cell__bd">
-					<a href="javascript:;" class="weui-btn weui-btn_primary" style="background-color: orange;">按钮</a>
-				</div>
+		<div class="weui-cell">
+			<div class="weui-cell__bd">
+				<a href="javascript:sumbit_form()" class="weui-btn weui-btn_primary" style="background-color: orange;">确定</a>
 			</div>
+		</div>
 	</div>
 	</form>
 <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
 <script type="text/javascript" src="${ctx}/static/js/weixin/fastclick.js"></script>
 <script>
+	$(function() {
+	    FastClick.attach(document.body);
+	    console.info();
+	    $("input[name='sex'][value='"+"${account.sex}"+"']").attr("checked",true);
+	});
 	function read_file(obj){   
 	    var file = obj.files[0];      
 	    //判断类型是不是图片  
@@ -89,44 +97,32 @@
 	    reader.readAsDataURL(file);   
 	    reader.onload = function(e){   
 			$("#image").attr('src',this.result);
+			console.info(this.result);
+			$("#imageBase64").val(this.result);
 	    }   
 	}
 	
-	function edit_nickname(value){
-		/* $.prompt({
-			  title: '修改昵称',
-			  text: '2-16位字母、汉字、下划线',
-			  input: value,
-			  empty: false,
-			  autoClose:false,
-			  onOK: function (input) {
-				  var reg = /^[\u4e00-\u9fff\w]{2,16}$/;
-				  if(reg.test(input)){
-				      $("#nickName").val(input);
-				      $.closeModal();
-				  }
-			  },
-			  onCancel: function () {
-			  }
-			}); */
-		/* $.modal({
-			  title: "修改昵称",
-			  text: "<input type='text' id='input' value='"+value+"'/>",
-			  buttons: [
-			    { text: "取消",  className: "default", onClick: function(){ $.closeModal();} },
-			    { text: "确定", onClick: function(){ 
-			    	var input = $("#input").val();
-			    	var reg = / ^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}$/;
-					  if(reg.test(input)){
-					      $("#nickName").val(input);
-					      $.closeModal();
-					  }else{
-						  alert("昵称不合法");
-					  }
-			    } }
-			  ]
-			});  */
-	}
+	function sumbit_form() {
+		var reg = /^[\u0391-\uFFE5\w]+$/;
+		var nickName = $("#nickName").val();
+		alert(reg.test(nickName));
+		if (!reg.test(nickName)) {
+            $.alert('请输入合法的昵称,只能包含中英文,数字,下划线,减号');
+            return false;
+        }
+        var phone = $("#phone").val();
+        var tel = /^(((13[0-9]{1})|(15[0-9]{1}))+\d{8})$/;
+        if (phone != "" && !tel.test(phone)) {
+            $.alert('请输入正确的电话号码');
+            return false;
+        }
+        var data = $('form').serialize();
+        var content = JSON.stringify(data).replace(/"/gi, '').replace(/&/gi, '<br>');
+        console.info(content);
+        //$('form').submit();
+    };
+	
+	
 </script>
 </body>
 </html>

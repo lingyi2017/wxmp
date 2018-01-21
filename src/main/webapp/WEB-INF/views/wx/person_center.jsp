@@ -42,10 +42,18 @@
 </head>
 <body ontouchstart style="height: 100%;background-color: #F5F5F5;font-family:'黑体';">
 <!--主体-->
-	<div class="weui-cells" style="min-height: 220px;margin-top: -1%;width: 100%;background-color: orange;position: relative;">
+	<div class="weui-cells" style="min-height: 200px;margin-top: -1%;width: 100%;background-color: orange;position: relative;">
 		
 		<div class="topShow">
-			<div><img class="touxiangStyle" src="${pageContext.request.contextPath}/static/images/wx/touxiang.jpg"/></div>
+			<div>
+			<c:if test="${empty account.imageBase64 }">
+				<img class="touxiangStyle" src="${account.imageWxUrl }"/>
+			</c:if>
+			<c:if test="${!empty account.imageBase64 }">
+				<img class="touxiangStyle" src="${account.imageBase64 }"/>
+			</c:if>
+			
+			</div>
 			<div style="margin-top: 17.5%;text-align: center;"></div>
 		</div>
 	</div>
