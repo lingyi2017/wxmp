@@ -161,6 +161,33 @@ public class ServiceCategoryController extends BaseController {
 
 
 
+	@RequiresUser
+	@ResponseBody
+	@RequestMapping(value = "treeDataSpecial")
+	public List<Map<String, Object>> treeDataSpecial(@RequestParam(required = false) String extId,
+			HttpServletResponse response) {
+
+		response.setContentType("application/json; charset=UTF-8");
+		List<Map<String, Object>> mapList = Lists.newArrayList();
+		List<ServiceCategory> list = thisService.findFirstCategorys();
+		for (int i = 0; i < list.size(); i++) {
+			ServiceCategory e = list.get(i);
+			if (extId == null || (extId != null && !extId.equals(e.getId())
+					&& e.getParentIds().indexOf("," + extId + ",") == -1)) {
+				Map<String, Object> map = Maps.newHashMap();
+				map.put("id", e.getId());
+				map.put("pId", e.getParent() != null ? e.getParent().getId() : 0);
+				map.put("name", e.getName());
+				map.put("wxMenuId", e.getWxMenuId());
+				mapList.add(map);
+			}
+		}
+		return mapList;
+
+	}
+
+
+
 	/**
 	 * 微信端，展示的服务列表页面
 	 * 

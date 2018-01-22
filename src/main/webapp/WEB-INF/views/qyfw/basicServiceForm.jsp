@@ -149,7 +149,7 @@
     <div class="controls">
         <tags:treeselect id="serviceCategory" name="serviceCategory.id" value="${basicService.serviceCategory.id}"
                          labelName="serviceCategory.name" labelValue="${basicService.serviceCategory.name}"
-                         title="服务分类" url="/qyfw/serviceCategory/treeData"
+                         title="服务分类" url="/qyfw/serviceCategory/treeDataSpecial"
                          cssClass="required"/>
     </div>
 </div>
@@ -212,14 +212,29 @@
     <div class="controls">
             <form:hidden path="desciption" id="desciption"/>
         <script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
-        </div>
-        <div class="form-actions">
-			<shiro:hasPermission name="qyfw:basicService:edit">
-				<input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='save' />"/>&nbsp;
-			</shiro:hasPermission>
-			<input id="btnCancel" class="btn" type="button" value="<spring:message code='return' />" onclick="history.go(-1)"/>
-		</div>
-</div>
-</form:form>
-</body>
-</html>
+        </
+        div >
+        < div
+        class
+        = "form-actions" >
+            <shiro:hasPermission name="qyfw:basicService:edit">
+            < input
+        id = "btnSubmit"
+        class
+        = "btn btn-primary"
+        type = "submit"
+        value = "<spring:message code='save' />" / > & nbsp;
+        </shiro:hasPermission>
+        <
+        input
+        id = "btnCancel"
+        class
+        = "btn"
+        type = "button"
+        value = "<spring:message code='return' />"
+        onclick = "history.go(-1)" / >
+            < / div >
+            < / div >
+            </form:form>
+            < / body >
+            < / html >
