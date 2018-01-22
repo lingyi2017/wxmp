@@ -74,7 +74,6 @@
                          }//
                         </c:if>*/
 
-                        debugger;
                         // 特殊处理
                         var wxMenuId = nodes[i].wxMenuId;
                         if (undefined != wxMenuId && "non-existent" != wxMenuId) {
