@@ -32,8 +32,8 @@
 			   <div class="weui-cell__bd" style="text-align:center;height: 40px;">
 			    	<div style="float: left;position: absolute;left: 3%;top: 33%;font-size: larger;"></div>
 					<div style="float: left;position: absolute;left: 40%;top: 35%;text-align: center;font-size: large;">地址列表</div>
-			   		<div style="float: left;position: absolute;left: 85%;top: 35%;">
-			   			<a href="${ctx}/dcxt/accountaddress/wx_address_edit"><img style="width: 40px;height: 40px;" src="${ctx }/static/images/wx/icon-add.png"></a>
+			   		<div style="float: left;position: absolute;left: 85%;top: 25%;">
+			   			<a href="${ctx}/dcxt/accountaddress/wx_address_edit"><img style="width: 35px;height: 35px;" src="${ctx }/static/images/wx/icon-add.png"></a>
 			   		</div>
 			   </div>
 			 </div>
@@ -70,12 +70,14 @@
 	    					</label>
 	    					</div>
 	    					<div style="width: 50%;float: left;">
+	    						<div style="margin-top: 5%;margin-left: 65%;">
 	    						<a href="${ctx}/dcxt/accountaddress/wx_address_edit?id=${entity.id}">
-					        		<img style="width: 30px;height: 30px;" src="${ctx }/static/images/wx/icon-edit.png">
+					        		<img style="width: 20px;height: 20px;" src="${ctx }/static/images/wx/icon-edit.png">
 					        	</a>
 					        	<a href="javascript:del_address('${entity.id }')">
-					        		<img style="width: 30px;height: 30px;" src="${ctx }/static/images/wx/icon-dele.png">
+					        		<img style="width: 20px;height: 20px;" src="${ctx }/static/images/wx/icon-dele.png">
 					        	</a>
+					        	</div>
 	    					</div>
   						</div>
 				        <%-- <div style="width: 50%;float: right;text-align: right;">

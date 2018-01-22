@@ -77,5 +77,10 @@ public class WxPageController {
 	public String areaEdit() {
 		return "/wx/area_edit";
 	}
+	
+	@RequestMapping(value = "/areaList")
+	public String areaList() {
+		return "/weixxin/address_list";
+	}
 
 }
