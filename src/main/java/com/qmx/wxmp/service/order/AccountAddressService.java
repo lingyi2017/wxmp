@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.qmx.wxmp.common.utils.IdGen;
 import com.qmx.wxmp.common.utils.StringUtils;
 import com.qmx.wxmp.entity.order.Account;
 import com.qmx.wxmp.entity.order.AccountAddress;
@@ -33,25 +34,19 @@ public class AccountAddressService extends BaseService {
 	}
 
 	@Transactional(readOnly = false)
-	public void saveByWeiXin(AccountAddress entity, String accountId) {
+	public void saveByWeiXin(AccountAddress entity, Account account) {
 		accountAddressDao.clear();
-		if(StringUtils.isBlank(accountId)){//修改
-			AccountAddress address = accountAddressDao.get(entity.getId());
-			address.setPerson(entity.getPerson());
-			address.setPhone(entity.getPhone());
-			address.setProvence(entity.getProvence());
-			address.setCity(entity.getCity());
-			address.setCounty(entity.getCounty());
-			address.setAddress(entity.getAddress());
-			address.setIsDefault(entity.getIsDefault());
-			address.setCreateDate(new Date());
-			accountAddressDao.save(address);
-		}else{
-			Account account = accountDao.get(accountId);
+		//如果为默认地址，修改旧默认地址
+		if(entity.getIsDefault() == 1){
+			accountAddressDao.editDefaultAddress(account.getId());
+		}
+		if(StringUtils.isNotBlank(entity.getId())){//修改
+			accountAddressDao.editBySql(entity);
+		}else{//新增
+			entity.setId(IdGen.uuid());
 			entity.setAccount(account);
-			entity.setIsDefault(0);
 			entity.setCreateDate(new Date());
-			accountAddressDao.save(entity);
+			accountAddressDao.saveBySql(entity);
 		}
 	}
 	
@@ -89,4 +84,5 @@ public class AccountAddressService extends BaseService {
 		oldDefaultAddress.setIsDefault(0);
 		save(oldDefaultAddress);
 	}
+	
 }

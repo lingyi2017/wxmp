@@ -100,7 +100,19 @@ public class AccountController extends BaseController {
 	 */
 	@RequestMapping("/wx_account_edit")
 	public String wxAccountEdit(Model model) {
-		model.addAttribute("account", SpringWebUtil.getAccount());
+		model.addAttribute("account", accountService.get("09f89a7575094781956aa65fe659b810"));
+		//model.addAttribute("account", SpringWebUtil.getAccount());
 		return "/wx/account_edit";
+	}
+	
+	/**
+	 * 微信端：个人资料
+	 * @param accountId
+	 * @return
+	 */
+	@RequestMapping("/wx_account_save")
+	public String wxAccountSave(Model model, Account account) {
+		accountService.save(account);
+		return "/wx/person_center";
 	}
 }

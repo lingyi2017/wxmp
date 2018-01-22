@@ -1,5 +1,6 @@
 package com.qmx.wxmp.entity.order;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -63,6 +64,7 @@ public class AccountAddress extends BaseSimpleEntity {
 		this.address = address;
 	}
 
+	@Column(name="is_default")
 	public Integer getIsDefault() {
 		return isDefault;
 	}

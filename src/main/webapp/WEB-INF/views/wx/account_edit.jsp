@@ -22,9 +22,9 @@
 		</style>
 	</head>
 	<body style="height: 100%;font-family:'黑体';background-color: #F5F5F5;width: 100%;margin-top: -10%;">
-	<form id="form" action="${pageContext.request.contextPath}/dcxt/account/wx_save" method="post"
-      onsubmit="return sumbit_form()">
-
+	<form id="form" action="${pageContext.request.contextPath}/dcxt/account/wx_account_save" method="post"
+      >
+	<input type="hidden" name="id" value="${account.id }"/>
 	<div class="weui-cells weui-cells_form">
 		<div class="weui-cells" style="margin-top: -0.7%;margin-bottom: -5px;">
 			<div class="weui-cell">
@@ -36,7 +36,12 @@
 				<div style="float: left;width: 30%;">头像</div>
 				<div style="float: left;width: 60%;text-align: right;" onclick="changeToux()">
 					<input type="hidden" name="imageBase64" id="imageBase64"/>
-					<img src="${account.imageBase64 }" class="toux" id="image"/> 
+					<c:if test="${empty account.imageBase64 }">
+						<img src="${account.imageWxUrl }" class="toux" id="image"/> 
+					</c:if>
+					<c:if test="${!empty account.imageBase64 }">
+						<img src="${account.imageBase64 }" class="toux" id="image"/> 
+					</c:if>
 				</div>
 				<input type="file" id="image_upload" style="display: none;" onchange="read_file(this)" />
 					
@@ -50,13 +55,13 @@
 			<div class="weui-cell" style="width: 100%;">
 				<div style="float: left;width: 30%;">昵称</div>
 				<div style="float: left;margin-left: 30%;">
-					<input type="text" name="nickName" style="width: 90%;text-align: right;" value="${account.nickName }"/>
+					<input type="text" name="nickName" id="nickName" style="width: 90%;text-align: right;" value="${account.nickName }"/>
 				</div>
 			</div>
 			<div class="weui-cell" style="width: 100%;">
 				<div style="float: left;width: 30%;">手机号码</div>
 				<div style="float: left;margin-left: 30%;">
-					<input type="text" name="phone" style="width: 90%;text-align: right;" maxlength="11" value="${account.phone }" />
+					<input type="text" name="phone" id="phone" style="width: 90%;text-align: right;" maxlength="11" value="${account.phone }" />
 				</div>
 			</div>
 			<div class="weui-cell" style="width: 100%;">
@@ -69,11 +74,11 @@
 		</div>
 	</div>
 	
-		<div class="weui-cell" style="position:absolute;bottom: 10px;height: 30px;width: 100%;margin-left: -4%;">
-			<div class="weui-cell__bd">
-				<a href="javascript:sumbit_form()" class="weui-btn weui-btn_primary" style="background-color: orange;">确定</a>
-			</div>
+	<div class="weui-cell" style="position:absolute;bottom: 10px;height: 30px;width: 100%;margin-left: -4%;">
+		<div class="weui-cell__bd">
+			<a href="javascript:sumbit_form()" class="weui-btn weui-btn_primary" style="background-color: orange;">确定</a>
 		</div>
+	</div>
 	</form>
 <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
@@ -107,21 +112,17 @@
 	function sumbit_form() {
 		var reg = /^[\u0391-\uFFE5\w]+$/;
 		var nickName = $("#nickName").val();
-		alert(reg.test(nickName));
 		if (!reg.test(nickName)) {
             $.alert('请输入合法的昵称,只能包含中英文,数字,下划线,减号');
-            return false;
+            return;
         }
-        var phone = $("#phone").val();
-        var tel = /^(((13[0-9]{1})|(15[0-9]{1}))+\d{8})$/;
-        if (phone != "" && !tel.test(phone)) {
+        var reg2 = /^1[3|4|5|7|8|9][0-9]\d{4,8}$/;
+		var phone = $("#phone").val();
+        if (!(phone == "" || phone == null || phone == undefined) && !reg2.test(phone)) {
             $.alert('请输入正确的电话号码');
-            return false;
+            return;
         }
-        var data = $('form').serialize();
-        var content = JSON.stringify(data).replace(/"/gi, '').replace(/&/gi, '<br>');
-        console.info(content);
-        //$('form').submit();
+        $("#form").submit();
     };
 	
 	

@@ -38,6 +38,18 @@
 			margin-right: 35%;
 			margin-top: -10%;
 		}
+		a:link {   
+			color: #000000;   
+			text-decoration: none;   
+		}   
+		a:visited {   
+			color: #000000;   
+			text-decoration: none;   
+		}   
+		a:hover {   
+			color: #999999;   
+			text-decoration: underline;   
+		} 
 	</style>
 </head>
 <body ontouchstart style="height: 100%;background-color: #F5F5F5;font-family:'黑体';">
@@ -86,7 +98,7 @@
 				</div>
 			</div>
 		</a>
-		<a href="${ctx}/dcxt/accountaddress/wxAddressList">
+		<a href="${ctx}/dcxt/accountaddress/wx_address_list">
 			<div class="weui-cell">
 				<div class="weui-cell__bd"><img style="width: 30px;height: 30px;" src="${ctx }/static/images/wx/center-address.png"></div>
 				<div class="weui-cell__bd">
