@@ -34,6 +34,11 @@
 			background-color: orange;
 		}
 		
+		.noEat {
+			color:white;
+			background-color: gray;
+		}
+		
 		.packStyle {
 			border-radius: 45%;      
 			-moz-border-radius: 45%;      
@@ -205,7 +210,8 @@
 		}
 		function initData(data){
 			var activeDay = '15,16';
-			var eatDay = '18,19';
+			var eatDay = '';
+			var nowStatus = '1';
 			
 			for(var i = 1;i<=31;i++){
 				var nowOneDay = new Date(new Date().getFullYear(), new Date().getMonth(), i);
@@ -235,9 +241,9 @@
 							$("#zliu").append("<div class='numberStyle'>&nbsp;</div>");
 						}
 						if(activeDay.indexOf(dday)>-1){
-							$("#zyi").append("<div class='numberStyle numberActive'>"+dday+"</div>");
+							$("#zyi").append("<div class='numberStyle numberActive' id='"+dday+"'>"+dday+"</div>");
 						}else{
-							$("#zyi").append("<div class='numberStyle'>"+dday+"</div>");
+							$("#zyi").append("<div class='numberStyle' id='"+dday+"'>"+dday+"</div>");
 						}
 						if(eatDay.indexOf(dday)>-1){
 							$("#zyi").append("<div style='height: 4px;width: 4px;background-color: orange;margin-left: 45%;'></div>");
@@ -255,9 +261,9 @@
 							$("#zliu").append("<div class='numberStyle'>&nbsp;</div>");
 						}
 						if(activeDay.indexOf(dday)>-1){
-							$("#zer").append("<div class='numberStyle numberActive'>"+dday+"</div>");
+							$("#zer").append("<div class='numberStyle numberActive' id='"+dday+"'>"+dday+"</div>");
 						}else{
-							$("#zer").append("<div class='numberStyle'>"+dday+"</div>");
+							$("#zer").append("<div class='numberStyle' id='"+dday+"'>"+dday+"</div>");
 						}
 						if(eatDay.indexOf(dday)>-1){
 							$("#zer").append("<div style='height: 4px;width: 4px;background-color: orange;margin-left: 45%;'></div>");
@@ -275,9 +281,9 @@
 							$("#zliu").append("<div class='numberStyle'>&nbsp;</div>");
 						}
 						if(activeDay.indexOf(dday)>-1){
-							$("#zsan").append("<div class='numberStyle numberActive'>"+dday+"</div>");
+							$("#zsan").append("<div class='numberStyle numberActive' id='"+dday+"'>"+dday+"</div>");
 						}else{
-							$("#zsan").append("<div class='numberStyle'>"+dday+"</div>");
+							$("#zsan").append("<div class='numberStyle' id='"+dday+"'>"+dday+"</div>");
 						}
 						if(eatDay.indexOf(dday)>-1){
 							$("#zsan").append("<div style='height: 4px;width: 4px;background-color: orange;margin-left: 45%;'></div>");
@@ -295,9 +301,9 @@
 							$("#zliu").append("<div class='numberStyle'>&nbsp;</div>");
 						}
 						if(activeDay.indexOf(dday)>-1){
-							$("#zsi").append("<div class='numberStyle numberActive'>"+dday+"</div>");
+							$("#zsi").append("<div class='numberStyle numberActive' id='"+dday+"'>"+dday+"</div>");
 						}else{
-							$("#zsi").append("<div class='numberStyle'>"+dday+"</div>");
+							$("#zsi").append("<div class='numberStyle' id='"+dday+"'>"+dday+"</div>");
 						}
 						if(eatDay.indexOf(dday)>-1){
 							$("#zsi").append("<div style='height: 4px;width: 4px;background-color: orange;margin-left: 45%;'></div>");
@@ -315,9 +321,9 @@
 							$("#zliu").append("<div class='numberStyle'>&nbsp;</div>");
 						}
 						if(activeDay.indexOf(dday)>-1){
-							$("#zwu").append("<div class='numberStyle numberActive'>"+dday+"</div>");
+							$("#zwu").append("<div class='numberStyle numberActive' id='"+dday+"'>"+dday+"</div>");
 						}else{
-							$("#zwu").append("<div class='numberStyle'>"+dday+"</div>");
+							$("#zwu").append("<div class='numberStyle' id='"+dday+"'>"+dday+"</div>");
 						}
 						if(eatDay.indexOf(dday)>-1){
 							$("#zwu").append("<div style='height: 4px;width: 4px;background-color: orange;margin-left: 45%;'></div>");
@@ -337,7 +343,14 @@
 				}
 			}
 		
-			
+			var dateNum = new Date().getDate().length<2?'0'+new Date().getDate():new Date().getDate();
+			if(nowStatus == "1"){
+				$("#"+dateNum).removeClass("numberActive");
+				$("#"+dateNum).addClass("numberActive");
+			}else{
+				$("#"+dateNum).removeClass("numberActive");
+				$("#"+dateNum).addClass("noEat");
+			}
 		}
 		</script>
 	</body>
