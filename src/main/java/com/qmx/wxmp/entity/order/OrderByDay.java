@@ -15,6 +15,7 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.qmx.wxmp.common.persistence.BaseSimpleEntity;
 import com.qmx.wxmp.entity.dcxt.FoodMenu;
+import com.qmx.wxmp.entity.dcxt.FoodMenuItem;
 
 /**
  * 每日订单
@@ -63,18 +64,19 @@ public class OrderByDay extends BaseSimpleEntity {
 	private Date updateTime;
 	/** 主订单*/
 	private OrderMain order;
-	/** 主订单*/
-	private FoodMenu foodMenu;
+	/** 菜单明细*/
+	private FoodMenuItem foodMenuItem;
 
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+	@Column(name="delivery_date")
 	public Date getDeliveryDate() {
 		return deliveryDate;
 	}
 	public void setDeliveryDate(Date deliveryDate) {
 		this.deliveryDate = deliveryDate;
 	}
-	@Column(precision=8,scale=2)
+	@Column(name="order_money",precision=8,scale=2)
 	public BigDecimal getOrderMoney() {
 		return orderMoney;
 	}
@@ -111,6 +113,7 @@ public class OrderByDay extends BaseSimpleEntity {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	@Column(name="order_number")
 	public String getOrderNumber() {
 		return orderNumber;
 	}
@@ -126,12 +129,13 @@ public class OrderByDay extends BaseSimpleEntity {
 		this.order = order;
 	}
 	@OneToOne
-	@JoinColumn(name="food_menu_id")
-	public FoodMenu getFoodMenu() {
-		return foodMenu;
+	@JoinColumn(name="food_menu_item_id")
+	public FoodMenuItem getFoodMenuItem() {
+		return foodMenuItem;
 	}
-	public void setFoodMenu(FoodMenu foodMenu) {
-		this.foodMenu = foodMenu;
+	public void setFoodMenuItem(FoodMenuItem foodMenuItem) {
+		this.foodMenuItem = foodMenuItem;
 	}
+	
 	
 }

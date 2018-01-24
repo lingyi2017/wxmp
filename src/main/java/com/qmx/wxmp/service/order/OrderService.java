@@ -133,5 +133,18 @@ public class OrderService extends BaseService {
 		return orderDao.findByOutTradeNo(outTradeNo);
 	}
 	
-	
+	/**
+	 * 微信订单列表
+	 * @param accountId
+	 * @return
+	 */
+	public List<OrderMain> findOrderListByAccount(String accountId) {
+		DetachedCriteria dc = orderDao.createDetachedCriteria();
+		dc.createAlias("account", "account");
+		dc.add(Restrictions.eq("account.id", accountId));
+		dc.add(Restrictions.eq("delFlag", OrderMain.DEL_FLAG_NORMAL));
+		dc.addOrder(Order.desc("orderTime"));
+		return orderDao.find(dc);
+
+	}
 }

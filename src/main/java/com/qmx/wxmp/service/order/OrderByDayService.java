@@ -1,5 +1,8 @@
 package com.qmx.wxmp.service.order;
 
+import java.util.Date;
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
@@ -97,5 +100,19 @@ public class OrderByDayService extends BaseService {
 	@Transactional(readOnly = false)
 	public void deliveryByDay(String[] orderIds){
 		byDayDao.updateOrderStatusByIds(orderIds);
+	}
+	
+	/**
+	 * 客户一个月的用餐查询
+	 * @param year
+	 * @param month
+	 * @param accountId
+	 * @return
+	 */
+	public List<OrderByDay> findMonthEatList(String year, String month, String accountId) {
+		Date beginDate = DateUtils.strToDate(year + "-" + month+"-01","yyyy-MM-dd");
+		Date endDate = DateUtils.getDateByAddMonth(beginDate, 1);
+		return byDayDao.getMonthEatList(beginDate, endDate, accountId);
+
 	}
 }

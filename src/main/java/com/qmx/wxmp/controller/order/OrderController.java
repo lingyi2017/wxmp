@@ -1,5 +1,7 @@
 package com.qmx.wxmp.controller.order;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -128,5 +130,20 @@ public class OrderController extends BaseController {
 		}
 		return "redirect:/dcxt/order/?repage";
 
+	}
+	
+	/**
+	 * 微信订单列表
+	 * @param entity
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("wx_order_list")
+	public String wxOrderList(Model model) {
+		List<OrderMain> orderList = orderService.findOrderListByAccount("09f89a7575094781956aa65fe659b810");
+		model.addAttribute("orderList", orderList);
+		return "/wx/order_list";
 	}
 }

@@ -58,7 +58,7 @@
 					<c:if test="${empty address }">添加地址</c:if>
 					<c:if test="${!empty address }">修改地址</c:if>
 					</div>
-			   		<div style="float: left;position: absolute;left: 85%;top: 35%;"><c:if test="${!empty address }"><a href="javascript:del_address()">删除</a></c:if></div>
+			   		<div style="float: left;position: absolute;left: 85%;top: 35%;"></div>
 			   </div>
 			 </div>
 			 <div class="weui-cell" style="width: 100%;">
@@ -83,12 +83,12 @@
 					<input type="text" id="address_detail" style="width: 90%;text-align: right;font-size: smaller;" value="${address.address }"  />
 				</div>
 			</div>
-			<div class="weui-cell weui-cell_switch">
+			<!-- <div class="weui-cell weui-cell_switch">
 		      <div class="weui-cell__bd">设为默认地址</div>
 		      <div class="weui-cell__ft">
 		      	<input class="weui-switch" type="checkbox" name="is_default" /> 
 		      </div>
-		    </div>
+		    </div> -->
 		</div>
 		
 		<div class="weui-cell" style="position:absolute;bottom: 10px;height: 30px;width: 100%;margin-left: -4%;">
@@ -103,10 +103,10 @@
 		<script type="text/javascript" src="${ctx}/static/js/weixin/city-picker-now.js"></script>
 		<script>
   $(function() {
-    FastClick.attach(document.body);
-    if("${address.isDefault}" == 1){
+    //FastClick.attach(document.body);
+    /* if("${address.isDefault}" == 1){
     	$("[name = is_default]:checkbox").attr("checked", true);
-    }
+    } */
     if("${address.id}"){
     	$("#address").val("${address.provence } ${address.city } ${address.county }");
     }

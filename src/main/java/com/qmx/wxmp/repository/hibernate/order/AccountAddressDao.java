@@ -49,11 +49,22 @@ public class AccountAddressDao extends BaseDao<AccountAddress> {
 	}
 	
 	/**
-	 * 修改默认地址属性
+	 * 设置默认地址属性
 	 * @param accountId
 	 */
-	public void editDefaultAddress(String accountId) {
-
+	public void setDefaultAddress(String id) {
+		String sql = "update dcxt_account_address set is_default = :is_default WHERE id = :id";
+		Parameter parameter = new Parameter();
+		parameter.put("is_default", 1);
+		parameter.put("id", id);
+		updateBySql(sql, parameter);
+	}
+	
+	/**
+	 * 取消默认地址属性
+	 * @param accountId
+	 */
+	public void cancelDefaultAddress(String accountId) {
 		String sql = "update dcxt_account_address set is_default = :is_default WHERE account_id = :account_id";
 		Parameter parameter = new Parameter();
 		parameter.put("is_default", 0);
@@ -83,7 +94,6 @@ public class AccountAddressDao extends BaseDao<AccountAddress> {
 		parameter.put("create_date", address.getCreateDate());
 		parameter.put("del_flag", AccountAddress.DEL_FLAG_NORMAL);
 		updateBySql(sql, parameter);
-
 	}
 	
 	/**

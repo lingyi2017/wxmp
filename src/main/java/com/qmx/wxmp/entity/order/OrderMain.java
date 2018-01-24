@@ -54,6 +54,8 @@ public class OrderMain extends BaseSimpleEntity {
 	private Date pauseTime;
 	/** 恢复时间*/
 	private Date recoverTime;
+	/** 产品名称*/
+	private String productName;;
 	/** 订单状态*/
 	private String status;
 	/** 订单总金额*/
@@ -222,6 +224,15 @@ public class OrderMain extends BaseSimpleEntity {
 
 	public void setOrderPayRecord(OrderPayRecord orderPayRecord) {
 		this.orderPayRecord = orderPayRecord;
+	}
+
+	@Column(name="product_name")
+	public String getproductName() {
+		return productName;
+	}
+
+	public void setproductName(String productName) {
+		this.productName = productName;
 	}
 	
 }

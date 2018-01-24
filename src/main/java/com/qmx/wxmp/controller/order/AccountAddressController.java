@@ -51,17 +51,6 @@ public class AccountAddressController extends BaseController {
 		return "/order/accountaddressForm";
 	}*/
 	
-	/**
-	 * 微信端：增加收货地址
-	 * @param openId
-	 * @return
-	 */
-	@RequestMapping("/wx_address_save")
-	public String wxAddressSave(String accountId, Model model) {
-		model.addAttribute("accountId", accountId);
-		return "/wx/address_add";
-	}
-	
 	
 	/**
 	 * 微信端：收货地址列表
@@ -117,6 +106,18 @@ public class AccountAddressController extends BaseController {
 	@ResponseBody
 	public String wxAddressDel(@RequestParam(value="id",required=true) String id) {
 		accountAddressService.delete(id);
+		return "true";
+	}
+	
+	/**
+	 * 微信端：修改默认地址
+	 * @param addressId
+	 * @return
+	 */
+	@RequestMapping("/wx_edit_default_address")
+	@ResponseBody
+	public String wxEditDefaultAddress(@RequestParam(value="id",required=true) String id) {
+		accountAddressService.updateDefaultAddress("09f89a7575094781956aa65fe659b810", id);
 		return "true";
 	}
 }

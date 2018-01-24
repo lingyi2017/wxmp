@@ -36,15 +36,12 @@ public class AccountAddressService extends BaseService {
 	@Transactional(readOnly = false)
 	public void saveByWeiXin(AccountAddress entity, Account account) {
 		accountAddressDao.clear();
-		//如果为默认地址，修改旧默认地址
-		if(entity.getIsDefault() == 1){
-			accountAddressDao.editDefaultAddress(account.getId());
-		}
 		if(StringUtils.isNotBlank(entity.getId())){//修改
 			accountAddressDao.editBySql(entity);
 		}else{//新增
 			entity.setId(IdGen.uuid());
 			entity.setAccount(account);
+			entity.setIsDefault(0);
 			entity.setCreateDate(new Date());
 			accountAddressDao.saveBySql(entity);
 		}
@@ -77,12 +74,8 @@ public class AccountAddressService extends BaseService {
 	 */
 	@Transactional(readOnly = false)
 	public void updateDefaultAddress(String accountId, String addressId){
-		AccountAddress oldDefaultAddress = accountAddressDao.getDefaultAddress(accountId);
-		AccountAddress newDefaultAddress = accountAddressDao.get(addressId);
-		newDefaultAddress.setIsDefault(1);
-		save(newDefaultAddress);
-		oldDefaultAddress.setIsDefault(0);
-		save(oldDefaultAddress);
+		accountAddressDao.cancelDefaultAddress(accountId);
+		accountAddressDao.setDefaultAddress(addressId);
 	}
 	
 }

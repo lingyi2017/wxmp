@@ -71,7 +71,7 @@
 	</div>
 	
 	<div class="weui-cells" style="height: 65%;">
-		<a href="${ctx}/dcxt/order/list">
+		<a href="${ctx}/dcxt/order/wx_order_list">
 			<div class="weui-cell">
 				<div class="weui-cell__bd"><img style="width: 30px;height: 30px;" src="${ctx }/static/images/wx/center-order.png"></div>
 				<div class="weui-cell__bd">
@@ -89,7 +89,7 @@
 				</div>
 			</div>
 		</a>
-		<a href="${ctx}/dcxt/order/list">
+		<a href="${ctx}/dcxt/orderbyday/wx_eat_history">
 			<div class="weui-cell">
 				<div class="weui-cell__bd"><img style="width: 30px;height: 30px;" src="${ctx }/static/images/wx/center-eatfood.png"></div>
 				<div class="weui-cell__bd">

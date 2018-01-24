@@ -112,6 +112,13 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 	public static String getDay() {
 		return formatDate(new Date(), "dd");
 	}
+	
+	/**
+	 * 得到指定日期的天数 格式（dd）
+	 */
+	public static String getDay(Date date) {
+		return formatDate(date, "dd");
+	}
 
 
 
@@ -358,6 +365,20 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		cal.add(Calendar.DATE, days);
+		return formatDate2(cal.getTime(), "yyyy-MM-dd");
+	}
+	
+	/**
+	 * 日期加减天数
+	 * 
+	 * @param date
+	 * @param days
+	 * @return
+	 */
+	public static Date getDateByAddMonth(Date date, int month) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.MONTH, month);
 		return formatDate2(cal.getTime(), "yyyy-MM-dd");
 	}
 

@@ -1,5 +1,8 @@
 package com.qmx.wxmp.controller.order;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,8 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.qmx.wxmp.common.persistence.Page;
+import com.qmx.wxmp.common.utils.DateUtils;
 import com.qmx.wxmp.controller.BaseController;
+import com.qmx.wxmp.dto.order.AjaxResult;
+import com.qmx.wxmp.dto.order.MonthEatDTO;
+import com.qmx.wxmp.dto.order.MonthEatDTO.DayEatDTO;
+import com.qmx.wxmp.dto.order.MonthEatDTO.DishDTO;
 import com.qmx.wxmp.dto.order.OrderQueryDTO;
+import com.qmx.wxmp.entity.dcxt.Dish;
 import com.qmx.wxmp.entity.order.OrderByDay;
 import com.qmx.wxmp.service.order.OrderByDayService;
 
@@ -64,6 +73,11 @@ public class OrderByDayController extends BaseController {
 		return "/order/orderbytodayList";
 	}
 
+	/**
+	 * 每日出餐
+	 * @param orderIds
+	 * @return
+	 */
 	@RequestMapping("deliveryByDay")
 	@ResponseBody
 	public String deliveryByDay(@RequestParam(value = "orderIds[]") String[] orderIds) {
@@ -77,4 +91,57 @@ public class OrderByDayController extends BaseController {
 		}
 	}
 	
+	/**
+	 * 用餐查询
+	 * @param orderIds
+	 * @return
+	 */
+	@RequestMapping("wx_eat_history")
+	public String eatHistory(Model model) {
+		model.addAttribute("year", DateUtils.getYear());
+		model.addAttribute("month", DateUtils.getMonth());
+		return "/wx/eat_history";
+	}
+	
+	/**
+	 * 用餐查询
+	 * @param orderIds
+	 * @return
+	 */
+	@RequestMapping("wx_eat_history_data")
+	@ResponseBody
+	public AjaxResult eatHistoryData(String year, String month) {
+		AjaxResult result = new AjaxResult();
+		MonthEatDTO eatDTO = new MonthEatDTO();
+		try{
+			List<OrderByDay> list = byDayService.findMonthEatList(year, month, "09f89a7575094781956aa65fe659b810");
+			List<DayEatDTO> dayEatDTOs = new ArrayList<MonthEatDTO.DayEatDTO>();
+			for(OrderByDay day : list){
+				DayEatDTO dayEatDTO = new MonthEatDTO().new DayEatDTO();
+				//dayEatDTO.setProductName(day.getFoodMenuItem().getProduct().getName());
+				//dayEatDTO.setMealName(day.getFoodMenuItem().getMeal().getType());
+				dayEatDTO.setDay(DateUtils.getDay(day.getDeliveryDate()));
+				List<DishDTO> dishDTOs = new ArrayList<MonthEatDTO.DishDTO>();
+				/*for(Dish dish : day.getFoodMenuItem().getDishes()){
+					DishDTO dishDTO = new MonthEatDTO().new DishDTO();
+					dishDTO.setDishName(dish.getName());
+					dishDTO.setDishType(dish.getType());
+					dishDTO.setDishImage(dish.getImage());
+					dishDTOs.add(dishDTO);
+				}*/
+				dayEatDTO.setDishDTOs(dishDTOs);
+				dayEatDTOs.add(dayEatDTO);
+			}
+			eatDTO.setDayEatDTOs(dayEatDTOs);
+			eatDTO.setYear(year);
+			eatDTO.setMonth(month);
+			result.setResult(true);
+			result.setObj(eatDTO);
+			return result;
+		} catch(Exception e){
+			e.printStackTrace();
+			result.setResult(false);
+			return result;
+		} 
+	}
 }

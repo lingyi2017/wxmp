@@ -44,7 +44,7 @@
 				        <h4 class="weui-media-box__title"><span style=" display:-moz-inline-box; display:inline-block; width: 30%">${entity.person }</span><span>${entity.phone }</span></h4>
 				        <p class="weui-media-box__desc address-txt">${entity.provence }${entity.city }${entity.county }${entity.address }</p>
 				      	<div class="weui-cells weui-cells_checkbox commg">
-				      		<div style="width: 50%;float: left;">
+				      		<div style="width: 40%;float: left;">
 	    					<label class="weui-cell weui-check__label" for="${entity.id }">
 	    						<c:if test="${entity.isDefault == 1 }">
 	    							<div class="weui-cell__hd" >
@@ -57,25 +57,26 @@
 								      </div>
 	    						</c:if>
 						      	<c:if test="${entity.isDefault == 0 }">
-	    							<div class="weui-cell__hd" >
+	    							<div class="weui-cell__hd" onclick="edit_default_address('${entity.id}')">
 								        <input type="checkbox" class="weui-check" name="defalut_address" id="${entity.id }" >
 								        <i class="weui-icon-checked"></i>
-								      </div>
-								      <div class="weui-cell__bd">
+								    </div>
+								    <div class="weui-cell__bd">
 								      	<p>设为默认</p>
 								      
-								      </div>
+								    </div>
 	    						</c:if>
 	      						
 	    					</label>
 	    					</div>
+	    					<div style="width: 10%;float: left;"></div>
 	    					<div style="width: 50%;float: left;">
-	    						<div style="margin-top: 5%;margin-left: 65%;">
+	    						<div style="margin-top: 5%;margin-left: 30%;">
 	    						<a href="${ctx}/dcxt/accountaddress/wx_address_edit?id=${entity.id}">
-					        		<img style="width: 20px;height: 20px;" src="${ctx }/static/images/wx/icon-edit.png">
+					        		<img style="width: 20px;height: 20px;" src="${ctx }/static/images/wx/icon-edit.png">编辑
 					        	</a>
 					        	<a href="javascript:del_address('${entity.id }')">
-					        		<img style="width: 20px;height: 20px;" src="${ctx }/static/images/wx/icon-dele.png">
+					        		<img style="width: 20px;height: 20px;" src="${ctx }/static/images/wx/icon-dele.png">删除
 					        	</a>
 					        	</div>
 	    					</div>
@@ -100,35 +101,56 @@
 		<script type="text/javascript" src="${ctx}/static/js/weixin/fastclick.js"></script>
 		<script type="text/javascript" src="${ctx}/static/js/weixin/city-picker-now.js"></script>
 		<script type="text/javascript">
-		function del_address(id){
-	    	  $.confirm({
-	    		  title: '确认删除',
-	    		  text: '确定删除此收货地址吗?',
-	    		  onOK: function () {
-	    			  $.ajax({
-	    		            type:"POST",
-	    		            async:false,
-	    		            url:"${ctx}/dcxt/accountaddress/wx_del",
-	    		            data:{
-	    		            	id : id
-	    		            },
-	    		            datatype: "json",
-	    		            success:function(data){
-	    		            	if(data){
-	    		            		$.toptip("删除成功",3000,"success");
-	    		            		window.location.href = "${ctx}/dcxt/accountaddress/wx_address_list";
-	    		            	}
-	    		            },
-	    		            error: function(){
-	    		                //请求出错处理
-	    		            	$.toptip("修改失败");
-	    		            }         
-	    		         });
-	    		  },
-	    		  onCancel: function () {
-	    		  }
-	    		});
-	      }
+			function del_address(id){
+		    	  $.confirm({
+		    		  title: '确认删除',
+		    		  text: '确定删除此收货地址吗?',
+		    		  onOK: function () {
+		    			  $.ajax({
+		    		            type:"POST",
+		    		            async:false,
+		    		            url:"${ctx}/dcxt/accountaddress/wx_del",
+		    		            data:{
+		    		            	id : id
+		    		            },
+		    		            datatype: "json",
+		    		            success:function(data){
+		    		            	if(data){
+		    		            		$.toptip("删除成功",3000,"success");
+		    		            		window.location.href = "${ctx}/dcxt/accountaddress/wx_address_list";
+		    		            	}
+		    		            },
+		    		            error: function(){
+		    		                //请求出错处理
+		    		            	$.toptip("修改失败");
+		    		            }         
+		    		         });
+		    		  },
+		    		  onCancel: function () {
+		    		  }
+		    		});
+		      }
+			function edit_default_address(new_address_id){
+    			  $.ajax({
+    		            type:"POST",
+    		            async:false,
+    		            url:"${ctx}/dcxt/accountaddress/wx_edit_default_address",
+    		            data:{
+    		            	id : new_address_id
+    		            },
+    		            datatype: "json",
+    		            success:function(data){
+    		            	if(data){
+    		            		window.location.reload();
+    		            	}
+    		            },
+    		            error: function(){
+    		                //请求出错处理
+    		            	$.toptip("修改失败");
+    		            }         
+    		         });
+		    		
+		      }
 		</script>
 	</body>
 </html>
