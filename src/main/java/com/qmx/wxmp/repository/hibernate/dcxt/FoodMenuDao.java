@@ -6,6 +6,10 @@ import org.springframework.stereotype.Repository;
 
 import com.qmx.wxmp.common.persistence.BaseDao;
 import com.qmx.wxmp.entity.dcxt.FoodMenu;
+import org.springframework.util.CollectionUtils;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * 菜单 Dao
@@ -43,6 +47,21 @@ public class FoodMenuDao extends BaseDao<FoodMenu> {
 		parameter.put("add_date", foodMenuDto.getAddDate());
 		parameter.put("id", foodMenuDto.getId());
 		updateBySql(sql, parameter);
+
+	}
+
+
+
+	public FoodMenu findByDate(String date) {
+
+		String sql = "SELECT * FROM dcxt_food_menu WHERE add_date = :add_date AND state = 2 LIMIT 1";
+		Parameter parameter = new Parameter();
+		parameter.put("add_date", date);
+		List<FoodMenu> foodMenus = findBySql(sql, parameter, FoodMenu.class);
+		if (!CollectionUtils.isEmpty(foodMenus)) {
+			return foodMenus.get(0);
+		}
+		return null;
 
 	}
 }

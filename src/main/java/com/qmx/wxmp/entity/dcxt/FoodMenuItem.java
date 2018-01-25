@@ -82,7 +82,6 @@ public class FoodMenuItem extends BaseSimpleEntity {
 	@ManyToOne
 	@JoinColumn(name = "meal_id")
 	@NotFound(action = NotFoundAction.IGNORE)
-	@JsonIgnore
 	@NotNull(message = "餐标不能为空")
 	public Meal getMeal() {
 		return meal;
@@ -102,7 +101,6 @@ public class FoodMenuItem extends BaseSimpleEntity {
 	@OrderBy("id")
 	@Fetch(FetchMode.SUBSELECT)
 	@NotFound(action = NotFoundAction.IGNORE)
-	@JsonIgnore
 	public List<Dish> getDishes() {
 		return dishes;
 	}

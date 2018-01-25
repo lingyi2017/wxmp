@@ -150,4 +150,10 @@ public class FoodMenuService extends BaseService {
 		return thisDao.find(page, dc);
 
 	}
+
+
+
+	public FoodMenu findByDate(String date) {
+		return thisDao.findByDate(date);
+	}
 }

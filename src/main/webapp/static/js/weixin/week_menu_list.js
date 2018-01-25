@@ -81,7 +81,6 @@ function initWeekDays() {
  *
  */
 function initProducts() {
-
     $.ajax({
         contentType: "application/json",
         type: "post",
@@ -128,7 +127,59 @@ function initProducts() {
 function initMeals() {
 
     if (null != initSelectedDay && null != initSelectedProduct) {
+        var data = JSON.stringify({"date": initSelectedDay, "productId": initSelectedProduct});
+        $.ajax({
+            contentType: "application/json",
+            type: "post",
+            data: data,
+            url: "/wxmp/rs/wx/foodMenu/detail",
+            async: true, // 异步加载
+            dataType: "json",
+            success: function (data) {
 
+                if (data) {
+                    if ('200' == data.status) {
+                        var foodMenuItems = data.content;
+                        if (foodMenuItems == undefined) {
+                            $(".js-meal").html(noneDataHTM);
+                            return;
+                        }
+
+                        var mealsHTM = "";
+                        $(foodMenuItems).each(function (index, foodMenuItem) {
+
+                            mealsHTM += "<div class='weui-cells' style='margin-top: 0px;'>" +
+                                "<div class='weui-cell'>" +
+                                "<div class='weui-cell__bd'>" + foodMenuItem.meal.type + "</div>" +
+                                "</div>";
+
+                            var dishesHTM = "";
+                            $(foodMenuItem.dishes).each(function (index, dish) {
+                                dishesHTM += "<div class='weui-cell>" +
+                                    "<div class='weui-cell__bd'><img onclick='showImage(" + dish.image + ")' style='width: 60px;height: 60px;'" +
+                                    "src='" + dish.image + "'>" +
+                                    "</div>" +
+                                    "<div class='weui-cell__bd'>" +
+                                    "<div style='margin-left: -55%;'>" + dish.name + "</div>" +
+                                    "<div style='margin-left: -55%;font-size: smaller;color:graytext;'>" + dish.type + "</div>" +
+                                    "</div></div>";
+                            });
+
+                            mealsHTM += dishesHTM;
+                            mealsHTM += "</div>";
+
+                        });
+                        $(".js-meal").html(mealsHTM);
+
+                    }
+                } else {
+                    $(".js-meal").html(noneDataHTM);
+                }
+            },
+            error: function () {
+                $(".js-meal").html(loadFailHTM);
+            }
+        });
     }
 
 }

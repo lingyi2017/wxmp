@@ -67,74 +67,8 @@
         </div>
     </div>
 </div>
-<div class="weui-cells" style="margin-top: 0px;">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">早餐</div>
-    </div>
-    <div class="weui-cell">
-        <div class="weui-cell__bd"><img onclick="showImage(this.src)" style="width: 60px;height: 60px;"
-                                        src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=611116088,4106962857&fm=27&gp=0.jpg">
-        </div>
-        <div class="weui-cell__bd">
-            <div style="margin-left: -55%;">红薯粉</div>
-            <div style="margin-left: -55%;font-size: smaller;color:graytext;">1份</div>
-        </div>
-    </div>
-    <div class="weui-cell">
-        <div class="weui-cell__bd"><img onclick="showImage(this.src)" style="width: 60px;height: 60px;"
-                                        src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=611116088,4106962857&fm=27&gp=0.jpg">
-        </div>
-        <div class="weui-cell__bd">
-            <div style="margin-left: -55%;">红薯粉</div>
-            <div style="margin-left: -55%;font-size: smaller;color:graytext;">1份</div>
-        </div>
-    </div>
-</div>
-<div class="weui-cells">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">中餐</div>
-    </div>
-    <div class="weui-cell">
-        <div class="weui-cell__bd"><img onclick="showImage(this.src)" style="width: 60px;height: 60px;"
-                                        src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=200987110,409871336&fm=27&gp=0.jpg">
-        </div>
-        <div class="weui-cell__bd">
-            <div style="margin-left: -55%;">三文鱼</div>
-            <div style="margin-left: -55%;font-size: smaller;color:graytext;">1份</div>
-        </div>
-    </div>
-    <div class="weui-cell">
-        <div class="weui-cell__bd"><img onclick="showImage(this.src)" style="width: 60px;height: 60px;"
-                                        src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=200987110,409871336&fm=27&gp=0.jpg">
-        </div>
-        <div class="weui-cell__bd">
-            <div style="margin-left: -55%;">三文鱼</div>
-            <div style="margin-left: -55%;font-size: smaller;color:graytext;">1份</div>
-        </div>
-    </div>
-</div>
-<div class="weui-cells">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">晚餐</div>
-    </div>
-    <div class="weui-cell">
-        <div class="weui-cell__bd"><img onclick="showImage(this.src)" style="width: 60px;height: 60px;"
-                                        src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=616201987,518688217&fm=58">
-        </div>
-        <div class="weui-cell__bd">
-            <div style="margin-left: -55%;">小粥</div>
-            <div style="margin-left: -55%;font-size: smaller;color:graytext;">1份</div>
-        </div>
-    </div>
-    <div class="weui-cell">
-        <div class="weui-cell__bd"><img onclick="showImage(this.src)" style="width: 60px;height: 60px;"
-                                        src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=616201987,518688217&fm=58">
-        </div>
-        <div class="weui-cell__bd">
-            <div style="margin-left: -55%;">小粥</div>
-            <div style="margin-left: -55%;font-size: smaller;color:graytext;">1份</div>
-        </div>
-    </div>
+<div class="js-meal">
+    <jsp:include page="loadmore.jsp" flush="true"/>
 </div>
 
 <div class="weui-gallery" style="display: none;" id="showImg" onclick="imgHidden()">
