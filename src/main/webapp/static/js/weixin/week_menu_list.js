@@ -16,6 +16,7 @@ var noneDataHTM =
 
 var initSelectedDay;
 var initSelectedProduct;
+var firstProductId;
 
 $(function () {
 
@@ -23,7 +24,7 @@ $(function () {
 
     initProducts();
 
-    initMeals();
+    showMeals();
 
 });
 
@@ -102,6 +103,7 @@ function initProducts() {
                         if (0 == index) {
                             productsHTM += "<div class='packStyle packActive' onclick='selectedOneProduct(this, \"" + product.id + "\")'>" + product.name + "</div>";
                             initSelectedProduct = product.id;
+                            firstProductId = product.id;
                         } else {
                             productsHTM += "<div class='packStyle' onclick='selectedOneProduct(this, \"" + product.id + "\")'>" + product.name + "</div>";
                         }
@@ -120,12 +122,12 @@ function initProducts() {
 
 }
 
+
 /**
- * 初始化餐标
+ * 餐标详情展示
  *
  */
-function initMeals() {
-
+function showMeals() {
     if (null != initSelectedDay && null != initSelectedProduct) {
         var data = JSON.stringify({"date": initSelectedDay, "productId": initSelectedProduct});
         $.ajax({
@@ -176,7 +178,8 @@ function initMeals() {
                             mealsHTM += "</div>";
                         });
                         $(".js-meal").html(mealsHTM);
-
+                    } else {
+                        $(".js-meal").html(noneDataHTM);
                     }
                 } else {
                     $(".js-meal").html(noneDataHTM);
@@ -187,7 +190,6 @@ function initMeals() {
             }
         });
     }
-
 }
 
 /**
@@ -237,6 +239,9 @@ function selectedOneDay(obj, date) {
     $('.js-product-panel').first().children('.packStyle').removeClass('packActive');
     $('.js-product-panel').first().children().first().addClass('packActive');
 
+    initSelectedDay = date;
+    initSelectedProduct = firstProductId;
+    showMeals();
 }
 
 /**
@@ -249,5 +254,8 @@ function selectedOneProduct(obj, productId) {
 
     $(obj).siblings().removeClass('packActive');
     $(obj).addClass('packActive');
+
+    initSelectedProduct = productId;
+    showMeals();
 
 }
