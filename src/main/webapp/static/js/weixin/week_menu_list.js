@@ -148,26 +148,32 @@ function initMeals() {
                         var mealsHTM = "";
                         $(foodMenuItems).each(function (index, foodMenuItem) {
 
+                            // 展示餐标
                             mealsHTM += "<div class='weui-cells' style='margin-top: 0px;'>" +
                                 "<div class='weui-cell'>" +
                                 "<div class='weui-cell__bd'>" + foodMenuItem.meal.type + "</div>" +
                                 "</div>";
 
-                            var dishesHTM = "";
+                            // 展示餐标下的菜单
                             $(foodMenuItem.dishes).each(function (index, dish) {
-                                dishesHTM += "<div class='weui-cell>" +
-                                    "<div class='weui-cell__bd'><img onclick='showImage(" + dish.image + ")' style='width: 60px;height: 60px;'" +
-                                    "src='" + dish.image + "'>" +
-                                    "</div>" +
+                                mealsHTM += "<div class='weui-cell'>" +
+                                    "<div class='weui-cell__bd'><img onclick='showImage(this.src)' style='width: 60px;height: 60px;'";
+
+                                if ('' == dish.image) {
+                                    mealsHTM += "src='/wxmp/static/images/dish.jpg'>";
+                                } else {
+                                    mealsHTM += "src='/wxmp/" + getDishImageUrl(dish.image) + "'>";
+                                }
+
+                                mealsHTM += "</div>" +
                                     "<div class='weui-cell__bd'>" +
                                     "<div style='margin-left: -55%;'>" + dish.name + "</div>" +
-                                    "<div style='margin-left: -55%;font-size: smaller;color:graytext;'>" + dish.type + "</div>" +
-                                    "</div></div>";
+                                    "<div style='margin-left: -55%;font-size: smaller;color:graytext;'>" + getDishType(dish.type) + "</div>" +
+                                    "</div>" +
+                                    "</div>";
                             });
 
-                            mealsHTM += dishesHTM;
                             mealsHTM += "</div>";
-
                         });
                         $(".js-meal").html(mealsHTM);
 
@@ -180,6 +186,40 @@ function initMeals() {
                 $(".js-meal").html(loadFailHTM);
             }
         });
+    }
+
+}
+
+/**
+ * 获取菜品图片地址
+ *
+ * @param image 以 ; 分隔
+ */
+function getDishImageUrl(image) {
+
+    if ('' != image) {
+        var imageArray = image.split(";");
+        return imageArray[0];
+    }
+
+}
+
+/**
+ * 获取菜品类型
+ *
+ * @param type 1-菜品；2-主食；3-加餐
+ */
+function getDishType(type) {
+
+    switch (type) {
+        case '1':
+            return '菜品';
+        case '2':
+            return '主食';
+        case '3':
+            return '加餐';
+        default:
+            return '菜品';
     }
 
 }
@@ -209,4 +249,5 @@ function selectedOneProduct(obj, productId) {
 
     $(obj).siblings().removeClass('packActive');
     $(obj).addClass('packActive');
+
 }
