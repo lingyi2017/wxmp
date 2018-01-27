@@ -102,7 +102,7 @@
                                     <input id="addDate" name="addDate" type="text" readonly="readonly"
                                            maxlength="20" class="input-large Wdate"
                                            value="${addDate}"
-                                           onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+                                           onclick="WdatePicker({dateFmt:'yyyy-MM-dd', isShowClear:false, minDate:'${minDate}', maxDate:'${maxDate}', disabledDays: [0,6]});"/>
                                 </div>
                             </div>
                         </div>
