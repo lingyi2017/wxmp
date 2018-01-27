@@ -103,6 +103,12 @@ function removeDish(dish) {
  */
 function saveFoodMenu() {
 
+    var addDate = $("#addDate").val();
+    if (validateData(addDate)) {
+        alert(addDate + "日菜单已上架");
+        return false;
+    }
+
     var foodMenuDto = {};
 
     var addDate = $("#addDate").val();
@@ -161,4 +167,30 @@ function isInArray(array, value) {
         }
     }
     return false;
+}
+
+function validateData(date) {
+
+    var isExist = true;
+    var data = JSON.stringify({"date": date});
+    $.ajax({
+        contentType: "application/json",
+        type: "post",
+        data: data,
+        url: "/wxmp/rs/dcxt/foodMenu/isFoodMenuExist",
+        async: false,
+        dataType: "json",
+        success: function (data) {
+            if (data) {
+                if ('200' == data.status) {
+                    isExist = data.content;
+                }
+            }
+        },
+        error: function () {
+
+        }
+    });
+    return isExist;
+
 }

@@ -103,4 +103,21 @@ public class FoodMenuResource extends BaseController {
 		return Result.buildErrorResult();
 
 	}
+
+
+
+	@POST
+	@Path("/isFoodMenuExist")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Result<Boolean> isFoodMenuExist(Map<String, String> paramMap) {
+
+		String date = paramMap.get("date");
+		FoodMenu foodMenu = foodMenuService.findByDate(date);
+		if (null == foodMenu) {
+			return Result.buildSuccessResult(false);
+		}
+		return Result.buildSuccessResult(true);
+
+	}
 }

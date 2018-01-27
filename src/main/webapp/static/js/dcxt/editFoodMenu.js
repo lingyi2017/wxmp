@@ -145,12 +145,17 @@ function removeDish(dish) {
  */
 function editFoodMenu() {
 
+    var addDate = $("#addDate").val();
+    if (validateData(addDate)) {
+        alert(addDate + "日菜单已上架");
+        return false;
+    }
+
     var foodMenuDto = {};
 
     var foodMenuId = $("#foodMenuId").val();
     foodMenuDto['id'] = foodMenuId;
 
-    var addDate = $("#addDate").val();
     foodMenuDto['addDate'] = addDate;
 
     var foodMenuItemDtos = new Array();
@@ -206,4 +211,30 @@ function isInArray(array, value) {
         }
     }
     return false;
+}
+
+function validateData(date) {
+
+    var isExist = true;
+    var data = JSON.stringify({"date": date});
+    $.ajax({
+        contentType: "application/json",
+        type: "post",
+        data: data,
+        url: "/wxmp/rs/dcxt/foodMenu/isFoodMenuExist",
+        async: false,
+        dataType: "json",
+        success: function (data) {
+            if (data) {
+                if ('200' == data.status) {
+                    isExist = data.content;
+                }
+            }
+        },
+        error: function () {
+
+        }
+    });
+    return isExist;
+
 }
