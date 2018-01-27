@@ -48,13 +48,13 @@
 </head>
 
 <body ontouchstart style="height: 100%;background-color: #F5F5F5;font-family:'黑体';">
-<input type="hidden" id="flag" value="1"/>
+<input type="hidden" id="flag" value="2"/>
 <!--主体-->
 <div class="weui-cells">
     <div class="weui-cell">
         <div class="weui-cell__bd" style="text-align:center;">
             <p>
-            <div>本周菜单</div>
+            <div>下周菜单</div>
             </p>
         </div>
     </div>
@@ -78,14 +78,6 @@
         <a href="javascript:" class="weui-gallery__del">
             <i class="weui-icon-cancel weui-icon_gallery-cancel"></i>
         </a>
-    </div>
-</div>
-
-<div class="weui-cells" style="text-align: center;color:gray;font-family: '宋体';font-size: large;">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">
-            查看下周食谱>>
-        </div>
     </div>
 </div>
 

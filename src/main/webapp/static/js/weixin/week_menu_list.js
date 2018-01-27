@@ -34,10 +34,11 @@ $(function () {
  */
 function initWeekDays() {
 
+    var flag = $("#flag").val();
     $.ajax({
         contentType: "application/json",
         type: "post",
-        url: "/wxmp/rs/wx/foodMenu/weekDays/1",
+        url: "/wxmp/rs/wx/foodMenu/weekDays/" + flag,
         async: false, // 同步加载
         dataType: "json",
         success: function (data) {
