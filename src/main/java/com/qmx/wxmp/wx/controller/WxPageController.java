@@ -20,6 +20,13 @@ public class WxPageController {
 
 
 
+	@RequestMapping(value = "/next_week_menu_list")
+	public String nextWeekMenuListUI() {
+		return "/wx/next_week_menu_list";
+	}
+
+
+
 	@RequestMapping(value = "/serviceForm")
 	public String serviceFormUI() {
 		return "/wx/serviceForm";
@@ -68,16 +75,21 @@ public class WxPageController {
 	}
 
 
+
 	@RequestMapping(value = "/accountEdit")
 	public String accountEdit() {
 		return "/wx/account_edit";
 	}
 
+
+
 	@RequestMapping(value = "/areaEdit")
 	public String areaEdit() {
 		return "/wx/area_edit";
 	}
-	
+
+
+
 	@RequestMapping(value = "/areaList")
 	public String areaList() {
 		return "/weixxin/address_list";

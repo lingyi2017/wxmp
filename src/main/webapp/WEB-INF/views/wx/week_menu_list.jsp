@@ -84,7 +84,7 @@
 <div class="weui-cells" style="text-align: center;color:gray;font-family: '宋体';font-size: large;">
     <div class="weui-cell">
         <div class="weui-cell__bd">
-            查看下周食谱>>
+            <a href="${pageContext.request.contextPath}/wx/page/next_week_menu_list">查看下周食谱>></a>
         </div>
     </div>
 </div>
