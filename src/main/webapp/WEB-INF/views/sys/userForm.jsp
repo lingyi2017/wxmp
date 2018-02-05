@@ -44,14 +44,14 @@
 			<label class="control-label"><spring:message code='organization' />:</label>
 			<div class="controls">
                 <tags:treeselect id="company" name="company.id" value="${user.company.id}" labelName="company.name" labelValue="${user.company.name}"
-					title="机构" url="/sys/office/treeData?type=1" cssClass="required"/>
+					title="机构" url="/sys/office/treeData?type=1" cssClass="required" serviceLevel="0"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label"><spring:message code='department' />:</label>
 			<div class="controls">
                 <tags:treeselect id="office" name="office.id" value="${user.office.id}" labelName="office.name" labelValue="${user.office.name}"
-					title="部门" url="/sys/office/treeData?type=2" cssClass="required"/>
+					title="部门" url="/sys/office/treeData?type=2" cssClass="required" serviceLevel="0"/>
 			</div>
 		</div>
 		<div class="control-group">

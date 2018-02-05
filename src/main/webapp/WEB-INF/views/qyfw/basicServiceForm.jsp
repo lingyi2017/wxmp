@@ -150,7 +150,7 @@
         <tags:treeselect id="serviceCategory" name="serviceCategory.id" value="${basicService.serviceCategory.id}"
                          labelName="serviceCategory.name" labelValue="${basicService.serviceCategory.name}"
                          title="服务分类" url="/qyfw/serviceCategory/treeDataSpecial"
-                         cssClass="required"/>
+                         serviceLevel="2" cssClass="required"/>
     </div>
 </div>
 <div class="control-group">

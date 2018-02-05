@@ -65,8 +65,8 @@
         <div class="controls">
             <tags:treeselect id="serviceCategory" name="parent.id" value="${serviceCategory.parent.id}"
                              labelName="parent.name" labelValue="${serviceCategory.parent.name}"
-                             title="服务分类" url="/qyfw/serviceCategory/treeData" extId="${serviceCategory.id}"
-                             cssClass="required"/>
+                             title="服务分类" url="/qyfw/serviceCategory/treeDataSpecial" extId="${serviceCategory.id}"
+                             serviceLevel="1" cssClass="required"/>
         </div>
     </div>
     <div class="control-group">
@@ -102,7 +102,7 @@
     <div class="control-group">
         <label class="control-label">微信菜单ID:</label>
         <div class="controls">
-            <form:input path="wxMenuId" htmlEscape="false"/>
+            <form:input path="wxMenuId" htmlEscape="false" cssClass="required"/>
         </div>
     </div>
     <div class="form-actions">

@@ -20,6 +20,7 @@
 <%@ attribute name="disabled" type="java.lang.String" required="false" description="是否限制选择，如果限制，设置为disabled" %>
 <%@ attribute name="nodesLevel" type="java.lang.String" required="false" description="菜单展开层数" %>
 <%@ attribute name="nameLevel" type="java.lang.String" required="false" description="返回名称关联级别" %>
+<%@ attribute name="serviceLevel" type="java.lang.String" required="false" description="服务分类级别" %>
 <div class="input-append">
     <input id="${id}Id" name="${name}" class="${cssClass}" type="hidden"
            value="${value}"${disabled eq 'true' ? ' disabled=\'disabled\'' : ''}/>
@@ -74,11 +75,23 @@
                          }//
                         </c:if>*/
 
-                        // 特殊处理
-                        var wxMenuId = nodes[i].wxMenuId;
-                        if (undefined != wxMenuId && "non-existent" != wxMenuId) {
-                            top.$.jBox.tip("只能选择三级分类");
-                            return false;
+                        debugger;
+                        // 服务分类选择限制
+                        var serviceLevel = ${serviceLevel};
+                        if (serviceLevel) {
+                            var wxMenuId = nodes[i].wxMenuId;
+                            if ('1' == serviceLevel) {
+                                if (undefined != wxMenuId && "non-existent" == wxMenuId) {
+                                    top.$.jBox.tip("只能选择一级分类");
+                                    return false;
+                                }
+                            }
+                            if ('2' == serviceLevel) {
+                                if (undefined != wxMenuId && "non-existent" != wxMenuId) {
+                                    top.$.jBox.tip("只能选择二级分类");
+                                    return false;
+                                }
+                            }
                         }
 
                         // 正常业务逻辑
