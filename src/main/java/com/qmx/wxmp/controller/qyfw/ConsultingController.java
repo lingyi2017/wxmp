@@ -101,9 +101,7 @@ public class ConsultingController extends BaseController {
 
 			// 保存客户信息
 			Customer customer = consulting.getCustomer();
-			if (null != customer && StringUtils.isEmpty(customer.getId())) {
-				customer.setId(IdGen.uuid());
-				customer.setCreateDate(new Date());
+			if (null != customer) {
 				customerService.save(customer);
 				consulting.setCustomer(customer);
 			}
