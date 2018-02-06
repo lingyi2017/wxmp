@@ -61,7 +61,7 @@
             <label class="lbl">${fns:getDictLabel(order.customerType, 'customer_type', '无')}</label>
         </div>
     </div>
-    <c:if test="${order.customerType } == '1'">
+    <c:if test="${order.customerType == '1'}">
     	<div class="control-group">
 	        <label class="control-label">企业名称:</label>
 	        <div class="controls">
@@ -102,7 +102,7 @@
     <div class="control-group">
         <label class="control-label">订单状态:</label>
         <div class="controls">
-            <form:select path="status">
+            <form:select path="status" disabled="true">
                 <form:options items="${fns:getDictList('order_status')}" itemLabel="label"
                               itemValue="value" htmlEscape="false"/>
             </form:select>
@@ -125,11 +125,11 @@
         <div class="controls">
             <form:hidden path="customer.id"/>
             <c:if test="${order.customer.id == null}">
-                <form:input path="customer.name" htmlEscape="false" maxlength="100" cssClass="required"
+                <form:input path="customer.name" htmlEscape="false" maxlength="100"  readonly="true"
                             value="${order.companyName}"/>
             </c:if>
             <c:if test="${order.customer.id != null}">
-                <form:input path="customer.name" htmlEscape="false" maxlength="100" cssClass="required"/>
+                <form:input path="customer.name" htmlEscape="false" maxlength="100"  readonly="true"/>
             </c:if>
             <label><input type="button" class="btn" value="<spring:message code='query'/>"
                           onclick="queryCustomer()"/></label>
@@ -139,13 +139,13 @@
         <label class="control-label">客户性质:</label>
         <div class="controls">
             <c:if test="${order.customer.id == null}">
-                <form:select path="customer.customerType" id="customer.customerType">
+                <form:select path="customer.customerType" id="customer.customerType" disabled="true">
                     <option value="1" <c:if test="${order.customerType == 1}" >selected="selected"</c:if>>企业</option>
                     <option value="2" <c:if test="${order.customerType == 2}">selected="selected"</c:if>>个人</option>
                 </form:select>
             </c:if>
             <c:if test="${order.customer.id != null}">
-                <form:select path="customer.customerType" id="customer.customerType">
+                <form:select path="customer.customerType" id="customer.customerType" disabled="true">
                     <form:options items="${fns:getDictList('customer_type')}" itemLabel="label"
                                   itemValue="value" htmlEscape="false"/>
                 </form:select>
@@ -156,11 +156,11 @@
         <label class="control-label">联系人:</label>
         <div class="controls">
             <c:if test="${order.customer.id == null}">
-                <form:input path="customer.contact" id="123" htmlEscape="false" maxlength="100" cssClass="required"
+                <form:input path="customer.contact" id="123" htmlEscape="false" maxlength="100"  readonly="true"
                             value="${order.contact}"/>
             </c:if>
             <c:if test="${order.customer.id != null}">
-                <form:input path="customer.contact" htmlEscape="false" maxlength="100" cssClass="required"/>
+                <form:input path="customer.contact" htmlEscape="false" maxlength="100"  readonly="true"/>
             </c:if>
         </div>
     </div>
@@ -168,24 +168,24 @@
         <label class="control-label">联系电话:</label>
         <div class="controls">
             <c:if test="${order.customer.id == null}">
-                <form:input path="customer.phone" id="1234" htmlEscape="false" maxlength="100" cssClass="required"
+                <form:input path="customer.phone" id="1234" htmlEscape="false" maxlength="100"  readonly="true"
                             value="${order.phone}"/>
             </c:if>
             <c:if test="${order.customer.id != null}">
-                <form:input path="customer.phone" htmlEscape="false" maxlength="100" cssClass="required"/>
+                <form:input path="customer.phone" htmlEscape="false" maxlength="100"  readonly="true"/>
             </c:if>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">联系地址:</label>
         <div class="controls">
-            <form:input path="customer.address"/>
+            <form:input path="customer.address" readonly="true"/>
         </div>
     </div>
     <div class="control-group">
         <label class="control-label">备注:</label>
         <div class="controls">
-            <form:textarea path="customer.mark" htmlEscape="false" rows="3" maxlength="200" class="input-xlarge"/>
+            <form:textarea path="customer.mark" htmlEscape="false" rows="3" maxlength="200" class="input-xlarge" readonly="true"/>
         </div>
     </div>
 

@@ -53,6 +53,14 @@
         	<label class="lbl">${fns:getDictLabel(consulting.customerType, 'customer_type', '无')}</label>
         </div>
     </div>
+    <c:if test="${consulting.customerType == '1'}">
+    	<div class="control-group">
+	        <label class="control-label">企业名称:</label>
+	        <div class="controls">
+	            <label class="lbl">${consulting.companyName}</label>
+	        </div>
+	    </div>
+    </c:if>
     <div class="control-group">
         <label class="control-label">联系人:</label>
         <div class="controls">
@@ -71,6 +79,13 @@
             <label class="lbl">${consulting.content}</label>
         </div>
     </div>
+    
+    <div class="control-group">
+        <label class="control-label">咨询时间:</label>
+        <div class="controls">
+            <label class="lbl"><fmt:formatDate value="${consulting.time}" pattern="yyyy-MM-dd hh:mm:ss"/></label>
+        </div>
+    </div>
     <div class="control-group">
         <label class="control-label">处理状态:</label>
         <div class="controls">
@@ -84,9 +99,9 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">咨询时间:</label>
+        <label class="control-label">处理时间:</label>
         <div class="controls">
-            <label class="lbl"><fmt:formatDate value="${consulting.time}" pattern="yyyy-MM-dd hh:mm:ss"/></label>
+            <label class="lbl"><fmt:formatDate value="${consulting.dealTime}" pattern="yyyy-MM-dd hh:mm:ss"/></label>
         </div>
     </div>
 

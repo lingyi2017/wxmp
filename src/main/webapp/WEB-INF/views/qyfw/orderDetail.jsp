@@ -53,7 +53,7 @@
             <label class="lbl">${fns:getDictLabel(order.customerType, 'customer_type', '无')}</label>
         </div>
     </div>
-    <c:if test="${order.customerType } == '1'">
+    <c:if test="${order.customerType == '1'}">
     	<div class="control-group">
 	        <label class="control-label">企业名称:</label>
 	        <div class="controls">
