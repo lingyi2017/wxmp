@@ -29,6 +29,9 @@ public class Product extends BaseSimpleEntity {
 	// 图片（多个图片以 ; 分隔）
 	private String				image;
 
+	// 封面图片
+	private String				mainImage;
+
 	// 描述
 	private String				description;
 
@@ -69,6 +72,18 @@ public class Product extends BaseSimpleEntity {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+
+
+	public String getMainImage() {
+		return mainImage;
+	}
+
+
+
+	public void setMainImage(String mainImage) {
+		this.mainImage = mainImage;
 	}
 
 

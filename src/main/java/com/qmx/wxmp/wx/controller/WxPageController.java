@@ -27,6 +27,13 @@ public class WxPageController {
 
 
 
+	@RequestMapping(value = "/product_detail")
+	public String productDetailUI() {
+		return "/wx/product_detail";
+	}
+
+
+
 	@RequestMapping(value = "/serviceForm")
 	public String serviceFormUI() {
 		return "/wx/serviceForm";
