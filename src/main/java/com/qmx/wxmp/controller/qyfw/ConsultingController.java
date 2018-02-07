@@ -105,7 +105,7 @@ public class ConsultingController extends BaseController {
 				customerService.save(customer);
 				consulting.setCustomer(customer);
 			}
-
+			consulting.setDealStatus(Consulting.DEAL_YES);
 			consultingService.save(consulting);
 			addMessage(redirectAttributes, "处理咨询成功");
 		} catch (Exception e) {
