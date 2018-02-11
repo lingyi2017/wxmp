@@ -67,6 +67,16 @@
             <form:options items="${fns:getDictList('dcxt_state')}" itemLabel="label" itemValue="value"
                           htmlEscape="false"/>
         </form:select>&nbsp;&nbsp;
+        <label><spring:message code='start.date'/>：</label><input id="beginDate" name="beginDate" type="text"
+                                                                  readonly="readonly" maxlength="20"
+                                                                  class="input-small Wdate"
+                                                                  value="${foodMenu.beginDate}"
+                                                                  onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+        <label><spring:message code='end.date'/>：</label><input id="endDate" name="endDate" type="text"
+                                                                readonly="readonly" maxlength="20"
+                                                                class="input-small Wdate"
+                                                                value="${foodMenu.endDate}"
+                                                                onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
         <input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='query' />"
                onclick="return page();"/>
     </div>

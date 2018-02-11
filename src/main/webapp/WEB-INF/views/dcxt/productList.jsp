@@ -105,6 +105,7 @@
                         <a href="${ctx}/dcxt/product/updateState?id=${entity.id}&state=3"
                            onclick="return confirmx('确认要下架该产品吗？', this.href)">下架</a>
                     </c:if>
+                    <a href="${ctx}/dcxt/product/viewForm?id=${entity.id}"><spring:message code='check'/></a>
                     <a href="${ctx}/dcxt/product/delete?id=${entity.id}"
                        onclick="return confirmx('确认要删除该产品吗？', this.href)"><spring:message code='delete'/></a>
                 </td>

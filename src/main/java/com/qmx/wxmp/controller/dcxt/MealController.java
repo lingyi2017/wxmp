@@ -63,6 +63,14 @@ public class MealController extends BaseController {
 		return "/dcxt/mealForm";
 	}
 
+	@RequiresPermissions("dcxt:meal:view")
+	@RequestMapping("/viewForm")
+	public String viewForm(Meal entity, Model model) {
+
+		model.addAttribute("meal", entity);
+		return "/dcxt/viewMealForm";
+	}
+
 
 
 	@RequiresPermissions("dcxt:meal:edit")

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import com.qmx.wxmp.common.persistence.Page;
+import com.qmx.wxmp.common.utils.DateUtils;
 import com.qmx.wxmp.common.utils.IdGen;
 import com.qmx.wxmp.dto.dcxt.FoodMenuDto;
 import com.qmx.wxmp.dto.dcxt.FoodMenuItemDto;
@@ -142,10 +143,14 @@ public class FoodMenuService extends BaseService {
 		if (StringUtils.isNotEmpty(entity.getState())) {
 			dc.add(Restrictions.eq("state", entity.getState()));
 		}
+		if (StringUtils.isNotEmpty(entity.getBeginDate()) && StringUtils.isNotEmpty(entity.getEndDate())) {
+			dc.add(Restrictions.between("addDate", DateUtils.parseDate(entity.getBeginDate()),
+					DateUtils.parseDate(entity.getEndDate())));
+		}
 
 		dc.add(Restrictions.eq("delFlag", FoodMenu.DEL_FLAG_NORMAL));
 		if (StringUtils.isBlank(page.getOrderBy())) {
-			dc.addOrder(Order.desc("createDate"));
+			dc.addOrder(Order.desc("addDate"));
 		}
 		return thisDao.find(page, dc);
 

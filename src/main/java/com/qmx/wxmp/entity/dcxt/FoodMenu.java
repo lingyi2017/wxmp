@@ -5,12 +5,12 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.qmx.wxmp.common.persistence.BaseSimpleEntity;
 
 /**
@@ -38,7 +38,15 @@ public class FoodMenu extends BaseSimpleEntity {
 	private String				state;
 
 	// 添加日期
-	protected Date				addDate;
+	private Date				addDate;
+
+	// 开始日期（用于查询）
+	@Transient
+	private String				beginDate;
+
+	// 结束日期（用于查询）
+	@Transient
+	private String				endDate;
 
 
 
@@ -79,5 +87,29 @@ public class FoodMenu extends BaseSimpleEntity {
 
 	public void setAddDate(Date addDate) {
 		this.addDate = addDate;
+	}
+
+
+
+	public String getBeginDate() {
+		return beginDate;
+	}
+
+
+
+	public void setBeginDate(String beginDate) {
+		this.beginDate = beginDate;
+	}
+
+
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 }

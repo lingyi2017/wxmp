@@ -69,14 +69,16 @@ public class FoodMenuController extends BaseController {
 		int mealsSize = meals.size() < 1 ? 1 : meals.size();
 		int mealTdWidth = 100 / mealsSize;
 
-		String minDate = DateUtils.getWeekDate(new Date(), 1);
+		// String minDate = DateUtils.getWeekDate(new Date(), 1);
+		String minDate = DateUtils.getDate();
 		String maxDate = DateUtils.getWeekDate(new Date(), 12);
 
 		model.addAttribute("products", products);
 		model.addAttribute("meals", meals);
 		model.addAttribute("dishTypeVos", buildDishTypeVo(dishes));
 		model.addAttribute("mealTdWidth", mealTdWidth);
-		model.addAttribute("addDate", DateUtils.getNextMonday(new Date()));
+		// model.addAttribute("addDate", DateUtils.getNextMonday(new Date()));
+		model.addAttribute("addDate", DateUtils.getDate());
 		model.addAttribute("minDate", minDate);
 		model.addAttribute("maxDate", maxDate);
 		return "/dcxt/addFoodMenuForm";

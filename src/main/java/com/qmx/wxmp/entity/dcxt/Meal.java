@@ -17,7 +17,7 @@ public class Meal extends BaseSimpleEntity {
 
 	private static final long	serialVersionUID	= 5663148551245769143L;
 
-	// 类型
+	// 餐标名称
 	private String				type;
 
 	// 描述

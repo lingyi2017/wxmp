@@ -50,6 +50,9 @@ public class Combo extends BaseSimpleEntity {
 	// 状态（1-下架；2-上架）
 	private String		state;
 
+	// 排序（ASC）
+	private Integer		sort;
+
 	// 所属产品
 	private Product		product;
 
@@ -123,6 +126,18 @@ public class Combo extends BaseSimpleEntity {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+
+
+	public Integer getSort() {
+		return sort;
+	}
+
+
+
+	public void setSort(Integer sort) {
+		this.sort = sort;
 	}
 
 

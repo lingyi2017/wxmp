@@ -71,6 +71,14 @@ public class ProductController extends BaseController {
 		return "/dcxt/productForm";
 	}
 
+	@RequiresPermissions("dcxt:product:view")
+	@RequestMapping("/viewForm")
+	public String viewForm(Product entity, Model model) {
+
+		model.addAttribute("product", entity);
+		return "/dcxt/viewProductForm";
+	}
+
 
 
 	@RequiresPermissions("dcxt:product:edit")

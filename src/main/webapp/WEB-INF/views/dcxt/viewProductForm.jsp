@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
+<%@ include file="/WEB-INF/views/include/taglib.jsp" %>
 <html>
 <head>
-	<title>产品信息</title>
-	<meta name="decorator" content="default"/>
-	<script type="text/javascript">
-	
+    <title>产品查看</title>
+    <meta name="decorator" content="default"/>
+    <script type="text/javascript">
+
         Dropzone.autoDiscover = false;
         $(document).ready(function () {
             $("#name").focus();
@@ -68,69 +68,63 @@
                 $("#image").attr("value", path);  // 修改图片 url
             });
         });
-		
-	</script>
+
+    </script>
 </head>
 <body>
 
-	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/dcxt/product/">产品列表</a></li>
-		<shiro:hasPermission name="dcxt:product:edit">
-		<li class="active"><a>产品${not empty product.id ? '修改' : '添加'}</a></li>
-		</shiro:hasPermission>
-	</ul>
-	
-	<form:form id="inputForm" modelAttribute="product" action="${ctx}/dcxt/product/save" method="post" class="form-horizontal">
-		<form:hidden path="id"/>
-		<tags:message content="${message}"/>
-		<div class="control-group">
-			<label class="control-label">名称:</label>
-			<div class="controls">
-				<form:input path="name" htmlEscape="false" maxlength="50" class="required"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">状态:</label>
-			<div class="controls">
-				<form:select path="state">
-					<form:options items="${fns:getDictList('dcxt_state')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-				</form:select>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">图片:</label>
-			<div class="controls">
-				<input id="image" name="image" type='hidden' value="${product.image}"/>
-				<div id="fileUpload" name="fileUpload" class="dropzone" style="height:400px;width:325px;">
-				</div>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">序号:</label>
-			<div class="controls">
-				<form:input path="sort" htmlEscape="false" maxlength="50" class="required digits"/>&nbsp;
-				<label style="color: red;">数字越小越靠前显示</label>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">描述:</label>
-			<div class="controls">
-				<form:textarea path="description" htmlEscape="false" rows="3" maxlength="200" class="input-xlarge"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">备注:</label>
-			<div class="controls">
-				<form:textarea path="remarks" htmlEscape="false" rows="2" maxlength="200" class="input-xlarge"/>
-			</div>
-		</div>
-		<div class="form-actions">
-			<shiro:hasPermission name="dcxt:product:edit">
-			<input id="btnSubmit" class="btn btn-primary" type="submit" value="<spring:message code='save' />"/>&nbsp;
-			</shiro:hasPermission>
-			<input id="btnCancel" class="btn" type="button" value="<spring:message code='return' />" onclick="history.go(-1)"/>
-		</div>
-	</form:form>
-	
+<ul class="nav nav-tabs">
+    <li><a href="${ctx}/dcxt/product/">产品列表</a></li>
+    <li class="active"><a>产品查看</a></li>
+</ul>
+
+<form:form id="inputForm" modelAttribute="product" action="${ctx}/dcxt/product/save" method="post"
+           class="form-horizontal">
+    <form:hidden path="id"/>
+    <tags:message content="${message}"/>
+    <div class="control-group">
+        <label class="control-label">名称:</label>
+        <div class="controls">
+            <label class="lbl">${product.name}</label>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">状态:</label>
+        <div class="controls">
+            <label class="lbl">${fns:getDictLabel(product.state, 'dcxt_state', '无')}</label>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">图片:</label>
+        <div class="controls">
+            <input id="image" name="image" type='hidden' value="${product.image}"/>
+            <div id="fileUpload" name="fileUpload" class="dropzone" style="height:400px;width:325px;">
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">序号:</label>
+        <div class="controls">
+            <label class="lbl">${product.sort}</label>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">描述:</label>
+        <div class="controls">
+            <label class="lbl">${product.description}</label>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">备注:</label>
+        <div class="controls">
+            <label class="lbl">${product.remarks}</label>
+        </div>
+    </div>
+    <div class="form-actions">
+        <input id="btnCancel" class="btn" type="button" value="<spring:message code='return' />"
+               onclick="history.go(-1)"/>
+    </div>
+</form:form>
+
 </body>
 </html>

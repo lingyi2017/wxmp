@@ -74,6 +74,14 @@ public class ComboController extends BaseController {
 		return "/dcxt/comboForm";
 	}
 
+	@RequiresPermissions("dcxt:combo:view")
+	@RequestMapping("/viewForm")
+	public String viewForm(Combo entity, Model model) {
+
+		model.addAttribute("combo", entity);
+		return "/dcxt/viewComboForm";
+	}
+
 
 
 	@RequiresPermissions("dcxt:combo:edit")

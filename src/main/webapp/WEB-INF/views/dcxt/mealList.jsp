@@ -61,7 +61,7 @@
     <input id="orderBy" name="orderBy" type="hidden" value="${page.orderBy}"/>
 
     <div style="margin-top:8px;">
-        <label>类型：</label>
+        <label>餐标名称：</label>
         <form:input path="type" cssClass="input-small"/>&nbsp;
         <label>状态：</label>
         <form:select path="state" cssClass="input-small">
@@ -77,8 +77,7 @@
 <table id="contentTable" class="table table-striped table-bordered table-condensed">
     <thead>
     <tr>
-        <th>类型</th>
-        <th>描述</th>
+        <th>餐标名称</th>
         <th>状态</th>
         <th class="sort createDate">添加时间</th>
         <th>操作</th>
@@ -88,7 +87,6 @@
     <c:forEach items="${page.list}" var="entity">
         <tr>
             <td>${entity.type}</td>
-            <td>${entity.description}</td>
             <td>${fns:getDictLabel(entity.state, 'dcxt_meal_state', '无')}</td>
             <td><fmt:formatDate value='${entity.createDate}' type="both"/></td>
             <shiro:hasPermission name="dcxt:meal:edit">
@@ -102,6 +100,7 @@
                         <a href="${ctx}/dcxt/meal/updateState?id=${entity.id}&state=3"
                            onclick="return confirmx('确认要启用该餐标吗？', this.href)">不启用</a>
                     </c:if>
+                    <a href="${ctx}/dcxt/meal/viewForm?id=${entity.id}"><spring:message code='check'/></a>
                     <a href="${ctx}/dcxt/meal/delete?id=${entity.id}"
                        onclick="return confirmx('确认要删除该餐标吗？', this.href)"><spring:message code='delete'/></a>
                 </td>
