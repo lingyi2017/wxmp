@@ -108,6 +108,27 @@ public class OrderByDayController extends BaseController {
 	 * @param orderIds
 	 * @return
 	 */
+	@RequestMapping("wx_eat_history_date_data")
+	@ResponseBody
+	public AjaxResult eatHistoryDateData(String year, String month) {
+		AjaxResult result = new AjaxResult();
+		MonthEatDTO eatDTO = new MonthEatDTO();
+		try{
+			List<OrderByDay> list = byDayService.findMonthEatList(year, month, "09f89a7575094781956aa65fe659b810");
+			Set<>
+			return result;
+		} catch(Exception e){
+			e.printStackTrace();
+			result.setResult(false);
+			return result;
+		} 
+	}
+	
+	/**
+	 * 用餐查询
+	 * @param orderIds
+	 * @return
+	 */
 	@RequestMapping("wx_eat_history_data")
 	@ResponseBody
 	public AjaxResult eatHistoryData(String year, String month) {

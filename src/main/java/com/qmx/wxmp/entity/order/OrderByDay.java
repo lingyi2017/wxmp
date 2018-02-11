@@ -64,8 +64,8 @@ public class OrderByDay extends BaseSimpleEntity {
 	private Date updateTime;
 	/** 主订单*/
 	private OrderMain order;
-	/** 菜单明细*/
-	private FoodMenuItem foodMenuItem;
+	/** 本日菜单*/
+	private FoodMenu foodMenu;
 
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
@@ -130,11 +130,11 @@ public class OrderByDay extends BaseSimpleEntity {
 	}
 	@OneToOne
 	@JoinColumn(name="food_menu_item_id")
-	public FoodMenuItem getFoodMenuItem() {
-		return foodMenuItem;
+	public FoodMenu getFoodMenu() {
+		return foodMenu;
 	}
-	public void setFoodMenuItem(FoodMenuItem foodMenuItem) {
-		this.foodMenuItem = foodMenuItem;
+	public void setFoodMenuItem(FoodMenu foodMenu) {
+		this.foodMenu = foodMenu;
 	}
 	
 	
